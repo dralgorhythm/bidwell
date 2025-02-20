@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export function GET(request: Request) {
-  const title = 'Next.js Portfolio Starter'; // Use a static title
+  const title = 'Bidwell Consulting';
 
   return new ImageResponse(
     (
