@@ -9,7 +9,7 @@ export default nextConfig;
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  assetPrefix: isProd ? '/<repository-name>/' : '',
+  assetPrefix: isProd ? '/bidwell/' : '',
   images: {
     unoptimized: true,
   },
