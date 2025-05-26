@@ -53,14 +53,6 @@ export const customMatchers = {
 
 // Mock data generators
 export const mockData = {
-  blogPost: (overrides = {}) => ({
-    title: 'Test Blog Post',
-    publishedAt: '2024-01-01',
-    summary: 'This is a test blog post summary',
-    slug: 'test-blog-post',
-    ...overrides,
-  }),
-  
   comparisonResult: (overrides = {}) => ({
     firstNumber: 5,
     secondNumber: 10,

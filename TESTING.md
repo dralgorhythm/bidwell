@@ -15,7 +15,6 @@ __tests__/
 │   ├── nav.test.tsx
 │   └── posts.test.tsx
 ├── integration/            # Integration tests
-│   ├── blog-page.test.tsx
 │   └── home-page.test.tsx
 ├── utils/                  # Testing utilities
 │   ├── performance-utils.tsx

@@ -70,7 +70,6 @@ jobs:
     - name: Run accessibility tests
       run: |
         npx @axe-core/cli http://localhost:3000
-        npx @axe-core/cli http://localhost:3000/blog
         npx @axe-core/cli http://localhost:3000/comparison
 
   performance-test:
@@ -104,7 +103,6 @@ jobs:
     - name: Run Lighthouse CI
       run: |
         lhci autorun --upload.target=temporary-public-storage --collect.url=http://localhost:3000
-        lhci autorun --upload.target=temporary-public-storage --collect.url=http://localhost:3000/blog
         lhci autorun --upload.target=temporary-public-storage --collect.url=http://localhost:3000/comparison
 
   security-test:
