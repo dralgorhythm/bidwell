@@ -76,6 +76,7 @@ This is a Next.js application using the App Router architecture. Always consider
 - Use TypeScript strict mode
 - Follow conventional commit messages
 - Consider mobile-first responsive design
+- Always run terminal commands with `--no-pager` or `--output` to avoid pager issues in CI/CD environments
 
 ### Common Tasks
 When asked to:

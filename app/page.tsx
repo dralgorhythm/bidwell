@@ -1,5 +1,3 @@
-import { BlogPosts } from 'app/components/posts'
-
 export default function Page() {
   return (
     <section>
@@ -8,11 +6,13 @@ export default function Page() {
       </h1>
       <p className="mb-4">
         {
-          `Welcome to the erstwhile home of Bidwell Consulting. This is a small blog and portfolio site.
+          `Welcome to the erstwhile home of Bidwell Consulting. This is now a portfolio site focused on software engineering and organizational consulting.
           I'm a software engineer and organizational consultant. I'm also a writer and a musician.`}
       </p>
       <div className="my-8">
-        <BlogPosts />
+        <p className="text-neutral-600 dark:text-neutral-400">
+          Check out my work and projects above, or explore the comparison tool to see my approach to technical problem solving.
+        </p>
       </div>
     </section>
   )

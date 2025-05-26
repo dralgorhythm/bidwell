@@ -1,11 +1,6 @@
 import { render, screen, axeTest } from '../utils/test-utils'
 import HomePage from '../../app/page'
 
-// Mock the BlogPosts component
-jest.mock('../../app/components/posts', () => ({
-  BlogPosts: () => <div data-testid="blog-posts">Blog Posts Component</div>,
-}))
-
 describe('Home Page Integration', () => {
   describe('Page Structure', () => {
     it('renders the home page with correct structure', () => {
@@ -13,7 +8,7 @@ describe('Home Page Integration', () => {
 
       expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
       expect(screen.getByText(/welcome to the erstwhile home/i)).toBeInTheDocument()
-      expect(screen.getByTestId('blog-posts')).toBeInTheDocument()
+      expect(screen.getByText(/check out my work and projects/i)).toBeInTheDocument()
     })
 
     it('has correct main heading', () => {
@@ -54,20 +49,20 @@ describe('Home Page Integration', () => {
       expect(description).toHaveClass('mb-4')
     })
 
-    it('applies correct styling to blog posts container', () => {
+    it('applies correct styling to portfolio section', () => {
       const { container } = render(<HomePage />)
 
-      const blogContainer = container.querySelector('div.my-8')
-      expect(blogContainer).toBeInTheDocument()
-      expect(blogContainer).toHaveClass('my-8')
+      const portfolioContainer = container.querySelector('div.my-8')
+      expect(portfolioContainer).toBeInTheDocument()
+      expect(portfolioContainer).toHaveClass('my-8')
     })
   })
 
   describe('Component Integration', () => {
-    it('includes the BlogPosts component', () => {
+    it('includes the portfolio section', () => {
       render(<HomePage />)
 
-      expect(screen.getByTestId('blog-posts')).toBeInTheDocument()
+      expect(screen.getByText(/check out my work and projects/i)).toBeInTheDocument()
     })
 
     it('renders components in correct order', () => {
@@ -76,7 +71,7 @@ describe('Home Page Integration', () => {
       const elements = container.querySelectorAll('section > *')
       expect(elements[0]).toContainHTML('Bidwell Consulting') // Heading
       expect(elements[1]).toContainHTML('Welcome to the erstwhile') // Description
-      expect(elements[2]).toContainHTML('Blog Posts Component') // BlogPosts wrapper
+      expect(elements[2]).toContainHTML('Check out my work') // Portfolio section
     })
   })
 
@@ -95,7 +90,7 @@ describe('Home Page Integration', () => {
       render(<HomePage />)
 
       expect(screen.getByRole('heading', { name: /bidwell consulting/i })).toBeInTheDocument()
-      expect(screen.getByText(/blog and portfolio site/i)).toBeInTheDocument()
+      expect(screen.getByText(/portfolio site focused on software engineering/i)).toBeInTheDocument()
     })
   })
 
@@ -172,11 +167,11 @@ describe('Home Page Integration', () => {
       expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/bidwell consulting/i)
     })
 
-    it('offers next steps via blog posts', () => {
+    it('offers next steps via portfolio content', () => {
       render(<HomePage />)
 
-      // Blog posts provide additional content
-      expect(screen.getByTestId('blog-posts')).toBeInTheDocument()
+      // Portfolio content provides direction for users
+      expect(screen.getByText(/check out my work and projects/i)).toBeInTheDocument()
     })
   })
 })
