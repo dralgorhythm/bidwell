@@ -1,5 +1,7 @@
 import { ImageResponse } from 'next/og'
 
+export const dynamic = "force-static";
+
 export function GET(request: Request) {
   const title = 'Bidwell Consulting';
 
