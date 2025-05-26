@@ -61,7 +61,7 @@ export default function ComparisonPage() {
         <ol className='mb-4 ml-6 list-decimal space-y-1 text-sm text-neutral-600 dark:text-neutral-400'>
           <li>Enter your first number in the input field below</li>
           <li>Enter your second number in the second input field</li>
-          <li>Click "Compare" to see the results instantly</li>
+          <li>Click &quot;Compare&quot; to see the results instantly</li>
           <li>View the comparison result and percentage difference</li>
         </ol>
       </div>

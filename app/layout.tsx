@@ -7,6 +7,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from './components/footer'
 import StructuredData from './components/structured-data'
+import ClientPerformanceWrapper from './components/client-performance-wrapper'
 import { baseUrl } from './sitemap'
 
 export const metadata: Metadata = {
@@ -92,6 +93,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StructuredData type='website' />
         <StructuredData type='organization' />
         <StructuredData type='person' />
+        {/* Preconnect to external domains for faster loading */}
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
+        {/* DNS prefetch for performance */}
+        <link rel='dns-prefetch' href='//vercel.com' />
+        <link rel='dns-prefetch' href='//vitals.vercel-analytics.com' />
+        {/* Resource hints for better performance */}
+        <meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
+        <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
       </head>
       <body className='antialiased max-w-xl mx-4 mt-8 lg:mx-auto'>
         <main className='flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0'>
@@ -100,6 +110,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <Analytics />
           <SpeedInsights />
+          <ClientPerformanceWrapper
+            enableMonitoring={process.env.NODE_ENV === 'production'}
+            showDashboard={process.env.NODE_ENV === 'development'}
+            debug={process.env.NODE_ENV === 'development'}
+          />
+          {/* Temporarily disabled performance monitoring to fix SSR issue */}
+          {/* <ClientPerformanceWrapper 
+            enableMonitoring={process.env.NODE_ENV === 'production'} 
+            showDashboard={process.env.NODE_ENV === 'development'}
+            debug={process.env.NODE_ENV === 'development'}
+          /> */}
         </main>
       </body>
     </html>

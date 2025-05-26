@@ -26,9 +26,9 @@ export default function Page() {
 
         <h2 className='mb-3 text-xl font-medium tracking-tight'>Creative Pursuits</h2>
         <p className='mb-4'>
-          Beyond technical expertise, I'm also passionate about creative expression as a writer and
-          musician, bringing a unique perspective that combines analytical thinking with creative
-          innovation.
+          Beyond technical expertise, I&apos;m also passionate about creative expression as a writer
+          and musician, bringing a unique perspective that combines analytical thinking with
+          creative innovation.
         </p>
       </div>
 

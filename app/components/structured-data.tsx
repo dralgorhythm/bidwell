@@ -2,7 +2,7 @@ import { baseUrl } from '../sitemap'
 
 interface StructuredDataProps {
   type: 'website' | 'person' | 'organization' | 'article' | 'breadcrumb'
-  data?: any
+  data?: Record<string, unknown> | Array<Record<string, unknown>>
 }
 
 export default function StructuredData({ type, data }: StructuredDataProps) {
