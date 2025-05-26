@@ -162,7 +162,7 @@ describe('Footer Component', () => {
       expect(footer).toBeInTheDocument()
       expect(footer?.tagName).toBe('FOOTER')
       expect(list).toBeInTheDocument()
-      expect(listItems).toHaveLength(2)
+      expect(listItems).toHaveLength(3)
     })
   })
 
