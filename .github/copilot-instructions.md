@@ -66,6 +66,12 @@ This is a Next.js application using the App Router architecture. Always consider
 
 ### Development Workflow
 - Test changes locally before committing
+- Always check that package versions are up to date
+- Always make sure packages exist before using them
+- Use `npm run lint` to check for linting errors
+- Use ESLint and Prettier for code formatting
+- Run tests before pushing changes
+- Use Git for version control
 - Use TypeScript strict mode
 - Follow conventional commit messages
 - Consider mobile-first responsive design
