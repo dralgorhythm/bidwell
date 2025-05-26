@@ -150,4 +150,3 @@ describe('/api/health', () => {
     expect(retryAfter).toBeLessThanOrEqual(45)
   })
 })
-

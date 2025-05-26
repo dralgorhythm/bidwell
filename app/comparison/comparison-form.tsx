@@ -83,57 +83,57 @@ export default function ComparisonForm() {
   }
 
   return (
-    <div className="max-w-md">
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className='max-w-md'>
+      <form onSubmit={handleSubmit} className='space-y-4'>
         <div>
           <label
-            htmlFor="number1"
-            className="block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300"
+            htmlFor='number1'
+            className='block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300'
           >
             First Number
           </label>
           <input
-            type="number"
-            id="number1"
+            type='number'
+            id='number1'
             value={number1}
-            onChange={(e) => setNumber1(e.target.value)}
-            step="any"
-            className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 dark:focus:ring-neutral-400 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
-            placeholder="Enter first number"
+            onChange={e => setNumber1(e.target.value)}
+            step='any'
+            className='w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 dark:focus:ring-neutral-400 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100'
+            placeholder='Enter first number'
             required
           />
         </div>
 
         <div>
           <label
-            htmlFor="number2"
-            className="block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300"
+            htmlFor='number2'
+            className='block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300'
           >
             Second Number
           </label>
           <input
-            type="number"
-            id="number2"
+            type='number'
+            id='number2'
             value={number2}
-            onChange={(e) => setNumber2(e.target.value)}
-            step="any"
-            className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 dark:focus:ring-neutral-400 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
-            placeholder="Enter second number"
+            onChange={e => setNumber2(e.target.value)}
+            step='any'
+            className='w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 dark:focus:ring-neutral-400 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100'
+            placeholder='Enter second number'
             required
           />
         </div>
 
-        <div className="flex space-x-2">
+        <div className='flex space-x-2'>
           <button
-            type="submit"
-            className="px-4 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-md hover:bg-neutral-800 dark:hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-500 dark:focus:ring-neutral-400 transition-colors"
+            type='submit'
+            className='px-4 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-md hover:bg-neutral-800 dark:hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-500 dark:focus:ring-neutral-400 transition-colors'
           >
             Compare
           </button>
           <button
-            type="button"
+            type='button'
             onClick={handleReset}
-            className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-md hover:bg-neutral-50 dark:hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-500 dark:focus:ring-neutral-400 transition-colors"
+            className='px-4 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-md hover:bg-neutral-50 dark:hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-500 dark:focus:ring-neutral-400 transition-colors'
           >
             Reset
           </button>
@@ -141,26 +141,30 @@ export default function ComparisonForm() {
       </form>
 
       {error && (
-        <div className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
-          <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+        <div className='mt-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md'>
+          <p className='text-sm text-red-600 dark:text-red-400'>{error}</p>
         </div>
       )}
 
       {result && (
-        <div className="mt-6 p-4 bg-neutral-50 dark:bg-neutral-800 rounded-md border border-neutral-200 dark:border-neutral-700">
-          <h3 className="font-medium text-lg mb-2 text-neutral-900 dark:text-neutral-100">
+        <div className='mt-6 p-4 bg-neutral-50 dark:bg-neutral-800 rounded-md border border-neutral-200 dark:border-neutral-700'>
+          <h3 className='font-medium text-lg mb-2 text-neutral-900 dark:text-neutral-100'>
             Comparison Result
           </h3>
           <p className={`text-lg font-semibold ${getResultColor(result.result)}`}>
             {getResultMessage(result)}
           </p>
           {result.result !== 'equal' && (
-            <div className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            <div className='mt-2 text-sm text-neutral-600 dark:text-neutral-400'>
               <p>Absolute difference: {result.difference}</p>
               <p>
-                Percentage difference: {
-                  ((result.difference! / Math.min(Math.abs(result.number1), Math.abs(result.number2))) * 100).toFixed(2)
-                }%
+                Percentage difference:{' '}
+                {(
+                  (result.difference! /
+                    Math.min(Math.abs(result.number1), Math.abs(result.number2))) *
+                  100
+                ).toFixed(2)}
+                %
               </p>
             </div>
           )}
@@ -169,4 +173,3 @@ export default function ComparisonForm() {
     </div>
   )
 }
-

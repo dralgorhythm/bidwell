@@ -35,8 +35,8 @@ export class PerformanceTestHelper {
   }
 
   static createPerformanceObserver(entryTypes: string[]): PerformanceObserver {
-    return new PerformanceObserver((list) => {
-      list.getEntries().forEach((entry) => {
+    return new PerformanceObserver(list => {
+      list.getEntries().forEach(entry => {
         console.log(`Performance entry: ${entry.name} - ${entry.duration}ms`)
       })
     })
@@ -60,7 +60,8 @@ export class MemoryTestHelper {
     return 0
   }
 
-  static expectLowMemoryUsage(threshold = 1024 * 1024): void { // 1MB default
+  static expectLowMemoryUsage(threshold = 1024 * 1024): void {
+    // 1MB default
     const usage = this.getMemoryUsage()
     expect(usage).toBeLessThan(threshold)
   }
@@ -112,7 +113,8 @@ export class BundleTestHelper {
     }
   }
 
-  static expectSmallBundle(size: number, threshold = 10 * 1024): void { // 10KB default
+  static expectSmallBundle(size: number, threshold = 10 * 1024): void {
+    // 10KB default
     expect(size).toBeLessThan(threshold)
   }
 }
@@ -179,19 +181,12 @@ export class ErrorTestHelper {
     }
   }
 
-  static expectErrorHandling(
-    componentWithError: ReactElement,
-    expectedError: string
-  ): void {
+  static expectErrorHandling(componentWithError: ReactElement, expectedError: string): void {
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
 
     const ErrorBoundary = this.createErrorBoundary(<div>Error occurred</div>)
 
-    render(
-      <ErrorBoundary>
-        {componentWithError}
-      </ErrorBoundary>
-    )
+    render(<ErrorBoundary>{componentWithError}</ErrorBoundary>)
 
     expect(consoleSpy).toHaveBeenCalledWith(
       expect.stringContaining(expectedError),
@@ -201,4 +196,3 @@ export class ErrorTestHelper {
     consoleSpy.mockRestore()
   }
 }
-

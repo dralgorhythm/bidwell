@@ -88,7 +88,6 @@ export function checkRateLimit(
   return {
     allowed: true,
     remaining: limit - requestInfo.count,
-    resetTime: requestInfo.resetTime
+    resetTime: requestInfo.resetTime,
   }
 }
-

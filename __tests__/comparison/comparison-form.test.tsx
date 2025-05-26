@@ -81,8 +81,6 @@ describe('ComparisonForm', () => {
     expect(screen.getByRole('button', { name: /reset/i })).toBeInTheDocument()
   })
 
-
-
   it('handles equal numbers correctly', async () => {
     const user = userEvent.setup()
     const firstInput = screen.getByLabelText(/first number/i)
@@ -138,8 +136,6 @@ describe('ComparisonForm', () => {
     expect(screen.queryByText(/10 is greater than 5/i)).not.toBeInTheDocument()
   })
 
-
-
   it('shows percentage difference for non-equal results', async () => {
     const user = userEvent.setup()
     const firstInput = screen.getByLabelText(/first number/i)
@@ -168,7 +164,4 @@ describe('ComparisonForm', () => {
       expect(screen.queryByText(/percentage difference/i)).not.toBeInTheDocument()
     })
   })
-
-
 })
-

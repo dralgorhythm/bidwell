@@ -7,6 +7,7 @@ A modern portfolio and consulting website built with Next.js 15, showcasing soft
 ## Overview
 
 This is a high-performance portfolio website featuring:
+
 - **Modern Tech Stack**: Next.js 15 with App Router, TypeScript, Tailwind CSS
 - **Performance Optimized**: Core Web Vitals focused, dynamic OG images, optimized fonts
 - **Fully Tested**: Comprehensive test suite with unit, integration, accessibility, and performance tests
@@ -27,6 +28,13 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the site.
 
+## Development Process
+
+- [Testing Documentation](TESTING.md)
+- [Build Process](BUILD.md)
+- [Deployment Guide](DEPLOYMENT.md)
+- [GitHub Actions Workflows](GITHUB_ACTIONS.md)
+
 ## Tech Stack
 
 - **Framework**: [Next.js 15](https://nextjs.org/) with App Router
@@ -46,6 +54,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 ## Key Features
 
 ### Performance & SEO
+
 - Server-side rendering with Next.js App Router
 - Optimized images and fonts
 - Dynamic OpenGraph image generation
@@ -53,6 +62,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 - Comprehensive sitemap and robots.txt
 
 ### Developer Experience
+
 - TypeScript strict mode
 - ESLint + Prettier configuration
 - Pre-commit hooks
@@ -60,6 +70,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 - CI/CD pipeline with GitHub Actions
 
 ### Accessibility
+
 - WCAG 2.1 AA compliance
 - Automated accessibility testing
 - Semantic HTML structure

@@ -23,8 +23,10 @@ export function validateEnv() {
     return env
   } catch (error) {
     if (error instanceof z.ZodError) {
+      // eslint-disable-next-line no-console
       console.error('❌ Invalid environment variables:')
-      error.errors.forEach((err) => {
+      error.errors.forEach(err => {
+        // eslint-disable-next-line no-console
         console.error(`  ${err.path.join('.')}: ${err.message}`)
       })
       process.exit(1)
@@ -34,13 +36,9 @@ export function validateEnv() {
 }
 
 // Export validated env (run validation in production/staging)
-export const env = process.env.NODE_ENV === 'development'
-  ? process.env
-  : validateEnv()
+export const env = process.env.NODE_ENV === 'development' ? process.env : validateEnv()
 
 // Helper to check if we're in a secure environment
 export const isSecureEnvironment = () => {
-  return process.env.NODE_ENV === 'production' ||
-         process.env.VERCEL_ENV === 'production'
+  return process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production'
 }
-

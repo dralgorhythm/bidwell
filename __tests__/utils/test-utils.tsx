@@ -10,10 +10,7 @@ interface CustomRenderOptions extends Omit<RenderOptions, 'wrapper'> {
   route?: string
 }
 
-function customRender(
-  ui: ReactElement,
-  options: CustomRenderOptions = {}
-): RenderResult {
+function customRender(ui: ReactElement, options: CustomRenderOptions = {}): RenderResult {
   const { route = '/', ...renderOptions } = options
 
   // Mock router context if needed
@@ -105,4 +102,3 @@ export { userEvent } from '@testing-library/user-event'
 
 // Re-export our custom render as the default render
 export { customRender as render }
-

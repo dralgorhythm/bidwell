@@ -5,7 +5,7 @@ import { createRateLimit, checkRateLimit } from 'lib/validation'
 // Rate limiting: 10 requests per minute per IP
 const rateLimit = createRateLimit(10, 60 * 1000)
 
-export const dynamic = "force-static";
+export const dynamic = 'force-static'
 
 export async function GET(request: NextRequest) {
   try {
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
             'Retry-After': Math.ceil((rateLimitResult.resetTime - Date.now()) / 1000).toString(),
             'X-RateLimit-Limit': rateLimit.limit.toString(),
             'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
-          }
+          },
         }
       )
     }
@@ -43,19 +43,19 @@ export async function GET(request: NextRequest) {
         ...getSecurityHeaders(),
         'X-RateLimit-Limit': rateLimit.limit.toString(),
         'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
-      }
+      },
     })
   } catch (error) {
     // Log error but don't expose details
+    // eslint-disable-next-line no-console
     console.error('Health check error:', error)
 
     return NextResponse.json(
       { error: 'Internal server error' },
       {
         status: 500,
-        headers: getSecurityHeaders()
+        headers: getSecurityHeaders(),
       }
     )
   }
 }
-

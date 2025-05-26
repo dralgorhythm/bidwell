@@ -18,8 +18,14 @@ describe('Footer Component', () => {
     })
 
     it('has correct href attributes for all links', () => {
-      expect(screen.getByRole('link', { name: /github/i })).toHaveAttribute('href', 'https://github.com/dralgorhythm')
-      expect(screen.getByRole('link', { name: /soundcloud/i })).toHaveAttribute('href', 'https://soundcloud.com/dralgorhythm')
+      expect(screen.getByRole('link', { name: /github/i })).toHaveAttribute(
+        'href',
+        'https://github.com/dralgorhythm'
+      )
+      expect(screen.getByRole('link', { name: /soundcloud/i })).toHaveAttribute(
+        'href',
+        'https://soundcloud.com/dralgorhythm'
+      )
     })
 
     it('opens external links in new tab with security attributes', () => {
@@ -136,7 +142,9 @@ describe('Footer Component', () => {
 
       // All links should have descriptive text
       const githubLink = container.querySelector('a[href="https://github.com/dralgorhythm"]')
-      const soundcloudLink = container.querySelector('a[href="https://soundcloud.com/dralgorhythm"]')
+      const soundcloudLink = container.querySelector(
+        'a[href="https://soundcloud.com/dralgorhythm"]'
+      )
 
       expect(githubLink).toBeInTheDocument()
       expect(soundcloudLink).toBeInTheDocument()
@@ -182,4 +190,3 @@ describe('Footer Component', () => {
     })
   })
 })
-

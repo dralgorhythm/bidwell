@@ -3,7 +3,7 @@ import {
   nameSchema,
   messageSchema,
   phoneSchema,
-  contactFormSchema
+  contactFormSchema,
 } from '../../lib/validation'
 
 describe('phoneSchema', () => {
@@ -119,7 +119,7 @@ describe('contactFormSchema', () => {
       email: 'john@example.com',
       phone: '+1234567890',
       subject: 'Test Subject',
-      message: 'This is a test message with enough characters'
+      message: 'This is a test message with enough characters',
     }
     expect(contactFormSchema.safeParse(validData).success).toBe(true)
   })
@@ -129,7 +129,7 @@ describe('contactFormSchema', () => {
       name: 'John Doe',
       email: 'john@example.com',
       subject: 'Test Subject',
-      message: 'This is a test message with enough characters'
+      message: 'This is a test message with enough characters',
     }
     expect(contactFormSchema.safeParse(validData).success).toBe(true)
   })
@@ -138,7 +138,7 @@ describe('contactFormSchema', () => {
     const invalidData = {
       name: 'John Doe',
       email: 'invalid-email',
-      message: 'This is a test message'
+      message: 'This is a test message',
     }
     expect(contactFormSchema.safeParse(invalidData).success).toBe(false)
   })
@@ -146,9 +146,8 @@ describe('contactFormSchema', () => {
   it('rejects form data with missing required fields', () => {
     const invalidData = {
       email: 'john@example.com',
-      message: 'This is a test message'
+      message: 'This is a test message',
     }
     expect(contactFormSchema.safeParse(invalidData).success).toBe(false)
   })
 })
-

@@ -2,7 +2,7 @@ import robots from '../../app/robots'
 
 // Mock the sitemap module since robots.ts imports from it
 jest.mock('app/sitemap', () => ({
-  baseUrl: 'https://bidwell.info'
+  baseUrl: 'https://bidwell.info',
 }))
 
 describe('robots.txt', () => {
@@ -36,8 +36,8 @@ describe('robots.txt', () => {
 
   it('blocks AI crawlers and bots', () => {
     const robotsConfig = robots()
-    const botRule = robotsConfig.rules.find(rule =>
-      Array.isArray(rule.userAgent) && rule.userAgent.includes('ChatGPT-User')
+    const botRule = robotsConfig.rules.find(
+      rule => Array.isArray(rule.userAgent) && rule.userAgent.includes('ChatGPT-User')
     )
 
     expect(botRule).toBeDefined()
@@ -59,4 +59,3 @@ describe('robots.txt', () => {
     expect(dynamic).toBe('force-static')
   })
 })
-

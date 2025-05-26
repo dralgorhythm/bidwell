@@ -22,7 +22,9 @@ describe('Home Page Integration', () => {
       render(<HomePage />)
 
       expect(screen.getByText(/welcome to bidwell consulting/i)).toBeInTheDocument()
-      expect(screen.getByText(/i'm a software engineer and organizational consultant/i)).toBeInTheDocument()
+      expect(
+        screen.getByText(/i'm a software engineer and organizational consultant/i)
+      ).toBeInTheDocument()
       expect(screen.getByText(/i'm also a writer and a musician/i)).toBeInTheDocument()
     })
   })
@@ -90,7 +92,9 @@ describe('Home Page Integration', () => {
       render(<HomePage />)
 
       expect(screen.getByRole('heading', { name: /bidwell consulting/i })).toBeInTheDocument()
-      expect(screen.getByText(/portfolio site focused on software engineering/i)).toBeInTheDocument()
+      expect(
+        screen.getByText(/portfolio site focused on software engineering/i)
+      ).toBeInTheDocument()
     })
   })
 
@@ -175,4 +179,3 @@ describe('Home Page Integration', () => {
     })
   })
 })
-

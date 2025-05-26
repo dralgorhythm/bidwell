@@ -5,64 +5,70 @@ import { toHaveNoViolations } from 'jest-axe'
 expect.extend(toHaveNoViolations)
 
 // Mock Web APIs that might not be available in Jest environment
-global.Headers = global.Headers || class Headers extends Map {
-  constructor(init = {}) {
-    super()
-    if (init) {
-      Object.entries(init).forEach(([key, value]) => {
-        this.set(key, value)
+global.Headers =
+  global.Headers ||
+  class Headers extends Map {
+    constructor(init = {}) {
+      super()
+      if (init) {
+        Object.entries(init).forEach(([key, value]) => {
+          this.set(key, value)
+        })
+      }
+    }
+
+    get(name) {
+      return super.get(name.toLowerCase())
+    }
+
+    set(name, value) {
+      return super.set(name.toLowerCase(), value)
+    }
+  }
+
+global.Response =
+  global.Response ||
+  class Response {
+    constructor(body, init = {}) {
+      this.body = body
+      this.status = init.status || 200
+      this.statusText = init.statusText || 'OK'
+      this.headers = new global.Headers(init.headers || {})
+    }
+
+    text() {
+      return Promise.resolve(this.body)
+    }
+
+    json() {
+      return Promise.resolve(JSON.parse(this.body))
+    }
+
+    static json(data, init = {}) {
+      return new Response(JSON.stringify(data), {
+        ...init,
+        headers: {
+          'content-type': 'application/json',
+          ...init.headers,
+        },
       })
     }
   }
 
-  get(name) {
-    return super.get(name.toLowerCase())
+global.Request =
+  global.Request ||
+  class Request {
+    constructor(url, init = {}) {
+      Object.defineProperty(this, 'url', {
+        value: url,
+        writable: false,
+        configurable: true,
+      })
+      this.method = init.method || 'GET'
+      this.headers = new global.Headers(init.headers || {})
+      this.body = init.body || null
+    }
   }
-
-  set(name, value) {
-    return super.set(name.toLowerCase(), value)
-  }
-}
-
-global.Response = global.Response || class Response {
-  constructor(body, init = {}) {
-    this.body = body
-    this.status = init.status || 200
-    this.statusText = init.statusText || 'OK'
-    this.headers = new global.Headers(init.headers || {})
-  }
-
-  text() {
-    return Promise.resolve(this.body)
-  }
-
-  json() {
-    return Promise.resolve(JSON.parse(this.body))
-  }
-
-  static json(data, init = {}) {
-    return new Response(JSON.stringify(data), {
-      ...init,
-      headers: {
-        'content-type': 'application/json',
-        ...init.headers
-      }
-    })
-  }
-}
-
-global.Request = global.Request || class Request {
-  constructor(url, init = {}) {
-    Object.defineProperty(this, 'url', {
-      value: url,
-      writable: false,
-      configurable: true
-    })
-    this.method = init.method || 'GET'
-    this.headers = new global.Headers(init.headers || {})
-    this.body = init.body || null
-  }
-}
 
 // Mock NextResponse for Next.js API routes
 jest.mock('next/server', () => ({
@@ -76,16 +82,16 @@ jest.mock('next/server', () => ({
         ...init,
         headers: {
           'content-type': 'application/json',
-          ...init.headers
-        }
+          ...init.headers,
+        },
       })
     }),
     next: jest.fn(() => new global.Response()),
-    redirect: jest.fn((url, status = 302) =>
-      new global.Response(null, { status, headers: { location: url } })
+    redirect: jest.fn(
+      (url, status = 302) => new global.Response(null, { status, headers: { location: url } })
     ),
     rewrite: jest.fn(() => new global.Response()),
-  }
+  },
 }))
 
 // Mock Next.js router
@@ -131,7 +137,7 @@ Object.defineProperty(window, 'matchMedia', {
 })
 
 // Mock IntersectionObserver for lazy loading tests
-global.IntersectionObserver = jest.fn().mockImplementation((callback) => ({
+global.IntersectionObserver = jest.fn().mockImplementation(callback => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
   disconnect: jest.fn(),

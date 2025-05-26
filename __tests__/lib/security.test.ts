@@ -136,7 +136,10 @@ describe('lib/security.ts', () => {
       expect(headers).toHaveProperty('X-Frame-Options', 'DENY')
       expect(headers).toHaveProperty('X-XSS-Protection', '1; mode=block')
       expect(headers).toHaveProperty('Referrer-Policy', 'strict-origin-when-cross-origin')
-      expect(headers).toHaveProperty('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate')
+      expect(headers).toHaveProperty(
+        'Cache-Control',
+        'no-store, no-cache, must-revalidate, proxy-revalidate'
+      )
       expect(headers).toHaveProperty('Pragma', 'no-cache')
       expect(headers).toHaveProperty('Expires', '0')
     })
@@ -160,4 +163,3 @@ describe('lib/security.ts', () => {
     })
   })
 })
-

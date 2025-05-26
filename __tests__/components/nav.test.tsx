@@ -40,7 +40,11 @@ describe('Navbar', () => {
 
     const links = screen.getAllByRole('link')
     links.forEach(link => {
-      expect(link).toHaveClass('transition-all', 'hover:text-neutral-800', 'dark:hover:text-neutral-200')
+      expect(link).toHaveClass(
+        'transition-all',
+        'hover:text-neutral-800',
+        'dark:hover:text-neutral-200'
+      )
     })
   })
 
@@ -52,4 +56,3 @@ describe('Navbar', () => {
     expect(comparisonLink).toHaveAttribute('href', '/comparison')
   })
 })
-

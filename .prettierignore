@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Production builds
+.next/
+out/
+dist/
+
+# Coverage reports
+coverage/
+
+# Environment files
+.env*
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Package lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

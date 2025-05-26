@@ -9,14 +9,17 @@ This document covers deployment strategies and platform-specific configurations 
 The fastest way to deploy this Next.js application:
 
 1. **Connect Repository**
+
    - Import your Git repository to [Vercel](https://vercel.com)
    - Vercel auto-detects Next.js configuration
 
 2. **Configure Domain**
+
    - Set custom domain to point to [bidwell.info](https://bidwell.info)
    - SSL certificates are automatically provisioned
 
 3. **Environment Variables**
+
    ```env
    NEXT_PUBLIC_VERCEL_ANALYTICS_ID=your_analytics_id
    ```
@@ -30,6 +33,7 @@ The fastest way to deploy this Next.js application:
 ### 1. Vercel (Recommended)
 
 **Pros:**
+
 - Zero configuration deployment
 - Automatic optimizations
 - Built-in analytics and monitoring
@@ -37,6 +41,7 @@ The fastest way to deploy this Next.js application:
 - Preview deployments
 
 **Setup:**
+
 ```bash
 # Install Vercel CLI
 npm i -g vercel
@@ -46,6 +51,7 @@ vercel --prod
 ```
 
 **Configuration (`vercel.json`):**
+
 ```json
 {
   "buildCommand": "npm run build",
@@ -58,6 +64,7 @@ vercel --prod
 ### 2. Netlify
 
 **Setup:**
+
 ```bash
 # Build command
 npm run build && npm run export
@@ -67,6 +74,7 @@ out/
 ```
 
 **Configuration (`netlify.toml`):**
+
 ```toml
 [build]
   command = "npm run build"
@@ -82,6 +90,7 @@ out/
 ### 3. AWS Amplify
 
 **Setup:**
+
 1. Connect GitHub repository
 2. Configure build settings:
    ```yaml
@@ -103,25 +112,27 @@ out/
 ### 4. Digital Ocean App Platform
 
 **Configuration (`app.yaml`):**
+
 ```yaml
 name: bidwell-consulting
 services:
-- name: web
-  source_dir: /
-  github:
-    repo: your-username/bidwell
-    branch: main
-  run_command: npm start
-  build_command: npm run build
-  instance_count: 1
-  instance_size_slug: basic-xxs
-  routes:
-  - path: /
+  - name: web
+    source_dir: /
+    github:
+      repo: your-username/bidwell
+      branch: main
+    run_command: npm start
+    build_command: npm run build
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    routes:
+      - path: /
 ```
 
 ### 5. Railway
 
 **Setup:**
+
 ```bash
 # Install Railway CLI
 npm install -g @railway/cli
@@ -135,6 +146,7 @@ railway up
 ### 6. Render
 
 **Configuration:**
+
 - **Build Command**: `npm run build`
 - **Start Command**: `npm start`
 - **Node Version**: 18.x or 20.x
@@ -178,7 +190,7 @@ services:
   web:
     build: .
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       - NODE_ENV=production
     restart: unless-stopped
@@ -202,10 +214,12 @@ docker-compose up -d
 ### Cloudflare Integration
 
 1. **DNS Configuration**
+
    - Point domain to hosting provider
    - Enable Cloudflare proxy
 
 2. **Performance Settings**
+
    - Enable Brotli compression
    - Minification for CSS/JS/HTML
    - Browser cache TTL: 4 hours
@@ -275,18 +289,21 @@ CNAME   www             cname.vercel-dns.com
 ## Environment Management
 
 ### Development
+
 ```env
 NODE_ENV=development
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
 ### Staging
+
 ```env
 NODE_ENV=production
 NEXT_PUBLIC_SITE_URL=https://staging.bidwell.info
 ```
 
 ### Production
+
 ```env
 NODE_ENV=production
 NEXT_PUBLIC_SITE_URL=https://bidwell.info
@@ -296,10 +313,12 @@ NEXT_PUBLIC_VERCEL_ANALYTICS_ID=your_id
 ## Backup and Recovery
 
 ### Database Backup
+
 - Static site - no database required
 - Content versioned in Git repository
 
 ### Disaster Recovery
+
 - Multiple deployment targets
 - Git-based recovery
 - Automated backups of environment configurations
@@ -313,16 +332,16 @@ NEXT_PUBLIC_VERCEL_ANALYTICS_ID=your_id
 const securityHeaders = [
   {
     key: 'X-Frame-Options',
-    value: 'DENY'
+    value: 'DENY',
   },
   {
     key: 'X-Content-Type-Options',
-    value: 'nosniff'
+    value: 'nosniff',
   },
   {
     key: 'Referrer-Policy',
-    value: 'origin-when-cross-origin'
-  }
+    value: 'origin-when-cross-origin',
+  },
 ]
 
 const nextConfig = {
@@ -346,16 +365,19 @@ Implemented in `middleware.ts` for enhanced security.
 ### Common Deployment Issues
 
 1. **Build Failures**
+
    ```bash
    # Check build locally first
    npm run build
    ```
 
 2. **Environment Variables**
+
    - Ensure all required variables are set
-   - Check variable naming (NEXT_PUBLIC_ prefix for client-side)
+   - Check variable naming (NEXT*PUBLIC* prefix for client-side)
 
 3. **Memory Issues**
+
    - Increase Node.js memory limit
    - Optimize bundle size
 

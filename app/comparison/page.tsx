@@ -14,14 +14,12 @@ export const metadata: Metadata = {
 export default function ComparisonPage() {
   return (
     <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">
-        Number Comparison
-      </h1>
-      <p className="mb-6 text-neutral-600 dark:text-neutral-400">
-        Enter two numbers below to compare them and see which is larger, smaller, or if they're equal.
+      <h1 className='font-semibold text-2xl mb-8 tracking-tighter'>Number Comparison</h1>
+      <p className='mb-6 text-neutral-600 dark:text-neutral-400'>
+        Enter two numbers below to compare them and see which is larger, smaller, or if they&apos;re
+        equal.
       </p>
       <ComparisonForm />
     </section>
   )
 }
-

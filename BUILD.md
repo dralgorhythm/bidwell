@@ -43,6 +43,7 @@ npm run dev
 ```
 
 The development server starts at [http://localhost:3000](http://localhost:3000) with:
+
 - Hot module replacement
 - TypeScript compilation
 - Tailwind CSS processing
@@ -66,6 +67,7 @@ npm run build
 ```
 
 This creates an optimized production build in the `.next` directory with:
+
 - Minified JavaScript and CSS
 - Optimized images and fonts
 - Static page generation
@@ -128,8 +130,8 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     turbo: {
-      resolveExtensions: ['.ts', '.tsx', '.js', '.jsx']
-    }
+      resolveExtensions: ['.ts', '.tsx', '.js', '.jsx'],
+    },
   },
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -177,12 +179,14 @@ Generates bundle analysis reports to identify optimization opportunities.
 ### Common Issues
 
 1. **Module Resolution Errors**
+
    ```bash
    rm -rf node_modules package-lock.json
    npm install
    ```
 
 2. **TypeScript Errors**
+
    ```bash
    npm run type-check
    ```
@@ -224,6 +228,7 @@ Enables verbose logging for debugging Next.js issues.
 ## CI/CD Integration
 
 The project includes GitHub Actions workflows for:
+
 - Automated testing
 - TypeScript checking
 - ESLint validation

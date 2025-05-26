@@ -1,0 +1,32 @@
+{
+  "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
+  "rules": {
+    // Enforce consistent code style
+    "prefer-const": "error",
+    "no-var": "error",
+
+    // React best practices
+    "react/no-unescaped-entities": "error",
+    "react/jsx-no-target-blank": "error",
+
+    // Next.js specific
+    "@next/next/no-img-element": "error",
+
+    // TypeScript
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "warn",
+
+    // General code quality
+    "no-console": "warn",
+    "no-debugger": "error"
+  },
+  "overrides": [
+    {
+      "files": ["**/__tests__/**/*", "**/*.test.*"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "no-console": "off"
+      }
+    }
+  ]
+}

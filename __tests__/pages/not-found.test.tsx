@@ -31,4 +31,3 @@ describe('NotFound Page', () => {
     expect(results).toHaveNoViolations()
   })
 })
-
