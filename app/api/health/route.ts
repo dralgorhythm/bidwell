@@ -5,6 +5,8 @@ import { createRateLimit, checkRateLimit } from 'lib/validation'
 // Rate limiting: 10 requests per minute per IP
 const rateLimit = createRateLimit(10, 60 * 1000)
 
+export const dynamic = "force-static";
+
 export async function GET(request: NextRequest) {
   try {
     // Get client IP for rate limiting
