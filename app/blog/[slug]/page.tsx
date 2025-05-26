@@ -5,11 +5,22 @@ import { baseUrl } from 'app/sitemap'
 import { Metadata } from 'next'
 
 export function generateStaticParams(): { slug: string }[] {
-  let posts = getBlogPosts()
+  try {
+    let posts = getBlogPosts()
+    
+    // If no posts exist, return empty array
+    if (!posts || posts.length === 0) {
+      return []
+    }
 
-  return posts.map((post) => ({
-    slug: post.slug,
-  }))
+    return posts.map((post) => ({
+      slug: post.slug,
+    }))
+  } catch (error) {
+    // If there's an error reading posts (e.g., directory doesn't exist), return empty array
+    console.warn('Error generating static params for blog posts:', error)
+    return []
+  }
 }
 
 export async function generateMetadata({
