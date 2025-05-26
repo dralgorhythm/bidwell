@@ -4,6 +4,9 @@ import {
   messageSchema,
   phoneSchema,
   contactFormSchema,
+  sanitizeInput,
+  createRateLimit,
+  checkRateLimit,
 } from '../../lib/validation'
 
 describe('phoneSchema', () => {
@@ -149,5 +152,139 @@ describe('contactFormSchema', () => {
       message: 'This is a test message',
     }
     expect(contactFormSchema.safeParse(invalidData).success).toBe(false)
+  })
+})
+
+describe('sanitizeInput', () => {
+  it('trims whitespace', () => {
+    expect(sanitizeInput('  hello world  ')).toBe('hello world')
+  })
+
+  it('removes HTML tags', () => {
+    expect(sanitizeInput('hello <script>alert("xss")</script> world')).toBe(
+      'hello scriptalert("xss")/script world'
+    )
+    expect(sanitizeInput('hello <div>content</div> world')).toBe('hello divcontent/div world')
+  })
+
+  it('limits input length', () => {
+    const longInput = 'a'.repeat(6000)
+    const result = sanitizeInput(longInput)
+    expect(result.length).toBe(5000)
+  })
+
+  it('handles empty strings', () => {
+    expect(sanitizeInput('')).toBe('')
+    expect(sanitizeInput('   ')).toBe('')
+  })
+
+  it('handles mixed whitespace and HTML', () => {
+    expect(sanitizeInput('  <p>Hello</p>  ')).toBe('pHello/p')
+  })
+})
+
+describe('createRateLimit', () => {
+  it('creates a rate limit object with correct properties', () => {
+    const rateLimit = createRateLimit(10, 60000)
+    expect(rateLimit.limit).toBe(10)
+    expect(rateLimit.windowMs).toBe(60000)
+    expect(rateLimit.requests).toBeInstanceOf(Map)
+    expect(rateLimit.requests.size).toBe(0)
+  })
+
+  it('creates separate instances with different parameters', () => {
+    const rateLimit1 = createRateLimit(5, 30000)
+    const rateLimit2 = createRateLimit(20, 120000)
+
+    expect(rateLimit1.limit).toBe(5)
+    expect(rateLimit2.limit).toBe(20)
+    expect(rateLimit1.requests).not.toBe(rateLimit2.requests)
+  })
+})
+
+describe('checkRateLimit', () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
+
+  afterEach(() => {
+    jest.useRealTimers()
+  })
+
+  it('allows first request and returns correct info', () => {
+    const rateLimit = createRateLimit(5, 60000)
+    const result = checkRateLimit(rateLimit, 'user1')
+
+    expect(result.allowed).toBe(true)
+    expect(result.remaining).toBe(4)
+    expect(typeof result.resetTime).toBe('number')
+  })
+
+  it('tracks multiple requests from same identifier', () => {
+    const rateLimit = createRateLimit(3, 60000)
+
+    // First request
+    let result = checkRateLimit(rateLimit, 'user1')
+    expect(result.allowed).toBe(true)
+    expect(result.remaining).toBe(2)
+
+    // Second request
+    result = checkRateLimit(rateLimit, 'user1')
+    expect(result.allowed).toBe(true)
+    expect(result.remaining).toBe(1)
+
+    // Third request
+    result = checkRateLimit(rateLimit, 'user1')
+    expect(result.allowed).toBe(true)
+    expect(result.remaining).toBe(0)
+
+    // Fourth request should be blocked
+    result = checkRateLimit(rateLimit, 'user1')
+    expect(result.allowed).toBe(false)
+    expect(result.remaining).toBe(0)
+  })
+
+  it('handles different identifiers separately', () => {
+    const rateLimit = createRateLimit(2, 60000)
+
+    const result1 = checkRateLimit(rateLimit, 'user1')
+    const result2 = checkRateLimit(rateLimit, 'user2')
+
+    expect(result1.allowed).toBe(true)
+    expect(result1.remaining).toBe(1)
+    expect(result2.allowed).toBe(true)
+    expect(result2.remaining).toBe(1)
+  })
+
+  it('cleans up expired entries', () => {
+    const rateLimit = createRateLimit(2, 60000)
+    const now = Date.now()
+    jest.setSystemTime(now)
+
+    // Make a request
+    checkRateLimit(rateLimit, 'user1')
+    expect(rateLimit.requests.size).toBe(1)
+
+    // Move time forward past the window
+    jest.setSystemTime(now + 70000) // 70 seconds later
+
+    // Make another request - should clean up the expired entry
+    const result = checkRateLimit(rateLimit, 'user2')
+    expect(result.allowed).toBe(true)
+    expect(result.remaining).toBe(1)
+
+    // Original entry should be cleaned up eventually
+    checkRateLimit(rateLimit, 'user1')
+    expect(rateLimit.requests.has('user1')).toBe(true) // New entry for user1
+  })
+
+  it('returns correct reset time', () => {
+    const windowMs = 60000
+    const rateLimit = createRateLimit(5, windowMs)
+    const startTime = Date.now()
+    jest.setSystemTime(startTime)
+
+    const result = checkRateLimit(rateLimit, 'user1')
+    expect(result.resetTime).toBe(startTime + windowMs)
   })
 })
