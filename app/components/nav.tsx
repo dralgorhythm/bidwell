@@ -7,6 +7,9 @@ const navItems = {
   '/blog': {
     name: 'blog',
   },
+  '/comparison': {
+    name: 'comparison',
+  },
 }
 
 export function Navbar() {

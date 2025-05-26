@@ -6,7 +6,7 @@ This is a Next.js application using the App Router architecture. Always consider
 ### Tech Stack
 - **Framework**: Next.js 13+ with App Router
 - **Language**: TypeScript
-- **Package Manager**: pnpm
+- **Package Manager**: npm
 - **Styling**: CSS Modules or Tailwind CSS
 - **Content**: MDX for blog posts
 
