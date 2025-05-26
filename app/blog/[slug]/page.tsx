@@ -12,14 +12,14 @@ export function generateStaticParams(): { slug: string }[] {
   }))
 }
 
-export async function generateMetadata({
+export function generateMetadata({
   params,
 }: {
   params: { slug: string };
-}): Promise<Metadata | undefined> {
+}): Metadata | undefined {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
-    return
+    return; // Return undefined if post is not found
   }
 
   let {
@@ -53,7 +53,7 @@ export async function generateMetadata({
       description,
       images: [ogImage],
     },
-  }
+  };
 }
 
 type BlogPageProps = {
@@ -61,7 +61,7 @@ type BlogPageProps = {
   searchParams?: { [key: string]: string | string[] | undefined }
 }
 
-export default async function Blog({ params }: BlogPageProps) {
+export default function Blog({ params }: BlogPageProps) {
   let post = getBlogPosts().find((post) => post.slug === params.slug)
 
   if (!post) {
