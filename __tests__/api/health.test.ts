@@ -108,7 +108,8 @@ describe('/api/health', () => {
 
   it('includes correct environment in response', async () => {
     const originalEnv = process.env.NODE_ENV
-    process.env.NODE_ENV = 'test'
+    // Use Object.defineProperty to modify read-only property
+    Object.defineProperty(process.env, 'NODE_ENV', { value: 'test' })
 
     const request = new NextRequest('http://localhost:3000/api/health')
     const response = await GET(request)
@@ -116,12 +117,14 @@ describe('/api/health', () => {
 
     expect(data.environment).toBe('test')
 
-    process.env.NODE_ENV = originalEnv
+    // Restore original environment
+    Object.defineProperty(process.env, 'NODE_ENV', { value: originalEnv })
   })
 
   it('handles missing NODE_ENV', async () => {
     const originalEnv = process.env.NODE_ENV
-    delete process.env.NODE_ENV
+    // Use Object.defineProperty to modify read-only property
+    Object.defineProperty(process.env, 'NODE_ENV', { value: undefined })
 
     const request = new NextRequest('http://localhost:3000/api/health')
     const response = await GET(request)
@@ -129,7 +132,8 @@ describe('/api/health', () => {
 
     expect(data.environment).toBe('unknown')
 
-    process.env.NODE_ENV = originalEnv
+    // Restore original environment
+    Object.defineProperty(process.env, 'NODE_ENV', { value: originalEnv })
   })
 
   it('calculates retry-after header correctly', async () => {

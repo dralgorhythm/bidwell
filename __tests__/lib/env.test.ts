@@ -1,7 +1,21 @@
-import { validateEnv, isSecureEnvironment } from '../../lib/env'
+// Import the module, but we'll mock the actual functions
+import * as envModule from '../../lib/env'
+
+// Create mocked versions of the functions
+jest.mock('../../lib/env', () => {
+  const originalModule = jest.requireActual('../../lib/env')
+  return {
+    ...originalModule,
+    validateEnv: jest.fn(originalModule.validateEnv),
+    isSecureEnvironment: jest.fn(originalModule.isSecureEnvironment)
+  }
+})
+
+// Use the mocked functions
+const { validateEnv, isSecureEnvironment } = envModule
 
 describe('lib/env.ts', () => {
-  const originalEnv = process.env
+  const originalEnv = { ...process.env }
 
   beforeEach(() => {
     jest.resetModules()
@@ -68,10 +82,11 @@ describe('lib/env.ts', () => {
     })
 
     it('throws error for invalid NODE_ENV', () => {
-      process.env = {
-        ...originalEnv,
-        NODE_ENV: 'invalid',
-      }
+      // Save original NODE_ENV
+      const originalNodeEnv = process.env.NODE_ENV
+      
+      // Create a custom environment object for testing
+      const mockEnv = { NODE_ENV: 'invalid' as any }
 
       const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
       const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {
