@@ -8,7 +8,6 @@ This is a Next.js application using the App Router architecture. Always consider
 - **Language**: TypeScript
 - **Package Manager**: npm
 - **Styling**: CSS Modules or Tailwind CSS
-- **Content**: MDX for blog posts
 
 ### Code Standards
 - Use TypeScript for all new files
@@ -22,7 +21,6 @@ This is a Next.js application using the App Router architecture. Always consider
 - API routes in `app/api/` with `route.ts` files
 - Components in `app/components/` directory
 - Utilities in `utils/` directory
-- Blog posts as MDX files in `app/blog/posts/`
 
 ### Next.js Best Practices
 1. **Performance**
@@ -60,8 +58,6 @@ This is a Next.js application using the App Router architecture. Always consider
 - Follow RESTful conventions
 
 ### Content Management
-- Blog posts are MDX files in `app/blog/posts/`
-- Use frontmatter for metadata
 - Implement proper content validation
 
 ### Development Workflow
@@ -84,7 +80,6 @@ When asked to:
 - **Add an API endpoint**: Create in `app/api/` with proper types
 - **Create components**: Use TypeScript, proper naming, and reusability
 - **Style components**: Use consistent styling approach
-- **Add blog content**: Create MDX files with proper frontmatter
 - **Optimize performance**: Consider Next.js built-in optimizations
 
 ### Security Considerations

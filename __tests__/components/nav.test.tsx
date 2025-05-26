@@ -17,7 +17,6 @@ describe('Navbar', () => {
     render(<Navbar />)
     
     expect(screen.getByRole('link', { name: /home/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /blog/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /comparison/i })).toBeInTheDocument()
   })
 
@@ -25,7 +24,6 @@ describe('Navbar', () => {
     render(<Navbar />)
     
     expect(screen.getByRole('link', { name: /home/i })).toHaveAttribute('href', '/')
-    expect(screen.getByRole('link', { name: /blog/i })).toHaveAttribute('href', '/blog')
     expect(screen.getByRole('link', { name: /comparison/i })).toHaveAttribute('href', '/comparison')
   })
 

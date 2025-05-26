@@ -6,7 +6,7 @@ export default function Page() {
       </h1>
       <p className="mb-4">
         {
-          `Welcome to the erstwhile home of Bidwell Consulting. This is now a portfolio site focused on software engineering and organizational consulting.
+          `Welcome to Bidwell Consulting. This is a portfolio site focused on software engineering and organizational consulting.
           I'm a software engineer and organizational consultant. I'm also a writer and a musician.`}
       </p>
       <div className="my-8">
