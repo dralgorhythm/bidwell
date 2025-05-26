@@ -7,7 +7,7 @@ jest.mock('../../lib/env', () => {
   return {
     ...originalModule,
     validateEnv: jest.fn(originalModule.validateEnv),
-    isSecureEnvironment: jest.fn(originalModule.isSecureEnvironment)
+    isSecureEnvironment: jest.fn(originalModule.isSecureEnvironment),
   }
 })
 
@@ -84,7 +84,7 @@ describe('lib/env.ts', () => {
     it('throws error for invalid NODE_ENV', () => {
       // Save original NODE_ENV
       const originalNodeEnv = process.env.NODE_ENV
-      
+
       // Create a custom environment object for testing
       const mockEnv = { NODE_ENV: 'invalid' as any }
 
