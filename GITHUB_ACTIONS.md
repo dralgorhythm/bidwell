@@ -9,6 +9,7 @@ This repository uses GitHub Actions for automated testing, linting, and formatti
 This workflow handles code quality enforcements with automatic fixes:
 
 1. **Lint and Format**:
+
    - Runs ESLint with auto-fixing (`npm run lint:fix`)
    - Runs Prettier formatting (`npm run format:fix`)
    - Automatically commits any fixes back to the PR
@@ -26,6 +27,7 @@ This workflow handles code quality enforcements with automatic fixes:
 ### Auto-fixing Behavior
 
 When the workflow runs on a PR:
+
 1. It fixes linting and formatting issues automatically
 2. Commits those changes back to your PR branch
 3. You don't need to make manual fixes for style issues
@@ -33,6 +35,7 @@ When the workflow runs on a PR:
 ### Required Permissions
 
 The workflow requires:
+
 - `contents: write` - To commit fixes back to the branch
 - `pull-requests: write` - To update the PR with the fixes
 
@@ -54,6 +57,7 @@ npm run test
 ## Troubleshooting
 
 If the auto-fix workflow fails:
+
 1. Check the workflow logs in the GitHub Actions tab
 2. Make manual fixes based on the error messages
 3. Push your changes to trigger the workflow again
