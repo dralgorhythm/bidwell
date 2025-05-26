@@ -1,3 +1,41 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Bidwell Consulting - Software Engineering & Organizational Consulting',
+  description:
+    'Welcome to Bidwell Consulting. Expert software engineering and organizational consulting services. Specialized in technical problem solving, system architecture, and business optimization.',
+  keywords: [
+    'bidwell consulting',
+    'software engineering services',
+    'organizational consulting',
+    'portfolio',
+    'technical consulting',
+    'system architecture',
+    'business optimization',
+    'full-stack development',
+  ],
+  openGraph: {
+    title: 'Bidwell Consulting - Software Engineering & Organizational Consulting',
+    description:
+      'Welcome to Bidwell Consulting. Expert software engineering and organizational consulting services showcasing innovative technical solutions.',
+    type: 'website',
+    images: [
+      {
+        url: '/og?title=Bidwell%20Consulting',
+        width: 1200,
+        height: 630,
+        alt: 'Bidwell Consulting - Software Engineering & Organizational Consulting',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Bidwell Consulting - Software Engineering & Organizational Consulting',
+    description: 'Expert software engineering and organizational consulting services.',
+    images: ['/og?title=Bidwell%20Consulting'],
+  },
+}
+
 export default function Page() {
   return (
     <section>
