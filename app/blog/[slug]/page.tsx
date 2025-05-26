@@ -15,10 +15,9 @@ export function generateStaticParams(): { slug: string }[] {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: { slug: string }
 }): Promise<Metadata | undefined> {
-  const resolvedParams = await params;
-  let post = getBlogPosts().find((post) => post.slug === resolvedParams.slug)
+  let post = getBlogPosts().find((post) => post.slug === params.slug)
   if (!post) {
     return
   }
@@ -58,13 +57,12 @@ export async function generateMetadata({
 }
 
 type BlogPageProps = {
-  params: Promise<{ slug: string }>
+  params: { slug: string }
   searchParams?: { [key: string]: string | string[] | undefined }
 }
 
 export default async function Blog({ params }: BlogPageProps) {
-  const resolvedParams = await params;
-  let post = getBlogPosts().find((post) => post.slug === resolvedParams.slug)
+  let post = getBlogPosts().find((post) => post.slug === params.slug)
 
   if (!post) {
     notFound()
