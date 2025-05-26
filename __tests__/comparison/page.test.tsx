@@ -11,23 +11,24 @@ jest.mock('../../app/comparison/comparison-form', () => {
 describe('Comparison Page', () => {
   it('renders the page with correct heading and description', () => {
     render(<ComparisonPage />)
-    
+
     expect(screen.getByRole('heading', { level: 1, name: /number comparison/i })).toBeInTheDocument()
     expect(screen.getByText(/enter two numbers below to compare them/i)).toBeInTheDocument()
   })
 
   it('includes the comparison form component', () => {
     render(<ComparisonPage />)
-    
+
     expect(screen.getByTestId('comparison-form')).toBeInTheDocument()
   })
 
   it('has proper semantic structure', () => {
     render(<ComparisonPage />)
-    
+
     // Check for heading hierarchy
     const h1 = screen.getByRole('heading', { level: 1 })
     expect(h1).toBeInTheDocument()
     expect(h1).toHaveTextContent('Number Comparison')
   })
 })
+

@@ -56,7 +56,7 @@ export default function ComparisonForm() {
 
   const getResultMessage = (result: ComparisonResult): string => {
     const { number1, number2, result: comparison, difference } = result
-    
+
     switch (comparison) {
       case 'greater':
         return `${number1} is greater than ${number2} by ${difference}`
@@ -86,8 +86,8 @@ export default function ComparisonForm() {
     <div className="max-w-md">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label 
-            htmlFor="number1" 
+          <label
+            htmlFor="number1"
             className="block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300"
           >
             First Number
@@ -105,8 +105,8 @@ export default function ComparisonForm() {
         </div>
 
         <div>
-          <label 
-            htmlFor="number2" 
+          <label
+            htmlFor="number2"
             className="block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300"
           >
             Second Number
@@ -169,3 +169,4 @@ export default function ComparisonForm() {
     </div>
   )
 }
+

@@ -41,7 +41,7 @@ const customJestConfig = {
     '<rootDir>/lib/**/__tests__/**/*.{js,jsx,ts,tsx}',
   ],
   testPathIgnorePatterns: [
-    '<rootDir>/.next/', 
+    '<rootDir>/.next/',
     '<rootDir>/node_modules/',
     '<rootDir>/__tests__/utils/',
   ],

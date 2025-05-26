@@ -11,14 +11,14 @@ export async function GET(request: NextRequest) {
   try {
     // Get client IP for rate limiting
     const clientIP = getClientIP(request)
-    
+
     // Check rate limit
     const rateLimitResult = checkRateLimit(rateLimit, clientIP)
-    
+
     if (!rateLimitResult.allowed) {
       return NextResponse.json(
         { error: 'Too many requests' },
-        { 
+        {
           status: 429,
           headers: {
             ...getSecurityHeaders(),
@@ -48,13 +48,14 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     // Log error but don't expose details
     console.error('Health check error:', error)
-    
+
     return NextResponse.json(
       { error: 'Internal server error' },
-      { 
+      {
         status: 500,
         headers: getSecurityHeaders()
       }
     )
   }
 }
+

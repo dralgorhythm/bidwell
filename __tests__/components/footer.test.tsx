@@ -36,7 +36,7 @@ describe('Footer Component', () => {
   describe('Icons', () => {
     it('renders arrow icons for all links', () => {
       const links = screen.getAllByRole('link')
-      
+
       links.forEach(link => {
         const svg = link.querySelector('svg')
         expect(svg).toBeInTheDocument()
@@ -49,7 +49,7 @@ describe('Footer Component', () => {
       const firstLink = screen.getByRole('link', { name: /github/i })
       const svg = firstLink.querySelector('svg')
       const path = svg?.querySelector('path')
-      
+
       expect(path).toBeInTheDocument()
       expect(path).toHaveAttribute('fill', 'currentColor')
     })
@@ -81,7 +81,7 @@ describe('Footer Component', () => {
 
     it('applies hover styles to links', () => {
       const links = screen.getAllByRole('link')
-      
+
       links.forEach(link => {
         expect(link).toHaveClass(
           'flex',
@@ -133,14 +133,14 @@ describe('Footer Component', () => {
 
     it('provides proper link text for screen readers', () => {
       const { container } = render(<Footer />)
-      
+
       // All links should have descriptive text
       const githubLink = container.querySelector('a[href="https://github.com/dralgorhythm"]')
       const soundcloudLink = container.querySelector('a[href="https://soundcloud.com/dralgorhythm"]')
-      
+
       expect(githubLink).toBeInTheDocument()
       expect(soundcloudLink).toBeInTheDocument()
-      
+
       expect(githubLink).toHaveTextContent('github')
       expect(soundcloudLink).toHaveTextContent('soundcloud')
     })
@@ -150,7 +150,7 @@ describe('Footer Component', () => {
       const footer = container.querySelector('footer')
       const list = footer?.querySelector('ul')
       const listItems = footer?.querySelectorAll('li')
-      
+
       expect(footer).toBeInTheDocument()
       expect(footer?.tagName).toBe('FOOTER')
       expect(list).toBeInTheDocument()
@@ -163,7 +163,7 @@ describe('Footer Component', () => {
       const startTime = performance.now()
       render(<Footer />)
       const endTime = performance.now()
-      
+
       expect(endTime - startTime).toBeLessThan(50)
     })
   })
@@ -174,7 +174,7 @@ describe('Footer Component', () => {
       const footer = container.querySelector('footer')
       const list = footer?.querySelector('ul')
       expect(list).toHaveClass('dark:text-neutral-300')
-      
+
       const links = container.querySelectorAll('a')
       links.forEach(link => {
         expect(link).toHaveClass('dark:hover:text-neutral-100')
@@ -182,3 +182,4 @@ describe('Footer Component', () => {
     })
   })
 })
+

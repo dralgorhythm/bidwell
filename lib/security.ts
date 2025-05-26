@@ -15,7 +15,7 @@ export function verifyCSRFToken(providedToken: string, storedHash: string): bool
   if (!providedToken || !storedHash) {
     return false
   }
-  
+
   const providedHash = hashToken(providedToken)
   return providedHash === storedHash
 }
@@ -26,20 +26,20 @@ export function getClientIP(request: Request): string {
   const forwarded = request.headers.get('x-forwarded-for')
   const realIP = request.headers.get('x-real-ip')
   const cfConnectingIP = request.headers.get('cf-connecting-ip')
-  
+
   if (forwarded) {
     // x-forwarded-for can contain multiple IPs, take the first one
     return forwarded.split(',')[0].trim()
   }
-  
+
   if (realIP) {
     return realIP
   }
-  
+
   if (cfConnectingIP) {
     return cfConnectingIP
   }
-  
+
   // Fallback
   return 'unknown'
 }
@@ -56,3 +56,4 @@ export function getSecurityHeaders(): Record<string, string> {
     'Expires': '0',
   }
 }
+

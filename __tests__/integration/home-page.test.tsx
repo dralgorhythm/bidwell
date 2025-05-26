@@ -152,7 +152,7 @@ describe('Home Page Integration', () => {
       // Should have structured content
       expect(container.querySelector('h1')).toBeInTheDocument()
       expect(container.querySelector('p')).toBeInTheDocument()
-      
+
       // Should have meaningful text content
       expect(container.textContent).toContain('Bidwell Consulting')
       expect(container.textContent).toContain('software engineer')
@@ -175,3 +175,4 @@ describe('Home Page Integration', () => {
     })
   })
 })
+

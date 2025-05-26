@@ -68,7 +68,7 @@ export const formHelpers = {
     await user.clear(element)
     await user.type(element, value)
   },
-  
+
   submitForm: async (user: any, form: HTMLElement) => {
     const submitButton = form.querySelector('button[type="submit"]') as HTMLElement
     if (submitButton) {
@@ -85,7 +85,7 @@ export const performanceHelpers = {
     const end = performance.now()
     return end - start
   },
-  
+
   expectFastRender: (renderTime: number, threshold = 100) => {
     expect(renderTime).toBeLessThan(threshold)
   },
@@ -105,3 +105,4 @@ export { userEvent } from '@testing-library/user-event'
 
 // Re-export our custom render as the default render
 export { customRender as render }
+
