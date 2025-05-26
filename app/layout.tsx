@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: 'This is my portfolio.',
   openGraph: {
     title: 'Bidwell Consulting',
-    description: 'This is a small blog for Bidwell Consulting.',
+    description: 'Software engineering and organizational consulting services.',
     url: baseUrl,
     siteName: 'Bidwell Consulting',
     locale: 'en_US',

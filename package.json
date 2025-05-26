@@ -18,11 +18,9 @@
     "@vercel/speed-insights": "1.2.0",
     "geist": "1.4.2",
     "next": "15.3.2",
-    "next-mdx-remote": "5.0.0",
     "postcss": "8.5.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "sugar-high": "0.9.3",
     "tailwindcss": "4.1.7",
     "typescript": "5.8.3",
     "zod": "^3.25.28"
