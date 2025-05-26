@@ -13,13 +13,11 @@ describe('Footer Component', () => {
     })
 
     it('contains all expected navigation links', () => {
-      expect(screen.getByRole('link', { name: /rss/i })).toBeInTheDocument()
       expect(screen.getByRole('link', { name: /github/i })).toBeInTheDocument()
       expect(screen.getByRole('link', { name: /soundcloud/i })).toBeInTheDocument()
     })
 
     it('has correct href attributes for all links', () => {
-      expect(screen.getByRole('link', { name: /rss/i })).toHaveAttribute('href', '/rss')
       expect(screen.getByRole('link', { name: /github/i })).toHaveAttribute('href', 'https://github.com/dralgorhythm')
       expect(screen.getByRole('link', { name: /soundcloud/i })).toHaveAttribute('href', 'https://soundcloud.com/dralgorhythm')
     })
@@ -48,7 +46,7 @@ describe('Footer Component', () => {
     })
 
     it('arrow icons have proper SVG structure', () => {
-      const firstLink = screen.getByRole('link', { name: /rss/i })
+      const firstLink = screen.getByRole('link', { name: /github/i })
       const svg = firstLink.querySelector('svg')
       const path = svg?.querySelector('path')
       
@@ -137,15 +135,12 @@ describe('Footer Component', () => {
       const { container } = render(<Footer />)
       
       // All links should have descriptive text
-      const rssLink = container.querySelector('a[href="/rss"]')
       const githubLink = container.querySelector('a[href="https://github.com/dralgorhythm"]')
       const soundcloudLink = container.querySelector('a[href="https://soundcloud.com/dralgorhythm"]')
       
-      expect(rssLink).toBeInTheDocument()
       expect(githubLink).toBeInTheDocument()
       expect(soundcloudLink).toBeInTheDocument()
       
-      expect(rssLink).toHaveTextContent('rss')
       expect(githubLink).toHaveTextContent('github')
       expect(soundcloudLink).toHaveTextContent('soundcloud')
     })
@@ -159,7 +154,7 @@ describe('Footer Component', () => {
       expect(footer).toBeInTheDocument()
       expect(footer?.tagName).toBe('FOOTER')
       expect(list).toBeInTheDocument()
-      expect(listItems).toHaveLength(3)
+      expect(listItems).toHaveLength(2)
     })
   })
 

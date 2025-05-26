@@ -7,7 +7,7 @@ describe('Home Page Integration', () => {
       render(<HomePage />)
 
       expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
-      expect(screen.getByText(/welcome to the erstwhile home/i)).toBeInTheDocument()
+      expect(screen.getByText(/welcome to bidwell consulting/i)).toBeInTheDocument()
       expect(screen.getByText(/check out my work and projects/i)).toBeInTheDocument()
     })
 
@@ -21,7 +21,7 @@ describe('Home Page Integration', () => {
     it('includes welcome message and description', () => {
       render(<HomePage />)
 
-      expect(screen.getByText(/welcome to the erstwhile home of bidwell consulting/i)).toBeInTheDocument()
+      expect(screen.getByText(/welcome to bidwell consulting/i)).toBeInTheDocument()
       expect(screen.getByText(/i'm a software engineer and organizational consultant/i)).toBeInTheDocument()
       expect(screen.getByText(/i'm also a writer and a musician/i)).toBeInTheDocument()
     })
@@ -45,7 +45,7 @@ describe('Home Page Integration', () => {
     it('applies correct styling to description', () => {
       render(<HomePage />)
 
-      const description = screen.getByText(/welcome to the erstwhile home/i)
+      const description = screen.getByText(/welcome to bidwell consulting/i)
       expect(description).toHaveClass('mb-4')
     })
 
@@ -70,7 +70,7 @@ describe('Home Page Integration', () => {
 
       const elements = container.querySelectorAll('section > *')
       expect(elements[0]).toContainHTML('Bidwell Consulting') // Heading
-      expect(elements[1]).toContainHTML('Welcome to the erstwhile') // Description
+      expect(elements[1]).toContainHTML('Welcome to Bidwell Consulting') // Description
       expect(elements[2]).toContainHTML('Check out my work') // Portfolio section
     })
   })
@@ -112,7 +112,7 @@ describe('Home Page Integration', () => {
       render(<HomePage />)
 
       const heading = screen.getByRole('heading', { level: 1 })
-      const description = screen.getByText(/welcome to the erstwhile home/i)
+      const description = screen.getByText(/welcome to bidwell consulting/i)
 
       // Heading should come before description
       expect(heading.compareDocumentPosition(description)).toBe(Node.DOCUMENT_POSITION_FOLLOWING)
@@ -142,7 +142,7 @@ describe('Home Page Integration', () => {
     it('provides clear value proposition', () => {
       render(<HomePage />)
 
-      const valueText = screen.getByText(/welcome to the erstwhile home of bidwell consulting/i)
+      const valueText = screen.getByText(/welcome to bidwell consulting/i)
       expect(valueText).toBeInTheDocument()
     })
 
