@@ -1,4 +1,8 @@
 import '@testing-library/jest-dom'
+import { toHaveNoViolations } from 'jest-axe'
+
+// Extend Jest with jest-axe matchers
+expect.extend(toHaveNoViolations)
 
 // Mock Web APIs that might not be available in Jest environment
 global.Headers = global.Headers || class Headers extends Map {
