@@ -8,7 +8,7 @@ describe('Home Page Integration', () => {
 
       expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
       expect(screen.getByText(/welcome to bidwell consulting/i)).toBeInTheDocument()
-      expect(screen.getByText(/check out my work and projects/i)).toBeInTheDocument()
+      expect(screen.getByText(/check out my projects and technical solutions/i)).toBeInTheDocument()
     })
 
     it('has correct main heading', () => {
@@ -23,9 +23,9 @@ describe('Home Page Integration', () => {
 
       expect(screen.getByText(/welcome to bidwell consulting/i)).toBeInTheDocument()
       expect(
-        screen.getByText(/i'm a software engineer and organizational consultant/i)
+        screen.getByText(/as a seasoned software engineer and organizational consultant/i)
       ).toBeInTheDocument()
-      expect(screen.getByText(/i'm also a writer and a musician/i)).toBeInTheDocument()
+      expect(screen.getByText(/writer and musician/i)).toBeInTheDocument()
     })
   })
 
@@ -64,7 +64,7 @@ describe('Home Page Integration', () => {
     it('includes the portfolio section', () => {
       render(<HomePage />)
 
-      expect(screen.getByText(/check out my work and projects/i)).toBeInTheDocument()
+      expect(screen.getByText(/check out my projects and technical solutions/i)).toBeInTheDocument()
     })
 
     it('renders components in correct order', () => {
@@ -73,7 +73,7 @@ describe('Home Page Integration', () => {
       const elements = container.querySelectorAll('section > *')
       expect(elements[0]).toContainHTML('Bidwell Consulting') // Heading
       expect(elements[1]).toContainHTML('Welcome to Bidwell Consulting') // Description
-      expect(elements[2]).toContainHTML('Check out my work') // Portfolio section
+      expect(elements[2]).toContainHTML('Explore My Work') // Portfolio section
     })
   })
 
@@ -82,7 +82,7 @@ describe('Home Page Integration', () => {
       render(<HomePage />)
 
       // Should mention key aspects of the business
-      expect(screen.getByText(/software engineer/i)).toBeInTheDocument()
+      expect(screen.getAllByText(/software engineer/i)[0]).toBeInTheDocument()
       expect(screen.getByText(/organizational consultant/i)).toBeInTheDocument()
       expect(screen.getByText(/writer/i)).toBeInTheDocument()
       expect(screen.getByText(/musician/i)).toBeInTheDocument()
@@ -93,7 +93,7 @@ describe('Home Page Integration', () => {
 
       expect(screen.getByRole('heading', { name: /bidwell consulting/i })).toBeInTheDocument()
       expect(
-        screen.getByText(/portfolio site focused on software engineering/i)
+        screen.getByText(/portfolio site showcases innovative technical solutions/i)
       ).toBeInTheDocument()
     })
   })
@@ -139,7 +139,7 @@ describe('Home Page Integration', () => {
 
       // Business-relevant terms
       expect(screen.getByRole('heading', { name: /bidwell consulting/i })).toBeInTheDocument()
-      expect(screen.getByText(/software engineer/i)).toBeInTheDocument()
+      expect(screen.getAllByText(/software engineer/i)[0]).toBeInTheDocument()
       expect(screen.getByText(/consultant/i)).toBeInTheDocument()
     })
 
@@ -175,7 +175,7 @@ describe('Home Page Integration', () => {
       render(<HomePage />)
 
       // Portfolio content provides direction for users
-      expect(screen.getByText(/check out my work and projects/i)).toBeInTheDocument()
+      expect(screen.getByText(/check out my projects and technical solutions/i)).toBeInTheDocument()
     })
   })
 })

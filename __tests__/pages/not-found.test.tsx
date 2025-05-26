@@ -10,7 +10,7 @@ describe('NotFound Page', () => {
 
   it('renders the description message', () => {
     render(<NotFound />)
-    expect(screen.getByText('The page you are looking for does not exist.')).toBeInTheDocument()
+    expect(screen.getByText(/doesn't exist or has been moved/i)).toBeInTheDocument()
   })
 
   it('has proper semantic structure', () => {
@@ -22,7 +22,7 @@ describe('NotFound Page', () => {
   it('applies correct styling classes', () => {
     render(<NotFound />)
     const heading = screen.getByRole('heading')
-    expect(heading).toHaveClass('mb-8', 'text-2xl', 'font-semibold', 'tracking-tighter')
+    expect(heading).toHaveClass('mb-4', 'text-4xl', 'font-bold', 'tracking-tight')
   })
 
   it('has accessible structure', async () => {

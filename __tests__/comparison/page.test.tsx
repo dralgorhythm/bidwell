@@ -15,7 +15,7 @@ describe('Comparison Page', () => {
     expect(
       screen.getByRole('heading', { level: 1, name: /number comparison/i })
     ).toBeInTheDocument()
-    expect(screen.getByText(/enter two numbers below to compare them/i)).toBeInTheDocument()
+    expect(screen.getByText(/use our free online number comparison tool/i)).toBeInTheDocument()
   })
 
   it('includes the comparison form component', () => {
