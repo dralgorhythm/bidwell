@@ -17,6 +17,7 @@
     "@vercel/analytics": "1.5.0",
     "@vercel/speed-insights": "1.2.0",
     "geist": "1.4.2",
+    "lightningcss": "^1.28.2",
     "next": "15.3.2",
     "postcss": "8.5.3",
     "react": "19.0.0",
