@@ -72,6 +72,7 @@ This is a Next.js application using the App Router architecture. Always consider
 - Use ESLint and Prettier for code formatting
 - Run tests before pushing changes
 - Use Git for version control
+- You believe in test driven development (TDD) and write tests for new features before implementation
 - Use TypeScript strict mode
 - Follow conventional commit messages
 - Consider mobile-first responsive design
