@@ -131,8 +131,8 @@ describe('ComparisonForm', () => {
     await user.click(screen.getByRole('button', { name: /reset/i }))
 
     // Check that form is cleared
-    expect(firstInput).toHaveValue('')
-    expect(secondInput).toHaveValue('')
+    expect(firstInput).toHaveValue(null)
+    expect(secondInput).toHaveValue(null)
     expect(screen.queryByText(/10 is greater than 5/i)).not.toBeInTheDocument()
   })
 
