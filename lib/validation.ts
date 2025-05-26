@@ -74,7 +74,7 @@ export function checkRateLimit(
   keysToDelete.forEach(key => requests.delete(key))
 
   const requestInfo = requests.get(identifier)
-  
+
   if (!requestInfo) {
     requests.set(identifier, { count: 1, resetTime: now + windowMs })
     return { allowed: true, remaining: limit - 1, resetTime: now + windowMs }
@@ -85,9 +85,9 @@ export function checkRateLimit(
   }
 
   requestInfo.count += 1
-  return { 
-    allowed: true, 
-    remaining: limit - requestInfo.count, 
-    resetTime: requestInfo.resetTime 
+  return {
+    allowed: true,
+    remaining: limit - requestInfo.count,
+    resetTime: requestInfo.resetTime,
   }
 }

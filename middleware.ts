@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
   response.headers.set('X-Frame-Options', 'DENY')
   response.headers.set('X-XSS-Protection', '1; mode=block')
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
-  
+
   // Add HSTS header for HTTPS
   if (request.nextUrl.protocol === 'https:') {
     response.headers.set(
@@ -22,12 +22,12 @@ export function middleware(request: NextRequest) {
   response.headers.set(
     'Content-Security-Policy',
     "default-src 'self'; " +
-    "script-src 'self' 'unsafe-eval' 'unsafe-inline' va.vercel-scripts.com; " +
-    "style-src 'self' 'unsafe-inline'; " +
-    "img-src 'self' data: https:; " +
-    "font-src 'self'; " +
-    "connect-src 'self' vitals.vercel-insights.com; " +
-    "frame-ancestors 'none';"
+      "script-src 'self' 'unsafe-eval' 'unsafe-inline' va.vercel-scripts.com; " +
+      "style-src 'self' 'unsafe-inline'; " +
+      "img-src 'self' data: https:; " +
+      "font-src 'self'; " +
+      "connect-src 'self' vitals.vercel-insights.com; " +
+      "frame-ancestors 'none';"
   )
 
   return response
