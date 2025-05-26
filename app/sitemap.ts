@@ -2,6 +2,8 @@ import { getBlogPosts } from './blog/utils'
 
 export const baseUrl = 'https://bidwell.info'
 
+export const dynamic = "force-static";
+
 export default async function sitemap() {
   let blogs = getBlogPosts().map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
