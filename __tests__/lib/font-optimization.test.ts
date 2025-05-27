@@ -7,7 +7,7 @@ import {
   getFontLoadingStrategy,
   initializeFontOptimization,
   preloadCriticalFontSubset,
-  CRITICAL_FONT_SUBSET
+  CRITICAL_FONT_SUBSET,
 } from '../../lib/font-optimization'
 
 describe('Font Optimization', () => {
@@ -27,7 +27,7 @@ describe('Font Optimization', () => {
         type: '',
         crossOrigin: '',
         textContent: '',
-        addEventListener: jest.fn()
+        addEventListener: jest.fn(),
       }
       createdElements.push(element)
       return element
@@ -40,10 +40,10 @@ describe('Font Optimization', () => {
         head: { appendChild: mockAppendChild },
         fonts: { ready: Promise.resolve() },
         addEventListener: jest.fn(),
-        removeEventListener: jest.fn()
+        removeEventListener: jest.fn(),
       },
       writable: true,
-      configurable: true
+      configurable: true,
     })
   })
 
@@ -51,21 +51,21 @@ describe('Font Optimization', () => {
     it('creates preload link elements for each font', () => {
       const fonts = [
         { href: '/fonts/font1.woff2', crossOrigin: 'anonymous' as const },
-        { href: '/fonts/font2.woff2', type: 'font/woff2' }
+        { href: '/fonts/font2.woff2', type: 'font/woff2' },
       ]
-      
+
       preloadFonts(fonts)
-      
+
       expect(mockCreateElement).toHaveBeenCalledTimes(2)
       expect(mockCreateElement).toHaveBeenCalledWith('link')
       expect(mockAppendChild).toHaveBeenCalledTimes(2)
     })
-    
+
     it('sets correct attributes on link elements', () => {
       const fonts = [{ href: '/fonts/font1.woff2' }]
-      
+
       preloadFonts(fonts)
-      
+
       expect(mockAppendChild).toHaveBeenCalled()
       const linkElement = mockAppendChild.mock.calls[0][0]
       expect(linkElement.rel).toBe('preload')
@@ -78,10 +78,10 @@ describe('Font Optimization', () => {
   describe('optimizeFontDisplay', () => {
     it('creates a style element with font-display rules', () => {
       optimizeFontDisplay()
-      
+
       expect(mockCreateElement).toHaveBeenCalledWith('style')
       expect(mockAppendChild).toHaveBeenCalled()
-      
+
       const styleElement = mockAppendChild.mock.calls[0][0]
       expect(styleElement.textContent).toContain('font-display: swap')
       expect(styleElement.textContent).toContain('GeistSans')
@@ -93,50 +93,50 @@ describe('Font Optimization', () => {
     it('resolves when document.fonts.ready resolves', async () => {
       await expect(waitForFontsReady()).resolves.not.toThrow()
     })
-    
+
     it('resolves immediately when fonts API not available', async () => {
       // Remove fonts property
       const tempFonts = document.fonts
       delete (document as any).fonts
-      
+
       await expect(waitForFontsReady()).resolves.not.toThrow()
-      
+
       // Restore fonts property
       Object.defineProperty(document, 'fonts', {
         value: tempFonts,
-        configurable: true
+        configurable: true,
       })
     })
-    
+
     it('handles rejected promises gracefully', async () => {
       // Make document.fonts.ready reject
       const originalReady = document.fonts.ready
       const rejectedPromise = Promise.reject('Font error')
       // Suppress the unhandled rejection warning
       rejectedPromise.catch(() => {})
-      
+
       Object.defineProperty(document.fonts, 'ready', {
         value: rejectedPromise,
-        configurable: true
+        configurable: true,
       })
-      
+
       await expect(waitForFontsReady()).resolves.not.toThrow()
-      
+
       // Restore original ready property
       Object.defineProperty(document.fonts, 'ready', {
         value: originalReady,
-        configurable: true
+        configurable: true,
       })
     })
   })
-  
+
   describe('addFontSizeAdjustments', () => {
     it('creates style element with font-face size adjustments', () => {
       addFontSizeAdjustments()
-      
+
       expect(mockCreateElement).toHaveBeenCalledWith('style')
       expect(mockAppendChild).toHaveBeenCalled()
-      
+
       const styleElement = mockAppendChild.mock.calls[0][0]
       expect(styleElement.textContent).toContain('size-adjust')
       expect(styleElement.textContent).toContain('ascent-override')
@@ -150,67 +150,67 @@ describe('Font Optimization', () => {
       // Navigator without connection info
       Object.defineProperty(global, 'navigator', {
         value: {},
-        writable: true
+        writable: true,
       })
-      
+
       expect(getFontLoadingStrategy()).toBe('swap')
     })
-    
+
     it('returns optional for slow connections', () => {
       // Mock slow connection
       Object.defineProperty(global, 'navigator', {
         value: {
-          connection: { effectiveType: 'slow-2g' }
+          connection: { effectiveType: 'slow-2g' },
         },
-        writable: true
+        writable: true,
       })
-      
+
       expect(getFontLoadingStrategy()).toBe('optional')
-      
+
       // Change to 2g
       Object.defineProperty(global.navigator, 'connection', {
         value: { effectiveType: '2g' },
-        writable: true
+        writable: true,
       })
-      
+
       expect(getFontLoadingStrategy()).toBe('optional')
     })
-    
+
     it('returns fallback for medium speed connections', () => {
       // Mock 3g connection
       Object.defineProperty(global, 'navigator', {
         value: {
-          connection: { effectiveType: '3g' }
+          connection: { effectiveType: '3g' },
         },
-        writable: true
+        writable: true,
       })
-      
+
       expect(getFontLoadingStrategy()).toBe('fallback')
     })
   })
-  
+
   describe('initializeFontOptimization', () => {
     it('calls all required font optimization functions', async () => {
       // Since the functions modify document, we'll test that document methods are called
       // which indicates the functions were executed
       jest.clearAllMocks()
-      
+
       initializeFontOptimization()
-      
+
       // Should call createElement for both style elements (optimize and adjust)
       expect(mockCreateElement).toHaveBeenCalledWith('style')
       expect(mockCreateElement).toHaveBeenCalledTimes(2)
       expect(mockAppendChild).toHaveBeenCalledTimes(2)
     })
   })
-  
+
   describe('preloadCriticalFontSubset', () => {
     it('creates preload link for critical font subset', () => {
       preloadCriticalFontSubset('/fonts/critical.woff2')
-      
+
       expect(mockCreateElement).toHaveBeenCalledWith('link')
       expect(mockAppendChild).toHaveBeenCalled()
-      
+
       const linkElement = mockAppendChild.mock.calls[0][0]
       expect(linkElement.rel).toBe('preload')
       expect(linkElement.as).toBe('font')
@@ -218,7 +218,7 @@ describe('Font Optimization', () => {
       expect(linkElement.crossOrigin).toBe('anonymous')
     })
   })
-  
+
   describe('CRITICAL_FONT_SUBSET', () => {
     it('contains essential characters', () => {
       expect(CRITICAL_FONT_SUBSET).toContain('A')

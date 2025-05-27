@@ -6,7 +6,9 @@ describe('App Manifest', () => {
   it('returns the correct app name and details', () => {
     expect(manifestData.name).toBe('Bidwell Consulting')
     expect(manifestData.short_name).toBe('Bidwell')
-    expect(manifestData.description).toBe('Expert software engineering and organizational consulting services')
+    expect(manifestData.description).toBe(
+      'Expert software engineering and organizational consulting services'
+    )
   })
 
   it('includes correct PWA configuration', () => {
@@ -18,7 +20,7 @@ describe('App Manifest', () => {
 
   it('includes proper icon definitions', () => {
     expect(manifestData.icons).toHaveLength(2)
-    
+
     // Apple icon
     expect(manifestData.icons[0]).toEqual({
       src: '/apple-icon.png',

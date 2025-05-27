@@ -250,7 +250,7 @@ export function preloadImage(src: string, type?: string, imageSizes?: string): v
   link.rel = 'preload'
   link.as = 'image'
   link.href = src
-  
+
   if (type) {
     link.type = `image/${type}`
   }
@@ -292,7 +292,7 @@ export function preventLayoutShift(
   useAspectRatio?: boolean
 ): void {
   if (!element) return
-  
+
   if (width === undefined || height === undefined) {
     // Handle missing dimensions by setting empty values
     element.style.width = ''
@@ -300,11 +300,11 @@ export function preventLayoutShift(
     element.style.aspectRatio = ''
     return
   }
-  
+
   // Convert numbers to pixels
   const widthValue = typeof width === 'number' ? `${width}px` : width
   const heightValue = typeof height === 'number' ? `${height}px` : height
-  
+
   // Calculate aspect ratio from numeric values with simplification
   let aspectRatio = ''
   if (typeof width === 'number' && typeof height === 'number' && height > 0) {
@@ -325,10 +325,10 @@ export function preventLayoutShift(
       aspectRatio = `${widthNum / divisor} / ${heightNum / divisor}`
     }
   }
-  
+
   element.style.width = widthValue
   element.style.height = heightValue
-  
+
   if (useAspectRatio !== false && aspectRatio) {
     element.style.aspectRatio = aspectRatio
   }
@@ -341,9 +341,9 @@ export function observeElementIntersection(
   element: Element,
   callback: (entry: IntersectionObserverEntry) => void,
   options?: IntersectionObserverInit
-): (() => void) {
+): () => void {
   if (typeof window === 'undefined' || !window.IntersectionObserver) {
-    return () => {}; // Return a no-op function if not supported
+    return () => {} // Return a no-op function if not supported
   }
 
   const observer = new IntersectionObserver(entries => {
@@ -359,7 +359,7 @@ export function observeElementIntersection(
   if (observer && typeof observer.observe === 'function') {
     observer.observe(element)
   }
-  
+
   // Return a cleanup function that disconnects the observer
   return () => {
     if (observer && typeof observer.disconnect === 'function') {
@@ -376,22 +376,22 @@ export function measureCustomTiming(startMark: string, endMark: string): number 
 
   try {
     const measureName = `${startMark}-to-${endMark}`
-    
+
     // Create marks
     window.performance.mark(startMark)
     window.performance.mark(endMark)
-    
+
     // Measure between the marks
     window.performance.measure(measureName, startMark, endMark)
-    
+
     const entries = window.performance.getEntriesByName(measureName, 'measure')
     const duration = entries.length > 0 ? entries[0].duration : null
-    
+
     // Cleanup
     window.performance.clearMarks(startMark)
     window.performance.clearMarks(endMark)
     window.performance.clearMeasures(measureName)
-    
+
     return duration
   } catch {
     return null

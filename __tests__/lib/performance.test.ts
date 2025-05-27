@@ -319,7 +319,9 @@ describe('Performance Library', () => {
 
       expect(mockPerformance.clearMarks).toHaveBeenCalledWith('test-operation-start')
       expect(mockPerformance.clearMarks).toHaveBeenCalledWith('test-operation-end')
-      expect(mockPerformance.clearMeasures).toHaveBeenCalledWith('test-operation-start-to-test-operation-end')
+      expect(mockPerformance.clearMeasures).toHaveBeenCalledWith(
+        'test-operation-start-to-test-operation-end'
+      )
     })
 
     it('should return null when performance API is not available', () => {
