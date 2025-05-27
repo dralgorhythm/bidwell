@@ -28,10 +28,14 @@ describe('sitemap.ts', () => {
       {
         url: 'https://bidwell.info',
         lastModified: '2024-01-01',
+        changeFrequency: 'weekly',
+        priority: 1.0,
       },
       {
         url: 'https://bidwell.info/comparison',
         lastModified: '2024-01-01',
+        changeFrequency: 'monthly',
+        priority: 0.8,
       },
     ])
   })
