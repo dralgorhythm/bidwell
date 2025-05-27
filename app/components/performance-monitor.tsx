@@ -32,7 +32,7 @@ export default function PerformanceMonitor({
             name: 'TTFB',
             value: ttfb,
             category: 'navigation',
-            label: 'page-load'
+            label: 'page-load',
           })
 
           // Track DOM Content Loaded
@@ -41,7 +41,7 @@ export default function PerformanceMonitor({
             name: 'DCL',
             value: domContentLoaded,
             category: 'navigation',
-            label: 'dom-content-loaded'
+            label: 'dom-content-loaded',
           })
 
           // Track Load Complete
@@ -50,7 +50,7 @@ export default function PerformanceMonitor({
             name: 'Load',
             value: loadComplete,
             category: 'navigation',
-            label: 'load-complete'
+            label: 'load-complete',
           })
 
           if (debug) {
@@ -78,7 +78,7 @@ export default function PerformanceMonitor({
           name: 'Interaction',
           value: duration,
           category: 'user-interaction',
-          label: 'response-time'
+          label: 'response-time',
         })
 
         if (debug && duration > 100) {

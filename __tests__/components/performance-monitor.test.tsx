@@ -76,19 +76,19 @@ describe('PerformanceMonitor', () => {
       name: 'TTFB',
       value: 100,
       category: 'navigation',
-      label: 'page-load'
+      label: 'page-load',
     })
     expect(performanceLib.trackCustomMetric).toHaveBeenCalledWith({
       name: 'DCL',
       value: 300,
       category: 'navigation',
-      label: 'dom-content-loaded'
+      label: 'dom-content-loaded',
     })
     expect(performanceLib.trackCustomMetric).toHaveBeenCalledWith({
       name: 'Load',
       value: 600,
       category: 'navigation',
-      label: 'load-complete'
+      label: 'load-complete',
     })
   })
 
@@ -112,7 +112,7 @@ describe('PerformanceMonitor', () => {
       name: 'Interaction',
       value: expect.any(Number),
       category: 'user-interaction',
-      label: 'response-time'
+      label: 'response-time',
     })
 
     // Cleanup
