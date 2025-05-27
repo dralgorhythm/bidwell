@@ -28,15 +28,30 @@ export default function PerformanceMonitor({
         if (navigation) {
           // Track Time to First Byte (TTFB)
           const ttfb = navigation.responseStart - navigation.requestStart
-          trackCustomMetric('TTFB', ttfb)
+          trackCustomMetric({
+            name: 'TTFB',
+            value: ttfb,
+            category: 'navigation',
+            label: 'page-load'
+          })
 
           // Track DOM Content Loaded
           const domContentLoaded = navigation.domContentLoadedEventEnd - navigation.responseStart
-          trackCustomMetric('DCL', domContentLoaded)
+          trackCustomMetric({
+            name: 'DCL',
+            value: domContentLoaded,
+            category: 'navigation',
+            label: 'dom-content-loaded'
+          })
 
           // Track Load Complete
           const loadComplete = navigation.loadEventEnd - navigation.responseStart
-          trackCustomMetric('Load', loadComplete)
+          trackCustomMetric({
+            name: 'Load',
+            value: loadComplete,
+            category: 'navigation',
+            label: 'load-complete'
+          })
 
           if (debug) {
             // Performance metrics tracked in development mode
@@ -59,7 +74,12 @@ export default function PerformanceMonitor({
 
       requestIdleCallback(() => {
         const duration = performance.now() - startTime
-        trackCustomMetric('Interaction', duration)
+        trackCustomMetric({
+          name: 'Interaction',
+          value: duration,
+          category: 'user-interaction',
+          label: 'response-time'
+        })
 
         if (debug && duration > 100) {
           // Slow interaction detected - could be reported to monitoring

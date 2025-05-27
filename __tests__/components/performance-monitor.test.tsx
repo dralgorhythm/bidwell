@@ -72,9 +72,24 @@ describe('PerformanceMonitor', () => {
 
     render(<PerformanceMonitor enableReporting={true} />)
 
-    expect(performanceLib.trackCustomMetric).toHaveBeenCalledWith('TTFB', 100)
-    expect(performanceLib.trackCustomMetric).toHaveBeenCalledWith('DCL', 300)
-    expect(performanceLib.trackCustomMetric).toHaveBeenCalledWith('Load', 600)
+    expect(performanceLib.trackCustomMetric).toHaveBeenCalledWith({
+      name: 'TTFB',
+      value: 100,
+      category: 'navigation',
+      label: 'page-load'
+    })
+    expect(performanceLib.trackCustomMetric).toHaveBeenCalledWith({
+      name: 'DCL',
+      value: 300,
+      category: 'navigation',
+      label: 'dom-content-loaded'
+    })
+    expect(performanceLib.trackCustomMetric).toHaveBeenCalledWith({
+      name: 'Load',
+      value: 600,
+      category: 'navigation',
+      label: 'load-complete'
+    })
   })
 
   it('should track user interactions', async () => {
@@ -93,7 +108,12 @@ describe('PerformanceMonitor', () => {
     // Wait for requestIdleCallback
     await new Promise(resolve => setTimeout(resolve, 10))
 
-    expect(performanceLib.trackCustomMetric).toHaveBeenCalledWith('Interaction', expect.any(Number))
+    expect(performanceLib.trackCustomMetric).toHaveBeenCalledWith({
+      name: 'Interaction',
+      value: expect.any(Number),
+      category: 'user-interaction',
+      label: 'response-time'
+    })
 
     // Cleanup
     document.body.removeChild(button)
