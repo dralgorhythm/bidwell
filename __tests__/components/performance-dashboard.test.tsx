@@ -224,10 +224,10 @@ describe('PerformanceDashboard', () => {
     // Good metrics should have green styling (based on the default mock values)
     // CLS: 0.05 (good), INP: 50 (good)
     const clsContainer = screen.getByText('CLS').closest('.px-2')
-    expect(clsContainer).toHaveClass('text-green-600')
+    expect(clsContainer).toHaveClass('text-green-800')
 
     const inpContainer = screen.getByText('INP').closest('.px-2')
-    expect(inpContainer).toHaveClass('text-green-600')
+    expect(inpContainer).toHaveClass('text-green-800')
   })
 
   it('should show metric details when showDetails is true', async () => {
@@ -371,7 +371,7 @@ describe('PerformanceDashboard', () => {
 
       // CLS metric should be red (poor) - find the right container element
       const clsElement = screen.getByText('CLS').closest('.px-2')
-      expect(clsElement).toHaveClass('text-red-600')
+      expect(clsElement).toHaveClass('text-red-800')
     })
   })
 })
