@@ -42,62 +42,81 @@ describe('PerformanceDashboard', () => {
     jest.clearAllMocks()
     mockLocalStorage.getItem.mockReturnValue(null)
 
-    // Reset mocks to default behavior with complete metric objects
-    mockWebVitals.onCLS.mockImplementation(callback =>
-      callback({
-        name: 'CLS',
-        value: 0.05,
-        entries: [],
-        rating: 'good' as const,
-        delta: 0.05,
-        id: 'test-cls',
-        navigationType: 'navigate' as const,
+    // Store callbacks to call them later in act()
+    let callbacks: Array<(metric: any) => void> = []
+
+    // Reset mocks to store callbacks instead of calling them immediately
+    mockWebVitals.onCLS.mockImplementation(callback => {
+      callbacks.push(callback)
+    })
+    mockWebVitals.onFCP.mockImplementation(callback => {
+      callbacks.push(callback)
+    })
+    mockWebVitals.onINP.mockImplementation(callback => {
+      callbacks.push(callback)
+    })
+    mockWebVitals.onLCP.mockImplementation(callback => {
+      callbacks.push(callback)
+    })
+    mockWebVitals.onTTFB.mockImplementation(callback => {
+      callbacks.push(callback)
+    })
+
+    // Store callbacks for tests to use
+    ;(mockWebVitals as any).triggerMetrics = () => {
+      callbacks.forEach((callback, index) => {
+        const metrics = [
+          {
+            name: 'CLS',
+            value: 0.05,
+            entries: [],
+            rating: 'good' as const,
+            delta: 0.05,
+            id: 'test-cls',
+            navigationType: 'navigate' as const,
+          },
+          {
+            name: 'FCP',
+            value: 1500,
+            entries: [],
+            rating: 'good' as const,
+            delta: 1500,
+            id: 'test-fcp',
+            navigationType: 'navigate' as const,
+          },
+          {
+            name: 'INP',
+            value: 50,
+            entries: [],
+            rating: 'good' as const,
+            delta: 50,
+            id: 'test-inp',
+            navigationType: 'navigate' as const,
+          },
+          {
+            name: 'LCP',
+            value: 2000,
+            entries: [],
+            rating: 'good' as const,
+            delta: 2000,
+            id: 'test-lcp',
+            navigationType: 'navigate' as const,
+          },
+          {
+            name: 'TTFB',
+            value: 600,
+            entries: [],
+            rating: 'good' as const,
+            delta: 600,
+            id: 'test-ttfb',
+            navigationType: 'navigate' as const,
+          },
+        ]
+        if (metrics[index]) {
+          callback(metrics[index])
+        }
       })
-    )
-    mockWebVitals.onFCP.mockImplementation(callback =>
-      callback({
-        name: 'FCP',
-        value: 1500,
-        entries: [],
-        rating: 'good' as const,
-        delta: 1500,
-        id: 'test-fcp',
-        navigationType: 'navigate' as const,
-      })
-    )
-    mockWebVitals.onINP.mockImplementation(callback =>
-      callback({
-        name: 'INP',
-        value: 50,
-        entries: [],
-        rating: 'good' as const,
-        delta: 50,
-        id: 'test-inp',
-        navigationType: 'navigate' as const,
-      })
-    )
-    mockWebVitals.onLCP.mockImplementation(callback =>
-      callback({
-        name: 'LCP',
-        value: 2000,
-        entries: [],
-        rating: 'good' as const,
-        delta: 2000,
-        id: 'test-lcp',
-        navigationType: 'navigate' as const,
-      })
-    )
-    mockWebVitals.onTTFB.mockImplementation(callback =>
-      callback({
-        name: 'TTFB',
-        value: 600,
-        entries: [],
-        rating: 'good' as const,
-        delta: 600,
-        id: 'test-ttfb',
-        navigationType: 'navigate' as const,
-      })
-    )
+    }
 
     // Set NODE_ENV to development for visibility
     process.env = { ...originalEnv, NODE_ENV: 'development' }
@@ -112,6 +131,10 @@ describe('PerformanceDashboard', () => {
       render(<PerformanceDashboard />)
     })
 
+    await act(async () => {
+      ;(mockWebVitals as any).triggerMetrics()
+    })
+
     expect(screen.getByText('Core Web Vitals')).toBeInTheDocument()
   })
 
@@ -120,6 +143,10 @@ describe('PerformanceDashboard', () => {
 
     await act(async () => {
       render(<PerformanceDashboard />)
+    })
+
+    await act(async () => {
+      ;(mockWebVitals as any).triggerMetrics()
     })
 
     expect(screen.getByText('Core Web Vitals')).toBeInTheDocument()
@@ -155,6 +182,10 @@ describe('PerformanceDashboard', () => {
       render(<PerformanceDashboard />)
     })
 
+    await act(async () => {
+      ;(mockWebVitals as any).triggerMetrics()
+    })
+
     expect(screen.getByText('LCP')).toBeInTheDocument()
     expect(screen.getByText('INP')).toBeInTheDocument()
     expect(screen.getByText('CLS')).toBeInTheDocument()
@@ -165,6 +196,10 @@ describe('PerformanceDashboard', () => {
   it('should format metrics correctly', async () => {
     await act(async () => {
       render(<PerformanceDashboard />)
+    })
+
+    await act(async () => {
+      ;(mockWebVitals as any).triggerMetrics()
     })
 
     // LCP should show as milliseconds
@@ -182,6 +217,10 @@ describe('PerformanceDashboard', () => {
       render(<PerformanceDashboard />)
     })
 
+    await act(async () => {
+      ;(mockWebVitals as any).triggerMetrics()
+    })
+
     // Good metrics should have green styling (based on the default mock values)
     // CLS: 0.05 (good), INP: 50 (good)
     const clsContainer = screen.getByText('CLS').closest('.px-2')
@@ -194,6 +233,10 @@ describe('PerformanceDashboard', () => {
   it('should show metric details when showDetails is true', async () => {
     await act(async () => {
       render(<PerformanceDashboard showDetails={true} />)
+    })
+
+    await act(async () => {
+      ;(mockWebVitals as any).triggerMetrics()
     })
 
     expect(screen.getByText('Largest Contentful Paint - Loading performance')).toBeInTheDocument()

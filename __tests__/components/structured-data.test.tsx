@@ -92,7 +92,9 @@ describe('StructuredData Component', () => {
 
   describe('Invalid Types', () => {
     it('returns null for invalid schema type', () => {
-      const { container } = render(<StructuredData type='invalid' as any />)
+      // Test the default case by mocking the component to receive an invalid type
+      const InvalidStructuredData = (props: any) => <StructuredData {...props} />
+      const { container } = render(<InvalidStructuredData type='invalid' />)
 
       const script = container.querySelector('script[type="application/ld+json"]')
       expect(script).not.toBeInTheDocument()

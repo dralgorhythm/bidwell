@@ -104,7 +104,7 @@ describe('Performance Library', () => {
 
   describe('trackCustomMetric', () => {
     it('should send custom metric to analytics endpoint', async () => {
-      await trackCustomMetric('PageLoad', 1500)
+      await trackCustomMetric({ name: 'PageLoad', value: 1500, rating: 'good' })
 
       expect(fetch).toHaveBeenCalledWith('/api/analytics/web-vitals', {
         method: 'POST',
@@ -120,7 +120,7 @@ describe('Performance Library', () => {
       ;(fetch as jest.Mock).mockRejectedValue(new Error('Network error'))
 
       // Should not throw error or call console.warn (since we removed console statements)
-      await expect(trackCustomMetric('PageLoad', 1500)).resolves.not.toThrow()
+      await expect(trackCustomMetric({ name: 'PageLoad', value: 1500 })).resolves.not.toThrow()
     })
   })
 
@@ -163,7 +163,7 @@ describe('Performance Library', () => {
         .mockReturnValue(mockLink as any)
       const appendChildSpy = jest.spyOn(document.head, 'appendChild').mockImplementation()
 
-      preloadImage('/test-image.jpg', '(max-width: 768px) 100vw, 50vw')
+      preloadImage('/test-image.jpg', 'image', '(max-width: 768px) 100vw, 50vw')
 
       expect(mockLink.setAttribute).toHaveBeenCalledWith(
         'imagesizes',
@@ -207,6 +207,7 @@ describe('Performance Library', () => {
       expect(mockElement.style).toEqual({
         width: '800px',
         height: '600px',
+        aspectRatio: '4 / 3',
       })
     })
 
@@ -220,7 +221,7 @@ describe('Performance Library', () => {
       expect(mockElement.style).toEqual({
         width: '16px',
         height: '9px',
-        aspectRatio: '16/9',
+        aspectRatio: '16 / 9',
       })
     })
   })
@@ -248,11 +249,11 @@ describe('Performance Library', () => {
       const mockElement = document.createElement('div')
       const mockCallback = jest.fn()
 
-      const observer = observeElementIntersection(mockElement, mockCallback)
+      const cleanup = observeElementIntersection(mockElement, mockCallback)
 
       expect(mockIntersectionObserver).toHaveBeenCalledWith(expect.any(Function), undefined)
       expect(mockObserver.observe).toHaveBeenCalledWith(mockElement)
-      expect(observer).toBe(mockObserver)
+      expect(typeof cleanup).toBe('function')
     })
 
     it('should call callback when element intersects', () => {
@@ -297,34 +298,34 @@ describe('Performance Library', () => {
     })
 
     it('should measure timing between marks', () => {
-      const result = measureCustomTiming('test-operation')
+      const result = measureCustomTiming('test-operation-start', 'test-operation-end')
 
       expect(mockPerformance.mark).toHaveBeenCalledWith('test-operation-start')
       expect(mockPerformance.mark).toHaveBeenCalledWith('test-operation-end')
       expect(mockPerformance.measure).toHaveBeenCalledWith(
-        'test-operation-duration',
+        'test-operation-start-to-test-operation-end',
         'test-operation-start',
         'test-operation-end'
       )
       expect(mockPerformance.getEntriesByName).toHaveBeenCalledWith(
-        'test-operation-duration',
+        'test-operation-start-to-test-operation-end',
         'measure'
       )
       expect(result).toBe(1500)
     })
 
     it('should clean up marks and measures', () => {
-      measureCustomTiming('test-operation')
+      measureCustomTiming('test-operation-start', 'test-operation-end')
 
       expect(mockPerformance.clearMarks).toHaveBeenCalledWith('test-operation-start')
       expect(mockPerformance.clearMarks).toHaveBeenCalledWith('test-operation-end')
-      expect(mockPerformance.clearMeasures).toHaveBeenCalledWith('test-operation-duration')
+      expect(mockPerformance.clearMeasures).toHaveBeenCalledWith('test-operation-start-to-test-operation-end')
     })
 
     it('should return null when performance API is not available', () => {
       global.performance = undefined as any
 
-      const result = measureCustomTiming('test-operation')
+      const result = measureCustomTiming('start-mark', 'end-mark')
 
       expect(result).toBeNull()
     })
@@ -332,7 +333,7 @@ describe('Performance Library', () => {
     it('should return null when measurement fails', () => {
       mockPerformance.getEntriesByName.mockReturnValue([])
 
-      const result = measureCustomTiming('test-operation')
+      const result = measureCustomTiming('start-mark', 'end-mark')
 
       expect(result).toBeNull()
     })

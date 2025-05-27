@@ -28,6 +28,42 @@ export const PERFORMANCE_THRESHOLDS: PerformanceThresholds = {
 }
 
 /**
+ * Get rating for First Contentful Paint (FCP)
+ * Good: ≤ 1500ms
+ * Needs Improvement: > 1500ms and ≤ 3000ms
+ * Poor: > 3000ms
+ */
+export function getFCPRating(value: number): 'good' | 'needs-improvement' | 'poor' {
+  if (value <= 1500) return 'good'
+  if (value <= 3000) return 'needs-improvement'
+  return 'poor'
+}
+
+/**
+ * Get rating for First Input Delay (FID)
+ * Good: ≤ 100ms
+ * Needs Improvement: > 100ms and ≤ 300ms
+ * Poor: > 300ms
+ */
+export function getFIDRating(value: number): 'good' | 'needs-improvement' | 'poor' {
+  if (value <= 100) return 'good'
+  if (value <= 300) return 'needs-improvement'
+  return 'poor'
+}
+
+/**
+ * Get rating for Time to Interactive (TTI)
+ * Good: ≤ 3800ms
+ * Needs Improvement: > 3800ms and ≤ 7000ms
+ * Poor: > 7000ms
+ */
+export function getTTIRating(value: number): 'good' | 'needs-improvement' | 'poor' {
+  if (value <= 3800) return 'good'
+  if (value <= 7000) return 'needs-improvement'
+  return 'poor'
+}
+
+/**
  * Determine performance rating based on metric value and thresholds
  */
 export function getMetricRating(
@@ -168,31 +204,59 @@ export function measurePerformance(name: string, fn: () => void): void {
 /**
  * Track custom performance metric
  */
-export async function trackCustomMetric(name: string, value: number): Promise<void> {
-  const customMetric: PerformanceMetric = {
-    name,
-    value,
-    rating: 'good', // Custom metrics don't have predefined thresholds
-    delta: value,
-    id: `custom-${Date.now()}`,
-    navigationType: 'custom',
-  }
+export async function trackCustomMetric({
+  name,
+  value,
+  rating = 'good',
+  category = 'custom',
+  label = '',
+}: {
+  name: string
+  value: number
+  rating?: 'good' | 'needs-improvement' | 'poor'
+  category?: string
+  label?: string
+}): Promise<void> {
+  try {
+    const customMetric = {
+      name,
+      value,
+      rating,
+      category,
+      label,
+      delta: value,
+      id: `custom-${Date.now()}`,
+      navigationType: 'custom',
+    }
 
-  await sendToAnalytics(customMetric)
+    await fetch('/api/analytics/web-vitals', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(customMetric),
+      keepalive: true,
+    })
+  } catch {
+    // Silently fail - don't impact user experience
+  }
 }
 
 /**
  * Preload images for better LCP
  */
-export function preloadImage(src: string, imageSizes?: string): void {
+export function preloadImage(src: string, type?: string, imageSizes?: string): void {
   if (typeof document === 'undefined') return
 
   const link = document.createElement('link')
   link.rel = 'preload'
   link.as = 'image'
   link.href = src
+  
+  if (type) {
+    link.type = `image/${type}`
+  }
 
   if (imageSizes) {
+    // Use setAttribute for imagesizes as expected by tests
     link.setAttribute('imagesizes', imageSizes)
   }
 
@@ -223,19 +287,50 @@ export function preloadCriticalResources(
  */
 export function preventLayoutShift(
   element: HTMLElement,
-  width: number,
-  height: number,
+  width?: number | string,
+  height?: number | string,
   useAspectRatio?: boolean
 ): void {
   if (!element) return
-
-  if (useAspectRatio) {
-    element.style.width = `${width}px`
-    element.style.height = `${height}px`
-    element.style.aspectRatio = `${width}/${height}`
-  } else {
-    element.style.width = `${width}px`
-    element.style.height = `${height}px`
+  
+  if (width === undefined || height === undefined) {
+    // Handle missing dimensions by setting empty values
+    element.style.width = ''
+    element.style.height = ''
+    element.style.aspectRatio = ''
+    return
+  }
+  
+  // Convert numbers to pixels
+  const widthValue = typeof width === 'number' ? `${width}px` : width
+  const heightValue = typeof height === 'number' ? `${height}px` : height
+  
+  // Calculate aspect ratio from numeric values with simplification
+  let aspectRatio = ''
+  if (typeof width === 'number' && typeof height === 'number' && height > 0) {
+    // Find GCD to simplify the ratio
+    const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b))
+    const divisor = gcd(width, height)
+    aspectRatio = `${width / divisor} / ${height / divisor}`
+  }
+  // Calculate from string values
+  else if (typeof width === 'string' && typeof height === 'string') {
+    // Extract numeric values from strings like "200px"
+    const widthNum = parseInt(width, 10)
+    const heightNum = parseInt(height, 10)
+    if (!isNaN(widthNum) && !isNaN(heightNum) && heightNum > 0) {
+      // Find GCD to simplify the ratio
+      const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b))
+      const divisor = gcd(widthNum, heightNum)
+      aspectRatio = `${widthNum / divisor} / ${heightNum / divisor}`
+    }
+  }
+  
+  element.style.width = widthValue
+  element.style.height = heightValue
+  
+  if (useAspectRatio !== false && aspectRatio) {
+    element.style.aspectRatio = aspectRatio
   }
 }
 
@@ -246,8 +341,10 @@ export function observeElementIntersection(
   element: Element,
   callback: (entry: IntersectionObserverEntry) => void,
   options?: IntersectionObserverInit
-): IntersectionObserver | null {
-  if (typeof window === 'undefined' || !window.IntersectionObserver) return null
+): (() => void) {
+  if (typeof window === 'undefined' || !window.IntersectionObserver) {
+    return () => {}; // Return a no-op function if not supported
+  }
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -258,33 +355,43 @@ export function observeElementIntersection(
     })
   }, options)
 
-  observer.observe(element)
-  return observer
+  // Check if observer has observe method (for mocked scenarios)
+  if (observer && typeof observer.observe === 'function') {
+    observer.observe(element)
+  }
+  
+  // Return a cleanup function that disconnects the observer
+  return () => {
+    if (observer && typeof observer.disconnect === 'function') {
+      observer.disconnect()
+    }
+  }
 }
 
 /**
  * Measure custom timing operations
  */
-export function measureCustomTiming(operationName: string): number | null {
-  if (typeof performance === 'undefined') return null
+export function measureCustomTiming(startMark: string, endMark: string): number | null {
+  if (typeof window === 'undefined' || !window.performance) return null
 
   try {
-    const startMark = `${operationName}-start`
-    const endMark = `${operationName}-end`
-    const measureName = `${operationName}-duration`
-
-    performance.mark(startMark)
-    performance.mark(endMark)
-    performance.measure(measureName, startMark, endMark)
-
-    const entries = performance.getEntriesByName(measureName, 'measure')
+    const measureName = `${startMark}-to-${endMark}`
+    
+    // Create marks
+    window.performance.mark(startMark)
+    window.performance.mark(endMark)
+    
+    // Measure between the marks
+    window.performance.measure(measureName, startMark, endMark)
+    
+    const entries = window.performance.getEntriesByName(measureName, 'measure')
     const duration = entries.length > 0 ? entries[0].duration : null
-
+    
     // Cleanup
-    performance.clearMarks(startMark)
-    performance.clearMarks(endMark)
-    performance.clearMeasures(measureName)
-
+    window.performance.clearMarks(startMark)
+    window.performance.clearMarks(endMark)
+    window.performance.clearMeasures(measureName)
+    
     return duration
   } catch {
     return null
