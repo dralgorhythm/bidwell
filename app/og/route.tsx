@@ -6,7 +6,8 @@ export const dynamic = 'force-dynamic'
 export function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const title = searchParams.get('title') || 'Bidwell Consulting'
-  const subtitle = searchParams.get('subtitle') || 'Software Engineering & Organizational Consulting'
+  const subtitle =
+    searchParams.get('subtitle') || 'Software Engineering & Organizational Consulting'
 
   return new ImageResponse(
     (
