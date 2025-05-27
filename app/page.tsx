@@ -74,7 +74,7 @@ export default function Page() {
         <h2 className='mb-3 text-xl font-medium tracking-tight'>Explore My Work</h2>
         <p className='text-neutral-600 dark:text-neutral-400'>
           Check out my projects and technical solutions above, or try the
-          <a href='/comparison' className='ml-1 text-blue-600 dark:text-blue-400 hover:underline'>
+          <a href='/comparison' className='ml-1 text-blue-600 dark:text-blue-400 underline decoration-blue-600 dark:decoration-blue-400 hover:decoration-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-900'>
             number comparison tool
           </a>{' '}
           to see my approach to building intuitive, user-friendly applications.
