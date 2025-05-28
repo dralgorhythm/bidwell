@@ -97,6 +97,15 @@ export async function sendToAnalytics(metric: PerformanceMetric): Promise<void> 
       return
     }
 
+    // For static export builds, skip API calls since they won't be available
+    if (process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true') {
+      // In static export mode, you could:
+      // - Send to external analytics service (Google Analytics, etc.)
+      // - Store in localStorage for client-side analytics
+      // - Skip server-side tracking entirely
+      return
+    }
+
     await fetch('/api/analytics/web-vitals', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -227,6 +236,15 @@ export async function trackCustomMetric({
       delta: value,
       id: `custom-${Date.now()}`,
       navigationType: 'custom',
+    }
+
+    // For static export builds, skip API calls since they won't be available
+    if (process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true') {
+      // In static export mode, you could:
+      // - Send to external analytics service (Google Analytics, etc.)
+      // - Store in localStorage for client-side analytics
+      // - Skip server-side tracking entirely
+      return
     }
 
     await fetch('/api/analytics/web-vitals', {

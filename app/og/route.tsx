@@ -1,13 +1,12 @@
 import { ImageResponse } from 'next/og'
-import { NextRequest } from 'next/server'
 
-export const dynamic = 'force-dynamic'
+// Always use force-static for compatibility with static export
+export const dynamic = 'force-static'
 
-export function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url)
-  const title = searchParams.get('title') || 'Bidwell Consulting'
-  const subtitle =
-    searchParams.get('subtitle') || 'Software Engineering & Organizational Consulting'
+export function GET() {
+  // Always use default values to ensure compatibility with static export
+  const title = 'Bidwell Consulting'
+  const subtitle = 'Software Engineering & Organizational Consulting'
 
   return new ImageResponse(
     (
