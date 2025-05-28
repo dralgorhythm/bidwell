@@ -200,7 +200,7 @@ jobs:
           CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
           CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d. -f1)
           echo "Chrome version: $CHROME_VERSION (major: $CHROME_MAJOR_VERSION)"
-          
+
           # For Chrome 115+ use the new Chrome for Testing API, for older versions use legacy storage
           if [ "$CHROME_MAJOR_VERSION" -ge 115 ]; then
             echo "Using Chrome for Testing API for Chrome $CHROME_MAJOR_VERSION"
@@ -224,7 +224,7 @@ jobs:
             sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
             sudo chmod +x /usr/local/bin/chromedriver
           fi
-          
+
           # Verify installation
           /usr/local/bin/chromedriver --version
 
@@ -275,7 +275,7 @@ jobs:
           CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
           CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d. -f1)
           echo "Chrome version: $CHROME_VERSION (major: $CHROME_MAJOR_VERSION)"
-          
+
           # For Chrome 115+ use the new Chrome for Testing API, for older versions use legacy storage
           if [ "$CHROME_MAJOR_VERSION" -ge 115 ]; then
             echo "Using Chrome for Testing API for Chrome $CHROME_MAJOR_VERSION"
@@ -299,7 +299,7 @@ jobs:
             sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
             sudo chmod +x /usr/local/bin/chromedriver
           fi
-          
+
           # Verify installation
           /usr/local/bin/chromedriver --version
 

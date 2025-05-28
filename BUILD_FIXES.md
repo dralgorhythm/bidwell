@@ -147,7 +147,9 @@ Updated `.github/workflows/quality-checks.yml`:
 ## Latest Fix: ChromeDriver Version Compatibility
 
 ### Problem
+
 The accessibility and performance tests were failing with a ChromeDriver version mismatch:
+
 - GitHub Actions runners had Chrome version 136.0.7103.92
 - ChromeDriver only supported Chrome version 137
 - This caused both axe CLI accessibility tests and Lighthouse CI performance tests to fail
