@@ -11,7 +11,7 @@ const nextConfig = {
 
   // Configure for static export (GitHub Pages)
   output: process.env.GITHUB_ACTIONS ? 'export' : 'standalone',
-  
+
   // Disable image optimization for static export, enable for development
   images: {
     unoptimized: process.env.GITHUB_ACTIONS ? true : false,

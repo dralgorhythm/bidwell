@@ -47,17 +47,20 @@ The GitHub Actions workflow was failing because the Next.js configuration was in
 ## Usage
 
 ### Development Mode (with API routes)
+
 ```bash
 npm run dev        # Development server
 npm run build      # Regular build with API routes
 ```
 
 ### Static Export (for GitHub Pages)
+
 ```bash
 npm run build:static  # Static export build (removes API routes temporarily)
 ```
 
 ### GitHub Actions
+
 The workflow automatically uses `build:static` when running in CI/CD environment.
 
 ## Key Benefits
