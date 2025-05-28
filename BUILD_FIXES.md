@@ -153,25 +153,36 @@ The accessibility and performance tests were failing with a ChromeDriver version
 - This caused both axe CLI accessibility tests and Lighthouse CI performance tests to fail
 
 ### Solution
-Updated `.github/workflows/quality-checks.yml` with dynamic ChromeDriver installation:
+
+Updated `.github/workflows/quality-checks.yml` with dynamic ChromeDriver installation that supports both legacy and new Chrome for Testing API:
+
 - Added script to detect installed Chrome version automatically
+- For Chrome 115+ uses the new Chrome for Testing API
+- For older Chrome versions uses legacy ChromeDriver storage
 - Download and install compatible ChromeDriver version based on Chrome major version
 - Specify explicit `--chromedriver-path` for axe CLI commands
 - Added Chrome path environment variables for Lighthouse CI compatibility
 - Added verification step to confirm ChromeDriver installation
 
 ### Key Implementation Details
+
 ```bash
 # Extract Chrome version and major version
 CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
 CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d. -f1)
 
-# Get compatible ChromeDriver version
-CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAJOR_VERSION")
-
-# Download and install ChromeDriver
-curl -o /tmp/chromedriver.zip "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
-sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
+# For Chrome 115+ use the new Chrome for Testing API
+if [ "$CHROME_MAJOR_VERSION" -ge 115 ]; then
+  CHROMEDRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json" | jq -r '.channels.Stable.version')
+  curl -o /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
+  sudo unzip /tmp/chromedriver.zip -d /tmp/
+  sudo mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/
+else
+  # For older versions use legacy storage
+  CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAJOR_VERSION")
+  curl -o /tmp/chromedriver.zip "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+  sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
+fi
 sudo chmod +x /usr/local/bin/chromedriver
 ```
 
