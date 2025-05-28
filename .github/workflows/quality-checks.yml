@@ -194,6 +194,25 @@ jobs:
       - name: Install serve
         run: npm install -g serve@latest
 
+      - name: Install compatible ChromeDriver version
+        run: |
+          # Get Chrome version
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
+          CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d. -f1)
+          echo "Chrome version: $CHROME_VERSION (major: $CHROME_MAJOR_VERSION)"
+          
+          # Get compatible ChromeDriver version
+          CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAJOR_VERSION")
+          echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
+          
+          # Download and install ChromeDriver
+          curl -o /tmp/chromedriver.zip "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
+          
+          # Verify installation
+          /usr/local/bin/chromedriver --version
+
       - name: Start static application
         run: npx serve@latest out -l 3000 &
 
@@ -202,8 +221,8 @@ jobs:
 
       - name: Run accessibility tests
         run: |
-          axe http://localhost:3000 --exit
-          axe http://localhost:3000/comparison --exit
+          axe http://localhost:3000 --chromedriver-path /usr/local/bin/chromedriver --exit
+          axe http://localhost:3000/comparison --chromedriver-path /usr/local/bin/chromedriver --exit
 
   performance-test:
     name: Performance Tests
@@ -235,6 +254,25 @@ jobs:
       - name: Install serve
         run: npm install -g serve@latest
 
+      - name: Install compatible ChromeDriver version
+        run: |
+          # Get Chrome version
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
+          CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d. -f1)
+          echo "Chrome version: $CHROME_VERSION (major: $CHROME_MAJOR_VERSION)"
+          
+          # Get compatible ChromeDriver version
+          CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAJOR_VERSION")
+          echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
+          
+          # Download and install ChromeDriver
+          curl -o /tmp/chromedriver.zip "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
+          
+          # Verify installation
+          /usr/local/bin/chromedriver --version
+
       - name: Start static application
         run: npx serve@latest out -l 3000 &
 
@@ -243,5 +281,7 @@ jobs:
 
       - name: Run Lighthouse CI
         run: |
+          export CHROME_PATH=$(which google-chrome)
+          export LIGHTHOUSE_CHROMIUM_PATH=$CHROME_PATH
           lhci autorun --upload.target=temporary-public-storage --collect.url=http://localhost:3000
           lhci autorun --upload.target=temporary-public-storage --collect.url=http://localhost:3000/comparison
