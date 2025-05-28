@@ -139,3 +139,36 @@ Updated `.github/workflows/quality-checks.yml`:
 - Replaced `npm start` with `npx serve@latest out -l 3000`
 - Added serve installation step for both accessibility and performance tests
 - Maintained localhost:3000 URL for test compatibility
+
+## Latest Fix: ChromeDriver Version Compatibility
+
+### Problem
+The accessibility and performance tests were failing with a ChromeDriver version mismatch:
+- GitHub Actions runners had Chrome version 136.0.7103.92
+- ChromeDriver only supported Chrome version 137
+- This caused both axe CLI accessibility tests and Lighthouse CI performance tests to fail
+
+### Solution
+Updated `.github/workflows/quality-checks.yml` with dynamic ChromeDriver installation:
+- Added script to detect installed Chrome version automatically
+- Download and install compatible ChromeDriver version based on Chrome major version
+- Specify explicit `--chromedriver-path` for axe CLI commands
+- Added Chrome path environment variables for Lighthouse CI compatibility
+- Added verification step to confirm ChromeDriver installation
+
+### Key Implementation Details
+```bash
+# Extract Chrome version and major version
+CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
+CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d. -f1)
+
+# Get compatible ChromeDriver version
+CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAJOR_VERSION")
+
+# Download and install ChromeDriver
+curl -o /tmp/chromedriver.zip "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
+sudo chmod +x /usr/local/bin/chromedriver
+```
+
+This ensures both accessibility tests (axe CLI) and performance tests (Lighthouse CI) work correctly with the installed Chrome browser version.
