@@ -127,13 +127,17 @@ The workflow automatically uses `build:static` when running in CI/CD environment
 ## Latest Fix: Quality Checks Workflow
 
 ### Problem
+
 The accessibility and performance tests in the quality checks workflow were failing because:
+
 - They tried to use `npm start` which doesn't work with `output: export` configuration
 - They cached `.next` directory instead of `out` directory for static builds
 - They expected a Next.js development server instead of static files
 
 ### Solution
+
 Updated `.github/workflows/quality-checks.yml`:
+
 - Changed build command to `npm run build:static` with `GITHUB_ACTIONS=true`
 - Updated cache paths from `.next` to `out` directory
 - Replaced `npm start` with `npx serve@latest out -l 3000`
