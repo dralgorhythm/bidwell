@@ -156,15 +156,17 @@ The accessibility and performance tests were failing with a ChromeDriver version
 
 ### Solution
 
-Updated `.github/workflows/quality-checks.yml` with dynamic ChromeDriver installation that supports both legacy and new Chrome for Testing API:
+Updated `.github/workflows/quality-checks.yml` with intelligent ChromeDriver version matching that finds the exact compatible version:
 
 - Added script to detect installed Chrome version automatically
-- For Chrome 115+ uses the new Chrome for Testing API
+- For Chrome 115+ uses the new Chrome for Testing API with version matching
+- Searches for exact ChromeDriver version that matches installed Chrome version
+- Falls back to latest version for the major Chrome version if no exact match
 - For older Chrome versions uses legacy ChromeDriver storage
 - Download and install compatible ChromeDriver version based on Chrome major version
 - Specify explicit `--chromedriver-path` for axe CLI commands
 - Added Chrome path environment variables for Lighthouse CI compatibility
-- Added verification step to confirm ChromeDriver installation
+- Added enhanced verification step with both Chrome and ChromeDriver versions
 
 ### Key Implementation Details
 
@@ -173,9 +175,26 @@ Updated `.github/workflows/quality-checks.yml` with dynamic ChromeDriver install
 CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
 CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d. -f1)
 
-# For Chrome 115+ use the new Chrome for Testing API
+# For Chrome 115+ use intelligent version matching
 if [ "$CHROME_MAJOR_VERSION" -ge 115 ]; then
-  CHROMEDRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json" | jq -r '.channels.Stable.version')
+  # Get all available ChromeDriver versions for this Chrome major version
+  AVAILABLE_VERSIONS=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" | jq -r --arg major "$CHROME_MAJOR_VERSION" '.versions[] | select(.version | startswith($major + ".")) | .version')
+  
+  # Find exact match for installed Chrome version
+  BEST_MATCH=""
+  for version in $AVAILABLE_VERSIONS; do
+    if [[ "$version" == "$CHROME_VERSION"* ]] || [[ "$CHROME_VERSION" == "$version"* ]]; then
+      BEST_MATCH="$version"
+      break
+    fi
+  done
+  
+  # If no exact match, use latest for this major version
+  if [ -z "$BEST_MATCH" ]; then
+    BEST_MATCH=$(echo "$AVAILABLE_VERSIONS" | tail -1)
+  fi
+  
+  CHROMEDRIVER_VERSION="$BEST_MATCH"
   curl -o /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
   sudo unzip /tmp/chromedriver.zip -d /tmp/
   sudo mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/

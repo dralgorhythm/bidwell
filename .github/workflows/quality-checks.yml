@@ -204,9 +204,26 @@ jobs:
           # For Chrome 115+ use the new Chrome for Testing API, for older versions use legacy storage
           if [ "$CHROME_MAJOR_VERSION" -ge 115 ]; then
             echo "Using Chrome for Testing API for Chrome $CHROME_MAJOR_VERSION"
-            # Get the latest stable ChromeDriver version for this Chrome version
-            CHROMEDRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json" | jq -r '.channels.Stable.version')
-            echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
+            
+            # Get available ChromeDriver versions for this Chrome major version
+            AVAILABLE_VERSIONS=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" | jq -r --arg major "$CHROME_MAJOR_VERSION" '.versions[] | select(.version | startswith($major + ".")) | .version')
+            
+            # Find the best match for the installed Chrome version
+            BEST_MATCH=""
+            for version in $AVAILABLE_VERSIONS; do
+              if [[ "$version" == "$CHROME_VERSION"* ]] || [[ "$CHROME_VERSION" == "$version"* ]]; then
+                BEST_MATCH="$version"
+                break
+              fi
+            done
+            
+            # If no exact match, use the latest version for this major version
+            if [ -z "$BEST_MATCH" ]; then
+              BEST_MATCH=$(echo "$AVAILABLE_VERSIONS" | tail -1)
+            fi
+            
+            CHROMEDRIVER_VERSION="$BEST_MATCH"
+            echo "Selected ChromeDriver version: $CHROMEDRIVER_VERSION"
             
             # Download and install ChromeDriver
             curl -o /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
@@ -225,8 +242,10 @@ jobs:
             sudo chmod +x /usr/local/bin/chromedriver
           fi
 
-          # Verify installation
-          /usr/local/bin/chromedriver --version
+          # Verify installation and show versions
+          echo "Final verification:"
+          echo "Chrome version: $(google-chrome --version)"
+          echo "ChromeDriver version: $(/usr/local/bin/chromedriver --version)"
 
       - name: Start static application
         run: npx serve@latest out -l 3000 &
@@ -279,9 +298,26 @@ jobs:
           # For Chrome 115+ use the new Chrome for Testing API, for older versions use legacy storage
           if [ "$CHROME_MAJOR_VERSION" -ge 115 ]; then
             echo "Using Chrome for Testing API for Chrome $CHROME_MAJOR_VERSION"
-            # Get the latest stable ChromeDriver version for this Chrome version
-            CHROMEDRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json" | jq -r '.channels.Stable.version')
-            echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
+            
+            # Get available ChromeDriver versions for this Chrome major version
+            AVAILABLE_VERSIONS=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" | jq -r --arg major "$CHROME_MAJOR_VERSION" '.versions[] | select(.version | startswith($major + ".")) | .version')
+            
+            # Find the best match for the installed Chrome version
+            BEST_MATCH=""
+            for version in $AVAILABLE_VERSIONS; do
+              if [[ "$version" == "$CHROME_VERSION"* ]] || [[ "$CHROME_VERSION" == "$version"* ]]; then
+                BEST_MATCH="$version"
+                break
+              fi
+            done
+            
+            # If no exact match, use the latest version for this major version
+            if [ -z "$BEST_MATCH" ]; then
+              BEST_MATCH=$(echo "$AVAILABLE_VERSIONS" | tail -1)
+            fi
+            
+            CHROMEDRIVER_VERSION="$BEST_MATCH"
+            echo "Selected ChromeDriver version: $CHROMEDRIVER_VERSION"
             
             # Download and install ChromeDriver
             curl -o /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
@@ -300,8 +336,10 @@ jobs:
             sudo chmod +x /usr/local/bin/chromedriver
           fi
 
-          # Verify installation
-          /usr/local/bin/chromedriver --version
+          # Verify installation and show versions
+          echo "Final verification:"
+          echo "Chrome version: $(google-chrome --version)"
+          echo "ChromeDriver version: $(/usr/local/bin/chromedriver --version)"
 
       - name: Start static application
         run: npx serve@latest out -l 3000 &
