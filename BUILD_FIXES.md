@@ -179,7 +179,7 @@ CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d. -f1)
 if [ "$CHROME_MAJOR_VERSION" -ge 115 ]; then
   # Get all available ChromeDriver versions for this Chrome major version
   AVAILABLE_VERSIONS=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" | jq -r --arg major "$CHROME_MAJOR_VERSION" '.versions[] | select(.version | startswith($major + ".")) | .version')
-  
+
   # Find exact match for installed Chrome version
   BEST_MATCH=""
   for version in $AVAILABLE_VERSIONS; do
@@ -188,12 +188,12 @@ if [ "$CHROME_MAJOR_VERSION" -ge 115 ]; then
       break
     fi
   done
-  
+
   # If no exact match, use latest for this major version
   if [ -z "$BEST_MATCH" ]; then
     BEST_MATCH=$(echo "$AVAILABLE_VERSIONS" | tail -1)
   fi
-  
+
   CHROMEDRIVER_VERSION="$BEST_MATCH"
   curl -o /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
   sudo unzip /tmp/chromedriver.zip -d /tmp/
