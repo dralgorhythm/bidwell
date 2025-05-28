@@ -6,8 +6,15 @@ const { execSync } = require('child_process')
 
 const apiDir = path.join(__dirname, '../app/api')
 const apiBackupDir = path.join(__dirname, '../api-backup')
+const nextDir = path.join(__dirname, '../.next')
 
 console.log('📦 Preparing for static export build...')
+
+// Clean any existing Next.js cache first
+if (fs.existsSync(nextDir)) {
+  console.log('🧹 Cleaning Next.js cache...')
+  fs.rmSync(nextDir, { recursive: true })
+}
 
 // Move API routes out of the way for static export
 if (fs.existsSync(apiDir)) {
