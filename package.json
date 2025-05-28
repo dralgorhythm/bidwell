@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:static": "node scripts/build-static.js",
     "start": "next start",
     "test": "jest",
     "test:watch": "jest --watch",

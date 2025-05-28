@@ -9,8 +9,12 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons', 'date-fns', 'lodash-es'],
   },
 
-  // Image optimization configuration
+  // Configure for static export (GitHub Pages)
+  output: process.env.GITHUB_ACTIONS ? 'export' : 'standalone',
+
+  // Disable image optimization for static export, enable for development
   images: {
+    unoptimized: process.env.GITHUB_ACTIONS ? true : false,
     // Enable modern formats
     formats: ['image/webp', 'image/avif'],
 
@@ -90,6 +94,22 @@ const nextConfig = {
       )
     }
 
+    // SSR fixes merged here
+    if (isServer) {
+      // Define self as global for server-side rendering
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        self: false,
+      }
+
+      // Add global polyfill for server-side
+      config.plugins.push(
+        new (require('webpack').DefinePlugin)({
+          self: 'undefined',
+        })
+      )
+    }
+
     return config
   },
 
@@ -150,11 +170,12 @@ const nextConfig = {
   },
 
   // Enable modern JavaScript output
-  output: 'standalone',
+  // output: 'standalone', // Removed - using 'export' for GitHub Pages
 
   // Environment variables
   env: {
     ENABLE_PERFORMANCE_MONITORING: process.env.NODE_ENV === 'production' ? 'true' : 'false',
+    NEXT_PUBLIC_STATIC_EXPORT: process.env.GITHUB_ACTIONS ? 'true' : 'false',
   },
 
   // Optimize static generation

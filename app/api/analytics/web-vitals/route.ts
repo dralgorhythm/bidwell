@@ -5,7 +5,10 @@ import { createRateLimit, checkRateLimit } from '@/lib/validation'
 // Rate limiting: 60 requests per minute per IP for analytics
 const rateLimit = createRateLimit(60, 60 * 1000)
 
-export const dynamic = 'force-dynamic'
+// Ensure the route is static for static HTML export compatibility
+export const dynamic = 'force-static'
+// Configure revalidate interval in seconds
+export const revalidate = 60
 
 interface WebVitalMetric {
   name: string

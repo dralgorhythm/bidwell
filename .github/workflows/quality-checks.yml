@@ -125,14 +125,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build application
-        run: npm run build
+      - name: Build application (static export)
+        run: npm run build:static
+        env:
+          GITHUB_ACTIONS: true
 
       - name: Save build artifacts
         uses: actions/cache/save@v4
         with:
           path: |
-            .next
+            out
             node_modules
           key: build-${{ github.sha }}-${{ hashFiles('**/package-lock.json') }}
 
@@ -182,23 +184,79 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: |
-            .next
+            out
             node_modules
           key: build-${{ github.sha }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install axe CLI
         run: npm install -g @axe-core/cli
 
-      - name: Start application
-        run: npm start &
+      - name: Install serve
+        run: npm install -g serve@latest
+
+      - name: Install compatible ChromeDriver version
+        run: |
+          # Get Chrome version
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
+          CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d. -f1)
+          echo "Chrome version: $CHROME_VERSION (major: $CHROME_MAJOR_VERSION)"
+
+          # For Chrome 115+ use the new Chrome for Testing API, for older versions use legacy storage
+          if [ "$CHROME_MAJOR_VERSION" -ge 115 ]; then
+            echo "Using Chrome for Testing API for Chrome $CHROME_MAJOR_VERSION"
+            
+            # Get available ChromeDriver versions for this Chrome major version
+            AVAILABLE_VERSIONS=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" | jq -r --arg major "$CHROME_MAJOR_VERSION" '.versions[] | select(.version | startswith($major + ".")) | .version')
+            
+            # Find the best match for the installed Chrome version
+            BEST_MATCH=""
+            for version in $AVAILABLE_VERSIONS; do
+              if [[ "$version" == "$CHROME_VERSION"* ]] || [[ "$CHROME_VERSION" == "$version"* ]]; then
+                BEST_MATCH="$version"
+                break
+              fi
+            done
+            
+            # If no exact match, use the latest version for this major version
+            if [ -z "$BEST_MATCH" ]; then
+              BEST_MATCH=$(echo "$AVAILABLE_VERSIONS" | tail -1)
+            fi
+            
+            CHROMEDRIVER_VERSION="$BEST_MATCH"
+            echo "Selected ChromeDriver version: $CHROMEDRIVER_VERSION"
+            
+            # Download and install ChromeDriver
+            curl -o /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
+            sudo unzip /tmp/chromedriver.zip -d /tmp/
+            sudo mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/
+            sudo chmod +x /usr/local/bin/chromedriver
+          else
+            echo "Using legacy ChromeDriver storage for Chrome $CHROME_MAJOR_VERSION"
+            # Get compatible ChromeDriver version from legacy storage
+            CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAJOR_VERSION")
+            echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
+            
+            # Download and install ChromeDriver
+            curl -o /tmp/chromedriver.zip "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+            sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
+            sudo chmod +x /usr/local/bin/chromedriver
+          fi
+
+          # Verify installation and show versions
+          echo "Final verification:"
+          echo "Chrome version: $(google-chrome --version)"
+          echo "ChromeDriver version: $(/usr/local/bin/chromedriver --version)"
+
+      - name: Start static application
+        run: npx serve@latest out -l 3000 &
 
       - name: Wait for application
         run: npx wait-on http://localhost:3000 --timeout 60000
 
       - name: Run accessibility tests
         run: |
-          axe http://localhost:3000 --exit
-          axe http://localhost:3000/comparison --exit
+          axe http://localhost:3000 --chromedriver-path /usr/local/bin/chromedriver --exit
+          axe http://localhost:3000/comparison --chromedriver-path /usr/local/bin/chromedriver --exit
 
   performance-test:
     name: Performance Tests
@@ -220,20 +278,78 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: |
-            .next
+            out
             node_modules
           key: build-${{ github.sha }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Lighthouse CI
         run: npm install -g @lhci/cli@0.13.x
 
-      - name: Start application
-        run: npm start &
+      - name: Install serve
+        run: npm install -g serve@latest
+
+      - name: Install compatible ChromeDriver version
+        run: |
+          # Get Chrome version
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
+          CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d. -f1)
+          echo "Chrome version: $CHROME_VERSION (major: $CHROME_MAJOR_VERSION)"
+
+          # For Chrome 115+ use the new Chrome for Testing API, for older versions use legacy storage
+          if [ "$CHROME_MAJOR_VERSION" -ge 115 ]; then
+            echo "Using Chrome for Testing API for Chrome $CHROME_MAJOR_VERSION"
+            
+            # Get available ChromeDriver versions for this Chrome major version
+            AVAILABLE_VERSIONS=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" | jq -r --arg major "$CHROME_MAJOR_VERSION" '.versions[] | select(.version | startswith($major + ".")) | .version')
+            
+            # Find the best match for the installed Chrome version
+            BEST_MATCH=""
+            for version in $AVAILABLE_VERSIONS; do
+              if [[ "$version" == "$CHROME_VERSION"* ]] || [[ "$CHROME_VERSION" == "$version"* ]]; then
+                BEST_MATCH="$version"
+                break
+              fi
+            done
+            
+            # If no exact match, use the latest version for this major version
+            if [ -z "$BEST_MATCH" ]; then
+              BEST_MATCH=$(echo "$AVAILABLE_VERSIONS" | tail -1)
+            fi
+            
+            CHROMEDRIVER_VERSION="$BEST_MATCH"
+            echo "Selected ChromeDriver version: $CHROMEDRIVER_VERSION"
+            
+            # Download and install ChromeDriver
+            curl -o /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
+            sudo unzip /tmp/chromedriver.zip -d /tmp/
+            sudo mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/
+            sudo chmod +x /usr/local/bin/chromedriver
+          else
+            echo "Using legacy ChromeDriver storage for Chrome $CHROME_MAJOR_VERSION"
+            # Get compatible ChromeDriver version from legacy storage
+            CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAJOR_VERSION")
+            echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
+            
+            # Download and install ChromeDriver
+            curl -o /tmp/chromedriver.zip "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+            sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
+            sudo chmod +x /usr/local/bin/chromedriver
+          fi
+
+          # Verify installation and show versions
+          echo "Final verification:"
+          echo "Chrome version: $(google-chrome --version)"
+          echo "ChromeDriver version: $(/usr/local/bin/chromedriver --version)"
+
+      - name: Start static application
+        run: npx serve@latest out -l 3000 &
 
       - name: Wait for application
         run: npx wait-on http://localhost:3000 --timeout 60000
 
       - name: Run Lighthouse CI
         run: |
+          export CHROME_PATH=$(which google-chrome)
+          export LIGHTHOUSE_CHROMIUM_PATH=$CHROME_PATH
           lhci autorun --upload.target=temporary-public-storage --collect.url=http://localhost:3000
           lhci autorun --upload.target=temporary-public-storage --collect.url=http://localhost:3000/comparison
