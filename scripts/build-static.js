@@ -27,10 +27,10 @@ try {
   // Set environment variables for static export
   process.env.GITHUB_ACTIONS = 'true'
   process.env.NEXT_PUBLIC_STATIC_EXPORT = 'true'
-  
-  execSync('GITHUB_ACTIONS=true NEXT_PUBLIC_STATIC_EXPORT=true npx next build', { 
+
+  execSync('GITHUB_ACTIONS=true NEXT_PUBLIC_STATIC_EXPORT=true npx next build', {
     stdio: 'inherit',
-    env: { ...process.env, GITHUB_ACTIONS: 'true', NEXT_PUBLIC_STATIC_EXPORT: 'true' }
+    env: { ...process.env, GITHUB_ACTIONS: 'true', NEXT_PUBLIC_STATIC_EXPORT: 'true' },
   })
   console.log('✅ Static export build completed successfully!')
 } catch (error) {
