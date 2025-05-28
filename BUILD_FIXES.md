@@ -1,6 +1,22 @@
 # Build Configuration Fixes
 
-## Issue Summary
+#### 6. Removed Dynamic Exports from API Routes
+
+- **Removed** `export const dynamic = 'force-dynamic'` from all API route files
+- **Automatic detection** - Next.js automatically detects API routes as dynamic
+- **Static export compatibility** - Routes no longer conflict with `output: export`
+- **Development compatibility** - API routes still work properly in development mode
+
+## Status: RESOLVED ✅
+
+**Final Solution:** Removed `export const dynamic = 'force-dynamic'` from API routes.
+
+The build script is now working correctly:
+
+- ✅ Static export builds successfully without API route conflicts
+- ✅ Development builds retain full API route functionality  
+- ✅ GitHub Actions deployment should now work properly
+- ✅ API routes are automatically detected as dynamic without explicit exports Summary
 
 The GitHub Actions workflow was failing because the Next.js configuration was incompatible with static export for GitHub Pages deployment.
 
