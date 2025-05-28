@@ -113,6 +113,7 @@ The workflow automatically uses `build:static` when running in CI/CD environment
 - `scripts/build-static.js` - New build script for static export
 - `package.json` - Added `build:static` script
 - `.github/workflows/nextjs.yml` - Updated to use static build script
+- `.github/workflows/quality-checks.yml` - Updated for static export compatibility
 
 ## Testing
 
@@ -121,3 +122,20 @@ The workflow automatically uses `build:static` when running in CI/CD environment
 ✅ GitHub Actions simulation works (`GITHUB_ACTIONS=true npm run build:static`)
 ✅ API routes are preserved in development after static build
 ✅ Performance monitoring gracefully handles both modes
+✅ Quality checks workflow uses correct static file serving
+
+## Latest Fix: Quality Checks Workflow
+
+### Problem
+The accessibility and performance tests in the quality checks workflow were failing because:
+- They tried to use `npm start` which doesn't work with `output: export` configuration
+- They cached `.next` directory instead of `out` directory for static builds
+- They expected a Next.js development server instead of static files
+
+### Solution
+Updated `.github/workflows/quality-checks.yml`:
+- Changed build command to `npm run build:static` with `GITHUB_ACTIONS=true`
+- Updated cache paths from `.next` to `out` directory
+- Replaced `npm start` with `npx serve@latest out -l 3000`
+- Added serve installation step for both accessibility and performance tests
+- Maintained localhost:3000 URL for test compatibility
