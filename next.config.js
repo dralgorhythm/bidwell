@@ -189,26 +189,6 @@ const nextConfig = {
 
   // Enable React strict mode for better error detection
   reactStrictMode: true,
-
-  // Webpack configuration to fix SSR issues
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      // Define self as global for server-side rendering
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        self: false,
-      }
-
-      // Add global polyfill for server-side
-      config.plugins.push(
-        new (require('webpack').DefinePlugin)({
-          self: 'undefined',
-        })
-      )
-    }
-
-    return config
-  },
 }
 
 // Bundle analyzer configuration
