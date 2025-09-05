@@ -76,7 +76,7 @@ jobs:
             command: npm run test:coverage
             description: Unit tests with coverage
           - check: build
-            command: npm run build
+            command: npm run build:static
             description: Production build
           - check: security
             command: npm audit --audit-level=moderate
