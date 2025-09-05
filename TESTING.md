@@ -1,12 +1,18 @@
 # Testing Documentation
 
+> **📚 Quick Navigation:**
+>
+> - New to testing? Start with [Getting Started Guide](./docs/getting-started.md#step-5-understanding-key-patterns)
+> - Need help with test issues? See [Troubleshooting Guide](./docs/troubleshooting.md#testing-problems)
+> - Contributing tests? Check [Contributing Guidelines](./CONTRIBUTING.md#testing-requirements)
+
 ## Overview
 
 This document outlines the comprehensive testing strategy implemented for the Bidwell website. Our testing approach covers unit tests, integration tests, accessibility tests, performance tests, and security tests.
 
 ## Testing Structure
 
-```
+```text
 __tests__/
 ├── api/                    # API route tests
 │   └── rss.test.ts
@@ -224,3 +230,13 @@ npm test -- --updateSnapshot
 - [Axe Accessibility Testing](https://github.com/dequelabs/axe-core)
 - [Next.js Testing Guide](https://nextjs.org/docs/testing)
 - [Web Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+
+---
+
+**Related Documentation:**
+
+- [← Back to README](./README.md) - Project overview and navigation
+- [Development Guide](./DEVELOPMENT.md) - Development workflows and CI/CD
+- [Contributing Guidelines](./CONTRIBUTING.md) - How to write tests and maintain quality
+- [Troubleshooting Guide](./docs/troubleshooting.md) - Testing issues and solutions
+- [Getting Started Guide](./docs/getting-started.md) - How to run tests as a new developer

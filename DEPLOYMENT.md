@@ -397,4 +397,10 @@ vercel logs <deployment-url>
 
 ---
 
-[← Back to README](./README.md) | [← Build Guide](./BUILD.md) | [Testing Guide →](./TESTING.md)
+**Related Documentation:**
+
+- [← Back to README](./README.md) - Project overview and navigation
+- [Development Guide](./DEVELOPMENT.md) - Build system and development workflows
+- [Testing Guide](./TESTING.md) - Testing strategy and execution
+- [Troubleshooting Guide](./docs/troubleshooting.md) - Common deployment issues
+- [Architecture Guide](./docs/architecture.md) - System design and deployment considerations

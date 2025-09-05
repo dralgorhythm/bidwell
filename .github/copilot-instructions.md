@@ -2,12 +2,28 @@
 
 ## 📚 Documentation Reference
 
-**IMPORTANT**: Before making any changes, consult these comprehensive guides:
+**IMPORTANT**: Before making any changes, consult these comprehensive guides organized by purpose:
 
-- **[CODEBASE_NOTES.md](../CODEBASE_NOTES.md)** - Executive summary and key insights
-- **[DEVELOPMENT_REFERENCE.md](../DEVELOPMENT_REFERENCE.md)** - Development patterns, templates, and code examples
-- **[CODEBASE_ANALYSIS.md](../CODEBASE_ANALYSIS.md)** - Detailed technical analysis and architecture
-- **[TESTING.md](../TESTING.md)** - Testing strategy and execution guide
+### 📋 Essential Entry Points
+
+- **[README.md](../README.md)** - Project overview and navigation hub to all documentation
+- **[CONTRIBUTING.md](../CONTRIBUTING.md)** - Comprehensive contribution guidelines and standards
+
+### 🎓 Learning & Onboarding
+
+- **[docs/getting-started.md](../docs/getting-started.md)** - Complete step-by-step onboarding tutorial for new developers
+- **[docs/architecture.md](../docs/architecture.md)** - System design, decisions, and technical philosophy
+
+### 🔧 Development & Operations
+
+- **[DEVELOPMENT.md](../DEVELOPMENT.md)** - Complete development workflows, build system, and CI/CD processes
+- **[TESTING.md](../TESTING.md)** - Testing strategy, coverage requirements, and execution guide
+- **[DEPLOYMENT.md](../DEPLOYMENT.md)** - Deployment strategies and platform-specific configurations
+
+### 📖 Reference & Troubleshooting
+
+- **[docs/reference.md](../docs/reference.md)** - Complete API reference, technical specifications, and development patterns
+- **[docs/troubleshooting.md](../docs/troubleshooting.md)** - Common issues, debugging techniques, and solutions
 
 ## Project Context
 
@@ -243,3 +259,46 @@ This codebase prioritizes:
 5. **Maintainability**: Clean code, proper typing, comprehensive tests
 
 Always prioritize user experience, performance, accessibility, and maintainability in your suggestions.
+
+## 🆘 Getting Help & Documentation Navigation
+
+### When You Need Information
+
+**🆕 For New Contributors:**
+
+1. Start with **[docs/getting-started.md](../docs/getting-started.md)** for complete onboarding
+2. Review **[CONTRIBUTING.md](../CONTRIBUTING.md)** for contribution guidelines
+3. Follow the recommended reading order in the getting started guide
+
+**🏗️ For Development Work:**
+
+1. **[DEVELOPMENT.md](../DEVELOPMENT.md)** - Development workflows and build system
+2. **[docs/architecture.md](../docs/architecture.md)** - System design and technical decisions
+3. **[docs/reference.md](../docs/reference.md)** - API reference and code patterns
+
+**🔧 For Operations & Troubleshooting:**
+
+1. **[TESTING.md](../TESTING.md)** - Testing strategy and requirements
+2. **[DEPLOYMENT.md](../DEPLOYMENT.md)** - Deployment processes and configurations
+3. **[docs/troubleshooting.md](../docs/troubleshooting.md)** - Common issues and solutions
+
+### Problem-Solving Workflow
+
+1. **Check [docs/troubleshooting.md](../docs/troubleshooting.md)** first for common issues
+2. **Review [docs/architecture.md](../docs/architecture.md)** for design context
+3. **Consult [docs/reference.md](../docs/reference.md)** for technical implementation details
+4. **Follow [DEVELOPMENT.md](../DEVELOPMENT.md)** for build and workflow issues
+
+### Quality Assurance Reminders
+
+Always run before making suggestions:
+
+```bash
+npm run test:coverage    # Verify 70% test coverage
+npm run type-check       # TypeScript compilation check
+npm run lint:fix         # Auto-fix linting issues
+npm run format:fix       # Format code consistently
+npm run build            # Verify production build
+```
+
+Remember: This documentation structure eliminates duplication and provides single sources of truth for all information.
