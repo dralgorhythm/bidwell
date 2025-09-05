@@ -1,17 +1,29 @@
-name: Code Quality Checks
+name: Quality Assurance Pipeline
 
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
 
 permissions:
   contents: write
   pull-requests: write
+  checks: write
+
+env:
+  NODE_VERSION: '20'
+  CACHE_VERSION: 'v1'
 
 jobs:
-  lint-and-format:
-    name: Lint & Format
+  # Fast feedback: Auto-fix formatting and linting issues
+  auto-fix:
+    name: Auto-fix & Format
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     outputs:
       changes: ${{ steps.git-check.outputs.changes }}
     steps:
@@ -24,332 +36,147 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --prefer-offline --no-audit
 
-      - name: Run ESLint with fix
-        run: npm run lint:fix
-
-      - name: Run Prettier with fix
-        run: npm run format:fix
+      - name: Auto-fix code style
+        run: |
+          npm run lint:fix
+          npm run format:fix
 
       - name: Check for changes
         id: git-check
         run: |
-          git status --porcelain
           echo "changes=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
 
       - name: Commit auto-fixes
         if: steps.git-check.outputs.changes != '0'
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add .
-          git commit -m "style: auto-fix linting and formatting issues"
+          git commit -m "style: auto-fix linting and formatting issues" -m "[skip ci]"
           git push
 
-  # Core validation jobs run in parallel after lint fixes
-  typecheck:
-    name: TypeScript Check
+  # Core validation pipeline - runs in parallel for speed
+  validate:
+    name: Validate
     runs-on: ubuntu-latest
-    needs: lint-and-format
+    needs: [auto-fix]
+    if: always() && (needs.auto-fix.result == 'success' || needs.auto-fix.result == 'skipped')
+    strategy:
+      fail-fast: false
+      matrix:
+        check: [typecheck, test, build, security]
+        include:
+          - check: typecheck
+            command: npm run type-check
+            description: TypeScript compilation
+          - check: test  
+            command: npm run test:coverage
+            description: Unit tests with coverage
+          - check: build
+            command: npm run build
+            description: Production build
+          - check: security
+            command: npm audit --audit-level=moderate
+            description: Security audit
     steps:
-      - name: Checkout with fixes
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --prefer-offline --no-audit
 
-      - name: TypeScript check
-        run: npm run type-check
+      - name: Run ${{ matrix.description }}
+        run: ${{ matrix.command }}
+        env:
+          NODE_ENV: production
+          NEXT_TELEMETRY_DISABLED: 1
 
-  unit-tests:
-    name: Unit Tests
-    runs-on: ubuntu-latest
-    needs: lint-and-format
-    strategy:
-      matrix:
-        node-version: ['18', '20']
-    steps:
-      - name: Checkout with fixes
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run tests with coverage
-        run: npm test -- --coverage --watchAll=false
-
-      - name: Upload coverage (Node 20 only)
-        if: matrix.node-version == '20'
+      - name: Upload test coverage
+        if: matrix.check == 'test' && github.event_name == 'pull_request'
         uses: codecov/codecov-action@v4
         with:
           file: ./coverage/lcov.info
           fail_ci_if_error: false
 
-  build:
-    name: Build Application
-    runs-on: ubuntu-latest
-    needs: lint-and-format
-    steps:
-      - name: Checkout with fixes
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build application (static export)
-        run: npm run build:static
-        env:
-          GITHUB_ACTIONS: true
-
-      - name: Save build artifacts
+      - name: Cache build artifacts
+        if: matrix.check == 'build'
         uses: actions/cache/save@v4
         with:
           path: |
             out
-            node_modules
-          key: build-${{ github.sha }}-${{ hashFiles('**/package-lock.json') }}
+            .next/cache
+          key: build-${{ env.CACHE_VERSION }}-${{ runner.os }}-${{ github.sha }}
 
-  security-audit:
-    name: Security Audit
+  # Advanced testing - only runs on main or when explicitly needed
+  advanced-testing:
+    name: E2E & Performance
     runs-on: ubuntu-latest
-    needs: lint-and-format
+    needs: [validate]
+    if: github.ref == 'refs/heads/main' || contains(github.event.pull_request.labels.*.name, 'run-e2e')
+    strategy:
+      matrix:
+        test-type: [accessibility, performance]
     steps:
-      - name: Checkout with fixes
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
+
+      - name: Restore build artifacts
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            out
+            .next/cache
+          key: build-${{ env.CACHE_VERSION }}-${{ runner.os }}-${{ github.sha }}
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --prefer-offline --no-audit
 
-      - name: Run security audit
-        run: npm audit --audit-level=moderate
-
-      - name: Check for vulnerabilities
-        run: npx audit-ci --moderate
-
-  # Integration tests that require a built application
-  accessibility-test:
-    name: Accessibility Tests
-    runs-on: ubuntu-latest
-    needs: [lint-and-format, build]
-    steps:
-      - name: Checkout with fixes
-        uses: actions/checkout@v4
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
         with:
-          ref: ${{ github.head_ref }}
+          chrome-version: stable
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Restore build artifacts
-        uses: actions/cache/restore@v4
-        with:
-          path: |
-            out
-            node_modules
-          key: build-${{ github.sha }}-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Install axe CLI
-        run: npm install -g @axe-core/cli
-
-      - name: Install serve
-        run: npm install -g serve@latest
-
-      - name: Install compatible ChromeDriver version
+      - name: Install testing tools
         run: |
-          # Get Chrome version
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
-          CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d. -f1)
-          echo "Chrome version: $CHROME_VERSION (major: $CHROME_MAJOR_VERSION)"
-
-          # For Chrome 115+ use the new Chrome for Testing API, for older versions use legacy storage
-          if [ "$CHROME_MAJOR_VERSION" -ge 115 ]; then
-            echo "Using Chrome for Testing API for Chrome $CHROME_MAJOR_VERSION"
-            
-            # Get available ChromeDriver versions for this Chrome major version
-            AVAILABLE_VERSIONS=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" | jq -r --arg major "$CHROME_MAJOR_VERSION" '.versions[] | select(.version | startswith($major + ".")) | .version')
-            
-            # Find the best match for the installed Chrome version
-            BEST_MATCH=""
-            for version in $AVAILABLE_VERSIONS; do
-              if [[ "$version" == "$CHROME_VERSION"* ]] || [[ "$CHROME_VERSION" == "$version"* ]]; then
-                BEST_MATCH="$version"
-                break
-              fi
-            done
-            
-            # If no exact match, use the latest version for this major version
-            if [ -z "$BEST_MATCH" ]; then
-              BEST_MATCH=$(echo "$AVAILABLE_VERSIONS" | tail -1)
-            fi
-            
-            CHROMEDRIVER_VERSION="$BEST_MATCH"
-            echo "Selected ChromeDriver version: $CHROMEDRIVER_VERSION"
-            
-            # Download and install ChromeDriver
-            curl -o /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
-            sudo unzip /tmp/chromedriver.zip -d /tmp/
-            sudo mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/
-            sudo chmod +x /usr/local/bin/chromedriver
-          else
-            echo "Using legacy ChromeDriver storage for Chrome $CHROME_MAJOR_VERSION"
-            # Get compatible ChromeDriver version from legacy storage
-            CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAJOR_VERSION")
-            echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
-            
-            # Download and install ChromeDriver
-            curl -o /tmp/chromedriver.zip "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
-            sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
-            sudo chmod +x /usr/local/bin/chromedriver
+          npm install -g @axe-core/cli serve wait-on
+          if [ "${{ matrix.test-type }}" = "performance" ]; then
+            npm install -g @lhci/cli@0.13.x
           fi
 
-          # Verify installation and show versions
-          echo "Final verification:"
-          echo "Chrome version: $(google-chrome --version)"
-          echo "ChromeDriver version: $(/usr/local/bin/chromedriver --version)"
-
-      - name: Start static application
-        run: npx serve@latest out -l 3000 &
-
-      - name: Wait for application
-        run: npx wait-on http://localhost:3000 --timeout 60000
+      - name: Start application
+        run: |
+          npx serve out -l 3000 &
+          npx wait-on http://localhost:3000 --timeout 60000
 
       - name: Run accessibility tests
+        if: matrix.test-type == 'accessibility'
         run: |
-          axe http://localhost:3000 --chromedriver-path /usr/local/bin/chromedriver --exit
-          axe http://localhost:3000/comparison --chromedriver-path /usr/local/bin/chromedriver --exit
+          axe http://localhost:3000 --exit
+          axe http://localhost:3000/comparison --exit
 
-  performance-test:
-    name: Performance Tests
-    runs-on: ubuntu-latest
-    needs: [lint-and-format, build]
-    steps:
-      - name: Checkout with fixes
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Restore build artifacts
-        uses: actions/cache/restore@v4
-        with:
-          path: |
-            out
-            node_modules
-          key: build-${{ github.sha }}-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Install Lighthouse CI
-        run: npm install -g @lhci/cli@0.13.x
-
-      - name: Install serve
-        run: npm install -g serve@latest
-
-      - name: Install compatible ChromeDriver version
+      - name: Run performance tests
+        if: matrix.test-type == 'performance'
         run: |
-          # Get Chrome version
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
-          CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d. -f1)
-          echo "Chrome version: $CHROME_VERSION (major: $CHROME_MAJOR_VERSION)"
-
-          # For Chrome 115+ use the new Chrome for Testing API, for older versions use legacy storage
-          if [ "$CHROME_MAJOR_VERSION" -ge 115 ]; then
-            echo "Using Chrome for Testing API for Chrome $CHROME_MAJOR_VERSION"
-            
-            # Get available ChromeDriver versions for this Chrome major version
-            AVAILABLE_VERSIONS=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" | jq -r --arg major "$CHROME_MAJOR_VERSION" '.versions[] | select(.version | startswith($major + ".")) | .version')
-            
-            # Find the best match for the installed Chrome version
-            BEST_MATCH=""
-            for version in $AVAILABLE_VERSIONS; do
-              if [[ "$version" == "$CHROME_VERSION"* ]] || [[ "$CHROME_VERSION" == "$version"* ]]; then
-                BEST_MATCH="$version"
-                break
-              fi
-            done
-            
-            # If no exact match, use the latest version for this major version
-            if [ -z "$BEST_MATCH" ]; then
-              BEST_MATCH=$(echo "$AVAILABLE_VERSIONS" | tail -1)
-            fi
-            
-            CHROMEDRIVER_VERSION="$BEST_MATCH"
-            echo "Selected ChromeDriver version: $CHROMEDRIVER_VERSION"
-            
-            # Download and install ChromeDriver
-            curl -o /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
-            sudo unzip /tmp/chromedriver.zip -d /tmp/
-            sudo mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/
-            sudo chmod +x /usr/local/bin/chromedriver
-          else
-            echo "Using legacy ChromeDriver storage for Chrome $CHROME_MAJOR_VERSION"
-            # Get compatible ChromeDriver version from legacy storage
-            CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAJOR_VERSION")
-            echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
-            
-            # Download and install ChromeDriver
-            curl -o /tmp/chromedriver.zip "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
-            sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
-            sudo chmod +x /usr/local/bin/chromedriver
-          fi
-
-          # Verify installation and show versions
-          echo "Final verification:"
-          echo "Chrome version: $(google-chrome --version)"
-          echo "ChromeDriver version: $(/usr/local/bin/chromedriver --version)"
-
-      - name: Start static application
-        run: npx serve@latest out -l 3000 &
-
-      - name: Wait for application
-        run: npx wait-on http://localhost:3000 --timeout 60000
-
-      - name: Run Lighthouse CI
-        run: |
-          export CHROME_PATH=$(which google-chrome)
-          export LIGHTHOUSE_CHROMIUM_PATH=$CHROME_PATH
+          export CHROME_PATH=$(which chrome)
           lhci autorun --upload.target=temporary-public-storage --collect.url=http://localhost:3000
           lhci autorun --upload.target=temporary-public-storage --collect.url=http://localhost:3000/comparison

@@ -173,6 +173,12 @@ __tests__/                   # Comprehensive test suite
 - **Coverage Validation**: Ensure `npm run test:coverage` meets 70% threshold
 - **Build Verification**: Always run `npm run build` to verify production compatibility
 
+### Pager Usage Guidelines
+
+- **Exit less properly**: When you see `(END)` or the less prompt, press `q` to quit.
+- **Use `--no-pager` flag**: For GitHub CLI commands, add `--no-pager` to avoid the pager entirely.
+- **Be more aware**: Watch for pager indicators and exit them promptly.
+
 ### Pre-Commit Quality Checklist
 
 ```bash

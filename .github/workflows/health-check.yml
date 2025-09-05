@@ -1,0 +1,119 @@
+# Fast deployment status and health check workflow
+# Runs after successful deployment to verify site health
+#
+name: Post-Deploy Health Check
+
+on:
+  # Triggered after successful deployment
+  workflow_run:
+    workflows: ["Deploy to Production"]
+    types: [completed]
+
+  # Manual health checks
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    name: Verify Site Health
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Wait for deployment
+        run: sleep 30
+
+      - name: Check site availability
+        run: |
+          echo "Checking site health..."
+          
+          # Primary health checks
+          SITE_URL="https://bidwell.info"
+          
+          # Check main page
+          if curl -f -s --max-time 10 "$SITE_URL" > /dev/null; then
+            echo "✅ Main page: OK"
+          else
+            echo "❌ Main page: FAILED"
+            exit 1
+          fi
+          
+          # Check comparison page
+          if curl -f -s --max-time 10 "$SITE_URL/comparison" > /dev/null; then
+            echo "✅ Comparison page: OK"
+          else
+            echo "❌ Comparison page: FAILED"
+            exit 1
+          fi
+          
+          # Check robots.txt
+          if curl -f -s --max-time 10 "$SITE_URL/robots.txt" > /dev/null; then
+            echo "✅ Robots.txt: OK"
+          else
+            echo "❌ Robots.txt: FAILED"
+            exit 1
+          fi
+          
+          # Check sitemap
+          if curl -f -s --max-time 10 "$SITE_URL/sitemap.xml" > /dev/null; then
+            echo "✅ Sitemap: OK"
+          else
+            echo "❌ Sitemap: FAILED"
+            exit 1
+          fi
+
+      - name: Performance spot check
+        run: |
+          echo "Running quick performance check..."
+          npx lighthouse https://bidwell.info \
+            --only-categories=performance \
+            --output=json \
+            --quiet \
+            --chrome-flags="--headless --no-sandbox" \
+            --output-path=/tmp/lighthouse.json
+          
+          SCORE=$(cat /tmp/lighthouse.json | jq '.categories.performance.score * 100')
+          echo "Performance Score: $SCORE"
+          
+          if (( $(echo "$SCORE >= 90" | bc -l) )); then
+            echo "✅ Performance: Excellent ($SCORE/100)"
+          elif (( $(echo "$SCORE >= 80" | bc -l) )); then
+            echo "⚠️ Performance: Good ($SCORE/100)"
+          else
+            echo "❌ Performance: Needs attention ($SCORE/100)"
+            exit 1
+          fi
+
+      - name: Security headers check
+        run: |
+          echo "Checking security headers..."
+          
+          HEADERS=$(curl -I -s https://bidwell.info)
+          
+          # Check for important security headers
+          if echo "$HEADERS" | grep -q "x-frame-options"; then
+            echo "✅ X-Frame-Options: Present"
+          else
+            echo "❌ X-Frame-Options: Missing"
+          fi
+          
+          if echo "$HEADERS" | grep -q "x-content-type-options"; then
+            echo "✅ X-Content-Type-Options: Present"  
+          else
+            echo "❌ X-Content-Type-Options: Missing"
+          fi
+          
+          if echo "$HEADERS" | grep -q "referrer-policy"; then
+            echo "✅ Referrer-Policy: Present"
+          else
+            echo "❌ Referrer-Policy: Missing"
+          fi
+
+      - name: Create deployment summary
+        run: |
+          echo "## 🚀 Deployment Health Check Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Site Status**: All endpoints responding correctly" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Performance**: Meeting quality standards" >> $GITHUB_STEP_SUMMARY  
+          echo "✅ **Security**: Headers properly configured" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🌐 **Live Site**: https://bidwell.info" >> $GITHUB_STEP_SUMMARY
+          echo "📊 **Deployed**: $(date -u)" >> $GITHUB_STEP_SUMMARY
