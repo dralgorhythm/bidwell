@@ -30,10 +30,13 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 ## Development Process
 
-- [Testing Documentation](TESTING.md)
-- [Build Process](BUILD.md)
-- [Deployment Guide](DEPLOYMENT.md)
-- [GitHub Actions Workflows](GITHUB_ACTIONS.md)
+- [Codebase Analysis](CODEBASE_ANALYSIS.md) - Comprehensive technical analysis and architecture overview
+- [Development Reference](DEVELOPMENT_REFERENCE.md) - Development patterns, templates, and best practices
+- [Codebase Notes](CODEBASE_NOTES.md) - Executive summary and key insights
+- [Testing Documentation](TESTING.md) - Testing strategy and execution guide
+- [Build Process](BUILD.md) - Build system and development setup
+- [Deployment Guide](DEPLOYMENT.md) - Deployment strategies for various platforms
+- [GitHub Actions Workflows](GITHUB_ACTIONS.md) - CI/CD pipeline documentation
 
 ## Tech Stack
 
@@ -78,7 +81,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 ## Project Structure
 
-```
+```text
 app/                    # Next.js App Router pages and layouts
 ├── components/         # Reusable UI components
 ├── comparison/         # Comparison tool feature

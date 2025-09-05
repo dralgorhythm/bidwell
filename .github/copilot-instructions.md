@@ -1,106 +1,245 @@
-# Copilot Instructions for Next.js Development
+# Copilot Instructions for Bidwell Consulting Development
+
+## 📚 Documentation Reference
+
+**IMPORTANT**: Before making any changes, consult these comprehensive guides:
+
+- **[CODEBASE_NOTES.md](../CODEBASE_NOTES.md)** - Executive summary and key insights
+- **[DEVELOPMENT_REFERENCE.md](../DEVELOPMENT_REFERENCE.md)** - Development patterns, templates, and code examples
+- **[CODEBASE_ANALYSIS.md](../CODEBASE_ANALYSIS.md)** - Detailed technical analysis and architecture
+- **[TESTING.md](../TESTING.md)** - Testing strategy and execution guide
 
 ## Project Context
 
-This is a Next.js application using the App Router architecture. Always consider the following when providing assistance:
+This is a **production-ready, enterprise-level Next.js 15 application** demonstrating modern web development best practices. It serves as both a functional business website and a showcase of advanced technical expertise.
 
 ### Tech Stack
 
-- **Framework**: Next.js 13+ with App Router
-- **Language**: TypeScript
+- **Framework**: Next.js 15.3.2 with App Router
+- **Language**: TypeScript 5.8.3 (strict mode)
+- **Styling**: Tailwind CSS v4.1.7
+- **Font**: Geist Sans & Mono (Vercel's design system)
+- **Testing**: Jest 29.7.0 + Testing Library (70% coverage requirement)
 - **Package Manager**: npm
-- **Styling**: CSS Modules or Tailwind CSS
+- **Deployment**: Vercel (primary) + GitHub Pages (static export)
 
-### Code Standards
+### Code Standards & Architecture
 
-- Use TypeScript for all new files
-- Follow Next.js App Router conventions
-- Use server components by default, only add 'use client' when necessary
-- Prefer modern React patterns (hooks, functional components)
-- Use semantic HTML and proper accessibility practices
+- **TypeScript Strict Mode**: Use TypeScript for all new files with strict type checking
+- **Server-First Architecture**: Use server components by default, only add 'use client' when necessary for interactivity, state, or browser APIs
+- **Performance-First**: Every decision must consider Core Web Vitals impact (LCP, INP, CLS, FCP, TTFB)
+- **Security-by-Design**: Implement input validation, security headers, and rate limiting for all user-facing features
+- **Accessibility-First**: Ensure WCAG 2.1 AA compliance with semantic HTML and proper ARIA labels
+- **Test-Driven Development**: Write tests before implementing features (70% coverage requirement)
 
-### File Structure Conventions
+### Critical File Structure Conventions
 
-- Pages go in `app/` directory with `page.tsx` files
-- API routes in `app/api/` with `route.ts` files
-- Components in `app/components/` directory
-- Utilities in `utils/` directory
+```text
+app/                          # Next.js App Router
+├── components/               # Reusable UI components
+├── comparison/               # Feature: Number comparison tool
+├── api/                      # API routes with security & validation
+│   ├── health/              # Health check endpoint
+│   └── analytics/           # Performance metrics collection
+├── layout.tsx               # Root layout with comprehensive metadata
+├── page.tsx                 # Homepage with SEO optimization
+└── global.css               # Global styles + Tailwind
 
-### Next.js Best Practices
+lib/                         # Utility libraries (CRITICAL)
+├── performance.ts           # Core Web Vitals optimization
+├── font-optimization.ts     # Advanced font loading strategies
+├── security.ts              # Security utilities & headers
+├── validation.ts            # Zod schemas for input validation
+└── env.ts                   # Environment validation
 
-1. **Performance**
+__tests__/                   # Comprehensive test suite
+├── components/              # Component unit tests
+├── integration/             # Integration tests
+├── lib/                     # Library tests
+└── utils/                   # Test utilities
+```
 
-   - Use Next.js Image component for images
-   - Implement proper loading states
-   - Use dynamic imports for heavy components
-   - Optimize bundle size with proper imports
+### Next.js 15 Advanced Patterns
 
-2. **SEO & Metadata**
+1. **Performance & Core Web Vitals**
 
-   - Include metadata in page.tsx files using generateMetadata
-   - Use proper OpenGraph tags
-   - Implement structured data when relevant
+   - Use `OptimizedImage` component from `app/components/optimized-image.tsx`
+   - Implement font optimization with `lib/font-optimization.ts` utilities
+   - Leverage performance monitoring with `lib/performance.ts`
+   - Preload critical resources using performance utilities
+   - Consider layout shift prevention in all UI changes
 
-3. **Routing**
+2. **Security Implementation**
 
-   - Use App Router file-based routing
-   - Implement proper error boundaries (error.tsx)
-   - Use loading.tsx for loading states
-   - Follow nested layout patterns
+   - **All API routes MUST**: Include rate limiting using `lib/validation.ts`
+   - **All user inputs MUST**: Be validated with Zod schemas from `lib/validation.ts`
+   - **All API responses MUST**: Include security headers from `lib/security.ts`
+   - **Example secure API pattern**:
 
-4. **Server vs Client Components**
-   - Default to server components
-   - Use 'use client' only for interactivity, state, or browser APIs
-   - Pass data down from server to client components
+   ```typescript
+   import { getSecurityHeaders, getClientIP } from 'lib/security'
+   import { createRateLimit, checkRateLimit } from 'lib/validation'
 
-### Component Patterns
+   const rateLimit = createRateLimit(10, 60 * 1000) // 10 req/min
 
-- Create reusable, composable components
-- Use proper TypeScript interfaces for props
-- Implement proper error handling
-- Follow the principle of least privilege for client components
+   export async function POST(request: NextRequest) {
+     const clientIP = getClientIP(request)
+     const rateLimitResult = checkRateLimit(rateLimit, clientIP)
 
-### API Development
+     if (!rateLimitResult.allowed) {
+       return NextResponse.json(
+         { error: 'Too many requests' },
+         { status: 429, headers: getSecurityHeaders() }
+       )
+     }
+     // ... rest of implementation
+   }
+   ```
 
-- Use Next.js API routes in `app/api/`
-- Implement proper error handling and status codes
-- Use TypeScript for request/response types
-- Follow RESTful conventions
+3. **SEO & Metadata Excellence**
 
-### Content Management
+   - **Every page MUST** include comprehensive metadata using `generateMetadata`
+   - Include OpenGraph images using `/og` dynamic route
+   - Implement structured data with `StructuredData` component
+   - Follow the metadata pattern from existing pages
 
-- Implement proper content validation
+4. **Component Architecture**
+   - **Server Components**: Default choice for all new components
+   - **Client Components**: Only when using hooks, state, or browser APIs
+   - **Accessibility**: Use semantic HTML, ARIA labels, keyboard navigation
+   - **Performance**: Consider render performance and bundle size impact
 
-### Development Workflow
+### Advanced Component Patterns
 
-- Test changes locally before committing
-- Always check that package versions are up to date
-- Always make sure packages exist before using them
-- Use `npm run lint` to check for linting errors
-- Use ESLint and Prettier for code formatting
-- Run tests before pushing changes
-- Use Git for version control
-- You believe in test driven development (TDD) and write tests for new features before implementation
-- Use TypeScript strict mode
-- Follow conventional commit messages
-- Consider mobile-first responsive design
-- Always run terminal commands with `--no-pager` or `--output` to avoid pager issues in CI/CD environments
+- **Performance Components**: Use `PerformanceMonitor` and `PerformanceDashboard` for monitoring
+- **Font Loading**: Initialize with `initializeFontOptimization()` from `lib/font-optimization.ts`
+- **Image Optimization**: Always use `OptimizedImage` component instead of Next.js Image directly
+- **Error Boundaries**: Implement comprehensive error handling with proper user feedback
+- **Loading States**: Use React Suspense and loading.tsx for optimal UX
+- **Accessibility**: Every interactive element must be keyboard accessible and screen reader friendly
 
-### Common Tasks
+### API Development Excellence
+
+- **Security-First**: Every API route must implement rate limiting and input validation
+- **Type Safety**: Use TypeScript interfaces for all request/response types
+- **Error Handling**: Implement proper HTTP status codes and error messages
+- **Performance**: Monitor API response times and implement caching where appropriate
+- **Testing**: Write comprehensive tests for all API endpoints
+
+### Advanced Testing Strategy
+
+- **Test-Driven Development**: Write tests BEFORE implementing features
+- **Coverage Requirements**: Maintain 70% coverage across all metrics
+- **Test Types Required**:
+  - **Unit Tests**: Component functionality and business logic
+  - **Integration Tests**: Full user journeys and component interactions
+  - **Accessibility Tests**: Automated WCAG compliance with jest-axe
+  - **Performance Tests**: Render performance and memory usage
+  - **Security Tests**: Input validation and vulnerability testing
+
+### Performance Optimization Workflow
+
+1. **Before Any Change**: Consider Core Web Vitals impact
+2. **Font Loading**: Use critical font subset loading for above-the-fold content
+3. **Image Optimization**: Implement responsive images with proper aspect ratios
+4. **Bundle Analysis**: Monitor JavaScript bundle size and loading performance
+5. **Monitoring**: Track real-user performance metrics with analytics
+
+### Development Workflow & Quality Assurance
+
+- **Documentation First**: Consult reference docs before making changes
+- **Test-Driven**: Write tests before implementing features
+- **Security Conscious**: Every user input must be validated, every API must have rate limiting
+- **Performance Aware**: Consider Core Web Vitals impact of every change
+- **Accessibility Priority**: Test with screen readers and keyboard navigation
+- **Type Safety**: Use TypeScript strict mode, no `any` types allowed
+- **Code Quality**: Run `npm run lint:fix` and `npm run format:fix` before committing
+- **Coverage Validation**: Ensure `npm run test:coverage` meets 70% threshold
+- **Build Verification**: Always run `npm run build` to verify production compatibility
+
+### Pre-Commit Quality Checklist
+
+```bash
+# Required checks before any commit
+npm run test:coverage    # Verify 70% test coverage
+npm run type-check       # TypeScript compilation check
+npm run lint:fix         # Auto-fix linting issues
+npm run format:fix       # Format code consistently
+npm run build            # Verify production build
+```
+
+### Security Implementation Requirements
+
+- **Input Validation**: All user inputs must use Zod schemas from `lib/validation.ts`
+- **Rate Limiting**: All API endpoints must implement rate limiting
+- **Security Headers**: All responses must include headers from `lib/security.ts`
+- **Content Security Policy**: Maintained in `middleware.ts` - consult before changes
+- **Environment Variables**: Use `lib/env.ts` for environment validation
+- **Error Handling**: Never expose internal errors to users
+
+### Common Development Tasks
 
 When asked to:
 
-- **Add a new page**: Create in `app/` with proper metadata
-- **Add an API endpoint**: Create in `app/api/` with proper types
-- **Create components**: Use TypeScript, proper naming, and reusability
-- **Style components**: Use consistent styling approach
-- **Optimize performance**: Consider Next.js built-in optimizations
+- **Add a new page**: Create in `app/` with comprehensive metadata following existing patterns
+- **Add an API endpoint**: Create in `app/api/` with security, validation, and proper types
+- **Create components**: Use TypeScript, proper naming, accessibility, and reusability
+- **Style components**: Use Tailwind CSS v4 with consistent design patterns
+- **Optimize performance**: Leverage performance utilities and monitoring
+- **Add tests**: Follow TDD approach with comprehensive test coverage
+- **Handle forms**: Implement with Zod validation and proper error handling
+- **Add images**: Use `OptimizedImage` component with proper aspect ratios
 
-### Security Considerations
+### Advanced Performance Patterns
 
-- Validate all inputs
-- Use environment variables for sensitive data
-- Implement proper CORS policies
-- Follow Next.js security best practices
+- **Font Loading**: Use `initializeFontOptimization()` in client components
+- **Image Preloading**: Use `preloadCriticalResources()` for above-the-fold content
+- **Code Splitting**: Dynamic imports for heavy components with loading states
+- **Caching**: Implement proper cache headers and revalidation strategies
+- **Bundle Analysis**: Monitor bundle size impact of new dependencies
 
-Always prioritize user experience, performance, and maintainability in your suggestions.
+### Security Best Practices
+
+- **API Routes**: Always include rate limiting and input validation
+- **Client Components**: Validate all props and user interactions
+- **Environment Variables**: Use `lib/env.ts` for validation and type safety
+- **Error Handling**: Implement graceful failures without information leakage
+- **Dependencies**: Regular security audits and updates
+
+### Accessibility Excellence
+
+- **WCAG 2.1 AA Compliance**: Test all new features with screen readers
+- **Keyboard Navigation**: Ensure all interactive elements are keyboard accessible
+- **ARIA Labels**: Provide proper ARIA labels and roles for dynamic content
+- **Color Contrast**: Maintain proper contrast ratios for all text
+- **Focus Management**: Implement proper focus states and management
+- **Semantic HTML**: Use appropriate HTML elements for their intended purpose
+
+### Testing Excellence
+
+- **Test-First Development**: Write tests before implementation
+- **Coverage Requirements**: Maintain 70% coverage across all test types
+- **Test Categories**: Unit, integration, accessibility, performance, security
+- **Mocking Strategy**: Proper mocking of external dependencies and APIs
+- **Async Testing**: Proper handling of async operations in tests
+- **Test Utilities**: Use shared test utilities from `__tests__/utils/`
+
+### Continuous Integration
+
+- **Automated Quality**: All PRs must pass quality checks
+- **Performance Monitoring**: Track Core Web Vitals in production
+- **Security Scanning**: Regular dependency and vulnerability scans
+- **Accessibility Auditing**: Automated accessibility testing in CI
+- **Type Safety**: Strict TypeScript compilation in CI pipeline
+
+## 🎯 Development Philosophy
+
+This codebase prioritizes:
+
+1. **User Experience**: Performance, accessibility, and usability
+2. **Developer Experience**: Clear patterns, comprehensive testing, good documentation
+3. **Security**: Defense in depth with multiple security layers
+4. **Performance**: Core Web Vitals optimization at every level
+5. **Maintainability**: Clean code, proper typing, comprehensive tests
+
+Always prioritize user experience, performance, accessibility, and maintainability in your suggestions.
