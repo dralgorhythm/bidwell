@@ -254,7 +254,23 @@ When asked to:
 - **Accessibility Auditing**: Automated accessibility testing in CI
 - **Type Safety**: Strict TypeScript compilation in CI pipeline
 
-## 🎯 Development Philosophy
+### 📝 Communication & Response Style
+
+**DO:**
+- Focus on immediate action and implementation
+- Provide direct solutions and code changes
+- Use PRs for collaboration and iteration
+- Give brief, action-oriented responses
+- Move quickly from analysis to implementation
+
+**AVOID:**
+- Lengthy summaries of work completed
+- Extensive documentation of changes made
+- Over-explaining obvious implementations
+- Waiting for confirmation before taking standard development actions
+- Verbose progress reports
+
+## 🎯 Development Philosophy & Workflow
 
 This codebase prioritizes:
 
@@ -264,7 +280,28 @@ This codebase prioritizes:
 4. **Performance**: Core Web Vitals optimization at every level
 5. **Maintainability**: Clean code, proper typing, comprehensive tests
 
-Always prioritize user experience, performance, accessibility, and maintainability in your suggestions.
+### 🚀 Rapid Development Workflow
+
+**PREFERRED APPROACH: Pull Request Workflow**
+
+- **Create feature branches** for all changes, no matter how small
+- **Submit PRs immediately** for rapid iteration and feedback
+- **Use draft PRs** for work-in-progress to enable early collaboration
+- **Leverage automated workflows** for instant validation and deployment previews
+- **Prefer multiple small PRs** over large monolithic changes
+
+**AVOID:**
+- Direct commits to main branch (except for urgent hotfixes)
+- Large work summaries or extensive documentation of completed work
+- Waiting for "perfect" solutions before submitting PRs
+
+**DO:**
+- Create PRs early and often for faster feedback cycles
+- Use the optimized Development Pipeline for rapid validation
+- Leverage automated quality checks and preview deployments
+- Focus on incremental improvements and continuous delivery
+
+Always prioritize rapid iteration, user experience, performance, accessibility, and maintainability in your development approach.
 
 ## 🆘 Getting Help & Documentation Navigation
 
