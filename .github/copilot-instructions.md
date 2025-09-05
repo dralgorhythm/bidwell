@@ -270,6 +270,76 @@ When asked to:
 - Waiting for confirmation before taking standard development actions
 - Verbose progress reports
 
+## 🔧 Tool Usage Preferences
+
+### MCP Tools vs Command Line
+
+**ALWAYS PREFER MCP TOOLS** when available for these operations:
+
+#### File Operations
+- **✅ Use MCP**: `mcp_filesystem_*` tools for reading, writing, creating, moving files
+- **❌ Avoid**: `cat`, `touch`, `mv`, `cp` commands when MCP alternatives exist
+- **Why**: MCP tools provide better error handling, atomic operations, and workspace safety
+
+#### GitHub Operations
+- **✅ Use MCP**: `mcp_github_*` tools for all Git/GitHub interactions
+  - Repository management: `mcp_github_create_repository`, `mcp_github_fork_repository`
+  - Branch operations: `mcp_github_list_branches`, `mcp_github_create_branch`
+  - File operations: `mcp_github_get_file_contents`, `mcp_github_create_or_update_file`
+  - Issue/PR management: `mcp_github_create_issue`, `mcp_github_create_pull_request`
+  - Search operations: `mcp_github_search_*` tools
+- **❌ Avoid**: `git` CLI commands when MCP GitHub tools can accomplish the task
+- **Exception**: Use `git` CLI only for local Git operations not available via MCP
+
+#### Memory/Knowledge Management
+- **✅ Use MCP**: `mcp_memory_*` tools for persistent knowledge storage
+- **Why**: Maintains context across sessions and enables knowledge accumulation
+
+#### Browser Automation
+- **✅ Use MCP**: `mcp_puppeteer_*` tools for web interactions
+- **❌ Avoid**: Manual browser instructions when automation is possible
+
+### Command Line Exceptions
+
+**USE COMMAND LINE for**:
+- **Development commands**: `npm run *`, `jest`, `tsc` (when not available via MCP)
+- **Local Git operations**: `git status`, `git log`, local commits (when not doing GitHub operations)
+- **Build and test operations**: When no MCP equivalent exists
+- **System operations**: Process management, environment setup
+
+### Tool Selection Priority
+
+1. **First**: Check for MCP tool availability
+2. **Second**: Use VS Code built-in tools (`run_vscode_command`)
+3. **Third**: Use terminal commands (`run_in_terminal`)
+4. **Last**: Manual instructions to user
+
+### Examples of Preferred Patterns
+
+```typescript
+// ✅ PREFERRED: MCP file operations
+mcp_filesystem_read_text_file({ path: "/path/to/file" })
+mcp_filesystem_write_file({ path: "/path/to/file", content: "..." })
+
+// ❌ AVOID: Command line when MCP available
+run_in_terminal({ command: "cat /path/to/file" })
+
+// ✅ PREFERRED: MCP GitHub operations
+mcp_github_create_pull_request({ owner: "...", repo: "...", title: "...", body: "..." })
+
+// ❌ AVOID: Git CLI when MCP available
+run_in_terminal({ command: "gh pr create --title '...' --body '...'" })
+
+// ✅ ACCEPTABLE: Development commands
+run_in_terminal({ command: "npm run test:coverage" })
+```
+
+This approach ensures:
+- **Better error handling** and workspace safety
+- **Atomic operations** that are less prone to interruption
+- **Consistent behavior** across different environments
+- **Enhanced functionality** with built-in validation and safety checks
+
 ## 🎯 Development Philosophy & Workflow
 
 This codebase prioritizes:
