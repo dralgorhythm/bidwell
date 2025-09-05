@@ -34,7 +34,7 @@ export class PerformanceTestHelper {
     expect(interactionTime).toBeLessThan(threshold)
   }
 
-  static createPerformanceObserver(entryTypes: string[]): PerformanceObserver {
+  static createPerformanceObserver(_entryTypes: string[]): PerformanceObserver {
     return new PerformanceObserver(list => {
       list.getEntries().forEach(entry => {
         console.log(`Performance entry: ${entry.name} - ${entry.duration}ms`)
@@ -102,7 +102,7 @@ export class StressTestHelper {
 
 // Bundle size testing helpers
 export class BundleTestHelper {
-  static async measureComponentSize(componentPath: string): Promise<number> {
+  static async measureComponentSize(_componentPath: string): Promise<number> {
     try {
       // This would require build-time analysis in a real implementation
       // For now, we'll return a mock size
@@ -124,7 +124,7 @@ export class EnvironmentTestHelper {
   static simulateSlowDevice(component: ReactElement): RenderResult {
     // Mock slow device by adding artificial delay
     const originalSetTimeout = global.setTimeout
-    global.setTimeout = ((fn: Function, delay: number) => {
+    global.setTimeout = ((fn: (...args: any[]) => void, delay: number) => {
       return originalSetTimeout(fn, delay * 2) // Double all timeouts
     }) as any
 

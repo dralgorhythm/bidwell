@@ -1,5 +1,5 @@
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
-import { ReactElement, ReactNode } from 'react'
+import { ReactElement } from 'react'
 import { axe, toHaveNoViolations } from 'jest-axe'
 
 // Extend Jest matchers

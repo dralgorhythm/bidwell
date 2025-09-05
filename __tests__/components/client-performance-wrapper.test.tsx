@@ -1,12 +1,11 @@
 import { render } from '../utils/test-utils'
 import ClientPerformanceWrapper from '../../app/components/client-performance-wrapper'
-import { useRouter } from 'next/navigation'
 
 // Mock the dynamic imports
 jest.mock('next/dynamic', () => {
-  return (importFunc: any, options?: any) => {
+  return (importFunc: any) => {
     // Return a simple component that can be identified in tests
-    return function DynamicComponent(props: any) {
+    return function DynamicComponent() {
       // Get the display name from the import function
       const componentName = importFunc.toString().includes('performance-monitor')
         ? 'performance-monitor'

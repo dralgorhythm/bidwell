@@ -23,20 +23,24 @@ jest.mock('next/image', () => {
       ...imgProps
     } = props
 
-    // eslint-disable-next-line @next/next/no-img-element
+     
     return (
-      <img
-        {...imgProps}
-        style={style}
-        data-priority={priority}
-        data-loading={loading}
-        data-placeholder={placeholder}
-        data-blur-data-url={blurDataURL}
-        data-sizes={sizes}
-        data-fill={fill}
-        data-quality={quality}
-        data-testid='optimized-image'
-      />
+      <>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          {...imgProps}
+          alt="test"
+          style={style}
+          data-priority={priority}
+          data-loading={loading}
+          data-placeholder={placeholder}
+          data-blur-data-url={blurDataURL}
+          data-sizes={sizes}
+          data-fill={fill}
+          data-quality={quality}
+          data-testid='optimized-image'
+        />
+      </>
     )
   }
 })

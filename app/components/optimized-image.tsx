@@ -76,7 +76,7 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(
       .filter(Boolean)
       .join(' ')
 
-    // eslint-disable-next-line jsx-a11y/alt-text
+     
     return (
       <Image
         ref={ref}

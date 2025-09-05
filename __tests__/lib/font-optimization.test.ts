@@ -1,4 +1,3 @@
-import * as fontOptimization from '../../lib/font-optimization'
 import {
   preloadFonts,
   optimizeFontDisplay,

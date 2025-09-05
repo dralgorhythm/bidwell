@@ -43,7 +43,7 @@ describe('PerformanceDashboard', () => {
     mockLocalStorage.getItem.mockReturnValue(null)
 
     // Store callbacks to call them later in act()
-    let callbacks: Array<(metric: any) => void> = []
+    const callbacks: Array<(metric: any) => void> = []
 
     // Reset mocks to store callbacks instead of calling them immediately
     mockWebVitals.onCLS.mockImplementation(callback => {
