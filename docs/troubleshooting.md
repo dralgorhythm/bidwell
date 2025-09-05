@@ -478,6 +478,7 @@ Expected no accessibility violations but received 2
    ```
 
 2. **Remove event listeners:**
+
    ```typescript
    useEffect(() => {
      const handleResize = () => {
