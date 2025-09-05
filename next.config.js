@@ -12,6 +12,9 @@ const nextConfig = {
   // Configure for static export (GitHub Pages)
   output: process.env.GITHUB_ACTIONS ? 'export' : 'standalone',
 
+  // Fix cross-origin warning for development
+  allowedDevOrigins: ['192.168.50.126'],
+
   // Disable image optimization for static export, enable for development
   images: {
     unoptimized: process.env.GITHUB_ACTIONS ? true : false,
