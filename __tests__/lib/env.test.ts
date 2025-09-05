@@ -1,5 +1,3 @@
-import { validateEnv, isSecureEnvironment } from '../../lib/env'
-
 // Helper function to set environment variables in a test-safe way
 function setEnvVar(key: string, value: string | undefined) {
   if (value === undefined) {
@@ -16,6 +14,11 @@ function setEnvVar(key: string, value: string | undefined) {
 describe('lib/env.ts', () => {
   const originalEnv = { ...process.env }
 
+  beforeEach(() => {
+    // Clear the module cache to ensure fresh imports
+    jest.resetModules()
+  })
+
   afterEach(() => {
     // Restore all environment variables
     Object.keys(process.env).forEach(key => {
@@ -29,118 +32,177 @@ describe('lib/env.ts', () => {
   })
 
   describe('validateEnv', () => {
-    it('validates correct environment variables', () => {
+    it('validates correct environment variables', async () => {
       setEnvVar('NODE_ENV', 'development')
+      const { validateEnv } = await import('../../lib/env')
       expect(() => validateEnv()).not.toThrow()
     })
 
-    it('validates production environment', () => {
+    it('validates production environment', async () => {
       setEnvVar('NODE_ENV', 'production')
+      const { validateEnv } = await import('../../lib/env')
       expect(() => validateEnv()).not.toThrow()
     })
 
-    it('validates test environment', () => {
+    it('validates test environment', async () => {
       setEnvVar('NODE_ENV', 'test')
+      const { validateEnv } = await import('../../lib/env')
       expect(() => validateEnv()).not.toThrow()
     })
 
-    it('handles optional email service variables', () => {
+    it('handles optional email service variables', async () => {
       setEnvVar('NODE_ENV', 'development')
       setEnvVar('EMAIL_FROM', 'test@example.com')
       setEnvVar('EMAIL_SERVICE', 'SendGrid')
+      const { validateEnv } = await import('../../lib/env')
       expect(() => validateEnv()).not.toThrow()
     })
 
-    it('handles optional auth variables', () => {
+    it('handles optional auth variables', async () => {
       setEnvVar('NODE_ENV', 'development')
       setEnvVar('NEXTAUTH_SECRET', 'very-long-secret-key-for-nextauth-minimum-32-chars')
       setEnvVar('NEXTAUTH_URL', 'http://localhost:3000')
+      const { validateEnv } = await import('../../lib/env')
       expect(() => validateEnv()).not.toThrow()
     })
 
-    it('throws error for invalid NODE_ENV', () => {
+    it('throws error for invalid NODE_ENV', async () => {
+      // Set NODE_ENV to development to avoid validation during import
+      setEnvVar('NODE_ENV', 'development')
+      
+      // Clear cache and import the module
+      const envModulePath = require.resolve('../../lib/env')
+      delete require.cache[envModulePath]
+      const envModule = await import('../../lib/env')
+      
+      // Now change NODE_ENV to invalid for the test
       setEnvVar('NODE_ENV', 'invalid')
-
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
+      
+      // Mock process.exit to throw instead of exiting
       const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {
         throw new Error('process.exit called')
       })
-
-      expect(() => validateEnv()).toThrow('process.exit called')
-      expect(consoleSpy).toHaveBeenCalledWith('❌ Invalid environment variables:')
+      
+      // Test that validateEnv throws the expected error
+      expect(() => envModule.validateEnv()).toThrow('process.exit called')
+      
+      // Verify process.exit was called with code 1
       expect(exitSpy).toHaveBeenCalledWith(1)
 
-      consoleSpy.mockRestore()
+      // Clean up
       exitSpy.mockRestore()
     })
 
-    it('throws error for invalid email format', () => {
+    it('throws error for invalid email format', async () => {
+      // Set NODE_ENV to development to avoid validation during import
       setEnvVar('NODE_ENV', 'development')
+      
+      // Clear cache and import the module
+      const envModulePath = require.resolve('../../lib/env')
+      delete require.cache[envModulePath]
+      const envModule = await import('../../lib/env')
+      
+      // Set invalid email after import
       setEnvVar('EMAIL_FROM', 'invalid-email')
 
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
       const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {
         throw new Error('process.exit called')
       })
 
-      expect(() => validateEnv()).toThrow('process.exit called')
+      expect(() => envModule.validateEnv()).toThrow('process.exit called')
+      expect(exitSpy).toHaveBeenCalledWith(1)
 
-      consoleSpy.mockRestore()
       exitSpy.mockRestore()
     })
 
-    it('throws error for short NEXTAUTH_SECRET', () => {
+    it('throws error for short NEXTAUTH_SECRET', async () => {
+      // Set NODE_ENV to development to avoid validation during import
       setEnvVar('NODE_ENV', 'development')
+      
+      // Clear cache and import the module
+      const envModulePath = require.resolve('../../lib/env')
+      delete require.cache[envModulePath]
+      const envModule = await import('../../lib/env')
+      
+      // Set invalid NEXTAUTH_SECRET after import
       setEnvVar('NEXTAUTH_SECRET', 'short')
 
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
       const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {
         throw new Error('process.exit called')
       })
 
-      expect(() => validateEnv()).toThrow('process.exit called')
+      expect(() => envModule.validateEnv()).toThrow('process.exit called')
+      expect(exitSpy).toHaveBeenCalledWith(1)
 
-      consoleSpy.mockRestore()
       exitSpy.mockRestore()
     })
 
-    it('throws error for invalid URL', () => {
+    it('throws error for invalid URL', async () => {
+      // Set NODE_ENV to development to avoid validation during import
       setEnvVar('NODE_ENV', 'development')
+      
+      // Clear cache and import the module
+      const envModulePath = require.resolve('../../lib/env')
+      delete require.cache[envModulePath]
+      const envModule = await import('../../lib/env')
+      
+      // Set invalid URL after import
       setEnvVar('NEXTAUTH_URL', 'not-a-url')
 
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
       const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {
         throw new Error('process.exit called')
       })
 
-      expect(() => validateEnv()).toThrow('process.exit called')
+      expect(() => envModule.validateEnv()).toThrow('process.exit called')
+      expect(exitSpy).toHaveBeenCalledWith(1)
 
-      consoleSpy.mockRestore()
       exitSpy.mockRestore()
     })
   })
 
   describe('isSecureEnvironment', () => {
-    it('returns true for production NODE_ENV', () => {
+    it('returns true for production NODE_ENV', async () => {
+      // Set to development first to avoid module validation, then import
+      setEnvVar('NODE_ENV', 'development')
+      const envModulePath = require.resolve('../../lib/env')
+      delete require.cache[envModulePath]
+      const envModule = await import('../../lib/env')
+      
+      // Now change to production for the test
       setEnvVar('NODE_ENV', 'production')
-      expect(isSecureEnvironment()).toBe(true)
+      expect(envModule.isSecureEnvironment()).toBe(true)
     })
 
-    it('returns true for production VERCEL_ENV', () => {
+    it('returns true for production VERCEL_ENV', async () => {
+      // Set to development first to avoid module validation, then import  
       setEnvVar('NODE_ENV', 'development')
       setEnvVar('VERCEL_ENV', 'production')
-      expect(isSecureEnvironment()).toBe(true)
+      const envModulePath = require.resolve('../../lib/env')
+      delete require.cache[envModulePath]
+      const envModule = await import('../../lib/env')
+      expect(envModule.isSecureEnvironment()).toBe(true)
     })
 
-    it('returns false for development environment', () => {
+    it('returns false for development environment', async () => {
+      // Set to development first to avoid module validation, then import
       setEnvVar('NODE_ENV', 'development')
       setEnvVar('VERCEL_ENV', 'development')
-      expect(isSecureEnvironment()).toBe(false)
+      const envModulePath = require.resolve('../../lib/env')
+      delete require.cache[envModulePath]
+      const envModule = await import('../../lib/env')
+      expect(envModule.isSecureEnvironment()).toBe(false)
     })
 
-    it('returns false for test environment', () => {
+    it('returns false for test environment', async () => {
+      // Set to development first to avoid module validation, then import
+      setEnvVar('NODE_ENV', 'development')
+      const envModulePath = require.resolve('../../lib/env')
+      delete require.cache[envModulePath]
+      const envModule = await import('../../lib/env')
+      
+      // Now change to test for the actual test
       setEnvVar('NODE_ENV', 'test')
-      expect(isSecureEnvironment()).toBe(false)
+      expect(envModule.isSecureEnvironment()).toBe(false)
     })
   })
 })

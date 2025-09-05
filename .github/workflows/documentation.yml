@@ -1,0 +1,242 @@
+# Documentation quality and validation workflow
+# Ensures documentation changes meet quality standards
+#
+name: Documentation Pipeline
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '**.md'
+      - 'docs/**'
+      - '.github/copilot-instructions.md'
+  push:
+    branches: [main]
+    paths:
+      - '**.md'
+      - 'docs/**'
+      - '.github/copilot-instructions.md'
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: write
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  # Documentation validation and formatting
+  validate-docs:
+    name: Documentation Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Validate markdown formatting
+        run: |
+          echo "🔍 Validating markdown files..."
+          
+          # Check for common markdown issues
+          find . -name "*.md" -not -path "./node_modules/*" -not -path "./.next/*" | while read -r file; do
+            echo "Checking $file"
+            
+            # Check for trailing whitespace
+            if grep -q "[[:space:]]$" "$file"; then
+              echo "❌ Found trailing whitespace in $file"
+              exit 1
+            fi
+            
+            # Check for missing newline at end of file
+            if [ -n "$(tail -c1 "$file")" ]; then
+              echo "❌ Missing newline at end of $file"
+              exit 1
+            fi
+            
+            # Check for basic markdown structure
+            if [[ "$file" == *"README"* ]] && ! grep -q "^#" "$file"; then
+              echo "❌ README files should have at least one heading: $file"
+              exit 1
+            fi
+            
+            echo "✅ $file looks good"
+          done
+
+      - name: Lint documentation
+        run: |
+          echo "📝 Running documentation linters..."
+          
+          # Use markdownlint if available
+          if command -v markdownlint &> /dev/null; then
+            markdownlint **/*.md --ignore node_modules
+          else
+            echo "⚠️ markdownlint not available, skipping advanced linting"
+          fi
+
+      - name: Validate internal links
+        run: |
+          echo "🔗 Checking internal links..."
+          
+          # Simple internal link validation
+          find . -name "*.md" -not -path "./node_modules/*" | xargs grep -h "\[.*\](" | grep -o "(\./[^)]*)" | sed 's/[()]//g' | while read -r link; do
+            if [ ! -f "$link" ] && [ ! -d "$link" ]; then
+              echo "❌ Broken internal link: $link"
+              exit 1
+            fi
+          done
+          
+          echo "✅ All internal links valid"
+
+      - name: Check documentation completeness
+        run: |
+          echo "📚 Checking documentation completeness..."
+          
+          # Ensure key documentation files exist
+          REQUIRED_FILES=(
+            "README.md"
+            "CONTRIBUTING.md" 
+            "DEVELOPMENT.md"
+            "TESTING.md"
+            "DEPLOYMENT.md"
+            "docs/getting-started.md"
+            "docs/architecture.md"
+            "docs/reference.md"
+            "docs/troubleshooting.md"
+          )
+          
+          for file in "${REQUIRED_FILES[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ Required documentation file missing: $file"
+              exit 1
+            fi
+            echo "✅ Found: $file"
+          done
+
+      - name: Auto-fix documentation format
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "🔧 Auto-fixing documentation format..."
+          
+          # Fix trailing whitespace and missing newlines
+          find . -name "*.md" -not -path "./node_modules/*" -not -path "./.next/*" | while read -r file; do
+            # Remove trailing whitespace
+            sed -i 's/[[:space:]]*$//' "$file"
+            
+            # Ensure file ends with newline
+            if [ -n "$(tail -c1 "$file")" ]; then
+              echo >> "$file"
+            fi
+          done
+
+      - name: Check for changes and commit
+        if: github.event_name == 'pull_request'
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add .
+            git commit -m "docs: auto-fix documentation formatting" -m "[skip ci]"
+            git push
+            echo "✅ Documentation auto-fixes applied"
+          else
+            echo "✅ No documentation fixes needed"
+          fi
+
+  # Build test to ensure docs don't break the build
+  build-test:
+    name: Build Test with Documentation
+    runs-on: ubuntu-latest
+    needs: [validate-docs]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Test build with documentation changes
+        run: |
+          echo "🏗️ Testing build with documentation changes..."
+          npm run build
+          echo "✅ Build successful with documentation changes"
+
+      - name: Verify static export
+        run: |
+          echo "📦 Verifying static export..."
+          if [ -d "out" ]; then
+            echo "✅ Static export directory created"
+            echo "📊 Export size: $(du -sh out | cut -f1)"
+          else
+            echo "❌ Static export failed"
+            exit 1
+          fi
+
+  # Documentation accessibility check
+  accessibility-check:
+    name: Documentation Accessibility
+    runs-on: ubuntu-latest
+    needs: [build-test]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Build site
+        run: npm run build
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Start application
+        run: |
+          npx serve out -l 3000 &
+          npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Run accessibility tests
+        run: |
+          echo "♿ Running accessibility tests..."
+          npx @axe-core/cli http://localhost:3000 --exit
+          echo "✅ Accessibility tests passed"
+
+      - name: Create documentation validation summary
+        run: |
+          echo "## 📚 Documentation Validation Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Markdown Format**: All files properly formatted" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Internal Links**: All links valid" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Build Test**: Documentation doesn't break build" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Accessibility**: Site remains accessible" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📝 **Files Changed**: Documentation only" >> $GITHUB_STEP_SUMMARY
+          echo "🎯 **Validation**: $(date -u)" >> $GITHUB_STEP_SUMMARY
