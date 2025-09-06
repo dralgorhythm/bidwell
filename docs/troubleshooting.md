@@ -193,7 +193,6 @@ Error: Module not found: Can't resolve '@/components/Header'
    ```
 
 2. **Restart TypeScript server in VS Code:**
-
    - `Cmd/Ctrl + Shift + P`
    - "TypeScript: Restart TS Server"
 
@@ -515,7 +514,6 @@ Build failed due to TypeScript errors
    ```
 
 2. **Verify environment variables:**
-
    - Check Vercel dashboard settings
    - Ensure all required variables are set
 
@@ -547,7 +545,6 @@ Pages deployment failed
    ```
 
 2. **Check GitHub Pages settings:**
-
    - Source: GitHub Actions
    - Custom domain configured correctly
 
@@ -825,13 +822,11 @@ Error: Module '"next"' has no exported member 'Metadata'
 ### Browser DevTools
 
 1. **Performance profiling:**
-
    - Open DevTools → Performance tab
    - Record page interaction
    - Analyze Core Web Vitals
 
 2. **Network analysis:**
-
    - Check resource loading order
    - Identify slow requests
    - Verify caching headers

@@ -1,0 +1,236 @@
+name: 🔍 PR Validation
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_run:
+    workflows: ["🔧 Auto-Fix & Validate"]
+    types: [completed]
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  detect-changes:
+    name: 🔍 Detect Changes
+    runs-on: ubuntu-latest
+    outputs:
+      code-changed: ${{ steps.filter.outputs.code }}
+      docs-changed: ${{ steps.filter.outputs.docs }}
+      tests-changed: ${{ steps.filter.outputs.tests }}
+      config-changed: ${{ steps.filter.outputs.config }}
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔍 Path Filter
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            code:
+              - 'app/**'
+              - 'lib/**'
+              - 'scripts/**'
+              - '*.ts'
+              - '*.tsx'
+              - '*.js'
+              - '*.jsx'
+            docs:
+              - 'docs/**'
+              - '*.md'
+              - 'README.md'
+            tests:
+              - '__tests__/**'
+              - '**/*.test.*'
+              - '**/*.spec.*'
+              - 'jest.config.js'
+              - 'jest.setup.js'
+            config:
+              - 'package.json'
+              - 'package-lock.json'
+              - 'tsconfig.json'
+              - 'next.config.js'
+              - 'tailwind.config.js'
+              - '.eslintrc.json'
+              - '.prettierrc.json'
+
+  code-validation:
+    name: 🧪 Code Quality
+    runs-on: ubuntu-latest
+    needs: detect-changes
+    if: needs.detect-changes.outputs.code-changed == 'true' || needs.detect-changes.outputs.config-changed == 'true'
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: 📦 Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🔍 TypeScript Check
+        id: typescript
+        run: |
+          echo "::group::TypeScript Compilation"
+          npm run type-check
+          echo "::endgroup::"
+
+      - name: 🧹 Lint Code
+        id: lint
+        run: |
+          echo "::group::ESLint Validation"
+          npm run lint:quiet
+          echo "::endgroup::"
+
+      - name: 🧪 Run Tests with Coverage
+        id: tests
+        run: |
+          echo "::group::Test Execution"
+          npm run test:coverage
+          echo "::endgroup::"
+
+      - name: 📊 Upload Coverage to Codecov
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          file: ./coverage/lcov.info
+          name: codecov-umbrella
+          fail_ci_if_error: false
+
+      - name: 📈 Jest Coverage Report
+        uses: ArtiomTr/jest-coverage-report-action@v2
+        if: always()
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          coverage-file: ./coverage/lcov.info
+          base-coverage-file: ./coverage/lcov.info
+          threshold: 70
+
+      - name: 🏗️ Build Verification
+        id: build
+        run: |
+          echo "::group::Production Build"
+          npm run build
+          echo "::endgroup::"
+
+      - name: 🔒 Security Audit
+        id: security
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: moderate
+
+      - name: 📊 Bundle Size Analysis
+        run: |
+          echo "::group::Bundle Analysis"
+          # Check if analyze script exists
+          if npm run | grep -q "analyze"; then
+            npm run analyze || echo "Bundle analysis completed with warnings"
+          else
+            echo "Bundle analysis script not configured"
+          fi
+          echo "::endgroup::"
+
+  docs-validation:
+    name: 📝 Documentation
+    runs-on: ubuntu-latest
+    needs: detect-changes
+    if: needs.detect-changes.outputs.docs-changed == 'true'
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+      
+      - name: 🔗 Check Markdown Links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'yes'
+          config-file: '.github/markdown-link-check.json'
+
+      - name: 📝 Lint Markdown
+        uses: github/super-linter@v5
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_MARKDOWN: true
+          VALIDATE_ONLY_NEW_FILES: true
+
+      - name: 🎯 Spell Check
+        uses: streetsidesoftware/cspell-action@v6
+        with:
+          files: "docs/**/*.md *.md"
+          config: ".github/cspell.json"
+
+  test-validation:
+    name: 🧪 Test Suite
+    runs-on: ubuntu-latest
+    needs: detect-changes
+    if: needs.detect-changes.outputs.tests-changed == 'true'
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🧪 Run All Tests
+        run: npm run test:coverage
+
+      - name: 🔍 Test Quality Analysis
+        run: |
+          echo "::group::Test Analysis"
+          # Check test coverage
+          npm run test:coverage -- --reporter=json > test-results.json || true
+          echo "Test analysis completed"
+          echo "::endgroup::"
+
+  validation-summary:
+    name: 📋 Validation Summary
+    runs-on: ubuntu-latest
+    needs: [detect-changes, code-validation, docs-validation, test-validation]
+    if: always()
+    steps:
+      - name: 💬 Create Validation Summary
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ vars.VALIDATION_COMMENT_ID }}
+          edit-mode: replace
+          body: |
+            ## 🔍 Code Quality Report
+
+            ### 📊 **Validation Results**
+            
+            | Check | Status | Details |
+            |--------|---------|---------|
+            | 🔍 TypeScript | ${{ needs.code-validation.result == 'success' && '✅ Passed' || '❌ Failed' }} | Type compilation check |
+            | 🧹 ESLint | ${{ needs.code-validation.result == 'success' && '✅ Passed' || '❌ Failed' }} | Code linting validation |
+            | 🧪 Tests | ${{ needs.code-validation.result == 'success' && '✅ Passed' || '❌ Failed' }} | Test suite with coverage |
+            | 🏗️ Build | ${{ needs.code-validation.result == 'success' && '✅ Passed' || '❌ Failed' }} | Production build verification |
+            | 🔒 Security | ${{ needs.code-validation.result == 'success' && '✅ Passed' || '❌ Failed' }} | Dependency security audit |
+            | 📝 Docs | ${{ needs.docs-validation.result == 'success' && '✅ Passed' || needs.docs-validation.result == 'skipped' && '⏭️ Skipped' || '❌ Failed' }} | Documentation validation |
+
+            ### 🎯 **Changed Areas**
+            - **Code**: ${{ needs.detect-changes.outputs.code-changed == 'true' && '✅ Validated' || '⏭️ No changes' }}
+            - **Documentation**: ${{ needs.detect-changes.outputs.docs-changed == 'true' && '✅ Validated' || '⏭️ No changes' }}
+            - **Tests**: ${{ needs.detect-changes.outputs.tests-changed == 'true' && '✅ Validated' || '⏭️ No changes' }}
+            - **Configuration**: ${{ needs.detect-changes.outputs.config-changed == 'true' && '✅ Validated' || '⏭️ No changes' }}
+
+            ### 📈 **Next Steps**
+            ${{ needs.code-validation.result == 'success' && needs.docs-validation.result != 'failure' && '🚀 **Ready for review!** All validations passed.' || '🔧 **Action required:** Please address the failed checks above.' }}
+
+            ---
+            *Validation completed at ${{ github.event.head_commit.timestamp }}*

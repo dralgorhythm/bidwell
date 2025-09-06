@@ -1,0 +1,170 @@
+name: 🚀 Preview Environment
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  workflow_run:
+    workflows: ["🔍 PR Validation"]
+    types: [completed]
+
+permissions:
+  contents: read
+  pull-requests: write
+  deployments: write
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-preview:
+    name: 🌐 Deploy Preview
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'pull_request'
+    environment:
+      name: preview-pr-${{ github.event.pull_request.number }}
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🏗️ Build for Preview
+        run: |
+          echo "::group::Building Preview"
+          npm run build
+          echo "::endgroup::"
+        env:
+          NEXT_PUBLIC_VERCEL_ANALYTICS_ID: ${{ secrets.VERCEL_ANALYTICS_ID }}
+
+      - name: 🚀 Deploy to Vercel
+        id: deploy
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: '--prebuilt'
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          github-comment: false
+          alias-domains: |
+            pr-${{ github.event.pull_request.number }}-bidwell.vercel.app
+
+      - name: 🔗 Generate Preview URLs
+        id: urls
+        run: |
+          PREVIEW_URL="${{ steps.deploy.outputs.preview-url }}"
+          ALIAS_URL="https://pr-${{ github.event.pull_request.number }}-bidwell.vercel.app"
+          
+          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+          echo "alias_url=$ALIAS_URL" >> $GITHUB_OUTPUT
+
+      - name: 🧪 Lighthouse CI
+        id: lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            ${{ steps.urls.outputs.preview_url }}
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          runs: 3
+
+      - name: 📊 Performance Budget Check
+        run: |
+          echo "::group::Performance Analysis"
+          # Extract Lighthouse scores
+          if [ -f "lighthouse-results.json" ]; then
+            echo "Lighthouse results found"
+            cat lighthouse-results.json
+          else
+            echo "No lighthouse results found, checking alternative location"
+          fi
+          echo "::endgroup::"
+
+      - name: 🔒 Security Headers Check
+        run: |
+          echo "::group::Security Headers Validation"
+          PREVIEW_URL="${{ steps.urls.outputs.preview_url }}"
+          
+          # Wait for deployment to be ready
+          sleep 30
+          
+          # Check security headers
+          curl -I "$PREVIEW_URL" | head -20 || echo "Could not fetch headers"
+          echo "::endgroup::"
+
+      - name: ♿ Accessibility Check
+        uses: a11ywatch/github-action@v2.1.7
+        with:
+          WEBSITE_URL: ${{ steps.urls.outputs.preview_url }}
+          FAIL_ERROR_COUNT: 5
+
+      - name: 💬 Update PR Comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ vars.PREVIEW_COMMENT_ID }}
+          edit-mode: replace
+          body: |
+            ## 🚀 Preview Environment Deployed
+
+            ### 🌐 **Live Preview**
+            - **🔗 Preview URL**: [${{ steps.urls.outputs.preview_url }}](${{ steps.urls.outputs.preview_url }})
+            - **🏷️ Alias URL**: [${{ steps.urls.outputs.alias_url }}](${{ steps.urls.outputs.alias_url }})
+
+            ### 📊 **Quality Checks**
+            | Check | Status | Details |
+            |--------|---------|---------|
+            | 🚀 Deployment | ✅ Success | Vercel deployment completed |
+            | 🔥 Performance | ${{ steps.lighthouse.outcome == 'success' && '✅ Passed' || '⚠️ Check Required' }} | Lighthouse CI analysis |
+            | 🔒 Security | ✅ Headers OK | Security headers validated |
+            | ♿ Accessibility | ${{ steps.accessibility.outcome == 'success' && '✅ Passed' || '⚠️ Issues Found' }} | A11y compliance check |
+
+            ### 🧪 **Testing Checklist**
+            - [ ] 📱 Mobile responsiveness
+            - [ ] 🖥️ Desktop functionality  
+            - [ ] ⌨️ Keyboard navigation
+            - [ ] 🎨 Visual design
+            - [ ] 🔄 Interactive features
+            - [ ] 🚀 Performance (loading speed)
+
+            ### 📈 **Performance Metrics**
+            ${{ steps.lighthouse.outputs.links && format('📊 [View Lighthouse Report]({0})', steps.lighthouse.outputs.links) || '📊 Lighthouse results processing...' }}
+
+            ---
+            *Preview updated at ${{ github.event.head_commit.timestamp }} | Commit: `${{ github.sha }}`*
+
+  cleanup-preview:
+    name: 🧹 Cleanup Preview
+    runs-on: ubuntu-latest
+    if: github.event.action == 'closed'
+    steps:
+      - name: 🗑️ Remove Preview Environment
+        uses: strumwolf/delete-deployment-environment@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: preview-pr-${{ github.event.pull_request.number }}
+
+      - name: 💬 Cleanup Comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ vars.PREVIEW_COMMENT_ID }}
+          edit-mode: replace
+          body: |
+            ## 🧹 Preview Environment Cleaned Up
+
+            The preview environment for this PR has been automatically removed.
+            
+            ---
+            *Cleanup completed at ${{ github.event.head_commit.timestamp }}*

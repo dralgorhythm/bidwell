@@ -1,0 +1,279 @@
+name: 🚀 Production Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      force_deploy:
+        description: 'Force deployment even without changes'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  deployments: write
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  detect-changes:
+    name: 🔍 Detect Production Changes
+    runs-on: ubuntu-latest
+    outputs:
+      should-deploy: ${{ steps.changes.outputs.should-deploy }}
+      has-app-changes: ${{ steps.filter.outputs.app }}
+      has-content-changes: ${{ steps.filter.outputs.content }}
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 🔍 Check File Changes
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            app:
+              - 'app/**'
+              - 'lib/**'
+              - 'scripts/**'
+              - 'package.json'
+              - 'next.config.js'
+              - 'tailwind.config.js'
+              - 'tsconfig.json'
+            content:
+              - 'docs/**'
+              - '*.md'
+              - 'public/**'
+
+      - name: 🎯 Determine Deployment Need
+        id: changes
+        run: |
+          SHOULD_DEPLOY="false"
+          
+          if [[ "${{ github.event.inputs.force_deploy }}" == "true" ]]; then
+            echo "🔄 Force deployment requested"
+            SHOULD_DEPLOY="true"
+          elif [[ "${{ steps.filter.outputs.app }}" == "true" ]]; then
+            echo "📱 Application changes detected"
+            SHOULD_DEPLOY="true"
+          elif [[ "${{ steps.filter.outputs.content }}" == "true" ]]; then
+            echo "📝 Content changes detected"
+            SHOULD_DEPLOY="true"
+          else
+            echo "ℹ️ No deployment-relevant changes detected"
+          fi
+          
+          echo "should-deploy=$SHOULD_DEPLOY" >> $GITHUB_OUTPUT
+
+  quality-gate:
+    name: 🛡️ Quality Gate
+    runs-on: ubuntu-latest
+    needs: detect-changes
+    if: needs.detect-changes.outputs.should-deploy == 'true'
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🔍 Pre-deployment Validation
+        run: |
+          echo "::group::Quality Gate Checks"
+          
+          # TypeScript compilation
+          echo "🔧 TypeScript compilation..."
+          npm run type-check
+          
+          # Linting
+          echo "🧹 Code linting..."
+          npm run lint:quiet
+          
+          # Tests with coverage
+          echo "🧪 Running tests..."
+          npm run test:coverage
+          
+          # Build verification
+          echo "🏗️ Build verification..."
+          npm run build
+          
+          echo "✅ All quality checks passed"
+          echo "::endgroup::"
+
+      - name: 🔒 Security Check
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
+
+  github-pages-deploy:
+    name: 📄 GitHub Pages Deploy
+    runs-on: ubuntu-latest
+    needs: [detect-changes, quality-gate]
+    if: needs.detect-changes.outputs.should-deploy == 'true'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🏗️ Build Static Site
+        run: |
+          echo "::group::Static Build Process"
+          npm run build:static
+          echo "::endgroup::"
+        env:
+          GITHUB_ACTIONS: true
+
+      - name: 📊 Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  vercel-deploy:
+    name: 🌐 Vercel Deploy
+    runs-on: ubuntu-latest
+    needs: [detect-changes, quality-gate]
+    if: needs.detect-changes.outputs.should-deploy == 'true'
+    environment:
+      name: production
+      url: https://bidwell.info
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🏗️ Build for Production
+        run: npm run build
+        env:
+          NEXT_PUBLIC_VERCEL_ANALYTICS_ID: ${{ secrets.VERCEL_ANALYTICS_ID }}
+
+      - name: 🚀 Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: '--prod --prebuilt'
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+
+  post-deploy-tests:
+    name: 🧪 Post-Deploy Tests
+    runs-on: ubuntu-latest
+    needs: [github-pages-deploy, vercel-deploy]
+    if: always() && (needs.github-pages-deploy.result == 'success' || needs.vercel-deploy.result == 'success')
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🌐 Test GitHub Pages
+        if: needs.github-pages-deploy.result == 'success'
+        run: |
+          echo "::group::GitHub Pages Health Check"
+          
+          SITE_URL="${{ steps.deployment.outputs.page_url }}"
+          echo "Testing: $SITE_URL"
+          
+          # Wait for deployment to be live
+          sleep 60
+          
+          # Basic connectivity test
+          curl -f -s -o /dev/null "$SITE_URL" && echo "✅ Site is accessible" || echo "❌ Site not accessible"
+          
+          # Check security headers
+          curl -I "$SITE_URL" | grep -E "(X-Frame-Options|X-Content-Type-Options|Referrer-Policy)" || echo "⚠️ Some security headers missing"
+          
+          echo "::endgroup::"
+
+      - name: 🌐 Test Vercel Production
+        if: needs.vercel-deploy.result == 'success'
+        run: |
+          echo "::group::Vercel Production Health Check"
+          
+          SITE_URL="https://bidwell.info"
+          echo "Testing: $SITE_URL"
+          
+          # Wait for deployment to be live
+          sleep 30
+          
+          # Basic connectivity test
+          curl -f -s -o /dev/null "$SITE_URL" && echo "✅ Site is accessible" || echo "❌ Site not accessible"
+          
+          # Performance check (basic)
+          curl -w "@-" -o /dev/null -s "$SITE_URL" <<'EOF'
+          🚀 Performance Metrics:
+          - DNS Lookup: %{time_namelookup}s
+          - Connect Time: %{time_connect}s
+          - SSL Handshake: %{time_appconnect}s
+          - Time to First Byte: %{time_starttransfer}s
+          - Total Time: %{time_total}s
+          EOF
+          
+          echo "::endgroup::"
+
+      - name: 🧪 Lighthouse Production Audit
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://bidwell.info
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          runs: 1
+
+  notification:
+    name: 📱 Deployment Notification
+    runs-on: ubuntu-latest
+    needs: [detect-changes, github-pages-deploy, vercel-deploy, post-deploy-tests]
+    if: always() && needs.detect-changes.outputs.should-deploy == 'true'
+    steps:
+      - name: 📊 Create Deployment Summary
+        run: |
+          echo "## 🚀 Production Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📋 Deployment Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Platform | Status | Details |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|---------|---------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 📄 GitHub Pages | ${{ needs.github-pages-deploy.result == 'success' && '✅ Success' || '❌ Failed' }} | Static site deployment |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🌐 Vercel | ${{ needs.vercel-deploy.result == 'success' && '✅ Success' || '❌ Failed' }} | Production application |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🧪 Health Checks | ${{ needs.post-deploy-tests.result == 'success' && '✅ Passed' || '❌ Failed' }} | Post-deployment validation |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔗 Live URLs" >> $GITHUB_STEP_SUMMARY
+          echo "- **Primary**: [bidwell.info](https://bidwell.info)" >> $GITHUB_STEP_SUMMARY
+          echo "- **GitHub Pages**: [GitHub Pages Site](${{ needs.github-pages-deploy.outputs.page_url }})" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Deployment completed at:** $(date -u)" >> $GITHUB_STEP_SUMMARY

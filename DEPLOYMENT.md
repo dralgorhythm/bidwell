@@ -9,12 +9,10 @@ This document covers deployment strategies and platform-specific configurations 
 The fastest way to deploy this Next.js application:
 
 1. **Connect Repository**
-
    - Import your Git repository to [Vercel](https://vercel.com)
    - Vercel auto-detects Next.js configuration
 
 2. **Configure Domain**
-
    - Set custom domain to point to [bidwell.info](https://bidwell.info)
    - SSL certificates are automatically provisioned
 
@@ -214,12 +212,10 @@ docker-compose up -d
 ### Cloudflare Integration
 
 1. **DNS Configuration**
-
    - Point domain to hosting provider
    - Enable Cloudflare proxy
 
 2. **Performance Settings**
-
    - Enable Brotli compression
    - Minification for CSS/JS/HTML
    - Browser cache TTL: 4 hours
@@ -372,12 +368,10 @@ Implemented in `middleware.ts` for enhanced security.
    ```
 
 2. **Environment Variables**
-
    - Ensure all required variables are set
    - Check variable naming (NEXT*PUBLIC* prefix for client-side)
 
 3. **Memory Issues**
-
    - Increase Node.js memory limit
    - Optimize bundle size
 

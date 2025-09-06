@@ -78,7 +78,6 @@ __tests__/                   # Comprehensive test suite
 ### Next.js 15 Advanced Patterns
 
 1. **Performance & Core Web Vitals**
-
    - Use `OptimizedImage` component from `app/components/optimized-image.tsx`
    - Implement font optimization with `lib/font-optimization.ts` utilities
    - Leverage performance monitoring with `lib/performance.ts`
@@ -86,7 +85,6 @@ __tests__/                   # Comprehensive test suite
    - Consider layout shift prevention in all UI changes
 
 2. **Security Implementation**
-
    - **All API routes MUST**: Include rate limiting using `lib/validation.ts`
    - **All user inputs MUST**: Be validated with Zod schemas from `lib/validation.ts`
    - **All API responses MUST**: Include security headers from `lib/security.ts`
@@ -113,7 +111,6 @@ __tests__/                   # Comprehensive test suite
    ```
 
 3. **SEO & Metadata Excellence**
-
    - **Every page MUST** include comprehensive metadata using `generateMetadata`
    - Include OpenGraph images using `/og` dynamic route
    - Implement structured data with `StructuredData` component
@@ -257,6 +254,7 @@ When asked to:
 ### 📝 Communication & Response Style
 
 **DO:**
+
 - Focus on immediate action and implementation
 - Provide direct solutions and code changes
 - Use PRs for collaboration and iteration
@@ -264,6 +262,7 @@ When asked to:
 - Move quickly from analysis to implementation
 
 **AVOID:**
+
 - Lengthy summaries of work completed
 - Extensive documentation of changes made
 - Over-explaining obvious implementations
@@ -291,11 +290,13 @@ This codebase prioritizes:
 - **Prefer multiple small PRs** over large monolithic changes
 
 **AVOID:**
+
 - Direct commits to main branch (except for urgent hotfixes)
 - Large work summaries or extensive documentation of completed work
 - Waiting for "perfect" solutions before submitting PRs
 
 **DO:**
+
 - Create PRs early and often for faster feedback cycles
 - Use the optimized Development Pipeline for rapid validation
 - Leverage automated quality checks and preview deployments

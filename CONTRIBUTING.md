@@ -69,7 +69,6 @@ Before contributing, ensure you have:
 Before making changes:
 
 1. **Read the documentation:**
-
    - [Getting Started Guide](./docs/getting-started.md) - Complete onboarding
    - [Architecture Guide](./docs/architecture.md) - System design and decisions
    - [API Reference](./docs/reference.md) - Technical specifications
@@ -534,14 +533,12 @@ Brief description of changes and motivation.
 ### Review Process
 
 1. **Automated checks** must pass:
-
    - TypeScript compilation
    - Linting and formatting
    - Test coverage (70%+)
    - Build verification
 
 2. **Manual review** focuses on:
-
    - Code quality and patterns
    - Security considerations
    - Performance impact

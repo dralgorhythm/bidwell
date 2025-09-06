@@ -43,6 +43,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 - **[Development Guide](./DEVELOPMENT.md)** - Complete development workflow, build system, and CI/CD
 - **[Architecture Guide](./docs/architecture.md)** - System design, decisions, and technical philosophy
 - **[API Reference](./docs/reference.md)** - Technical reference for components, utilities, and patterns
+- **[Workflow Redesign Plan](./docs/workflow-redesign-plan.md)** - Comprehensive auto-remediation CI/CD implementation plan
 
 ### 🔧 For Operations
 
