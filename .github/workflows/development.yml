@@ -49,7 +49,7 @@ jobs:
           
           # Quick build test
           echo "🏗️ Build verification..."
-          npm run build:static
+          npm run build
           
           echo "✅ All quick checks passed!"
 

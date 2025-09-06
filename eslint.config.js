@@ -1,4 +1,5 @@
 const { FlatCompat } = require("@eslint/eslintrc");
+const jestPlugin = require("eslint-plugin-jest");
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
@@ -6,6 +7,10 @@ const compat = new FlatCompat({
 
 module.exports = [
   ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
+  {
+    files: ["**/__tests__/**/*", "**/*.test.*", "**/__tests__/**/utils/**/*"],
+    ...jestPlugin.configs['flat/recommended'],
+  },
   {
     rules: {
       // Enforce consistent code style
