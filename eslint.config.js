@@ -1,4 +1,6 @@
 const js = require('@eslint/js')
+const tsPlugin = require('@typescript-eslint/eslint-plugin')
+const tsParser = require('@typescript-eslint/parser')
 
 module.exports = [
   js.configs.recommended,
@@ -64,6 +66,64 @@ module.exports = [
       'no-dupe-keys': 'error',
     },
   },
+  // TypeScript configuration
+  {
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: { jsx: true },
+        project: './tsconfig.json',
+      },
+      globals: {
+        // React globals
+        React: 'readonly',
+        JSX: 'readonly',
+
+        // Browser globals
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        performance: 'readonly',
+        URLSearchParams: 'readonly',
+        setTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearTimeout: 'readonly',
+        clearInterval: 'readonly',
+        fetch: 'readonly',
+
+        // Jest/Testing globals
+        jest: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+    },
+    rules: {
+      // TypeScript-specific rules
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'warn',
+      
+      // Core quality rules
+      'prefer-const': 'error',
+      'no-var': 'error',
+      eqeqeq: 'error',
+      'no-console': 'warn',
+    },
+  },
   {
     files: ['scripts/**/*.js', '*.config.js'],
     languageOptions: {
@@ -91,10 +151,6 @@ module.exports = [
       'dist/**',
       'build/**',
       '.git/**',
-      // Skip TypeScript files for now since we don't have parser configured
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.d.ts',
     ],
   },
 ]
