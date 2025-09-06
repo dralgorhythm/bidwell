@@ -137,7 +137,7 @@ Object.defineProperty(window, 'matchMedia', {
 })
 
 // Mock IntersectionObserver for lazy loading tests
-global.IntersectionObserver = jest.fn().mockImplementation(callback => ({
+global.IntersectionObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
   disconnect: jest.fn(),
