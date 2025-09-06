@@ -81,7 +81,7 @@ jobs:
         run: npm ci --prefer-offline --no-audit
 
       - name: Build preview
-        run: npm run build:static
+        run: npm run build
         env:
           NODE_ENV: production
           NEXT_TELEMETRY_DISABLED: 1
