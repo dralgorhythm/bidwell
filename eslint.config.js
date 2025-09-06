@@ -8,7 +8,7 @@ module.exports = [
       ecmaVersion: 'latest',
       sourceType: 'module',
       parserOptions: {
-        ecmaFeatures: { jsx: true }
+        ecmaFeatures: { jsx: true },
       },
       globals: {
         // Node.js globals
@@ -21,7 +21,7 @@ module.exports = [
         require: 'readonly',
         module: 'readonly',
         exports: 'readonly',
-        
+
         // Browser globals
         window: 'readonly',
         document: 'readonly',
@@ -34,11 +34,11 @@ module.exports = [
         clearInterval: 'readonly',
         fetch: 'readonly',
         Node: 'readonly',
-        
+
         // React globals
         React: 'readonly',
         JSX: 'readonly',
-        
+
         // Jest/Testing globals
         jest: 'readonly',
         describe: 'readonly',
@@ -48,21 +48,21 @@ module.exports = [
         beforeEach: 'readonly',
         afterEach: 'readonly',
         beforeAll: 'readonly',
-        afterAll: 'readonly'
-      }
+        afterAll: 'readonly',
+      },
     },
     rules: {
       // Core quality rules
       'prefer-const': 'error',
       'no-var': 'error',
-      'eqeqeq': 'error',
-      
+      eqeqeq: 'error',
+
       // Relaxed rules for development
       'no-console': 'warn',
       'no-unused-vars': 'warn',
       'no-undef': 'error',
-      'no-dupe-keys': 'error'
-    }
+      'no-dupe-keys': 'error',
+    },
   },
   {
     files: ['scripts/**/*.js', '*.config.js'],
@@ -75,17 +75,17 @@ module.exports = [
         __dirname: 'readonly',
         __filename: 'readonly',
         process: 'readonly',
-        console: 'readonly'
-      }
+        console: 'readonly',
+      },
     },
     rules: {
-      'no-console': 'off' // Allow console in scripts
-    }
+      'no-console': 'off', // Allow console in scripts
+    },
   },
   {
     ignores: [
       'node_modules/**',
-      '.next/**', 
+      '.next/**',
       'out/**',
       'coverage/**',
       'dist/**',
@@ -94,7 +94,7 @@ module.exports = [
       // Skip TypeScript files for now since we don't have parser configured
       '**/*.ts',
       '**/*.tsx',
-      '**/*.d.ts'
-    ]
-  }
+      '**/*.d.ts',
+    ],
+  },
 ]
