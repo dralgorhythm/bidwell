@@ -23,13 +23,12 @@ jest.mock('next/image', () => {
       ...imgProps
     } = props
 
-     
     return (
       <>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           {...imgProps}
-          alt="test"
+          alt={props.alt}
           style={style}
           data-priority={priority}
           data-loading={loading}
