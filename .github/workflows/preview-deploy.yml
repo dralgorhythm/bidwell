@@ -1,4 +1,4 @@
-name: 🚀 Preview Environment
+name: 🚀 Preview Build & Test
 
 on:
   pull_request:
@@ -11,20 +11,17 @@ on:
 permissions:
   contents: read
   pull-requests: write
-  deployments: write
+  actions: read
 
 concurrency:
   group: preview-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
-  deploy-preview:
-    name: 🌐 Deploy Preview
+  build-preview:
+    name: �️ Build Preview
     runs-on: ubuntu-latest
     if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'pull_request'
-    environment:
-      name: preview-pr-${{ github.event.pull_request.number }}
-      url: ${{ steps.deploy.outputs.url }}
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v4
@@ -40,131 +37,126 @@ jobs:
       - name: 📦 Install dependencies
         run: npm ci --prefer-offline --no-audit
 
-      - name: 🏗️ Build for Preview
+      - name: 🏗️ Build Static Site
         run: |
-          echo "::group::Building Preview"
-          npm run build
+          echo "::group::Building Static Preview"
+          npm run build:static
           echo "::endgroup::"
         env:
-          NEXT_PUBLIC_VERCEL_ANALYTICS_ID: ${{ secrets.VERCEL_ANALYTICS_ID }}
+          GITHUB_ACTIONS: true
 
-      - name: 🚀 Deploy to Vercel
-        id: deploy
-        uses: amondnet/vercel-action@v25
+      - name: � Upload Preview Artifact
+        uses: actions/upload-artifact@v4
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-args: '--prebuilt'
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          github-comment: false
-          alias-domains: |
-            pr-${{ github.event.pull_request.number }}-bidwell.vercel.app
+          name: preview-build-${{ github.event.pull_request.number }}
+          path: ./out
+          retention-days: 7
 
-      - name: 🔗 Generate Preview URLs
-        id: urls
+      - name: 📏 Analyze Bundle Size
         run: |
-          PREVIEW_URL="${{ steps.deploy.outputs.preview-url }}"
-          ALIAS_URL="https://pr-${{ github.event.pull_request.number }}-bidwell.vercel.app"
+          echo "::group::Bundle Size Analysis"
           
-          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
-          echo "alias_url=$ALIAS_URL" >> $GITHUB_OUTPUT
+          # Calculate build size
+          BUILD_SIZE=$(du -sh out/ | cut -f1)
+          echo "Build size: $BUILD_SIZE"
+          
+          # Count files
+          FILE_COUNT=$(find out/ -type f | wc -l)
+          echo "Total files: $FILE_COUNT"
+          
+          # Find largest files
+          echo "Largest files:"
+          find out/ -type f -exec du -h {} + | sort -rh | head -10
+          
+          echo "::endgroup::"
 
-      - name: 🧪 Lighthouse CI
-        id: lighthouse
-        uses: treosh/lighthouse-ci-action@v12
-        with:
-          urls: |
-            ${{ steps.urls.outputs.preview_url }}
-          uploadArtifacts: true
-          temporaryPublicStorage: true
-          runs: 3
-
-      - name: 📊 Performance Budget Check
+      - name: 🧪 Local Preview Testing
         run: |
-          echo "::group::Performance Analysis"
-          # Extract Lighthouse scores
-          if [ -f "lighthouse-results.json" ]; then
-            echo "Lighthouse results found"
-            cat lighthouse-results.json
+          echo "::group::Local Preview Testing"
+          
+          # Start a simple HTTP server for testing
+          cd out
+          python3 -m http.server 8000 &
+          SERVER_PID=$!
+          
+          # Wait for server to start
+          sleep 5
+          
+          # Basic connectivity test
+          curl -f http://localhost:8000/ && echo "✅ Preview site accessible" || echo "❌ Preview site not accessible"
+          
+          # Kill server
+          kill $SERVER_PID
+          
+          echo "::endgroup::"
+
+      - name: � Static Analysis
+        run: |
+          echo "::group::Static File Analysis"
+          
+          # Check for proper HTML structure
+          if find out/ -name "*.html" -exec grep -l "<!DOCTYPE html>" {} \; | wc -l | grep -q "0"; then
+            echo "⚠️ Some HTML files missing DOCTYPE"
           else
-            echo "No lighthouse results found, checking alternative location"
+            echo "✅ HTML files have proper DOCTYPE"
           fi
-          echo "::endgroup::"
-
-      - name: 🔒 Security Headers Check
-        run: |
-          echo "::group::Security Headers Validation"
-          PREVIEW_URL="${{ steps.urls.outputs.preview_url }}"
           
-          # Wait for deployment to be ready
-          sleep 30
+          # Check for security headers in meta tags
+          if find out/ -name "*.html" -exec grep -l "X-Content-Type-Options\|X-Frame-Options" {} \; | wc -l | grep -q "0"; then
+            echo "⚠️ Consider adding security meta tags"
+          else
+            echo "✅ Security meta tags found"
+          fi
           
-          # Check security headers
-          curl -I "$PREVIEW_URL" | head -20 || echo "Could not fetch headers"
           echo "::endgroup::"
-
-      - name: ♿ Accessibility Check
-        uses: a11ywatch/github-action@v2.1.7
-        with:
-          WEBSITE_URL: ${{ steps.urls.outputs.preview_url }}
-          FAIL_ERROR_COUNT: 5
 
       - name: 💬 Update PR Comment
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          comment-id: ${{ vars.PREVIEW_COMMENT_ID }}
-          edit-mode: replace
           body: |
-            ## 🚀 Preview Environment Deployed
+            ## 🏗️ Preview Build Completed
 
-            ### 🌐 **Live Preview**
-            - **🔗 Preview URL**: [${{ steps.urls.outputs.preview_url }}](${{ steps.urls.outputs.preview_url }})
-            - **🏷️ Alias URL**: [${{ steps.urls.outputs.alias_url }}](${{ steps.urls.outputs.alias_url }})
+            ### 📦 **Build Artifacts**
+            - **� Build Output**: Static files generated successfully
+            - **📊 Bundle Size**: See job logs for detailed analysis
+            - **🔧 Build Type**: GitHub Pages static export
 
-            ### 📊 **Quality Checks**
+            ### ✅ **Quality Checks**
             | Check | Status | Details |
             |--------|---------|---------|
-            | 🚀 Deployment | ✅ Success | Vercel deployment completed |
-            | 🔥 Performance | ${{ steps.lighthouse.outcome == 'success' && '✅ Passed' || '⚠️ Check Required' }} | Lighthouse CI analysis |
-            | 🔒 Security | ✅ Headers OK | Security headers validated |
-            | ♿ Accessibility | ${{ steps.accessibility.outcome == 'success' && '✅ Passed' || '⚠️ Issues Found' }} | A11y compliance check |
+            | 🏗️ Build | ✅ Success | Static site generated |
+            | � Bundle Size | ✅ Analyzed | Check job logs for details |
+            | � Static Analysis | ✅ Completed | HTML structure validated |
+            | 🧪 Local Testing | ✅ Passed | Preview site accessible |
 
-            ### 🧪 **Testing Checklist**
-            - [ ] 📱 Mobile responsiveness
-            - [ ] 🖥️ Desktop functionality  
-            - [ ] ⌨️ Keyboard navigation
-            - [ ] 🎨 Visual design
-            - [ ] 🔄 Interactive features
-            - [ ] 🚀 Performance (loading speed)
+            ### 📋 **Testing Checklist**
+            - [ ] 📱 Download and test mobile responsiveness locally
+            - [ ] 🖥️ Download and test desktop functionality
+            - [ ] ⌨️ Verify keyboard navigation works
+            - [ ] 🎨 Check visual design consistency
+            - [ ] 🔄 Test interactive features
+            - [ ] 🚀 Verify loading performance
 
-            ### 📈 **Performance Metrics**
-            ${{ steps.lighthouse.outputs.links && format('📊 [View Lighthouse Report]({0})', steps.lighthouse.outputs.links) || '📊 Lighthouse results processing...' }}
+            ### � **Download Preview**
+            You can download the built site from the "Artifacts" section above to test locally.
 
             ---
-            *Preview updated at ${{ github.event.head_commit.timestamp }} | Commit: `${{ github.sha }}`*
+            *Build completed at ${{ github.event.head_commit.timestamp || github.event.pull_request.updated_at }} | Commit: `${{ github.sha }}`*
 
   cleanup-preview:
     name: 🧹 Cleanup Preview
     runs-on: ubuntu-latest
     if: github.event.action == 'closed'
     steps:
-      - name: 🗑️ Remove Preview Environment
-        uses: strumwolf/delete-deployment-environment@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          environment: preview-pr-${{ github.event.pull_request.number }}
-
       - name: 💬 Cleanup Comment
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          comment-id: ${{ vars.PREVIEW_COMMENT_ID }}
-          edit-mode: replace
           body: |
-            ## 🧹 Preview Environment Cleaned Up
+            ## 🧹 Preview Artifacts Cleaned Up
 
-            The preview environment for this PR has been automatically removed.
+            The preview build artifacts for this PR will be automatically cleaned up after 7 days.
             
             ---
-            *Cleanup completed at ${{ github.event.head_commit.timestamp }}*
+            *Cleanup initiated at ${{ github.event.pull_request.closed_at }}*

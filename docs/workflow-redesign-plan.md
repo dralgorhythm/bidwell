@@ -76,7 +76,9 @@ Instead of building custom solutions, we'll use proven, well-maintained actions:
 #### **Deployment & Notifications**
 
 - **[peaceiris/actions-gh-pages](https://github.com/peaceiris/actions-gh-pages)** - GitHub Pages deployment
-- **[amondnet/vercel-action](https://github.com/amondnet/vercel-action)** - Vercel preview deployments
+- **[stefanzweifel/git-auto-commit-action](https://github.com/stefanzweifel/git-auto-commit-action)** - Auto-commit fixes
+- **[actions/upload-artifact](https://github.com/actions/upload-artifact)** - Build artifact storage
+- **[actions/upload-pages-artifact](https://github.com/actions/upload-pages-artifact)** - GitHub Pages deployment
 - **[peter-evans/create-pull-request](https://github.com/peter-evans/create-pull-request)** - Auto-create improvement PRs
 - **[peter-evans/find-comment](https://github.com/peter-evans/find-comment)** - Update existing PR comments
 
@@ -368,7 +370,7 @@ jobs:
 [View detailed report →](link-to-artifacts)
 ```
 
-### **3. Preview Deployment Workflow (`preview-deploy.yml`) - Vercel Integration**
+### **3. Preview Build Workflow (`preview-deploy.yml`) - GitHub Pages Testing**
 
 **Purpose**: Deploy ephemeral preview environments with performance analysis  
 **Trigger**: PR with code changes to `app/`, `lib/`, or config files
