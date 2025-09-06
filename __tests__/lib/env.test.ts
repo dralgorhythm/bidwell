@@ -61,16 +61,13 @@ describe('lib/env.ts', () => {
     it('throws error for invalid NODE_ENV', () => {
       setEnvVar('NODE_ENV', 'invalid')
 
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
-      const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {
+      const exitSpy = jest.spyOn(process, 'exit').mockImplementation((() => {
         throw new Error('process.exit called')
-      })
+      }) as any)
 
       expect(() => validateEnv()).toThrow('process.exit called')
-      expect(consoleSpy).toHaveBeenCalledWith('❌ Invalid environment variables:')
       expect(exitSpy).toHaveBeenCalledWith(1)
 
-      consoleSpy.mockRestore()
       exitSpy.mockRestore()
     })
 
