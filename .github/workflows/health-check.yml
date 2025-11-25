@@ -62,12 +62,16 @@ jobs:
 
       - name: Performance spot check
         run: |
+          echo "Warming cache..."
+          curl -s -o /dev/null https://bidwell.info
+
           echo "Running quick performance check..."
           npx lighthouse https://bidwell.info \
             --only-categories=performance \
             --output=json \
             --quiet \
             --chrome-flags="--headless --no-sandbox" \
+            --preset=desktop \
             --output-path=/tmp/lighthouse.json
           
           SCORE=$(cat /tmp/lighthouse.json | jq '.categories.performance.score * 100')

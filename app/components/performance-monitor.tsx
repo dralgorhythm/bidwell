@@ -19,7 +19,7 @@ export default function PerformanceMonitor({
         requestIdleCallback(() => initPerformanceMonitoring())
       } else {
         // Fallback for browsers that don't support requestIdleCallback
-        setTimeout(() => initPerformanceMonitoring(), 2000)
+        setTimeout(() => initPerformanceMonitoring(), 5000)
       }
     }
 

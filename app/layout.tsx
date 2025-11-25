@@ -94,6 +94,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StructuredData type='organization' />
         <StructuredData type='person' />
         {/* Preconnect to external domains for faster loading */}
+        <link rel='preconnect' href='https://images.unsplash.com' />
+        <link rel='dns-prefetch' href='https://images.unsplash.com' />
+        <link rel='preconnect' href='https://via.placeholder.com' />
+        <link rel='dns-prefetch' href='https://via.placeholder.com' />
+        <link rel='preconnect' href='https://picsum.photos' />
+        <link rel='dns-prefetch' href='https://picsum.photos' />
         {/* Canonical URL */}
         <link rel='canonical' href={baseUrl} />
         {/* Resource hints for better performance */}

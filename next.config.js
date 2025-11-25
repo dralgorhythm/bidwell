@@ -2,6 +2,16 @@
 const nextConfig = {
   // Moved from experimental to top level
   serverExternalPackages: ['sharp', 'web-vitals'],
+  transpilePackages: ['next-image-export-optimizer'],
+  env: {
+    nextImageExportOptimizer_imageFolderPath: 'public/images',
+    nextImageExportOptimizer_exportFolderPath: 'out',
+    nextImageExportOptimizer_quality: '75',
+    nextImageExportOptimizer_storePicturesInWEBP: 'true',
+    nextImageExportOptimizer_exportFolderName: 'nextImageExportOptimizer',
+    nextImageExportOptimizer_generateAndUseBlurImages: 'true',
+    nextImageExportOptimizer_remoteImageCacheTTL: '0',
+  },
 
   // Enable experimental features for better performance
   experimental: {
@@ -24,7 +34,8 @@ const nextConfig = {
 
   // Disable image optimization for static export
   images: {
-    unoptimized: true,
+    loader: 'custom',
+    loaderFile: './lib/image-loader.ts',
     // Enable modern formats
     formats: ['image/webp', 'image/avif'],
 
