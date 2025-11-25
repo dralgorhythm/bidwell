@@ -94,9 +94,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StructuredData type='organization' />
         <StructuredData type='person' />
         {/* Preconnect to external domains for faster loading */}
-        {/* DNS prefetch for performance */}
-        <link rel='dns-prefetch' href='//vercel.com' />
-        <link rel='dns-prefetch' href='//vitals.vercel-analytics.com' />
         {/* Canonical URL */}
         <link rel='canonical' href={baseUrl} />
         {/* Resource hints for better performance */}

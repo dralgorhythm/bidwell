@@ -15,7 +15,12 @@ export default function PerformanceMonitor({
   useEffect(() => {
     // Initialize performance monitoring
     if (enableReporting) {
-      initPerformanceMonitoring()
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => initPerformanceMonitoring())
+      } else {
+        // Fallback for browsers that don't support requestIdleCallback
+        setTimeout(() => initPerformanceMonitoring(), 2000)
+      }
     }
 
     // Track page load timing

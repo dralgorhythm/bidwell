@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { render } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { vi } from 'vitest'
 import PerformanceMonitor from '@/app/components/performance-monitor'
@@ -42,10 +42,12 @@ describe('PerformanceMonitor', () => {
     })
   })
 
-  it('should initialize performance monitoring when enableReporting is true', () => {
+  it('should initialize performance monitoring when enableReporting is true', async () => {
     render(<PerformanceMonitor enableReporting={true} />)
 
-    expect(performanceLib.initPerformanceMonitoring).toHaveBeenCalled()
+    await waitFor(() => {
+      expect(performanceLib.initPerformanceMonitoring).toHaveBeenCalled()
+    })
   })
 
   it('should not initialize performance monitoring when enableReporting is false', () => {
