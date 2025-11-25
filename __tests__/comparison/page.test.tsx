@@ -1,12 +1,13 @@
 import { render, screen } from '@testing-library/react'
+import { vi } from 'vitest'
 import ComparisonPage from '../../app/comparison/page'
 
 // Mock the comparison form component
-jest.mock('../../app/comparison/comparison-form', () => {
-  return function MockComparisonForm() {
+vi.mock('../../app/comparison/comparison-form', () => ({
+  default: function MockComparisonForm() {
     return <div data-testid='comparison-form'>Comparison Form</div>
-  }
-})
+  },
+}))
 
 describe('Comparison Page', () => {
   it('renders the page with correct heading and description', () => {

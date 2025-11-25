@@ -14,7 +14,7 @@ export function preloadFonts(
     type?: string
   }>
 ) {
-  fonts.forEach(font => {
+  for (const font of fonts) {
     const link = document.createElement('link')
     link.rel = 'preload'
     link.as = 'font'
@@ -24,7 +24,7 @@ export function preloadFonts(
       link.crossOrigin = font.crossOrigin
     }
     document.head.appendChild(link)
-  })
+  }
 }
 
 /**
@@ -61,7 +61,7 @@ export function optimizeFontDisplay() {
  * Useful for preventing layout shifts during font swapping
  */
 export function waitForFontsReady(): Promise<void> {
-  if (!('fonts' in document)) {
+  if (!document.fonts) {
     return Promise.resolve()
   }
 

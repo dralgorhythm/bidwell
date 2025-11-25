@@ -1,6 +1,6 @@
-import { render, screen } from '../utils/test-utils'
 import { axe } from 'jest-axe'
 import NotFound from '../../app/not-found'
+import { render, screen } from '../utils/test-utils'
 
 describe('NotFound Page', () => {
   it('renders the 404 heading', () => {

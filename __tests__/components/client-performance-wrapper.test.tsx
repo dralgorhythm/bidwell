@@ -1,28 +1,30 @@
-import { render } from '../utils/test-utils'
+import { vi } from 'vitest'
 import ClientPerformanceWrapper from '../../app/components/client-performance-wrapper'
-import { useRouter } from 'next/navigation'
+import { render } from '../utils/test-utils'
 
 // Mock the dynamic imports
-jest.mock('next/dynamic', () => {
-  return (importFunc: any, options?: any) => {
+vi.mock('next/dynamic', () => ({
+  // biome-ignore lint/suspicious/noExplicitAny: Mocking dynamic import
+  default: (importFunc: any, _options?: any) => {
     // Return a simple component that can be identified in tests
-    return function DynamicComponent(props: any) {
+    // biome-ignore lint/suspicious/noExplicitAny: Mocking component
+    return function DynamicComponent(_props: any) {
       // Get the display name from the import function
       const componentName = importFunc.toString().includes('performance-monitor')
         ? 'performance-monitor'
         : 'performance-dashboard'
       return <div data-testid={componentName}>{componentName}</div>
     }
-  }
-})
+  },
+}))
 
 // Mock the components that are dynamically imported
-jest.mock('../../app/components/performance-monitor', () => ({
+vi.mock('../../app/components/performance-monitor', () => ({
   __esModule: true,
   default: () => <div data-testid='performance-monitor'>PerformanceMonitor</div>,
 }))
 
-jest.mock('../../app/components/performance-dashboard', () => ({
+vi.mock('../../app/components/performance-dashboard', () => ({
   __esModule: true,
   default: () => <div data-testid='performance-dashboard'>PerformanceDashboard</div>,
 }))

@@ -1,4 +1,4 @@
-import Image, { ImageProps } from 'next/image'
+import Image, { type ImageProps } from 'next/image'
 import { forwardRef } from 'react'
 
 interface OptimizedImageProps extends Omit<ImageProps, 'priority' | 'loading'> {
@@ -99,7 +99,7 @@ OptimizedImage.displayName = 'OptimizedImage'
 export default OptimizedImage
 
 // Utility function to generate blur placeholder
-export function generateBlurPlaceholder(width: number = 16, height: number = 16): string {
+export function generateBlurPlaceholder(width = 16, height = 16): string {
   const canvas = typeof window !== 'undefined' ? document.createElement('canvas') : null
   if (!canvas) return ''
 

@@ -1,13 +1,13 @@
 import './global.css'
-import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
-import { Navbar } from './components/nav'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import Footer from './components/footer'
-import StructuredData from './components/structured-data'
+import { GeistMono } from 'geist/font/mono'
+import { GeistSans } from 'geist/font/sans'
+import type { Metadata } from 'next'
 import ClientPerformanceWrapper from './components/client-performance-wrapper'
+import Footer from './components/footer'
+import { Navbar } from './components/nav'
+import StructuredData from './components/structured-data'
 import { baseUrl } from './sitemap'
 
 export const metadata: Metadata = {
@@ -94,21 +94,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StructuredData type='organization' />
         <StructuredData type='person' />
         {/* Preconnect to external domains for faster loading */}
-        <link rel='preconnect' href='https://fonts.googleapis.com' />
-        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
         {/* DNS prefetch for performance */}
         <link rel='dns-prefetch' href='//vercel.com' />
         <link rel='dns-prefetch' href='//vitals.vercel-analytics.com' />
         {/* Canonical URL */}
         <link rel='canonical' href={baseUrl} />
-        {/* Favicons */}
-        <link rel='icon' href='/favicon.ico' sizes='32x32' />
-        <link rel='apple-touch-icon' href='/apple-icon.png' />
         {/* Resource hints for better performance */}
         <meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
         <meta name='theme-color' content='#ffffff' media='(prefers-color-scheme: light)' />
         <meta name='theme-color' content='#000000' media='(prefers-color-scheme: dark)' />
+        {/* Security headers */}
+        <meta httpEquiv='X-Content-Type-Options' content='nosniff' />
+        <meta httpEquiv='X-Frame-Options' content='DENY' />
+        <meta httpEquiv='Referrer-Policy' content='strict-origin-when-cross-origin' />
+        <meta
+          httpEquiv='Content-Security-Policy'
+          content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' va.vercel-scripts.com vitals.vercel-insights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' vitals.vercel-insights.com; frame-ancestors 'none';"
+        />
       </head>
       <body className='antialiased max-w-xl mx-4 mt-8 lg:mx-auto'>
         <main className='flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0'>

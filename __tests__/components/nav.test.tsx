@@ -3,7 +3,15 @@ import { Navbar } from '../../app/components/nav'
 
 // Mock Next.js Link component
 jest.mock('next/link', () => {
-  return function MockLink({ children, href, ...props }: any) {
+  return function MockLink({
+    children,
+    href,
+    ...props
+  }: {
+    children: React.ReactNode
+    href: string
+    [key: string]: unknown
+  }) {
     return (
       <a href={href} {...props}>
         {children}
@@ -39,13 +47,13 @@ describe('Navbar', () => {
     render(<Navbar />)
 
     const links = screen.getAllByRole('link')
-    links.forEach(link => {
+    for (const link of links) {
       expect(link).toHaveClass(
         'transition-all',
         'hover:text-neutral-800',
         'dark:hover:text-neutral-200'
       )
-    })
+    }
   })
 
   it('includes the comparison navigation item', () => {

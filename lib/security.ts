@@ -1,4 +1,4 @@
-import { randomBytes, createHash } from 'crypto'
+import { createHash, randomBytes } from 'node:crypto'
 
 // Generate CSRF token
 export function generateCSRFToken(): string {

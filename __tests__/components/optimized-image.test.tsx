@@ -3,43 +3,59 @@
  */
 
 import { render, screen } from '@testing-library/react'
+import { vi } from 'vitest'
 import OptimizedImage, {
   AspectRatios,
   generateBlurPlaceholder,
 } from '@/app/components/optimized-image'
 
 // Mock Next.js Image component
-jest.mock('next/image', () => {
-  return function MockImage(props: any) {
+vi.mock('next/image', () => ({
+  // biome-ignore lint/suspicious/noExplicitAny: Mocking Next.js Image
+  default: function MockImage(props: any) {
     const {
       priority,
       loading,
       placeholder,
       blurDataURL,
-      sizes,
       fill,
+      width,
+      height,
+      sizes,
       quality,
       style,
-      ...imgProps
+      onLoad,
+      ...rest
     } = props
 
-    // eslint-disable-next-line @next/next/no-img-element
+    // Handle fill vs width/height
+    // biome-ignore lint/suspicious/noExplicitAny: Dynamic props
+    const imgProps: Record<string, any> = { ...rest }
+    if (!fill) {
+      imgProps.width = width
+      imgProps.height = height
+    }
+
     return (
+      // eslint-disable-next-line @next/next/no-img-element
+      // biome-ignore lint/performance/noImgElement: Using img tag for testing purposes
       <img
         {...imgProps}
-        style={style}
         data-priority={priority}
         data-loading={loading}
         data-placeholder={placeholder}
         data-blur-data-url={blurDataURL}
-        data-sizes={sizes}
         data-fill={fill}
+        data-sizes={sizes}
         data-quality={quality}
+        style={style}
+        onLoad={onLoad}
         data-testid='optimized-image'
+        alt={props.alt || 'test image'}
       />
     )
-  }
-})
+  },
+}))
 
 describe('OptimizedImage', () => {
   const defaultProps = {
@@ -169,16 +185,23 @@ describe('OptimizedImage', () => {
 })
 
 describe('generateBlurPlaceholder', () => {
+  // biome-ignore lint/suspicious/noExplicitAny: Mocking canvas elements requires flexible types
   let mockCanvas: any
+  // biome-ignore lint/suspicious/noExplicitAny: Mocking canvas context requires flexible types
   let mockContext: any
 
   beforeEach(() => {
     mockContext = {
-      createLinearGradient: jest.fn(() => ({
-        addColorStop: jest.fn(),
+      fillStyle: '',
+      fillRect: vi.fn(),
+    }
+    mockContext = {
+      createLinearGradient: vi.fn(() => ({
+        addColorStop: vi.fn(),
       })),
-      fillRect: jest.fn(),
-      set fillStyle(value: any) {
+      fillRect: vi.fn(),
+      // biome-ignore lint/suspicious/noExplicitAny: Mocking a setter requires any or specific casting that is complex here
+      set fillStyle(_value: any) {
         // Mock setter
       },
     }
@@ -186,12 +209,12 @@ describe('generateBlurPlaceholder', () => {
     mockCanvas = {
       width: 0,
       height: 0,
-      getContext: jest.fn(() => mockContext),
-      toDataURL: jest.fn(() => 'data:image/png;base64,mock-data'),
+      getContext: vi.fn(() => mockContext),
+      toDataURL: vi.fn(() => 'data:image/png;base64,mock-data'),
     }
 
     // Mock document.createElement
-    jest.spyOn(document, 'createElement').mockImplementation(tagName => {
+    vi.spyOn(document, 'createElement').mockImplementation(tagName => {
       if (tagName === 'canvas') {
         return mockCanvas
       }
@@ -225,8 +248,8 @@ describe('generateBlurPlaceholder', () => {
   it('should return empty string when canvas is not available', () => {
     // Mock window as undefined (SSR scenario)
     const originalWindow = global.window
-    // @ts-ignore
-    delete global.window
+    // @ts-expect-error
+    global.window = undefined
 
     const result = generateBlurPlaceholder()
     expect(result).toBe('')

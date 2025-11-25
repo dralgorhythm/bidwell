@@ -1,12 +1,18 @@
 import { ImageResponse } from 'next/og'
 
+export const runtime = 'edge'
 export const dynamic = 'force-static'
+export const size = {
+  width: 32,
+  height: 32,
+}
+export const contentType = 'image/png'
 
-export function GET() {
+export default function Icon() {
   return new ImageResponse(
     <div
       style={{
-        fontSize: 64,
+        fontSize: 24,
         background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
         width: '100%',
         height: '100%',
@@ -16,14 +22,12 @@ export function GET() {
         justifyContent: 'center',
         color: 'white',
         fontWeight: 'bold',
-        borderRadius: '20px',
       }}
     >
       BC
     </div>,
     {
-      width: 180,
-      height: 180,
+      ...size,
     }
   )
 }

@@ -1,6 +1,6 @@
-import { Metadata } from 'next'
-import ComparisonForm from './comparison-form'
+import type { Metadata } from 'next'
 import Breadcrumb from '../components/breadcrumb'
+import ComparisonForm from './comparison-form'
 
 export const metadata: Metadata = {
   title: 'Number Comparison Tool - Interactive Math Utility',

@@ -1,12 +1,12 @@
 import {
-  emailSchema,
-  nameSchema,
-  messageSchema,
-  phoneSchema,
-  contactFormSchema,
-  sanitizeInput,
-  createRateLimit,
   checkRateLimit,
+  contactFormSchema,
+  createRateLimit,
+  emailSchema,
+  messageSchema,
+  nameSchema,
+  phoneSchema,
+  sanitizeInput,
 } from '../../lib/validation'
 
 describe('phoneSchema', () => {
@@ -47,7 +47,7 @@ describe('emailSchema', () => {
     const result = emailSchema.safeParse('invalid')
     expect(result.success).toBe(false)
     if (!result.success) {
-      expect(result.error.errors[0].message).toBe('Please enter a valid email address')
+      expect(result.error.issues[0].message).toBe('Please enter a valid email address')
     }
   })
 })
@@ -72,14 +72,14 @@ describe('nameSchema', () => {
     const emptyResult = nameSchema.safeParse('')
     expect(emptyResult.success).toBe(false)
     if (!emptyResult.success) {
-      expect(emptyResult.error.errors[0].message).toBe('Name must be at least 2 characters')
+      expect(emptyResult.error.issues[0].message).toBe('Name must be at least 2 characters')
     }
 
     const longName = 'a'.repeat(101)
     const longResult = nameSchema.safeParse(longName)
     expect(longResult.success).toBe(false)
     if (!longResult.success) {
-      expect(longResult.error.errors[0].message).toBe('Name must be less than 100 characters')
+      expect(longResult.error.issues[0].message).toBe('Name must be less than 100 characters')
     }
   })
 })
@@ -103,14 +103,14 @@ describe('messageSchema', () => {
     const emptyResult = messageSchema.safeParse('')
     expect(emptyResult.success).toBe(false)
     if (!emptyResult.success) {
-      expect(emptyResult.error.errors[0].message).toBe('Message must be at least 10 characters')
+      expect(emptyResult.error.issues[0].message).toBe('Message must be at least 10 characters')
     }
 
     const longMessage = 'a'.repeat(5001) // Changed from 1001 to 5001
     const longResult = messageSchema.safeParse(longMessage)
     expect(longResult.success).toBe(false)
     if (!longResult.success) {
-      expect(longResult.error.errors[0].message).toBe('Message must be less than 5000 characters')
+      expect(longResult.error.issues[0].message).toBe('Message must be less than 5000 characters')
     }
   })
 })

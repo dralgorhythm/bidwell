@@ -1,15 +1,11 @@
-import { validateEnv, isSecureEnvironment } from '../../lib/env'
+import { isSecureEnvironment, validateEnv } from '../../lib/env'
 
 // Helper function to set environment variables in a test-safe way
 function setEnvVar(key: string, value: string | undefined) {
   if (value === undefined) {
     delete process.env[key]
   } else {
-    Object.defineProperty(process.env, key, {
-      value,
-      writable: true,
-      configurable: true,
-    })
+    process.env[key] = value
   }
 }
 
@@ -18,14 +14,14 @@ describe('lib/env.ts', () => {
 
   afterEach(() => {
     // Restore all environment variables
-    Object.keys(process.env).forEach(key => {
+    for (const key of Object.keys(process.env)) {
       if (!(key in originalEnv)) {
         delete process.env[key]
       }
-    })
-    Object.keys(originalEnv).forEach(key => {
+    }
+    for (const key of Object.keys(originalEnv)) {
       setEnvVar(key, originalEnv[key])
-    })
+    }
   })
 
   describe('validateEnv', () => {

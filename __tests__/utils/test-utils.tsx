@@ -1,6 +1,7 @@
-import { render, RenderOptions, RenderResult } from '@testing-library/react'
-import { ReactElement, ReactNode } from 'react'
+import { type RenderOptions, type RenderResult, render } from '@testing-library/react'
+import type userEvent from '@testing-library/user-event'
 import { axe, toHaveNoViolations } from 'jest-axe'
+import type { ReactElement } from 'react'
 
 // Extend Jest matchers
 expect.extend(toHaveNoViolations)
@@ -36,7 +37,7 @@ export const customMatchers = {
     try {
       await axeTest(received)
       return {
-        message: () => `Expected element to have accessibility violations`,
+        message: () => 'Expected element to have accessibility violations',
         pass: true,
       }
     } catch (error) {
@@ -61,12 +62,16 @@ export const mockData = {
 
 // Test helpers for form interactions
 export const formHelpers = {
-  fillInput: async (user: any, element: HTMLElement, value: string) => {
+  fillInput: async (
+    user: ReturnType<typeof userEvent.setup>,
+    element: HTMLElement,
+    value: string
+  ) => {
     await user.clear(element)
     await user.type(element, value)
   },
 
-  submitForm: async (user: any, form: HTMLElement) => {
+  submitForm: async (user: ReturnType<typeof userEvent.setup>, form: HTMLElement) => {
     const submitButton = form.querySelector('button[type="submit"]') as HTMLElement
     if (submitButton) {
       await user.click(submitButton)

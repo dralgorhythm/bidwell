@@ -1,12 +1,12 @@
-import { render } from '../utils/test-utils'
 import StructuredData from '../../app/components/structured-data'
+import { render } from '../utils/test-utils'
 
 describe('StructuredData Component', () => {
   beforeEach(() => {
     // Clear any existing structured data scripts
-    document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
+    for (const script of document.querySelectorAll('script[type="application/ld+json"]')) {
       script.remove()
-    })
+    }
   })
 
   describe('Website Schema', () => {
@@ -93,6 +93,7 @@ describe('StructuredData Component', () => {
   describe('Invalid Types', () => {
     it('returns null for invalid schema type', () => {
       // Test the default case by mocking the component to receive an invalid type
+      // biome-ignore lint/suspicious/noExplicitAny: Testing invalid props
       const InvalidStructuredData = (props: any) => <StructuredData {...props} />
       const { container } = render(<InvalidStructuredData type='invalid' />)
 

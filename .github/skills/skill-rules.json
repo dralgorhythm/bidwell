@@ -2,104 +2,47 @@
   "skills": [
     {
       "name": "system-design",
-      "patterns": [
-        "architecture",
-        "system design",
-        "scalability",
-        "diagram",
-        "c4 model"
-      ],
+      "patterns": ["architecture", "system design", "scalability", "diagram", "c4 model"],
       "path": ".github/skills/architecture/designing-systems.md"
     },
     {
       "name": "code-implementation",
-      "patterns": [
-        "implement",
-        "write code",
-        "coding",
-        "scripting",
-        "develop feature"
-      ],
+      "patterns": ["implement", "write code", "coding", "scripting", "develop feature"],
       "path": ".github/skills/core-engineering/implementing-code.md"
     },
     {
       "name": "debugging-troubleshooting",
-      "patterns": [
-        "debug",
-        "fix bug",
-        "troubleshoot",
-        "error",
-        "exception",
-        "stack trace"
-      ],
+      "patterns": ["debug", "fix bug", "troubleshoot", "error", "exception", "stack trace"],
       "path": ".github/skills/core-engineering/debugging-and-troubleshooting.md"
     },
     {
       "name": "dependency-management",
-      "patterns": [
-        "npm",
-        "pip",
-        "maven",
-        "gradle",
-        "dependency",
-        "package",
-        "version upgrade"
-      ],
+      "patterns": ["npm", "pip", "maven", "gradle", "dependency", "package", "version upgrade"],
       "path": ".github/skills/core-engineering/managing-dependencies.md"
     },
     {
       "name": "refactoring-optimization",
-      "patterns": [
-        "refactor",
-        "optimize",
-        "clean up",
-        "technical debt",
-        "performance tuning"
-      ],
+      "patterns": ["refactor", "optimize", "clean up", "technical debt", "performance tuning"],
       "path": ".github/skills/core-engineering/refactoring-and-optimizing.md"
     },
     {
       "name": "testing-strategy",
-      "patterns": [
-        "unit test",
-        "integration test",
-        "e2e",
-        "test coverage",
-        "jest",
-        "pytest"
-      ],
+      "patterns": ["unit test", "integration test", "e2e", "test coverage", "jest", "pytest"],
       "path": ".github/skills/core-engineering/testing-software.md"
     },
     {
       "name": "test-driven-development",
-      "patterns": [
-        "tdd",
-        "red green refactor",
-        "test first",
-        "failing test"
-      ],
+      "patterns": ["tdd", "red green refactor", "test first", "failing test"],
       "path": ".github/skills/core-engineering/test-driven-development.md"
     },
     {
       "name": "testing-anti-patterns",
-      "patterns": [
-        "flaky test",
-        "bad test",
-        "anti-pattern",
-        "test smell",
-        "intermittent failure"
-      ],
+      "patterns": ["flaky test", "bad test", "anti-pattern", "test smell", "intermittent failure"],
       "path": ".github/skills/core-engineering/testing-anti-patterns.md"
     },
     {
       "name": "domain-driven-design",
-      "patterns": [
-        "ddd",
-        "domain driven",
-        "bounded context",
-        "aggregate",
-        "entity"
-      ],
+      "patterns": ["ddd", "domain driven", "bounded context", "aggregate", "entity"],
       "path": ".github/skills/architecture/applying-domain-driven-design.md"
     },
     {
@@ -116,330 +59,142 @@
     },
     {
       "name": "api-design",
-      "patterns": [
-        "api design",
-        "rest",
-        "graphql",
-        "grpc",
-        "openapi",
-        "swagger"
-      ],
+      "patterns": ["api design", "rest", "graphql", "grpc", "openapi", "swagger"],
       "path": ".github/skills/architecture/designing-apis.md"
     },
     {
       "name": "capacity-planning",
-      "patterns": [
-        "capacity",
-        "scaling",
-        "throughput",
-        "latency",
-        "load balancing"
-      ],
+      "patterns": ["capacity", "scaling", "throughput", "latency", "load balancing"],
       "path": ".github/skills/architecture/planning-capacity.md"
     },
     {
       "name": "defense-in-depth",
-      "patterns": [
-        "defense in depth",
-        "layered security",
-        "security layers",
-        "redundancy"
-      ],
+      "patterns": ["defense in depth", "layered security", "security layers", "redundancy"],
       "path": ".github/skills/architecture/defense-in-depth.md"
     },
     {
       "name": "infrastructure-as-code",
-      "patterns": [
-        "iac",
-        "terraform",
-        "ansible",
-        "cloudformation",
-        "infrastructure code"
-      ],
+      "patterns": ["iac", "terraform", "ansible", "cloudformation", "infrastructure code"],
       "path": ".github/skills/operations/provisioning-infrastructure.md"
     },
     {
       "name": "observability-monitoring",
-      "patterns": [
-        "observability",
-        "monitoring",
-        "logging",
-        "metrics",
-        "tracing",
-        "prometheus"
-      ],
+      "patterns": ["observability", "monitoring", "logging", "metrics", "tracing", "prometheus"],
       "path": ".github/skills/operations/monitoring-observability.md"
     },
     {
       "name": "incident-management",
-      "patterns": [
-        "incident",
-        "outage",
-        "post-mortem",
-        "rca",
-        "on-call",
-        "alert"
-      ],
+      "patterns": ["incident", "outage", "post-mortem", "rca", "on-call", "alert"],
       "path": ".github/skills/operations/managing-incidents.md"
     },
     {
       "name": "root-cause-tracing",
-      "patterns": [
-        "root cause",
-        "rca",
-        "trace error",
-        "5 whys",
-        "underlying cause"
-      ],
+      "patterns": ["root cause", "rca", "trace error", "5 whys", "underlying cause"],
       "path": ".github/skills/operations/root-cause-tracing.md"
     },
     {
       "name": "chaos-engineering",
-      "patterns": [
-        "chaos",
-        "fault injection",
-        "resilience testing",
-        "gremlin",
-        "chaos monkey"
-      ],
+      "patterns": ["chaos", "fault injection", "resilience testing", "gremlin", "chaos monkey"],
       "path": ".github/skills/operations/performing-chaos-engineering.md"
     },
     {
       "name": "app-sec",
-      "patterns": [
-        "appsec",
-        "owasp",
-        "vulnerability",
-        "xss",
-        "injection",
-        "sast"
-      ],
+      "patterns": ["appsec", "owasp", "vulnerability", "xss", "injection", "sast"],
       "path": ".github/skills/security/securing-applications.md"
     },
     {
       "name": "compliance-governance",
-      "patterns": [
-        "compliance",
-        "gdpr",
-        "hipaa",
-        "pci",
-        "soc2",
-        "audit"
-      ],
+      "patterns": ["compliance", "gdpr", "hipaa", "pci", "soc2", "audit"],
       "path": ".github/skills/security/ensuring-compliance.md"
     },
     {
       "name": "iam-security",
-      "patterns": [
-        "iam",
-        "authn",
-        "authz",
-        "oauth",
-        "oidc",
-        "jwt"
-      ],
+      "patterns": ["iam", "authn", "authz", "oauth", "oidc", "jwt"],
       "path": ".github/skills/security/managing-identity-and-access.md"
     },
     {
       "name": "threat-modeling",
-      "patterns": [
-        "threat model",
-        "stride",
-        "attack vector",
-        "risk analysis",
-        "spoofing"
-      ],
+      "patterns": ["threat model", "stride", "attack vector", "risk analysis", "spoofing"],
       "path": ".github/skills/security/modeling-threats.md"
     },
     {
       "name": "security-review",
-      "patterns": [
-        "security review",
-        "audit",
-        "scan",
-        "vulnerability",
-        "cve",
-        "sast",
-        "dast"
-      ],
+      "patterns": ["security review", "audit", "scan", "vulnerability", "cve", "sast", "dast"],
       "path": ".github/skills/security/reviewing-security.md"
     },
     {
       "name": "swarm-consensus",
-      "patterns": [
-        "consensus",
-        "agreement",
-        "vote",
-        "decision record",
-        "adr"
-      ],
+      "patterns": ["consensus", "agreement", "vote", "decision record", "adr"],
       "path": ".github/skills/product/reaching-consensus.md"
     },
     {
       "name": "task-decomposition",
-      "patterns": [
-        "break down",
-        "decompose",
-        "sub-task",
-        "milestone",
-        "roadmap"
-      ],
+      "patterns": ["break down", "decompose", "sub-task", "milestone", "roadmap"],
       "path": ".github/skills/product/decomposing-tasks.md"
     },
     {
       "name": "context-management",
-      "patterns": [
-        "handoff",
-        "context",
-        "shared state",
-        "knowledge transfer",
-        "summary"
-      ],
+      "patterns": ["handoff", "context", "shared state", "knowledge transfer", "summary"],
       "path": ".github/skills/product/managing-context.md"
     },
     {
       "name": "agile-methodology",
-      "patterns": [
-        "agile",
-        "scrum",
-        "kanban",
-        "sprint",
-        "standup",
-        "backlog"
-      ],
+      "patterns": ["agile", "scrum", "kanban", "sprint", "standup", "backlog"],
       "path": ".github/skills/product/applying-agile-methodology.md"
     },
     {
       "name": "requirements-analysis",
-      "patterns": [
-        "requirement",
-        "spec",
-        "specification",
-        "acceptance criteria",
-        "user need"
-      ],
+      "patterns": ["requirement", "spec", "specification", "acceptance criteria", "user need"],
       "path": ".github/skills/product/analyzing-requirements.md"
     },
     {
       "name": "brainstorming",
-      "patterns": [
-        "brainstorm",
-        "ideation",
-        "idea generation",
-        "alternatives",
-        "options"
-      ],
+      "patterns": ["brainstorm", "ideation", "idea generation", "alternatives", "options"],
       "path": ".github/skills/product/brainstorming.md"
     },
     {
       "name": "technical-documentation",
-      "patterns": [
-        "documentation",
-        "docs",
-        "readme",
-        "wiki",
-        "manual"
-      ],
+      "patterns": ["documentation", "docs", "readme", "wiki", "manual"],
       "path": ".github/skills/product/writing-technical-documentation.md"
     },
     {
       "name": "estimation-sizing",
-      "patterns": [
-        "estimate",
-        "sizing",
-        "story point",
-        "t-shirt size",
-        "effort"
-      ],
+      "patterns": ["estimate", "sizing", "story point", "t-shirt size", "effort"],
       "path": ".github/skills/product/estimating-work.md"
     },
     {
       "name": "python-development",
-      "patterns": [
-        "python",
-        ".py",
-        "pip",
-        "pytest",
-        "django",
-        "flask",
-        "fastapi",
-        "pandas"
-      ],
+      "patterns": ["python", ".py", "pip", "pytest", "django", "flask", "fastapi", "pandas"],
       "path": ".github/skills/languages/writing-python.md"
     },
     {
       "name": "go-development",
-      "patterns": [
-        "golang",
-        "go",
-        ".go",
-        "goroutine",
-        "channel",
-        "gin",
-        "gorm"
-      ],
+      "patterns": ["golang", "go", ".go", "goroutine", "channel", "gin", "gorm"],
       "path": ".github/skills/languages/writing-go.md"
     },
     {
       "name": "java-development",
-      "patterns": [
-        "java",
-        ".java",
-        "spring",
-        "springboot",
-        "maven",
-        "gradle",
-        "junit"
-      ],
+      "patterns": ["java", ".java", "spring", "springboot", "maven", "gradle", "junit"],
       "path": ".github/skills/languages/writing-java.md"
     },
     {
       "name": "typescript-development",
-      "patterns": [
-        "typescript",
-        ".ts",
-        ".tsx",
-        "node",
-        "react",
-        "nextjs",
-        "express"
-      ],
+      "patterns": ["typescript", ".ts", ".tsx", "node", "react", "nextjs", "express"],
       "path": ".github/skills/languages/writing-typescript.md"
     },
     {
       "name": "rust-development",
-      "patterns": [
-        "rust",
-        ".rs",
-        "cargo",
-        "tokio",
-        "async rust",
-        "actix"
-      ],
+      "patterns": ["rust", ".rs", "cargo", "tokio", "async rust", "actix"],
       "path": ".github/skills/languages/writing-rust.md"
     },
     {
       "name": "bash-scripting",
-      "patterns": [
-        "bash",
-        "shell",
-        ".sh",
-        "shellcheck",
-        "automation script",
-        "cli script"
-      ],
+      "patterns": ["bash", "shell", ".sh", "shellcheck", "automation script", "cli script"],
       "path": ".github/skills/languages/writing-bash.md"
     },
     {
       "name": "terraform-iac",
-      "patterns": [
-        "terraform",
-        ".tf",
-        "hcl",
-        "tfvars",
-        "terraform module",
-        "infrastructure code"
-      ],
+      "patterns": ["terraform", ".tf", "hcl", "tfvars", "terraform module", "infrastructure code"],
       "path": ".github/skills/languages/writing-terraform.md"
     },
     {
@@ -457,44 +212,22 @@
     },
     {
       "name": "deploy-cloudflare",
-      "patterns": [
-        "cloudflare pages",
-        "deploy frontend",
-        "static site",
-        "spa deploy"
-      ],
+      "patterns": ["cloudflare pages", "deploy frontend", "static site", "spa deploy"],
       "path": ".github/skills/operations/deploy-to-cloudflare-pages.md"
     },
     {
       "name": "deploy-railway",
-      "patterns": [
-        "railway",
-        "deploy backend",
-        "railway.toml",
-        "nixpacks"
-      ],
+      "patterns": ["railway", "deploy backend", "railway.toml", "nixpacks"],
       "path": ".github/skills/operations/deploy-to-railway.md"
     },
     {
       "name": "secrets-management",
-      "patterns": [
-        "doppler",
-        "secrets",
-        "env vars",
-        "environment variables",
-        "config management"
-      ],
+      "patterns": ["doppler", "secrets", "env vars", "environment variables", "config management"],
       "path": ".github/skills/security/manage-secrets-doppler.md"
     },
     {
       "name": "database-management",
-      "patterns": [
-        "neon",
-        "postgres",
-        "serverless db",
-        "database branching",
-        "provision database"
-      ],
+      "patterns": ["neon", "postgres", "serverless db", "database branching", "provision database"],
       "path": ".github/skills/architecture/manage-database-neon.md"
     },
     {
@@ -512,26 +245,12 @@
     },
     {
       "name": "creating-visual-assets",
-      "patterns": [
-        "generate image",
-        "create icon",
-        "illustration",
-        "svg",
-        "visual asset",
-        "logo"
-      ],
+      "patterns": ["generate image", "create icon", "illustration", "svg", "visual asset", "logo"],
       "path": ".github/skills/design/creating-visual-assets.md"
     },
     {
       "name": "ensuring-accessibility",
-      "patterns": [
-        "accessibility",
-        "a11y",
-        "wcag",
-        "screen reader",
-        "contrast ratio",
-        "aria"
-      ],
+      "patterns": ["accessibility", "a11y", "wcag", "screen reader", "contrast ratio", "aria"],
       "path": ".github/skills/design/ensuring-accessibility.md"
     },
     {
@@ -547,13 +266,7 @@
     },
     {
       "name": "writing-pr-faqs",
-      "patterns": [
-        "pr/faq",
-        "press release",
-        "working backwards",
-        "internal faq",
-        "customer faq"
-      ],
+      "patterns": ["pr/faq", "press release", "working backwards", "internal faq", "customer faq"],
       "path": ".github/skills/product/writing-pr-faqs.md"
     },
     {
@@ -580,13 +293,7 @@
     },
     {
       "name": "using-design-frameworks",
-      "patterns": [
-        "design system",
-        "design framework",
-        "atomic design",
-        "design tokens",
-        "ui kit"
-      ],
+      "patterns": ["design system", "design framework", "atomic design", "design tokens", "ui kit"],
       "path": ".github/skills/design/using-design-frameworks.md"
     }
   ]

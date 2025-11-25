@@ -2,31 +2,39 @@
  * @jest-environment jsdom
  */
 
-import React from 'react'
-import { render, screen, fireEvent, act } from '@testing-library/react'
+import { act, fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import React from 'react'
 
-// Mock web-vitals module with proper jest.mock syntax
-jest.mock('web-vitals', () => ({
-  onCLS: jest.fn(),
-  onFCP: jest.fn(),
-  onINP: jest.fn(),
-  onLCP: jest.fn(),
-  onTTFB: jest.fn(),
+import { vi } from 'vitest'
+
+// Mock web-vitals module with proper vi.mock syntax
+vi.mock('web-vitals', () => ({
+  onCLS: vi.fn(),
+  onFCP: vi.fn(),
+  onINP: vi.fn(),
+  onLCP: vi.fn(),
+  onTTFB: vi.fn(),
 }))
 
-import PerformanceDashboard from '@/app/components/performance-dashboard'
 import * as webVitals from 'web-vitals'
+import PerformanceDashboard from '@/app/components/performance-dashboard'
 
 // Now get the mocked functions
-const mockWebVitals = webVitals as jest.Mocked<typeof webVitals>
+const mockWebVitals = webVitals as unknown as {
+  onCLS: ReturnType<typeof vi.fn>
+  onFCP: ReturnType<typeof vi.fn>
+  onINP: ReturnType<typeof vi.fn>
+  onLCP: ReturnType<typeof vi.fn>
+  onTTFB: ReturnType<typeof vi.fn>
+}
 
 // Mock localStorage
 const mockLocalStorage = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  removeItem: jest.fn(),
-  clear: jest.fn(),
+  getItem: vi.fn(),
+  setItem: vi.fn(),
+  removeItem: vi.fn(),
+  clear: vi.fn(),
 }
 
 Object.defineProperty(window, 'localStorage', {
@@ -39,11 +47,11 @@ const originalEnv = process.env
 
 describe('PerformanceDashboard', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
     mockLocalStorage.getItem.mockReturnValue(null)
 
     // Store callbacks to call them later in act()
-    let callbacks: Array<(metric: any) => void> = []
+    const callbacks: Array<(metric: unknown) => void> = []
 
     // Reset mocks to store callbacks instead of calling them immediately
     mockWebVitals.onCLS.mockImplementation(callback => {
@@ -63,8 +71,8 @@ describe('PerformanceDashboard', () => {
     })
 
     // Store callbacks for tests to use
-    ;(mockWebVitals as any).triggerMetrics = () => {
-      callbacks.forEach((callback, index) => {
+    ;(mockWebVitals as unknown as { triggerMetrics: () => void }).triggerMetrics = () => {
+      for (const [index, callback] of callbacks.entries()) {
         const metrics = [
           {
             name: 'CLS',
@@ -115,7 +123,7 @@ describe('PerformanceDashboard', () => {
         if (metrics[index]) {
           callback(metrics[index])
         }
-      })
+      }
     }
 
     // Set NODE_ENV to development for visibility
@@ -132,7 +140,7 @@ describe('PerformanceDashboard', () => {
     })
 
     await act(async () => {
-      ;(mockWebVitals as any).triggerMetrics()
+      ;(mockWebVitals as unknown as { triggerMetrics: () => void }).triggerMetrics()
     })
 
     expect(screen.getByText('Core Web Vitals')).toBeInTheDocument()
@@ -146,7 +154,7 @@ describe('PerformanceDashboard', () => {
     })
 
     await act(async () => {
-      ;(mockWebVitals as any).triggerMetrics()
+      ;(mockWebVitals as unknown as { triggerMetrics: () => void }).triggerMetrics()
     })
 
     expect(screen.getByText('Core Web Vitals')).toBeInTheDocument()
@@ -183,7 +191,7 @@ describe('PerformanceDashboard', () => {
     })
 
     await act(async () => {
-      ;(mockWebVitals as any).triggerMetrics()
+      ;(mockWebVitals as unknown as { triggerMetrics: () => void }).triggerMetrics()
     })
 
     expect(screen.getByText('LCP')).toBeInTheDocument()
@@ -199,7 +207,7 @@ describe('PerformanceDashboard', () => {
     })
 
     await act(async () => {
-      ;(mockWebVitals as any).triggerMetrics()
+      ;(mockWebVitals as unknown as { triggerMetrics: () => void }).triggerMetrics()
     })
 
     // LCP should show as milliseconds
@@ -218,7 +226,7 @@ describe('PerformanceDashboard', () => {
     })
 
     await act(async () => {
-      ;(mockWebVitals as any).triggerMetrics()
+      ;(mockWebVitals as unknown as { triggerMetrics: () => void }).triggerMetrics()
     })
 
     // Good metrics should have green styling (based on the default mock values)
@@ -236,7 +244,7 @@ describe('PerformanceDashboard', () => {
     })
 
     await act(async () => {
-      ;(mockWebVitals as any).triggerMetrics()
+      ;(mockWebVitals as unknown as { triggerMetrics: () => void }).triggerMetrics()
     })
 
     expect(screen.getByText('Largest Contentful Paint - Loading performance')).toBeInTheDocument()

@@ -192,7 +192,7 @@ export function createPerformanceObserver(
 /**
  * Measure and report custom performance metrics
  */
-export function measurePerformance(name: string, fn: () => void): void {
+export function measurePerformance(_name: string, fn: () => void): void {
   if (typeof window === 'undefined' || !('performance' in window)) {
     fn()
     return
@@ -289,7 +289,7 @@ export function preloadCriticalResources(
 ): void {
   if (typeof document === 'undefined') return
 
-  resources.forEach(({ href, as, type }) => {
+  for (const { href, as, type } of resources) {
     const link = document.createElement('link')
     link.rel = 'preload'
     link.href = href
@@ -297,7 +297,7 @@ export function preloadCriticalResources(
     if (type) link.type = type
     if (as === 'font') link.crossOrigin = 'anonymous'
     document.head.appendChild(link)
-  })
+  }
 }
 
 /**
@@ -334,9 +334,9 @@ export function preventLayoutShift(
   // Calculate from string values
   else if (typeof width === 'string' && typeof height === 'string') {
     // Extract numeric values from strings like "200px"
-    const widthNum = parseInt(width, 10)
-    const heightNum = parseInt(height, 10)
-    if (!isNaN(widthNum) && !isNaN(heightNum) && heightNum > 0) {
+    const widthNum = Number.parseInt(width, 10)
+    const heightNum = Number.parseInt(height, 10)
+    if (!Number.isNaN(widthNum) && !Number.isNaN(heightNum) && heightNum > 0) {
       // Find GCD to simplify the ratio
       const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b))
       const divisor = gcd(widthNum, heightNum)
@@ -365,12 +365,12 @@ export function observeElementIntersection(
   }
 
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
+    for (const entry of entries) {
       if (entry.isIntersecting) {
         callback(entry)
         observer.unobserve(entry.target)
       }
-    })
+    }
   }, options)
 
   // Check if observer has observe method (for mocked scenarios)

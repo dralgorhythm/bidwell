@@ -1,23 +1,34 @@
-import * as fontOptimization from '../../lib/font-optimization'
 import {
-  preloadFonts,
-  optimizeFontDisplay,
-  waitForFontsReady,
   addFontSizeAdjustments,
+  CRITICAL_FONT_SUBSET,
   getFontLoadingStrategy,
   initializeFontOptimization,
+  optimizeFontDisplay,
   preloadCriticalFontSubset,
-  CRITICAL_FONT_SUBSET,
+  preloadFonts,
+  waitForFontsReady,
 } from '../../lib/font-optimization'
 
 describe('Font Optimization', () => {
-  let mockCreateElement: jest.Mock
-  let mockAppendChild: jest.Mock
-  let createdElements: any[]
-
   beforeEach(() => {
+    Object.defineProperty(document, 'fonts', {
+      value: {
+        ready: Promise.resolve(),
+        check: vi.fn().mockReturnValue(true),
+      },
+      writable: true,
+    })
+  })
+
+  let mockCreateElement: ReturnType<typeof vi.fn>
+  let mockAppendChild: ReturnType<typeof vi.fn>
+  let createdElements: unknown[]
+
+  // biome-ignore lint/suspicious/noDuplicateTestHooks: Necessary for specific setup
+  beforeEach(() => {
+    // console.log('document.fonts:', (document as any).fonts)
     createdElements = []
-    mockAppendChild = jest.fn()
+    mockAppendChild = vi.fn()
     mockCreateElement = jest.fn().mockImplementation(tag => {
       const element = {
         tagName: tag.toUpperCase(),
@@ -97,7 +108,7 @@ describe('Font Optimization', () => {
     it('resolves immediately when fonts API not available', async () => {
       // Remove fonts property
       const tempFonts = document.fonts
-      delete (document as any).fonts
+      ;(document as unknown as { fonts: undefined }).fonts = undefined
 
       await expect(waitForFontsReady()).resolves.not.toThrow()
 
@@ -190,10 +201,12 @@ describe('Font Optimization', () => {
   })
 
   describe('initializeFontOptimization', () => {
+    beforeEach(() => {
+      vi.clearAllMocks()
+    })
     it('calls all required font optimization functions', async () => {
       // Since the functions modify document, we'll test that document methods are called
       // which indicates the functions were executed
-      jest.clearAllMocks()
 
       initializeFontOptimization()
 

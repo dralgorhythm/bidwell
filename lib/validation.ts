@@ -19,7 +19,7 @@ export const messageSchema = z
 // Phone validation schema (optional)
 export const phoneSchema = z
   .string()
-  .regex(/^[\+]?[1-9][\d]{0,15}$/, 'Please enter a valid phone number')
+  .regex(/^[+]?[1-9][\d]{0,15}$/, 'Please enter a valid phone number')
   .optional()
   .or(z.literal(''))
 
@@ -71,7 +71,9 @@ export function checkRateLimit(
       keysToDelete.push(key)
     }
   })
-  keysToDelete.forEach(key => requests.delete(key))
+  for (const key of keysToDelete) {
+    requests.delete(key)
+  }
 
   const requestInfo = requests.get(identifier)
 

@@ -8,15 +8,7 @@ export default function robots() {
       {
         userAgent: '*',
         allow: '/',
-        disallow: [
-          '/api/',
-          '/admin/',
-          '/_next/',
-          '/private/',
-          '/.env*',
-          '/package*.json',
-          '/node_modules/',
-        ],
+        disallow: ['/admin/', '/_next/', '/private/', '/.env*', '/package*.json', '/node_modules/'],
       },
       // Block common bot scrapers and malicious crawlers
       {

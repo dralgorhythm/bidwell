@@ -6,13 +6,18 @@ const nextConfig = {
   // Enable experimental features for better performance
   experimental: {
     // Enable optimized package imports
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons', 'date-fns', 'lodash-es'],
+    optimizePackageImports: [
+      'lucide-react',
+      '@radix-ui/react-icons',
+      'date-fns',
+      'lodash-es',
+      'framer-motion',
+    ],
   },
 
   // Configure for static export (GitHub Pages)
   output: 'export',
   trailingSlash: false,
-  distDir: '.next',
 
   // Fix cross-origin warning for development
   allowedDevOrigins: ['192.168.50.126'],
@@ -27,11 +32,20 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
 
-    // Image domains (add your CDN domains here)
-    domains: ['images.unsplash.com', 'via.placeholder.com', 'picsum.photos'],
-
     // Remote patterns for more flexible image sources
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
       {
         protocol: 'https',
         hostname: '**.unsplash.com',

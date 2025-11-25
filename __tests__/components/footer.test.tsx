@@ -1,5 +1,5 @@
-import { render, screen, axeTest } from '../utils/test-utils'
 import Footer from '../../app/components/footer'
+import { axeTest, render, screen } from '../utils/test-utils'
 
 describe('Footer Component', () => {
   beforeEach(() => {
@@ -43,12 +43,12 @@ describe('Footer Component', () => {
     it('renders arrow icons for all links', () => {
       const links = screen.getAllByRole('link')
 
-      links.forEach(link => {
+      for (const link of links) {
         const svg = link.querySelector('svg')
         expect(svg).toBeInTheDocument()
         expect(svg).toHaveAttribute('width', '12')
         expect(svg).toHaveAttribute('height', '12')
-      })
+      }
     })
 
     it('arrow icons have proper SVG structure', () => {
@@ -88,7 +88,7 @@ describe('Footer Component', () => {
     it('applies hover styles to links', () => {
       const links = screen.getAllByRole('link')
 
-      links.forEach(link => {
+      for (const link of links) {
         expect(link).toHaveClass(
           'flex',
           'items-center',
@@ -96,7 +96,7 @@ describe('Footer Component', () => {
           'hover:text-neutral-800',
           'dark:hover:text-neutral-100'
         )
-      })
+      }
     })
   })
 
@@ -176,9 +176,9 @@ describe('Footer Component', () => {
       expect(list).toHaveClass('dark:text-neutral-300')
 
       const links = container.querySelectorAll('a')
-      links.forEach(link => {
+      for (const link of links) {
         expect(link).toHaveClass('dark:hover:text-neutral-100')
-      })
+      }
     })
   })
 })

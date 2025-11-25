@@ -1,5 +1,5 @@
-import { render, screen, axeTest } from '../utils/test-utils'
 import HomePage from '../../app/page'
+import { axeTest, render, screen } from '../utils/test-utils'
 
 describe('Home Page Integration', () => {
   describe('Page Structure', () => {

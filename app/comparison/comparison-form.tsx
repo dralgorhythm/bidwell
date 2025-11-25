@@ -20,10 +20,10 @@ export default function ComparisonForm() {
     setError('')
 
     // Validate inputs
-    const num1 = parseFloat(number1)
-    const num2 = parseFloat(number2)
+    const num1 = Number.parseFloat(number1)
+    const num2 = Number.parseFloat(number2)
 
-    if (isNaN(num1) || isNaN(num2)) {
+    if (Number.isNaN(num1) || Number.isNaN(num2)) {
       setError('Please enter valid numbers for both fields.')
       setResult(null)
       return
@@ -101,6 +101,8 @@ export default function ComparisonForm() {
             className='w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 dark:focus:ring-neutral-400 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100'
             placeholder='Enter first number'
             required
+            // biome-ignore lint/a11y/noAutofocus: Intentional for tool usability
+            autoFocus
           />
         </div>
 
@@ -160,7 +162,7 @@ export default function ComparisonForm() {
               <p>
                 Percentage difference:{' '}
                 {(
-                  (result.difference! /
+                  ((result.difference ?? 0) /
                     Math.min(Math.abs(result.number1), Math.abs(result.number2))) *
                   100
                 ).toFixed(2)}

@@ -25,10 +25,10 @@ export function validateEnv() {
     if (error instanceof z.ZodError) {
       // eslint-disable-next-line no-console
       console.error('❌ Invalid environment variables:')
-      error.errors.forEach(err => {
+      for (const err of error.issues) {
         // eslint-disable-next-line no-console
         console.error(`  ${err.path.join('.')}: ${err.message}`)
-      })
+      }
       process.exit(1)
     }
     throw error

@@ -2,21 +2,22 @@
  * @jest-environment jsdom
  */
 
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { vi } from 'vitest'
 import PerformanceMonitor from '@/app/components/performance-monitor'
 import * as performanceLib from '@/lib/performance'
 
 // Mock the performance library
-jest.mock('@/lib/performance', () => ({
-  initPerformanceMonitoring: jest.fn(),
-  trackCustomMetric: jest.fn(),
+vi.mock('@/lib/performance', () => ({
+  initPerformanceMonitoring: vi.fn(),
+  trackCustomMetric: vi.fn(),
 }))
 
 // Mock window.performance
 const mockPerformance = {
-  now: jest.fn(() => 1000),
-  getEntriesByType: jest.fn(),
+  now: vi.fn(() => 1000),
+  getEntriesByType: vi.fn(),
 }
 
 Object.defineProperty(window, 'performance', {
@@ -26,13 +27,13 @@ Object.defineProperty(window, 'performance', {
 
 // Mock requestIdleCallback
 Object.defineProperty(window, 'requestIdleCallback', {
-  value: jest.fn(cb => setTimeout(cb, 0)),
+  value: vi.fn(cb => setTimeout(cb, 0)),
   writable: true,
 })
 
 describe('PerformanceMonitor', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
 
     // Reset document ready state
     Object.defineProperty(document, 'readyState', {
@@ -120,7 +121,7 @@ describe('PerformanceMonitor', () => {
   })
 
   it('should cleanup event listeners on unmount', () => {
-    const removeEventListenerSpy = jest.spyOn(document, 'removeEventListener')
+    const removeEventListenerSpy = vi.spyOn(document, 'removeEventListener')
 
     const { unmount } = render(<PerformanceMonitor enableReporting={true} />)
 
@@ -136,8 +137,8 @@ describe('PerformanceMonitor', () => {
   it('should handle missing performance API gracefully', () => {
     // Temporarily remove performance API
     const originalPerformance = window.performance
-    // @ts-ignore
-    delete window.performance
+    // @ts-expect-error
+    window.performance = undefined
 
     expect(() => {
       render(<PerformanceMonitor enableReporting={true} />)

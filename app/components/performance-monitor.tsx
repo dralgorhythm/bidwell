@@ -89,16 +89,16 @@ export default function PerformanceMonitor({
 
     // Add interaction listeners
     const interactionEvents = ['click', 'keydown', 'touchstart']
-    interactionEvents.forEach(eventType => {
+    for (const eventType of interactionEvents) {
       document.addEventListener(eventType, trackInteraction, { passive: true })
-    })
+    }
 
     // Cleanup function
     return () => {
       window.removeEventListener('load', trackPageLoad)
-      interactionEvents.forEach(eventType => {
+      for (const eventType of interactionEvents) {
         document.removeEventListener(eventType, trackInteraction)
-      })
+      }
     }
   }, [enableReporting, debug])
 

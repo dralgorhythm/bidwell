@@ -15,34 +15,6 @@ This guide covers common issues, debugging techniques, and solutions for the Bid
 
 ## Build Issues
 
-### Static Export Build Failures
-
-**Problem:** Build fails when trying to create static export for GitHub Pages deployment.
-
-**Symptoms:**
-
-```bash
-Error: Page "/api/health" is not compatible with export
-Error: Page "/api/analytics" has dynamic imports
-```
-
-**Solution:**
-Use the specialized build script for static export:
-
-```bash
-# Instead of
-npm run build
-
-# Use
-npm run build:static
-```
-
-**Why it works:**
-
-- Temporarily moves API routes during static build
-- Automatically restores API routes after build
-- Sets proper environment variables for static export
-
 ### Next.js Configuration Conflicts
 
 **Problem:** Duplicate webpack configurations or incompatible settings.

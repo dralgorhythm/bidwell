@@ -1,8 +1,9 @@
-import { render, RenderResult } from '@testing-library/react'
-import { ReactElement } from 'react'
+import { type RenderResult, render } from '@testing-library/react'
+import type { ReactElement } from 'react'
 import React from 'react'
 
 // Performance testing utilities
+// biome-ignore lint/complexity/noStaticOnlyClass: Test utility
 export class PerformanceTestHelper {
   private static readonly RENDER_THRESHOLD = 100 // ms
   private static readonly INTERACTION_THRESHOLD = 50 // ms
@@ -25,49 +26,53 @@ export class PerformanceTestHelper {
   }
 
   static expectFastRender(renderTime: number, customThreshold?: number): void {
-    const threshold = customThreshold || this.RENDER_THRESHOLD
+    const threshold = customThreshold || PerformanceTestHelper.RENDER_THRESHOLD
     expect(renderTime).toBeLessThan(threshold)
   }
 
   static expectFastInteraction(interactionTime: number, customThreshold?: number): void {
-    const threshold = customThreshold || this.INTERACTION_THRESHOLD
+    const threshold = customThreshold || PerformanceTestHelper.INTERACTION_THRESHOLD
     expect(interactionTime).toBeLessThan(threshold)
   }
 
-  static createPerformanceObserver(entryTypes: string[]): PerformanceObserver {
+  static createPerformanceObserver(_entryTypes: string[]): PerformanceObserver {
     return new PerformanceObserver(list => {
-      list.getEntries().forEach(entry => {
+      for (const entry of list.getEntries()) {
         console.log(`Performance entry: ${entry.name} - ${entry.duration}ms`)
-      })
+      }
     })
   }
 }
 
 // Memory usage testing
+// biome-ignore lint/complexity/noStaticOnlyClass: Test utility
 export class MemoryTestHelper {
   private static initialMemory: number
 
   static startMemoryMeasurement(): void {
     if (typeof window !== 'undefined' && 'performance' in window && 'memory' in performance) {
-      this.initialMemory = (performance as any).memory.usedJSHeapSize
+      // biome-ignore lint/suspicious/noExplicitAny: Accessing internal property
+      MemoryTestHelper.initialMemory = (performance as any).memory.usedJSHeapSize
     }
   }
 
   static getMemoryUsage(): number {
     if (typeof window !== 'undefined' && 'performance' in window && 'memory' in performance) {
-      return (performance as any).memory.usedJSHeapSize - this.initialMemory
+      // biome-ignore lint/suspicious/noExplicitAny: Accessing internal property
+      return (performance as any).memory.usedJSHeapSize - MemoryTestHelper.initialMemory
     }
     return 0
   }
 
   static expectLowMemoryUsage(threshold = 1024 * 1024): void {
     // 1MB default
-    const usage = this.getMemoryUsage()
+    const usage = MemoryTestHelper.getMemoryUsage()
     expect(usage).toBeLessThan(threshold)
   }
 }
 
 // Component stress testing
+// biome-ignore lint/complexity/noStaticOnlyClass: Test utility
 export class StressTestHelper {
   static async stressTestComponent(
     component: ReactElement,
@@ -101,8 +106,9 @@ export class StressTestHelper {
 }
 
 // Bundle size testing helpers
+// biome-ignore lint/complexity/noStaticOnlyClass: Test utility
 export class BundleTestHelper {
-  static async measureComponentSize(componentPath: string): Promise<number> {
+  static async measureComponentSize(_componentPath: string): Promise<number> {
     try {
       // This would require build-time analysis in a real implementation
       // For now, we'll return a mock size
@@ -120,12 +126,15 @@ export class BundleTestHelper {
 }
 
 // Utility for testing component rendering under different conditions
+// biome-ignore lint/complexity/noStaticOnlyClass: Test utility
 export class EnvironmentTestHelper {
   static simulateSlowDevice(component: ReactElement): RenderResult {
     // Mock slow device by adding artificial delay
     const originalSetTimeout = global.setTimeout
+    // biome-ignore lint/complexity/noBannedTypes: Test utility
     global.setTimeout = ((fn: Function, delay: number) => {
       return originalSetTimeout(fn, delay * 2) // Double all timeouts
+      // biome-ignore lint/suspicious/noExplicitAny: Test utility
     }) as any
 
     const result = render(component)
@@ -152,6 +161,7 @@ export class EnvironmentTestHelper {
 }
 
 // Error boundary testing
+// biome-ignore lint/complexity/noStaticOnlyClass: Test utility
 export class ErrorTestHelper {
   static createErrorBoundary(fallback: ReactElement) {
     return class TestErrorBoundary extends React.Component<
@@ -184,7 +194,7 @@ export class ErrorTestHelper {
   static expectErrorHandling(componentWithError: ReactElement, expectedError: string): void {
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
 
-    const ErrorBoundary = this.createErrorBoundary(<div>Error occurred</div>)
+    const ErrorBoundary = ErrorTestHelper.createErrorBoundary(<div>Error occurred</div>)
 
     render(<ErrorBoundary>{componentWithError}</ErrorBoundary>)
 

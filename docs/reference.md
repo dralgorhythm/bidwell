@@ -6,7 +6,6 @@ This document provides comprehensive technical reference for the Bidwell Consult
 
 - [Component Library](#component-library)
 - [Utility Libraries](#utility-libraries)
-- [API Endpoints](#api-endpoints)
 - [Development Patterns](#development-patterns)
 - [TypeScript Interfaces](#typescript-interfaces)
 - [Testing Utilities](#testing-utilities)
@@ -297,60 +296,6 @@ const envSchema = z.object({
 // Validated environment
 export const env = envSchema.parse(process.env)
 ```
-
-## API Endpoints
-
-### Health Check (`/api/health`)
-
-Basic health check endpoint for monitoring.
-
-```typescript
-// GET /api/health
-interface HealthResponse {
-  status: 'ok'
-  timestamp: string
-  environment: string
-}
-
-// Example response
-{
-  "status": "ok",
-  "timestamp": "2025-01-01T00:00:00.000Z",
-  "environment": "production"
-}
-```
-
-### Analytics (`/api/analytics`)
-
-Performance metrics collection endpoint.
-
-```typescript
-// POST /api/analytics
-interface AnalyticsRequest {
-  metric: string
-  value: number
-  context?: Record<string, any>
-}
-
-interface AnalyticsResponse {
-  success: boolean
-  message: string
-}
-
-// Example request
-{
-  "metric": "LCP",
-  "value": 1500,
-  "context": { "page": "/", "device": "desktop" }
-}
-```
-
-**Security Features:**
-
-- Rate limiting: 10 requests per minute per IP
-- Input validation with Zod schemas
-- Security headers on all responses
-- Proper error handling
 
 ## Development Patterns
 

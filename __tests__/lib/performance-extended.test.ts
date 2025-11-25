@@ -5,13 +5,14 @@ import * as performance from '../../lib/performance'
 
 describe('Additional Performance Tests', () => {
   // Save and mock window objects
+  // biome-ignore lint/suspicious/noExplicitAny: Mocking global
   let originalWindow: any
 
   beforeEach(() => {
     originalWindow = { ...global.window }
 
     // Mock fetch
-    global.fetch = jest.fn().mockImplementation(() =>
+    global.fetch = vi.fn().mockImplementation(() =>
       Promise.resolve({
         ok: true,
         json: () => Promise.resolve({}),
@@ -20,20 +21,21 @@ describe('Additional Performance Tests', () => {
 
     // Mock performance reporting APIs
     global.window.performance = {
-      mark: jest.fn(),
-      measure: jest.fn(),
-      getEntriesByName: jest.fn().mockReturnValue([{ duration: 100 }]),
-      clearMarks: jest.fn(),
-      clearMeasures: jest.fn(),
+      mark: vi.fn(),
+      measure: vi.fn(),
+      getEntriesByName: vi.fn().mockReturnValue([{ duration: 100 }]),
+      clearMarks: vi.fn(),
+      clearMeasures: vi.fn(),
+      // biome-ignore lint/suspicious/noExplicitAny: Mocking window performance
     } as any
   })
 
   afterEach(() => {
     // Restore original window
     global.window = originalWindow
-    jest.clearAllMocks()
+    vi.clearAllMocks()
     // Restore document.createElement if it was mocked
-    jest.restoreAllMocks()
+    vi.restoreAllMocks()
   })
 
   describe('preloadImage edge cases', () => {
@@ -47,10 +49,9 @@ describe('Additional Performance Tests', () => {
         getAttribute: jest.fn(),
       }
 
-      const mockAppendChild = jest.fn()
-      const mockCreateElement = jest
-        .spyOn(document, 'createElement')
-        .mockReturnValue(mockLink as any)
+      const mockAppendChild = vi.fn()
+      // biome-ignore lint/suspicious/noExplicitAny: Mocking DOM element
+      const mockCreateElement = vi.spyOn(document, 'createElement').mockReturnValue(mockLink as any)
       const originalAppendChild = document.head.appendChild
       document.head.appendChild = mockAppendChild
 
@@ -101,17 +102,22 @@ describe('Additional Performance Tests', () => {
 
   describe('observeElementIntersection edge cases', () => {
     it('returns a cleanup function that disconnects the observer', () => {
-      const mockDisconnect = jest.fn()
-      const mockObserve = jest.fn()
+      const mockDisconnect = vi.fn()
+      const mockObserve = vi.fn()
 
       // Mock IntersectionObserver
-      global.IntersectionObserver = jest.fn().mockImplementation(() => ({
-        disconnect: mockDisconnect,
-        observe: mockObserve,
-      }))
+      global.IntersectionObserver = class MockIntersectionObserver {
+        disconnect = mockDisconnect
+        observe = mockObserve
+        unobserve = vi.fn()
+        root = null
+        rootMargin = ''
+        thresholds = []
+        takeRecords = vi.fn(() => [])
+      } as unknown as typeof IntersectionObserver
 
       const element = document.createElement('div')
-      const callback = jest.fn()
+      const callback = vi.fn()
 
       // Call the function
       const cleanup = performance.observeElementIntersection(element, callback)
@@ -126,11 +132,23 @@ describe('Additional Performance Tests', () => {
 
     it('handles custom threshold and rootMargin options', () => {
       // Mock IntersectionObserver constructor
-      const mockConstructor = jest.fn()
-      global.IntersectionObserver = mockConstructor
+      let capturedOptions: IntersectionObserverInit | undefined
+      global.IntersectionObserver = class MockIntersectionObserver {
+        observe = vi.fn()
+        unobserve = vi.fn()
+        disconnect = vi.fn()
+        root = null
+        rootMargin = ''
+        thresholds = []
+        takeRecords = vi.fn(() => [])
+
+        constructor(_callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {
+          capturedOptions = options
+        }
+      } as unknown as typeof IntersectionObserver
 
       const element = document.createElement('div')
-      const callback = jest.fn()
+      const callback = vi.fn()
       const options = {
         threshold: 0.5,
         rootMargin: '10px',
@@ -140,7 +158,7 @@ describe('Additional Performance Tests', () => {
       performance.observeElementIntersection(element, callback, options)
 
       // Verify constructor was called with options
-      expect(mockConstructor).toHaveBeenCalledWith(expect.any(Function), {
+      expect(capturedOptions).toEqual({
         threshold: 0.5,
         rootMargin: '10px',
       })
@@ -171,7 +189,7 @@ describe('Additional Performance Tests', () => {
       )
 
       // Check the body contains all parameters
-      const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body)
+      const callBody = JSON.parse((fetch as ReturnType<typeof vi.fn>).mock.calls[0][1].body)
       expect(callBody).toEqual(
         expect.objectContaining({
           name: 'test-metric',
@@ -230,10 +248,11 @@ describe('Additional Performance Tests', () => {
 
   describe('measureCustomTiming with edge cases', () => {
     it('handles missing start mark', () => {
-      // Mock getEntriesByName to return empty for startMark
-      global.window.performance.getEntriesByName = jest.fn().mockImplementation(name => {
-        if (name === 'startMark') return []
-        return [{ duration: 100 }]
+      // Mock measure to throw error (simulating missing mark)
+      global.window.performance.measure = vi.fn().mockImplementation(() => {
+        throw new Error(
+          "Failed to execute 'measure' on 'Performance': The mark 'startMark' does not exist."
+        )
       })
 
       const result = performance.measureCustomTiming('startMark', 'endMark')
@@ -242,7 +261,8 @@ describe('Additional Performance Tests', () => {
 
     it('handles missing performance API', () => {
       // Remove performance API
-      delete (global.window as any).performance
+      // biome-ignore lint/suspicious/noExplicitAny: Modifying global object
+      ;(global.window as any).performance = undefined
 
       const result = performance.measureCustomTiming('startMark', 'endMark')
       expect(result).toBeNull()

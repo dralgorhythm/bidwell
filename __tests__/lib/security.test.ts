@@ -1,9 +1,9 @@
 import {
   generateCSRFToken,
-  hashToken,
-  verifyCSRFToken,
   getClientIP,
   getSecurityHeaders,
+  hashToken,
+  verifyCSRFToken,
 } from '../../lib/security'
 
 describe('lib/security.ts', () => {
@@ -69,7 +69,9 @@ describe('lib/security.ts', () => {
     })
 
     it('returns false for null/undefined values', () => {
+      // biome-ignore lint/suspicious/noExplicitAny: Testing invalid inputs
       expect(verifyCSRFToken(null as any, 'hash')).toBe(false)
+      // biome-ignore lint/suspicious/noExplicitAny: Testing invalid inputs
       expect(verifyCSRFToken('token', null as any)).toBe(false)
     })
   })
@@ -147,9 +149,9 @@ describe('lib/security.ts', () => {
     it('returns object with string values', () => {
       const headers = getSecurityHeaders()
 
-      Object.values(headers).forEach(value => {
+      for (const value of Object.values(headers)) {
         expect(typeof value).toBe('string')
-      })
+      }
     })
 
     it('includes cache prevention headers', () => {
@@ -158,8 +160,8 @@ describe('lib/security.ts', () => {
       expect(headers['Cache-Control']).toContain('no-store')
       expect(headers['Cache-Control']).toContain('no-cache')
       expect(headers['Cache-Control']).toContain('must-revalidate')
-      expect(headers['Pragma']).toBe('no-cache')
-      expect(headers['Expires']).toBe('0')
+      expect(headers.Pragma).toBe('no-cache')
+      expect(headers.Expires).toBe('0')
     })
   })
 })
