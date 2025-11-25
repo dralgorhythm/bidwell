@@ -6,7 +6,9 @@ import { vi } from 'vitest'
 
 // Mock react-dom/test-utils for React 19 compatibility
 vi.mock('react-dom/test-utils', () => ({
-  act: React.act,
+  act: async (callback: () => Promise<void> | void) => {
+    return React.act(callback)
+  },
 }))
 
 // Extend Vitest's expect
@@ -48,7 +50,7 @@ global.Headers =
       return super.set(name.toLowerCase(), value)
     }
     // biome-ignore lint/suspicious/noExplicitAny: Mock implementation
-  } as unknown as { new (init?: any): Headers; prototype: Headers })
+  } as unknown as { new(init?: any): Headers; prototype: Headers })
 
 global.Response =
   global.Response ||
@@ -78,7 +80,7 @@ global.Response =
       })
     }
   } as unknown as {
-    new (body: unknown, init?: unknown): Response
+    new(body: unknown, init?: unknown): Response
     json(data: unknown, init?: unknown): Response
     prototype: Response
   })
@@ -97,7 +99,7 @@ global.Request =
       this.headers = new global.Headers(init.headers || {})
       this.body = init.body || null
     }
-  } as unknown as { new (url: string, init?: unknown): Request; prototype: Request })
+  } as unknown as { new(url: string, init?: unknown): Request; prototype: Request })
 
 // Mock Next.js modules
 vi.mock('next/server', () => ({
@@ -161,7 +163,7 @@ global.IntersectionObserver = class IntersectionObserver {
   thresholds = []
   takeRecords = vi.fn(() => [])
 } as unknown as {
-  new (
+  new(
     callback: IntersectionObserverCallback,
     options?: IntersectionObserverInit
   ): IntersectionObserver
@@ -174,7 +176,7 @@ global.ResizeObserver = class ResizeObserver {
   unobserve = vi.fn()
   disconnect = vi.fn()
 } as unknown as {
-  new (callback: ResizeObserverCallback): ResizeObserver
+  new(callback: ResizeObserverCallback): ResizeObserver
   prototype: ResizeObserver
 }
 
