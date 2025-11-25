@@ -1,7 +1,13 @@
 import '@testing-library/jest-dom'
 import * as matchers from '@testing-library/jest-dom/matchers'
 import { toHaveNoViolations } from 'jest-axe'
+import React from 'react'
 import { vi } from 'vitest'
+
+// Mock react-dom/test-utils for React 19 compatibility
+vi.mock('react-dom/test-utils', () => ({
+  act: React.act,
+}))
 
 // Extend Vitest's expect
 expect.extend(matchers)
