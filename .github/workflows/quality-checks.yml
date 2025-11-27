@@ -105,7 +105,6 @@ jobs:
       - name: Run ${{ matrix.description }}
         run: ${{ matrix.command }}
         env:
-          NODE_ENV: production
           NEXT_TELEMETRY_DISABLED: 1
 
       - name: Upload test coverage
