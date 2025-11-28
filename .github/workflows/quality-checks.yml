@@ -165,6 +165,14 @@ jobs:
             npm install -g @lhci/cli@0.13.x
           fi
 
+      - name: Generate test URLs from sitemap
+        id: generate-urls
+        run: |
+          echo "Generating test URLs from sitemap..."
+          URLS=$(npx tsx scripts/generate-health-checks.ts | jq -r '.[].url' | tr '\n' ' ')
+          echo "urls=$URLS" >> $GITHUB_OUTPUT
+          echo "Will test: $URLS"
+
       - name: Start application
         run: |
           npx serve out -l 3000 &
@@ -172,13 +180,25 @@ jobs:
 
       - name: Run accessibility tests
         if: matrix.test-type == 'accessibility'
+        env:
+          TEST_URLS: ${{ steps.generate-urls.outputs.urls }}
         run: |
-          axe http://localhost:3000 --exit
-          axe http://localhost:3000/comparison --exit
+          for url in $TEST_URLS; do
+            # Convert production URL to localhost
+            local_url=$(echo "$url" | sed 's|https://bidwell.info|http://localhost:3000|')
+            echo "Testing accessibility: $local_url"
+            axe "$local_url" --exit
+          done
 
       - name: Run performance tests
         if: matrix.test-type == 'performance'
+        env:
+          TEST_URLS: ${{ steps.generate-urls.outputs.urls }}
         run: |
           export CHROME_PATH=$(which chrome)
-          lhci autorun --upload.target=temporary-public-storage --collect.url=http://localhost:3000
-          lhci autorun --upload.target=temporary-public-storage --collect.url=http://localhost:3000/comparison
+          for url in $TEST_URLS; do
+            # Convert production URL to localhost
+            local_url=$(echo "$url" | sed 's|https://bidwell.info|http://localhost:3000|')
+            echo "Testing performance: $local_url"
+            lhci autorun --upload.target=temporary-public-storage --collect.url="$local_url"
+          done

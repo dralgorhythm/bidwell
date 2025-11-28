@@ -18,45 +18,68 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
       - name: Wait for deployment
         run: sleep 30
 
+      - name: Generate health checks from sitemap
+        id: generate-checks
+        run: |
+          echo "Generating health checks from sitemap..."
+          CHECKS=$(npx tsx scripts/generate-health-checks.ts)
+          echo "checks=$CHECKS" >> $GITHUB_OUTPUT
+          echo "Generated checks:"
+          echo "$CHECKS" | jq -r '.[] | "  - \(.name): \(.url)"'
+
       - name: Check site availability
+        env:
+          CHECKS: ${{ steps.generate-checks.outputs.checks }}
         run: |
           echo "Checking site health..."
           
-          # Primary health checks
           SITE_URL="https://bidwell.info"
+          FAILED=0
           
-          # Check main page
-          if curl -f -s --max-time 10 "$SITE_URL" > /dev/null; then
-            echo "✅ Main page: OK"
-          else
-            echo "❌ Main page: FAILED"
-            exit 1
-          fi
+          # Check all routes from sitemap
+          echo "$CHECKS" | jq -c '.[]' | while read -r check; do
+            URL=$(echo "$check" | jq -r '.url')
+            NAME=$(echo "$check" | jq -r '.name')
+            
+            if curl -f -s --max-time 10 "$URL" > /dev/null; then
+              echo "✅ $NAME: OK"
+            else
+              echo "❌ $NAME: FAILED"
+              FAILED=1
+            fi
+          done
           
-          # Check comparison page
-          if curl -f -s --max-time 10 "$SITE_URL/comparison" > /dev/null; then
-            echo "✅ Comparison page: OK"
-          else
-            echo "❌ Comparison page: FAILED"
-            exit 1
-          fi
-          
-          # Check robots.txt
+          # Check essential meta files
           if curl -f -s --max-time 10 "$SITE_URL/robots.txt" > /dev/null; then
             echo "✅ Robots.txt: OK"
           else
             echo "❌ Robots.txt: FAILED"
-            exit 1
+            FAILED=1
           fi
           
-          # Check sitemap
           if curl -f -s --max-time 10 "$SITE_URL/sitemap.xml" > /dev/null; then
             echo "✅ Sitemap: OK"
           else
             echo "❌ Sitemap: FAILED"
+            FAILED=1
+          fi
+          
+          if [ $FAILED -eq 1 ]; then
             exit 1
           fi
 
