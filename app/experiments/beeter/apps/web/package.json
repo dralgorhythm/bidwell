@@ -1,0 +1,28 @@
+{
+    "name": "@beeter/web",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@beeter/audio": "*",
+        "@strudel/core": "^1.2.5",
+        "@strudel/mini": "^1.2.5",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "strudel": "^1.0.5"
+    },
+    "devDependencies": {
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0",
+        "@vitejs/plugin-react": "^5.1.1",
+        "typescript": "^5.9.3",
+        "vite": "^7.2.4",
+        "vite-plugin-top-level-await": "^1.4.1",
+        "vite-plugin-wasm": "^3.3.0"
+    }
+}

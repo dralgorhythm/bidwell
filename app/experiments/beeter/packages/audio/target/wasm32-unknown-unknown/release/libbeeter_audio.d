@@ -1,0 +1,1 @@
+/Users/winters/src/bidwell/app/experiments/beeter/packages/audio/target/wasm32-unknown-unknown/release/libbeeter_audio.rlib: /Users/winters/src/bidwell/app/experiments/beeter/packages/audio/src/lib.rs

@@ -1,0 +1,19 @@
+{
+    "name": "@beeter/audio",
+    "version": "0.0.1",
+    "main": "pkg/beeter_audio.js",
+    "types": "pkg/beeter_audio.d.ts",
+    "exports": {
+        ".": "./pkg/beeter_audio.js",
+        "./beeter_audio_bg.wasm": "./pkg/beeter_audio_bg.wasm"
+    },
+    "files": [
+        "pkg"
+    ],
+    "scripts": {
+        "build": "wasm-pack build --target web"
+    },
+    "devDependencies": {
+        "wasm-pack": "^0.13.1"
+    }
+}
