@@ -52,13 +52,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Bidwell Consulting - Software Engineering & Organizational Consulting',
-    description:
-      'Expert software engineering and organizational consulting services. Portfolio showcasing innovative solutions.',
-    images: [`${baseUrl}/og`],
-  },
   robots: {
     index: true,
     follow: true,

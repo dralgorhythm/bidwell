@@ -27,12 +27,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Experiments - Interactive Tools & Utilities',
-    description: 'A collection of experimental tools and utilities.',
-    images: ['/og?title=Experiments'],
-  },
 }
 
 const experiments = [
@@ -50,7 +44,7 @@ export default function ExperimentsPage() {
       <h1 className='font-semibold text-2xl mb-8 tracking-tighter'>Experiments</h1>
 
       <div className='mb-6'>
-        <p className='mb-4 text-neutral-600 dark:text-neutral-400'>
+        <p className='mb-4'>
           A collection of experimental tools and utilities built to demonstrate clean code
           practices, modern web development techniques, and user-friendly design. Each experiment
           showcases different aspects of software engineering and interactive application

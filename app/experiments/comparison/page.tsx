@@ -28,12 +28,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Number Comparison Tool - Interactive Math Utility',
-    description: 'Free online number comparison tool. Compare two numbers instantly.',
-    images: ['/og?title=Number%20Comparison%20Tool'],
-  },
 }
 
 export default function ComparisonPage() {
