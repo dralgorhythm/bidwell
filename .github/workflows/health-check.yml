@@ -37,7 +37,7 @@ jobs:
         id: generate-checks
         run: |
           echo "Generating health checks from sitemap..."
-          CHECKS=$(npx tsx scripts/generate-health-checks.ts)
+          CHECKS=$(npx tsx scripts/generate-health-checks.ts | jq -c .)
           echo "checks=$CHECKS" >> $GITHUB_OUTPUT
           echo "Generated checks:"
           echo "$CHECKS" | jq -r '.[] | "  - \(.name): \(.url)"'
