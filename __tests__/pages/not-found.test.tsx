@@ -1,4 +1,4 @@
-import { axe } from 'jest-axe'
+import { axe } from 'vitest-axe'
 import NotFound from '../../app/not-found'
 import { render, screen } from '../utils/test-utils'
 

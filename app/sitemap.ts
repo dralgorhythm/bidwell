@@ -11,10 +11,16 @@ export default async function sitemap() {
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/comparison`,
+      url: `${baseUrl}/experiments`,
       lastModified: new Date().toISOString().split('T')[0],
       changeFrequency: 'monthly' as const,
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/experiments/comparison`,
+      lastModified: new Date().toISOString().split('T')[0],
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
     },
   ]
 

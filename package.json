@@ -48,10 +48,10 @@
     "@vitejs/plugin-react": "5.1.1",
     "@vitest/coverage-v8": "^4.0.14",
     "audit-ci": "^7.1.0",
-    "jest-axe": "^10.0.0",
     "jsdom": "27.2.0",
     "next-image-export-optimizer": "^1.19.0",
     "vitest": "4.0.14",
+    "vitest-axe": "^0.1.0",
     "webpack-bundle-analyzer": "^5.0.1"
   }
 }

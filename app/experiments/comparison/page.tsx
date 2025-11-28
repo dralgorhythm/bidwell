@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Breadcrumb from '../components/breadcrumb'
+import Breadcrumb from '../../components/breadcrumb'
 import ComparisonForm from './comparison-form'
 
 export const metadata: Metadata = {
@@ -42,7 +42,8 @@ export default function ComparisonPage() {
       <Breadcrumb
         items={[
           { name: 'Home', href: '/' },
-          { name: 'Number Comparison Tool', href: '/comparison' },
+          { name: 'Experiments', href: '/experiments' },
+          { name: 'Number Comparison', href: '/experiments/comparison' },
         ]}
       />
 

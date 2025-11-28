@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import { vi } from 'vitest'
-import ComparisonPage from '../../app/comparison/page'
+import ComparisonPage from '../../../app/experiments/comparison/page'
 
 // Mock the comparison form component
-vi.mock('../../app/comparison/comparison-form', () => ({
+vi.mock('../../../app/experiments/comparison/comparison-form', () => ({
   default: function MockComparisonForm() {
     return <div data-testid='comparison-form'>Comparison Form</div>
   },

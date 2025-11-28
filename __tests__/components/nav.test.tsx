@@ -1,22 +1,25 @@
 import { render, screen } from '@testing-library/react'
+import { vi } from 'vitest'
 import { Navbar } from '../../app/components/nav'
 
 // Mock Next.js Link component
-jest.mock('next/link', () => {
-  return function MockLink({
-    children,
-    href,
-    ...props
-  }: {
-    children: React.ReactNode
-    href: string
-    [key: string]: unknown
-  }) {
-    return (
-      <a href={href} {...props}>
-        {children}
-      </a>
-    )
+vi.mock('next/link', () => {
+  return {
+    default: function MockLink({
+      children,
+      href,
+      ...props
+    }: {
+      children: React.ReactNode
+      href: string
+      [key: string]: unknown
+    }) {
+      return (
+        <a href={href} {...props}>
+          {children}
+        </a>
+      )
+    },
   }
 })
 
@@ -25,14 +28,17 @@ describe('Navbar', () => {
     render(<Navbar />)
 
     expect(screen.getByRole('link', { name: /home/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /comparison/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /experiments/i })).toBeInTheDocument()
   })
 
   it('has correct href attributes for navigation links', () => {
     render(<Navbar />)
 
     expect(screen.getByRole('link', { name: /home/i })).toHaveAttribute('href', '/')
-    expect(screen.getByRole('link', { name: /comparison/i })).toHaveAttribute('href', '/comparison')
+    expect(screen.getByRole('link', { name: /experiments/i })).toHaveAttribute(
+      'href',
+      '/experiments'
+    )
   })
 
   it('has proper navigation structure with nav element', () => {
@@ -56,11 +62,11 @@ describe('Navbar', () => {
     }
   })
 
-  it('includes the comparison navigation item', () => {
+  it('includes the experiments navigation item', () => {
     render(<Navbar />)
 
-    const comparisonLink = screen.getByRole('link', { name: /comparison/i })
-    expect(comparisonLink).toBeInTheDocument()
-    expect(comparisonLink).toHaveAttribute('href', '/comparison')
+    const experimentsLink = screen.getByRole('link', { name: /experiments/i })
+    expect(experimentsLink).toBeInTheDocument()
+    expect(experimentsLink).toHaveAttribute('href', '/experiments')
   })
 })

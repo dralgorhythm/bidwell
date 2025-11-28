@@ -1,6 +1,7 @@
 import { type RenderResult, render } from '@testing-library/react'
 import type { ReactElement } from 'react'
 import React from 'react'
+import { vi } from 'vitest'
 
 // Performance testing utilities
 // biome-ignore lint/complexity/noStaticOnlyClass: Test utility
@@ -192,7 +193,7 @@ export class ErrorTestHelper {
   }
 
   static expectErrorHandling(componentWithError: ReactElement, expectedError: string): void {
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
 
     const ErrorBoundary = ErrorTestHelper.createErrorBoundary(<div>Error occurred</div>)
 

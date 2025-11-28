@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import {
   addFontSizeAdjustments,
   CRITICAL_FONT_SUBSET,
@@ -29,7 +30,7 @@ describe('Font Optimization', () => {
     // console.log('document.fonts:', (document as any).fonts)
     createdElements = []
     mockAppendChild = vi.fn()
-    mockCreateElement = jest.fn().mockImplementation(tag => {
+    mockCreateElement = vi.fn().mockImplementation(tag => {
       const element = {
         tagName: tag.toUpperCase(),
         rel: '',
@@ -38,7 +39,7 @@ describe('Font Optimization', () => {
         type: '',
         crossOrigin: '',
         textContent: '',
-        addEventListener: jest.fn(),
+        addEventListener: vi.fn(),
       }
       createdElements.push(element)
       return element
@@ -50,8 +51,8 @@ describe('Font Optimization', () => {
         createElement: mockCreateElement,
         head: { appendChild: mockAppendChild },
         fonts: { ready: Promise.resolve() },
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
       },
       writable: true,
       configurable: true,

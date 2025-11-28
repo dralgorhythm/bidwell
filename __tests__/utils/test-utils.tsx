@@ -1,10 +1,7 @@
 import { type RenderOptions, type RenderResult, render } from '@testing-library/react'
 import type userEvent from '@testing-library/user-event'
-import { axe, toHaveNoViolations } from 'jest-axe'
 import type { ReactElement } from 'react'
-
-// Extend Jest matchers
-expect.extend(toHaveNoViolations)
+import { axe } from 'vitest-axe'
 
 // Custom render function with common providers
 interface CustomRenderOptions extends Omit<RenderOptions, 'wrapper'> {

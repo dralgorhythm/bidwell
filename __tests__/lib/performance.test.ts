@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
 
 import { vi } from 'vitest'
@@ -131,7 +131,7 @@ describe('Performance Library', () => {
         rel: '',
         as: '',
         href: '',
-        setAttribute: jest.fn(),
+        setAttribute: vi.fn(),
       }
 
       // biome-ignore lint/suspicious/noExplicitAny: Mocking DOM element
@@ -158,7 +158,7 @@ describe('Performance Library', () => {
         rel: '',
         as: '',
         href: '',
-        setAttribute: jest.fn(),
+        setAttribute: vi.fn(),
       }
 
       // biome-ignore lint/suspicious/noExplicitAny: Mocking DOM element

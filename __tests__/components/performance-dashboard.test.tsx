@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
 
 import { act, fireEvent, render, screen } from '@testing-library/react'
@@ -312,7 +312,7 @@ describe('PerformanceDashboard', () => {
 
   it('should handle missing metrics gracefully', () => {
     // Clear all mocks so no callbacks are called
-    jest.clearAllMocks()
+    vi.clearAllMocks()
     mockLocalStorage.getItem.mockReturnValue(null)
 
     // Override the mock implementations to not call callbacks
@@ -357,7 +357,7 @@ describe('PerformanceDashboard', () => {
   describe('metric rating', () => {
     it('should classify metrics correctly', async () => {
       // Reset all mocks and use poor metric values
-      jest.clearAllMocks()
+      vi.clearAllMocks()
       mockLocalStorage.getItem.mockReturnValue(null)
 
       // Mock with poor metrics

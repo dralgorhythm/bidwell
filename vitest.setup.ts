@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom'
 import * as matchers from '@testing-library/jest-dom/matchers'
-import { toHaveNoViolations } from 'jest-axe'
+import * as axeMatchers from 'vitest-axe/matchers'
+import 'vitest-axe/extend-expect'
 import React from 'react'
 import { vi } from 'vitest'
 
@@ -13,22 +14,7 @@ vi.mock('react-dom/test-utils', () => ({
 
 // Extend Vitest's expect
 expect.extend(matchers)
-expect.extend(toHaveNoViolations)
-
-// Alias jest to vi for compatibility
-globalThis.jest = {
-  ...vi,
-  fn: vi.fn,
-  mock: vi.mock,
-  spyOn: vi.spyOn,
-  useFakeTimers: vi.useFakeTimers,
-  useRealTimers: vi.useRealTimers,
-  advanceTimersByTime: vi.advanceTimersByTime,
-  clearAllMocks: vi.clearAllMocks,
-  resetAllMocks: vi.resetAllMocks,
-  restoreAllMocks: vi.restoreAllMocks,
-  // biome-ignore lint/suspicious/noExplicitAny: Jest compatibility
-} as any
+expect.extend(axeMatchers)
 
 // Mock Web APIs
 global.Headers =
@@ -50,7 +36,7 @@ global.Headers =
       return super.set(name.toLowerCase(), value)
     }
     // biome-ignore lint/suspicious/noExplicitAny: Mock implementation
-  } as unknown as { new(init?: any): Headers; prototype: Headers })
+  } as unknown as { new (init?: any): Headers; prototype: Headers })
 
 global.Response =
   global.Response ||
@@ -80,7 +66,7 @@ global.Response =
       })
     }
   } as unknown as {
-    new(body: unknown, init?: unknown): Response
+    new (body: unknown, init?: unknown): Response
     json(data: unknown, init?: unknown): Response
     prototype: Response
   })
@@ -99,7 +85,7 @@ global.Request =
       this.headers = new global.Headers(init.headers || {})
       this.body = init.body || null
     }
-  } as unknown as { new(url: string, init?: unknown): Request; prototype: Request })
+  } as unknown as { new (url: string, init?: unknown): Request; prototype: Request })
 
 // Mock Next.js modules
 vi.mock('next/server', () => ({
@@ -163,7 +149,7 @@ global.IntersectionObserver = class IntersectionObserver {
   thresholds = []
   takeRecords = vi.fn(() => [])
 } as unknown as {
-  new(
+  new (
     callback: IntersectionObserverCallback,
     options?: IntersectionObserverInit
   ): IntersectionObserver
@@ -176,7 +162,7 @@ global.ResizeObserver = class ResizeObserver {
   unobserve = vi.fn()
   disconnect = vi.fn()
 } as unknown as {
-  new(callback: ResizeObserverCallback): ResizeObserver
+  new (callback: ResizeObserverCallback): ResizeObserver
   prototype: ResizeObserver
 }
 

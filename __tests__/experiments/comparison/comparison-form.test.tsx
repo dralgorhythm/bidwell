@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import ComparisonForm from '../../app/comparison/comparison-form'
+import ComparisonForm from '../../../app/experiments/comparison/comparison-form'
 
 describe('ComparisonForm', () => {
   beforeEach(() => {

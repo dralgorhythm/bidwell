@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import { isSecureEnvironment, validateEnv } from '../../lib/env'
 
 // Helper function to set environment variables in a test-safe way
@@ -57,8 +58,8 @@ describe('lib/env.ts', () => {
     it('throws error for invalid NODE_ENV', () => {
       setEnvVar('NODE_ENV', 'invalid')
 
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
-      const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+      const exitSpy = vi.spyOn(process, 'exit').mockImplementation(() => {
         throw new Error('process.exit called')
       })
 
@@ -74,8 +75,8 @@ describe('lib/env.ts', () => {
       setEnvVar('NODE_ENV', 'development')
       setEnvVar('EMAIL_FROM', 'invalid-email')
 
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
-      const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+      const exitSpy = vi.spyOn(process, 'exit').mockImplementation(() => {
         throw new Error('process.exit called')
       })
 
@@ -89,8 +90,8 @@ describe('lib/env.ts', () => {
       setEnvVar('NODE_ENV', 'development')
       setEnvVar('NEXTAUTH_SECRET', 'short')
 
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
-      const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+      const exitSpy = vi.spyOn(process, 'exit').mockImplementation(() => {
         throw new Error('process.exit called')
       })
 
@@ -104,8 +105,8 @@ describe('lib/env.ts', () => {
       setEnvVar('NODE_ENV', 'development')
       setEnvVar('NEXTAUTH_URL', 'not-a-url')
 
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
-      const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+      const exitSpy = vi.spyOn(process, 'exit').mockImplementation(() => {
         throw new Error('process.exit called')
       })
 

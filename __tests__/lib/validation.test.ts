@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import {
   checkRateLimit,
   contactFormSchema,
@@ -204,11 +205,11 @@ describe('createRateLimit', () => {
 
 describe('checkRateLimit', () => {
   beforeEach(() => {
-    jest.useFakeTimers()
+    vi.useFakeTimers()
   })
 
   afterEach(() => {
-    jest.useRealTimers()
+    vi.useRealTimers()
   })
 
   it('allows first request and returns correct info', () => {
@@ -259,14 +260,14 @@ describe('checkRateLimit', () => {
   it('cleans up expired entries', () => {
     const rateLimit = createRateLimit(2, 60000)
     const now = Date.now()
-    jest.setSystemTime(now)
+    vi.setSystemTime(now)
 
     // Make a request
     checkRateLimit(rateLimit, 'user1')
     expect(rateLimit.requests.size).toBe(1)
 
     // Move time forward past the window
-    jest.setSystemTime(now + 70000) // 70 seconds later
+    vi.setSystemTime(now + 70000) // 70 seconds later
 
     // Make another request - should clean up the expired entry
     const result = checkRateLimit(rateLimit, 'user2')
@@ -282,7 +283,7 @@ describe('checkRateLimit', () => {
     const windowMs = 60000
     const rateLimit = createRateLimit(5, windowMs)
     const startTime = Date.now()
-    jest.setSystemTime(startTime)
+    vi.setSystemTime(startTime)
 
     const result = checkRateLimit(rateLimit, 'user1')
     expect(result.resetTime).toBe(startTime + windowMs)

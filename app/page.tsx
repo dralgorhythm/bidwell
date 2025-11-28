@@ -73,12 +73,12 @@ export default function Page() {
       <div className='my-8 p-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg'>
         <h2 className='mb-3 text-xl font-medium tracking-tight'>Explore My Work</h2>
         <p className='text-neutral-600 dark:text-neutral-400'>
-          Check out my projects and technical solutions above, or try the
+          Check out my projects and technical solutions above, or explore the
           <a
-            href='/comparison'
+            href='/experiments'
             className='ml-1 text-blue-600 dark:text-blue-400 underline decoration-blue-600 dark:decoration-blue-400 hover:decoration-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-900'
           >
-            number comparison tool
+            experiments section
           </a>{' '}
           to see my approach to building intuitive, user-friendly applications.
         </p>

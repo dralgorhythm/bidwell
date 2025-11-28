@@ -1,6 +1,7 @@
 /**
  * Extended tests to improve coverage for performance.ts
  */
+import { vi } from 'vitest'
 import * as performance from '../../lib/performance'
 
 describe('Additional Performance Tests', () => {
@@ -45,8 +46,8 @@ describe('Additional Performance Tests', () => {
         as: '',
         href: '',
         type: '',
-        setAttribute: jest.fn(),
-        getAttribute: jest.fn(),
+        setAttribute: vi.fn(),
+        getAttribute: vi.fn(),
       }
 
       const mockAppendChild = vi.fn()
@@ -203,7 +204,7 @@ describe('Additional Performance Tests', () => {
 
     it('handles fetch errors gracefully', async () => {
       // Make fetch throw an error
-      global.fetch = jest.fn().mockImplementation(() => {
+      global.fetch = vi.fn().mockImplementation(() => {
         throw new Error('Network error')
       })
 
@@ -270,7 +271,7 @@ describe('Additional Performance Tests', () => {
 
     it('returns null on exception', () => {
       // Make performance.measure throw an error
-      global.window.performance.measure = jest.fn().mockImplementation(() => {
+      global.window.performance.measure = vi.fn().mockImplementation(() => {
         throw new Error('Measurement error')
       })
 

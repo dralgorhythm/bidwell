@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
 
 import { render, screen } from '@testing-library/react'
@@ -223,7 +223,7 @@ describe('generateBlurPlaceholder', () => {
   })
 
   afterEach(() => {
-    jest.restoreAllMocks()
+    vi.restoreAllMocks()
   })
 
   it('should generate blur placeholder with default dimensions', () => {
