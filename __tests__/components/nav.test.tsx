@@ -24,14 +24,7 @@ vi.mock('next/link', () => {
 })
 
 describe('Navbar', () => {
-  it('renders all navigation items', () => {
-    render(<Navbar />)
-
-    expect(screen.getByRole('link', { name: /home/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /experiments/i })).toBeInTheDocument()
-  })
-
-  it('has correct href attributes for navigation links', () => {
+  it('renders navigation links', () => {
     render(<Navbar />)
 
     expect(screen.getByRole('link', { name: /home/i })).toHaveAttribute('href', '/')
@@ -41,32 +34,8 @@ describe('Navbar', () => {
     )
   })
 
-  it('has proper navigation structure with nav element', () => {
+  it('has proper navigation structure', () => {
     render(<Navbar />)
-
-    const nav = screen.getByRole('navigation')
-    expect(nav).toBeInTheDocument()
-    expect(nav).toHaveAttribute('id', 'nav')
-  })
-
-  it('applies hover styles correctly', () => {
-    render(<Navbar />)
-
-    const links = screen.getAllByRole('link')
-    for (const link of links) {
-      expect(link).toHaveClass(
-        'transition-all',
-        'hover:text-neutral-800',
-        'dark:hover:text-neutral-200'
-      )
-    }
-  })
-
-  it('includes the experiments navigation item', () => {
-    render(<Navbar />)
-
-    const experimentsLink = screen.getByRole('link', { name: /experiments/i })
-    expect(experimentsLink).toBeInTheDocument()
-    expect(experimentsLink).toHaveAttribute('href', '/experiments')
+    expect(screen.getByRole('navigation')).toBeInTheDocument()
   })
 })

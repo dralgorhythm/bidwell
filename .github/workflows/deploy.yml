@@ -10,7 +10,7 @@ on:
     paths-ignore:
       - '**.md'
       - 'docs/**'
-      - '.github/workflows/quality-checks.yml'
+      - '.github/workflows/pull-request.yml'
 
   # Allows manual deployment from Actions tab
   workflow_dispatch:

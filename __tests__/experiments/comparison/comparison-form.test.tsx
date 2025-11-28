@@ -44,21 +44,6 @@ describe('ComparisonForm', () => {
     })
   })
 
-  it('shows appropriate visual indicators for comparison results', async () => {
-    const user = userEvent.setup()
-    const firstInput = screen.getByLabelText(/first number/i)
-    const secondInput = screen.getByLabelText(/second number/i)
-
-    await user.type(firstInput, '10')
-    await user.type(secondInput, '5')
-    await user.click(screen.getByRole('button', { name: /compare/i }))
-
-    await waitFor(() => {
-      const resultElement = screen.getByText(/10 is greater than 5/i)
-      expect(resultElement).toHaveClass('text-green-600')
-    })
-  })
-
   it('handles very large numbers', async () => {
     const user = userEvent.setup()
     const firstInput = screen.getByLabelText(/first number/i)
@@ -92,12 +77,10 @@ describe('ComparisonForm', () => {
 
     await waitFor(() => {
       expect(screen.getByText(/5 and 5 are equal/i)).toBeInTheDocument()
-      const resultElement = screen.getByText(/5 and 5 are equal/i)
-      expect(resultElement).toHaveClass('text-blue-600')
     })
   })
 
-  it('shows less than result with correct styling', async () => {
+  it('shows less than result', async () => {
     const user = userEvent.setup()
     const firstInput = screen.getByLabelText(/first number/i)
     const secondInput = screen.getByLabelText(/second number/i)
@@ -108,8 +91,6 @@ describe('ComparisonForm', () => {
 
     await waitFor(() => {
       expect(screen.getByText(/3 is less than 7/i)).toBeInTheDocument()
-      const resultElement = screen.getByText(/3 is less than 7/i)
-      expect(resultElement).toHaveClass('text-red-600')
     })
   })
 

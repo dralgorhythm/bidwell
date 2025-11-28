@@ -1,10 +1,9 @@
 import './global.css'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
+
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from 'next'
-import ClientPerformanceWrapper from './components/client-performance-wrapper'
+
 import Footer from './components/footer'
 import { Navbar } from './components/nav'
 import StructuredData from './components/structured-data'
@@ -106,7 +105,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta httpEquiv='Referrer-Policy' content='strict-origin-when-cross-origin' />
         <meta
           httpEquiv='Content-Security-Policy'
-          content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' va.vercel-scripts.com vitals.vercel-insights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' vitals.vercel-insights.com; frame-ancestors 'none';"
+          content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-ancestors 'none';"
         />
       </head>
       <body className='antialiased max-w-xl mx-4 mt-8 lg:mx-auto'>
@@ -114,13 +113,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           {children}
           <Footer />
-          <Analytics />
-          <SpeedInsights />
-          <ClientPerformanceWrapper
-            enableMonitoring={process.env.NODE_ENV === 'production'}
-            showDashboard={process.env.NODE_ENV === 'development'}
-            debug={process.env.NODE_ENV === 'development'}
-          />
         </main>
       </body>
     </html>

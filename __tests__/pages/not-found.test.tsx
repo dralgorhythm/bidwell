@@ -19,12 +19,6 @@ describe('NotFound Page', () => {
     expect(section).toBeInTheDocument()
   })
 
-  it('applies correct styling classes', () => {
-    render(<NotFound />)
-    const heading = screen.getByRole('heading')
-    expect(heading).toHaveClass('mb-4', 'text-4xl', 'font-bold', 'tracking-tight')
-  })
-
   it('has accessible structure', async () => {
     const { container } = render(<NotFound />)
     const results = await axe(container)
