@@ -11,6 +11,7 @@ export default function AgentCoordinationPost() {
       <script
         type='application/ld+json'
         suppressHydrationWarning
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD requires this
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',

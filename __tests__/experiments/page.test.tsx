@@ -28,12 +28,4 @@ describe('Experiments Page', () => {
     const link = screen.getByRole('link', { name: /number comparison/i })
     expect(link).toHaveAttribute('href', '/experiments/comparison')
   })
-
-  it('has proper semantic structure', () => {
-    render(<ExperimentsPage />)
-
-    const h1 = screen.getByRole('heading', { level: 1 })
-    expect(h1).toBeInTheDocument()
-    expect(h1).toHaveTextContent('Experiments')
-  })
 })

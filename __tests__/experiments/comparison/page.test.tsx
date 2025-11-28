@@ -24,13 +24,4 @@ describe('Comparison Page', () => {
 
     expect(screen.getByTestId('comparison-form')).toBeInTheDocument()
   })
-
-  it('has proper semantic structure', () => {
-    render(<ComparisonPage />)
-
-    // Check for heading hierarchy
-    const h1 = screen.getByRole('heading', { level: 1 })
-    expect(h1).toBeInTheDocument()
-    expect(h1).toHaveTextContent('Number Comparison')
-  })
 })

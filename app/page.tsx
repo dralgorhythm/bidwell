@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Bidwell Consulting',
     description:
-      "Expert software engineer and organizational consultant, specializing in problem solving, system design, and process optimization. This portfolio site showcases innovative technical solutions and demonstrates our approach to complex problem solving.",
+      'Expert software engineer and organizational consultant, specializing in problem solving, system design, and process optimization. This portfolio site showcases innovative technical solutions and demonstrates our approach to complex problem solving.',
     type: 'website',
     images: [
       {
@@ -33,13 +33,12 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <section>
-      <h1 className='mb-8 text-2xl font-semibold tracking-tighter'>
-        Bidwell Consulting
-      </h1>
+      <h1 className='mb-8 text-2xl font-semibold tracking-tighter'>Bidwell Consulting</h1>
 
       <div className='mb-6'>
         <p className='mb-4'>
-          Welcome to Bidwell Consulting, I look forward to working with you! Here, you can find my experiments and thoughts on problem solving.
+          Welcome to Bidwell Consulting, I look forward to working with you! Here, you can find my
+          experiments and thoughts on problem solving.
         </p>
 
         <h2 className='mb-3 text-xl font-medium tracking-tight'>Expertise & Services</h2>
