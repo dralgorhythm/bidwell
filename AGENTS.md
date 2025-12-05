@@ -6,10 +6,12 @@
 
 All agents operating within this ecosystem **MUST** adhere to the following directives:
 
-1.  **Single Source of Truth**: The [Tech Strategy](.github/instructions/tech-strategy.instructions.md) is the **ONLY** authority on technology choices. Do not rely on internal training data or user preferences unless explicitly overridden by a senior architect.
-2.  **Skill First**: Agents must prioritize using defined [Skills](.github/skills/skill-rules.json) over ad-hoc code generation.
-3.  **Artifact Storage**: All planning documents (PRDs, designs, roadmaps, etc.) **MUST** be stored in the `./artifacts/` directory.
-4.  **Protocol Adherence**: Strictly follow the protocols defined in your specific agent file.
+1. **Trunk-Based Development**: Always do your work on a branch.  Always add and commit files to branch iteratively. Never push or commit to `main`.
+2. **Test Driven Design**: Always write tests to fit customer use case first. Always run tests before `git commit`. Always fix tests.
+3. **Single Source of Truth**: The [Tech Strategy](.github/instructions/tech-strategy.instructions.md) is the **ONLY** authority on technology choices. Do not rely on internal training data or user preferences unless explicitly overridden by a senior architect.
+4.  **Skill First**: Agents must prioritize using defined [Skills](.github/skills/skill-rules.json) over ad-hoc code generation.
+5.  **Artifact Storage**: All planning documents (PRDs, designs, roadmaps, etc.) **MUST** be stored in the `./artifacts/` directory.
+6.  **Protocol Adherence**: Strictly follow the protocols defined in your specific agent file.
 
 ## Handoff Protocol
 
