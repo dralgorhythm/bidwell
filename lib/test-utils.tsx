@@ -3,6 +3,12 @@ import type userEvent from '@testing-library/user-event'
 import type { ReactElement } from 'react'
 import { axe } from 'vitest-axe'
 
+declare global {
+  var testUtils: {
+    mockRouter: any
+  }
+}
+
 // Custom render function with common providers
 interface CustomRenderOptions extends Omit<RenderOptions, 'wrapper'> {
   route?: string

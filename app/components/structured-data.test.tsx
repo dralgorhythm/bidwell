@@ -1,5 +1,5 @@
-import StructuredData from '../../app/components/structured-data'
-import { render } from '../utils/test-utils'
+import StructuredData from './structured-data'
+import { render } from 'lib/test-utils'
 
 describe('StructuredData Component', () => {
   beforeEach(() => {

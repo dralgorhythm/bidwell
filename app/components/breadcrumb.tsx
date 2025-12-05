@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import React from 'react'
+
 import StructuredData from './structured-data'
 
 interface BreadcrumbItem {
@@ -10,7 +12,7 @@ interface BreadcrumbProps {
   items: BreadcrumbItem[]
 }
 
-export default function Breadcrumb({ items }: BreadcrumbProps) {
+export default function Breadcrumb({ items }: BreadcrumbProps): React.JSX.Element {
   const breadcrumbData = items.map((item, index) => ({
     '@type': 'ListItem',
     position: index + 1,

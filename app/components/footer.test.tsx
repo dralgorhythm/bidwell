@@ -1,5 +1,6 @@
-import Footer from '../../app/components/footer'
-import { axeTest, render, screen } from '../utils/test-utils'
+import { render, screen } from '@testing-library/react'
+import Footer from './footer'
+import { axeTest } from 'lib/test-utils'
 
 describe('Footer Component', () => {
   it('renders navigation links', () => {

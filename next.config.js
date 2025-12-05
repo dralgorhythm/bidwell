@@ -21,7 +21,6 @@ const nextConfig = {
       '@radix-ui/react-icons',
       'date-fns',
       'lodash-es',
-      'framer-motion',
     ],
   },
 
@@ -94,8 +93,33 @@ const nextConfig = {
 if (process.env.ANALYZE === 'true') {
   const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: true,
+    openAnalyzer: false,
   })
-  module.exports = withBundleAnalyzer(nextConfig)
+
+  // Apply the bundle analyzer to the nextConfig
+  const config = withBundleAnalyzer(nextConfig)
+
+  // Extend the webpack config to add aliases
+  const originalWebpack = config.webpack
+  config.webpack = (webpackConfig, options) => {
+    if (!options.isServer) {
+      webpackConfig.resolve.alias = {
+        ...webpackConfig.resolve.alias,
+        'react$': require.resolve('next/dist/compiled/react'),
+        'react-dom$': require.resolve('next/dist/compiled/react-dom'),
+        'react-dom/client$': require.resolve('next/dist/compiled/react-dom/client'),
+        'react-dom/server$': require.resolve('next/dist/compiled/react-dom/server'),
+      }
+    }
+
+    // Call the original webpack function if it exists
+    if (originalWebpack) {
+      return originalWebpack(webpackConfig, options)
+    }
+    return webpackConfig
+  }
+
+  module.exports = config
 } else {
   module.exports = nextConfig
 }

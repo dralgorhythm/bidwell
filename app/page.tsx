@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import React from 'react'
+
 
 export const metadata: Metadata = {
   title: 'Bidwell Consulting',
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Page() {
+export default function Page(): React.JSX.Element {
   return (
     <section>
       <h1 className='mb-8 text-2xl font-semibold tracking-tighter'>Bidwell Consulting</h1>
@@ -38,7 +40,7 @@ export default function Page() {
       <div className='mb-6'>
         <p className='mb-4'>
           Welcome to Bidwell Consulting, I look forward to working with you! Here, you can find my
-          experiments and thoughts on problem solving.
+          thoughts on problem solving.
         </p>
 
         <h2 className='mb-3 text-xl font-medium tracking-tight'>Expertise & Services</h2>

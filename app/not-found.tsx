@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import React from 'react'
+
 import Link from 'next/link'
 
 export const metadata: Metadata = {
@@ -11,7 +13,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function NotFound() {
+export default function NotFound(): React.JSX.Element {
   return (
     <section className='flex flex-col items-center justify-center min-h-[400px] text-center'>
       <h1 className='mb-4 text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100'>
@@ -36,18 +38,11 @@ export default function NotFound() {
         >
           Return Home
         </Link>
-
-        <Link
-          href='/comparison'
-          className='inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-md hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-blue-950 dark:text-blue-400 dark:hover:bg-blue-900 transition-colors'
-        >
-          Try Comparison Tool
-        </Link>
       </div>
 
       <div className='mt-8 text-xs text-neutral-400'>
         <p>If you believe this is an error, please check the URL or contact us.</p>
       </div>
-    </section>
+    </section >
   )
 }

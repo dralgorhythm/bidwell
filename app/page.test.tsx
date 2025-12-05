@@ -1,5 +1,5 @@
-import HomePage from '../../app/page'
-import { axeTest, render, screen } from '../utils/test-utils'
+import HomePage from './page'
+import { axeTest, render, screen } from 'lib/test-utils'
 
 describe('Home Page Integration', () => {
   it('renders the main value proposition', () => {
@@ -9,7 +9,7 @@ describe('Home Page Integration', () => {
       screen.getByRole('heading', { level: 1, name: /bidwell consulting/i })
     ).toBeInTheDocument()
     expect(screen.getByText(/welcome to bidwell consulting/i)).toBeInTheDocument()
-    expect(screen.getByText(/experiments and thoughts on problem solving/i)).toBeInTheDocument()
+    expect(screen.getByText(/thoughts on problem solving/i)).toBeInTheDocument()
   })
 
   it('displays key business services', () => {

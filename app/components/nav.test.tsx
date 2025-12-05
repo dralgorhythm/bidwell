@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { vi } from 'vitest'
-import { Navbar } from '../../app/components/nav'
+import { Navbar } from './nav'
 
 // Mock Next.js Link component
 vi.mock('next/link', () => {
@@ -28,9 +28,9 @@ describe('Navbar', () => {
     render(<Navbar />)
 
     expect(screen.getByRole('link', { name: /home/i })).toHaveAttribute('href', '/')
-    expect(screen.getByRole('link', { name: /experiments/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /blog/i })).toHaveAttribute(
       'href',
-      '/experiments'
+      '/blog'
     )
   })
 

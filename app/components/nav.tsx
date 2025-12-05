@@ -1,18 +1,8 @@
 import Link from 'next/link'
+import React from 'react'
+import { navItems } from '../config/nav'
 
-const navItems = {
-  '/': {
-    name: 'home',
-  },
-  '/experiments': {
-    name: 'experiments',
-  },
-  '/blog': {
-    name: 'blog',
-  },
-}
-
-export function Navbar() {
+export function Navbar(): React.JSX.Element {
   return (
     <aside className='-ml-[8px] mb-16 tracking-tight'>
       <div className='lg:sticky lg:top-20'>
