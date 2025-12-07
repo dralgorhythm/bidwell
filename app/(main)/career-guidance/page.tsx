@@ -166,7 +166,8 @@ const pricingTiers = [
     name: 'Career Conversation',
     price: 'Contact for pricing',
     duration: '3 months',
-    description: 'A quarterly mentorship, a comprehensive engagement reviewing resume and approach.',
+    description:
+      'A quarterly mentorship, a comprehensive engagement reviewing resume and approach.',
     features: [
       'Weekly coaching sessions',
       'Resume & LinkedIn optimization',
