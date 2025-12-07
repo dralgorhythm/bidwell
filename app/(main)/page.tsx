@@ -48,7 +48,10 @@ export default function Page(): React.JSX.Element {
           <li>Organizational consulting and process optimization</li>
           <li>Full-stack problem solving and solution design</li>
           <li>
-            <a href='/career-guidance' className='underline hover:text-neutral-600 dark:hover:text-neutral-300'>
+            <a
+              href='/career-guidance'
+              className='underline hover:text-neutral-600 dark:hover:text-neutral-300'
+            >
               Career coaching and development
             </a>
           </li>

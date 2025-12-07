@@ -17,8 +17,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Career Guidance | Bidwell Consulting',
-    description:
-      'We provide career coaching and guidance for tech professionals.',
+    description: 'We provide career coaching and guidance for tech professionals.',
     type: 'website',
     images: [
       {
@@ -35,38 +34,22 @@ const services = [
   {
     title: '1-on-1 Coaching',
     description: 'Dedicated time to work through your career questions and challenges.',
-    benefits: [
-      'Personalized advice',
-      'Goal setting',
-      'Accountability check-ins',
-    ],
+    benefits: ['Personalized advice', 'Goal setting', 'Accountability check-ins'],
   },
   {
     title: 'Resume & LinkedIn Review',
     description: 'Honest feedback on your professional materials.',
-    benefits: [
-      'ATS optimization',
-      'Profile improvements',
-      'Positioning strategy',
-    ],
+    benefits: ['ATS optimization', 'Profile improvements', 'Positioning strategy'],
   },
   {
     title: 'Interview Prep',
     description: 'Practice interviews with real feedback.',
-    benefits: [
-      'Mock interviews',
-      'Behavioral coaching',
-      'Technical prep',
-    ],
+    benefits: ['Mock interviews', 'Behavioral coaching', 'Technical prep'],
   },
   {
     title: 'Career Transitions',
     description: 'Guidance for changing roles or industries.',
-    benefits: [
-      'Skills assessment',
-      'Transition planning',
-      'Network strategy',
-    ],
+    benefits: ['Skills assessment', 'Transition planning', 'Network strategy'],
   },
 ]
 
@@ -76,7 +59,7 @@ const faqs = [
     answer: '60 minutes. Long enough to dig in, short enough to respect your time.',
   },
   {
-    question: "Not sure what you need?",
+    question: 'Not sure what you need?',
     answer: "Start with a free 30-minute call. We'll figure it out together.",
   },
   {
@@ -98,11 +81,7 @@ const engagementOptions = [
     name: 'Discovery Call',
     duration: '30 minutes',
     description: "Let's talk about what you're working on. No commitment, just a conversation.",
-    features: [
-      'Initial conversation',
-      'Goal discussion',
-      "See if we're a good fit",
-    ],
+    features: ['Initial conversation', 'Goal discussion', "See if we're a good fit"],
   },
   {
     name: 'Single Session',
@@ -114,12 +93,7 @@ const engagementOptions = [
     name: 'Ongoing Mentorship',
     duration: '3 months',
     description: 'Regular check-ins for those who want sustained support.',
-    features: [
-      'Weekly sessions',
-      'Resume review',
-      'Interview prep',
-      'Email support',
-    ],
+    features: ['Weekly sessions', 'Resume review', 'Interview prep', 'Email support'],
   },
 ]
 
@@ -130,9 +104,10 @@ export default function CareerGuidancePage(): React.JSX.Element {
       <div className='mb-12'>
         <h1 className='mb-4 text-2xl font-semibold tracking-tighter'>Career Guidance</h1>
         <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
-          With nearly 20 years of experience in professional development, I offer career coaching for
-          people navigating transitions, preparing for interviews, or figuring out their next move.
-          If you're in tech, I can speak to that directly. If not, the fundamentals still apply.
+          With nearly 20 years of experience in professional development, I offer career coaching
+          for people navigating transitions, preparing for interviews, or figuring out their next
+          move. If you're in tech, I can speak to that directly. If not, the fundamentals still
+          apply.
         </p>
         <div className='mt-6 text-center'>
           <a
@@ -188,8 +163,6 @@ export default function CareerGuidancePage(): React.JSX.Element {
           ))}
         </div>
       </div>
-
-
 
       {/* Engagement Options */}
       <div className='mb-12 pb-12 border-b border-neutral-200 dark:border-neutral-800'>
@@ -262,7 +235,8 @@ export default function CareerGuidancePage(): React.JSX.Element {
       <div id='contact'>
         <h2 className='mb-4 text-xl font-semibold tracking-tight'>Get in Touch</h2>
         <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
-          The best way to reach me is through LinkedIn. Send a message and we can set up a time to talk.
+          The best way to reach me is through LinkedIn. Send a message and we can set up a time to
+          talk.
         </p>
         <a
           href='https://www.linkedin.com/in/wintersjordan/'
