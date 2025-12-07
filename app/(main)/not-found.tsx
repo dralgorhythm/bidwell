@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
-import React from 'react'
-
 import Link from 'next/link'
+import type React from 'react'
 
 export const metadata: Metadata = {
   title: 'Page Not Found - 404 Error',
@@ -43,6 +42,6 @@ export default function NotFound(): React.JSX.Element {
       <div className='mt-8 text-xs text-neutral-400'>
         <p>If you believe this is an error, please check the URL or contact us.</p>
       </div>
-    </section >
+    </section>
   )
 }

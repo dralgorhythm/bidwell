@@ -1,13 +1,15 @@
+import type React from 'react'
 import { baseUrl } from '../sitemap'
-import React from 'react'
-
 
 interface StructuredDataProps {
   type: 'website' | 'person' | 'organization' | 'article' | 'breadcrumb'
   data?: Record<string, unknown> | Array<Record<string, unknown>>
 }
 
-export default function StructuredData({ type, data }: StructuredDataProps): React.JSX.Element | null {
+export default function StructuredData({
+  type,
+  data,
+}: StructuredDataProps): React.JSX.Element | null {
   const getStructuredData = () => {
     switch (type) {
       case 'website':
