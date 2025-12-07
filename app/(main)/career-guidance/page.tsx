@@ -4,7 +4,7 @@ import type React from 'react'
 export const metadata: Metadata = {
   title: 'Career Guidance & Coaching Services',
   description:
-    'Professional career coaching and guidance services. Get expert help with career transitions, resume optimization, interview preparation, leadership development, and salary negotiation. Transform your career with personalized mentorship.',
+    'Professional career coaching and guidance services. Get expert help with career transitions, resume optimization, interview preparation, and leadership development.',
   keywords: [
     'career coach',
     'career guidance',
@@ -91,17 +91,6 @@ const services = [
       'Communication excellence',
     ],
   },
-  {
-    title: 'Salary Negotiation',
-    description:
-      'Maximize your earning potential with expert negotiation coaching. Learn proven strategies to negotiate effectively and confidently.',
-    benefits: [
-      'Market research and benchmarking',
-      'Negotiation strategy development',
-      'Offer evaluation',
-      'Confidence building',
-    ],
-  },
 ]
 
 const testimonials = [
@@ -142,11 +131,6 @@ const faqs = [
       'Yes, we offer both single sessions and package deals. Packages provide better value for ongoing coaching relationships. Contact us to discuss options.',
   },
   {
-    question: 'How quickly can I expect results?',
-    answer:
-      'Results vary by individual and goals. Many clients see improvements in confidence and clarity after the first session. Career transitions typically take 3-6 months with consistent effort.',
-  },
-  {
     question: 'Do you specialize in any particular industry?',
     answer:
       'We specialize in technology and software engineering careers, but our methodologies apply across industries. Our expertise in technical roles provides unique insights for tech professionals.',
@@ -175,14 +159,14 @@ const pricingTiers = [
     name: 'Single Session',
     price: 'Contact for pricing',
     duration: '60 minutes',
-    description: 'One-time focused coaching session',
+    description: 'One-time focused coaching session.',
     features: ['Dedicated 1-on-1 time', 'Targeted guidance', 'Action plan', 'Follow-up resources'],
   },
   {
-    name: 'Career Accelerator',
+    name: 'Career Conversation',
     price: 'Contact for pricing',
     duration: '3 months',
-    description: 'Comprehensive career transformation program',
+    description: 'A quarterly mentorship, a comprehensive engagement reviewing resume and approach.',
     features: [
       'Weekly coaching sessions',
       'Resume & LinkedIn optimization',
