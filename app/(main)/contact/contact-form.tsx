@@ -52,6 +52,7 @@ export default function ContactForm(): React.JSX.Element {
 
       // Handle 404 - API route not available (static export)
       if (response.status === 404) {
+        // TODO: Extract contact email to configuration when backend is deployed
         setSubmitStatus({
           type: 'error',
           message:
@@ -79,28 +80,11 @@ export default function ContactForm(): React.JSX.Element {
         })
       }
     } catch (error) {
-      if (error instanceof Error && 'issues' in error) {
-        // Zod validation error
-        const zodError = error as { issues: Array<{ path: string[]; message: string }> }
-        const fieldErrors: Record<string, string[]> = {}
-        zodError.issues.forEach(err => {
-          const field = err.path[0] as string
-          if (!fieldErrors[field]) {
-            fieldErrors[field] = []
-          }
-          fieldErrors[field]?.push(err.message)
-        })
-        setErrors(fieldErrors)
-        setSubmitStatus({
-          type: 'error',
-          message: 'Please check the form for errors.',
-        })
-      } else {
-        setSubmitStatus({
-          type: 'error',
-          message: 'An unexpected error occurred. Please try again.',
-        })
-      }
+      // Client-side validation error from Zod
+      setSubmitStatus({
+        type: 'error',
+        message: 'Please check the form for errors.',
+      })
     } finally {
       setIsSubmitting(false)
     }
