@@ -1,5 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# macOS
+.DS_Store
+
+# Bundle analysis
+/analyze/
+
 # dependencies
 /node_modules
 /.pnp
