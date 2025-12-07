@@ -28,10 +28,7 @@ describe('Navbar', () => {
     render(<Navbar />)
 
     expect(screen.getByRole('link', { name: /home/i })).toHaveAttribute('href', '/')
-    expect(screen.getByRole('link', { name: /blog/i })).toHaveAttribute(
-      'href',
-      '/blog'
-    )
+    expect(screen.getByRole('link', { name: /blog/i })).toHaveAttribute('href', '/blog')
   })
 
   it('has proper navigation structure', () => {

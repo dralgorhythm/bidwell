@@ -16,12 +16,7 @@ const nextConfig = {
   // Enable experimental features for better performance
   experimental: {
     // Enable optimized package imports
-    optimizePackageImports: [
-      'lucide-react',
-      '@radix-ui/react-icons',
-      'date-fns',
-      'lodash-es',
-    ],
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons', 'date-fns', 'lodash-es'],
   },
 
   // Configure for static export (GitHub Pages)
@@ -105,7 +100,7 @@ if (process.env.ANALYZE === 'true') {
     if (!options.isServer) {
       webpackConfig.resolve.alias = {
         ...webpackConfig.resolve.alias,
-        'react$': require.resolve('next/dist/compiled/react'),
+        react$: require.resolve('next/dist/compiled/react'),
         'react-dom$': require.resolve('next/dist/compiled/react-dom'),
         'react-dom/client$': require.resolve('next/dist/compiled/react-dom/client'),
         'react-dom/server$': require.resolve('next/dist/compiled/react-dom/server'),

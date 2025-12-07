@@ -8,7 +8,12 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./vitest.setup.ts'],
-    include: ['**/*.test.{ts,tsx}', '**/__tests__/**/*.{ts,tsx}', 'app/**/*.test.{ts,tsx}', 'lib/**/*.test.{ts,tsx}'],
+    include: [
+      '**/*.test.{ts,tsx}',
+      '**/__tests__/**/*.{ts,tsx}',
+      'app/**/*.test.{ts,tsx}',
+      'lib/**/*.test.{ts,tsx}',
+    ],
     exclude: ['**/node_modules/**', '**/dist/**', '**/__tests__/utils/**'],
     alias: {
       '@': resolve(__dirname, './'),

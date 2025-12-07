@@ -1,13 +1,17 @@
 export interface NavItem {
-    name: string
+  name: string
 }
 
 export const navItems: Record<string, NavItem> = {
-    '/': {
-        name: 'home',
-    },
+  '/': {
+    name: 'home',
+  },
 
-    '/blog': {
-        name: 'blog',
-    },
+  '/blog': {
+    name: 'blog',
+  },
+
+  '/experiments': {
+    name: 'experiments',
+  },
 }

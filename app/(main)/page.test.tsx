@@ -1,5 +1,5 @@
-import HomePage from './page'
 import { axeTest, render, screen } from 'lib/test-utils'
+import HomePage from './page'
 
 describe('Home Page Integration', () => {
   it('renders the main value proposition', () => {

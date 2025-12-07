@@ -1,1 +1,3060 @@
-[{"label":"static/chunks/framework-2b1645d7bd0a0ec0.js","isAsset":true,"statSize":636786,"parsedSize":210417,"gzipSize":65866,"groups":[{"label":"node_modules","path":"./node_modules","statSize":636786,"groups":[{"label":"next/dist/compiled","path":"./node_modules/next/dist/compiled","statSize":635600,"groups":[{"label":"react-dom","path":"./node_modules/next/dist/compiled/react-dom","statSize":617648,"groups":[{"label":"cjs","path":"./node_modules/next/dist/compiled/react-dom/cjs","statSize":614916,"groups":[{"id":4796,"label":"react-dom-client.production.js","path":"./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.production.js","statSize":608217,"parsedSize":198528,"gzipSize":62272},{"id":5922,"label":"react-dom.production.js","path":"./node_modules/next/dist/compiled/react-dom/cjs/react-dom.production.js","statSize":6699,"parsedSize":3274,"gzipSize":1203}],"parsedSize":201802,"gzipSize":63190},{"id":7109,"label":"client.js","path":"./node_modules/next/dist/compiled/react-dom/client.js","statSize":1373,"parsedSize":233,"gzipSize":165},{"id":9802,"label":"index.js","path":"./node_modules/next/dist/compiled/react-dom/index.js","statSize":1359,"parsedSize":233,"gzipSize":165}],"parsedSize":202268,"gzipSize":63258},{"label":"react","path":"./node_modules/next/dist/compiled/react","statSize":17952,"groups":[{"label":"cjs","path":"./node_modules/next/dist/compiled/react/cjs","statSize":17766,"groups":[{"id":250,"label":"react.production.js","path":"./node_modules/next/dist/compiled/react/cjs/react.production.js","statSize":17766,"parsedSize":7642,"gzipSize":2929}],"parsedSize":7642,"gzipSize":2929},{"id":6511,"label":"index.js","path":"./node_modules/next/dist/compiled/react/index.js","statSize":186,"parsedSize":27,"gzipSize":47}],"parsedSize":7669,"gzipSize":2943}],"parsedSize":209937,"gzipSize":65741},{"label":"react","path":"./node_modules/react","statSize":1186,"groups":[{"label":"cjs","path":"./node_modules/react/cjs","statSize":976,"groups":[{"id":8228,"label":"react-jsx-runtime.production.js","path":"./node_modules/react/cjs/react-jsx-runtime.production.js","statSize":976,"parsedSize":326,"gzipSize":237}],"parsedSize":326,"gzipSize":237},{"id":7876,"label":"jsx-runtime.js","path":"./node_modules/react/jsx-runtime.js","statSize":210,"parsedSize":28,"gzipSize":48}],"parsedSize":354,"gzipSize":255}],"parsedSize":210291,"gzipSize":65839}],"isInitialByEntrypoint":{"main":true}},{"label":"static/chunks/4bd1b696-deba172d32c79f82.js","isAsset":true,"statSize":608217,"parsedSize":198614,"gzipSize":62334,"groups":[{"label":"node_modules/next/dist/compiled/react-dom/cjs","path":"./node_modules/next/dist/compiled/react-dom/cjs","statSize":608217,"groups":[{"id":9248,"label":"react-dom-client.production.js","path":"./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.production.js","statSize":608217,"parsedSize":198529,"gzipSize":62281}],"parsedSize":198529,"gzipSize":62281}],"isInitialByEntrypoint":{"main-app":true}},{"label":"static/chunks/794-e1877ff7d42c5967.js","isAsset":true,"statSize":727534,"parsedSize":194858,"gzipSize":52291,"groups":[{"label":"node_modules","path":"./node_modules","statSize":727534,"groups":[{"label":"@swc/helpers/esm","path":"./node_modules/@swc/helpers/esm","statSize":1431,"groups":[{"id":3623,"label":"_interop_require_default.js","path":"./node_modules/@swc/helpers/esm/_interop_require_default.js","statSize":144,"parsedSize":98,"gzipSize":108},{"id":6388,"label":"_interop_require_wildcard.js","path":"./node_modules/@swc/helpers/esm/_interop_require_wildcard.js","statSize":1287,"parsedSize":634,"gzipSize":355}],"parsedSize":732,"gzipSize":370},{"label":"next/dist","path":"./node_modules/next/dist","statSize":726103,"groups":[{"label":"build","path":"./node_modules/next/dist/build","statSize":2187,"groups":[{"id":9970,"label":"deployment-id.js","path":"./node_modules/next/dist/build/deployment-id.js","statSize":466,"parsedSize":194,"gzipSize":162},{"label":"polyfills","path":"./node_modules/next/dist/build/polyfills","statSize":1721,"groups":[{"id":8456,"label":"polyfill-module.js","path":"./node_modules/next/dist/build/polyfills/polyfill-module.js","statSize":1380,"parsedSize":1382,"gzipSize":594},{"id":1463,"label":"process.js","path":"./node_modules/next/dist/build/polyfills/process.js","statSize":341,"parsedSize":152,"gzipSize":131}],"parsedSize":1534,"gzipSize":665}],"parsedSize":1728,"gzipSize":738},{"label":"client","path":"./node_modules/next/dist/client","statSize":573797,"groups":[{"id":127,"label":"add-base-path.js","path":"./node_modules/next/dist/client/add-base-path.js","statSize":1025,"parsedSize":471,"gzipSize":276},{"id":3294,"label":"app-bootstrap.js","path":"./node_modules/next/dist/client/app-bootstrap.js","statSize":2773,"parsedSize":819,"gzipSize":494},{"id":9078,"label":"app-build-id.js","path":"./node_modules/next/dist/client/app-build-id.js","statSize":1782,"parsedSize":479,"gzipSize":261},{"id":7304,"label":"app-call-server.js","path":"./node_modules/next/dist/client/app-call-server.js","statSize":1179,"parsedSize":584,"gzipSize":350},{"id":4060,"label":"app-find-source-map-url.js","path":"./node_modules/next/dist/client/app-find-source-map-url.js","statSize":1659,"parsedSize":376,"gzipSize":219},{"id":980,"label":"app-globals.js","path":"./node_modules/next/dist/client/app-globals.js","statSize":715,"parsedSize":295,"gzipSize":183},{"id":5448,"label":"app-index.js","path":"./node_modules/next/dist/client/app-index.js","statSize":12449,"parsedSize":3262,"gzipSize":1530},{"id":3861,"label":"app-next.js","path":"./node_modules/next/dist/client/app-next.js","statSize":1244,"parsedSize":388,"gzipSize":252},{"id":2431,"label":"app-webpack.js","path":"./node_modules/next/dist/client/app-webpack.js","statSize":1979,"parsedSize":361,"gzipSize":230},{"id":4281,"label":"asset-prefix.js","path":"./node_modules/next/dist/client/asset-prefix.js","statSize":1573,"parsedSize":949,"gzipSize":462},{"id":7841,"label":"assign-location.js","path":"./node_modules/next/dist/client/assign-location.js","statSize":1154,"parsedSize":535,"gzipSize":310},{"label":"components","path":"./node_modules/next/dist/client/components","statSize":507914,"groups":[{"id":894,"label":"app-router-announcer.js","path":"./node_modules/next/dist/client/components/app-router-announcer.js","statSize":3159,"parsedSize":1422,"gzipSize":728},{"id":5563,"label":"app-router-headers.js","path":"./node_modules/next/dist/client/components/app-router-headers.js","statSize":4187,"parsedSize":1646,"gzipSize":664},{"id":156,"label":"app-router-instance.js","path":"./node_modules/next/dist/client/components/app-router-instance.js","statSize":13284,"parsedSize":3809,"gzipSize":1518},{"id":8720,"label":"app-router-utils.js","path":"./node_modules/next/dist/client/components/app-router-utils.js","statSize":2029,"parsedSize":841,"gzipSize":473},{"id":4036,"label":"app-router.js","path":"./node_modules/next/dist/client/components/app-router.js","statSize":24244,"parsedSize":5781,"gzipSize":2250},{"id":2775,"label":"bfcache.js","path":"./node_modules/next/dist/client/components/bfcache.js","statSize":4051,"parsedSize":685,"gzipSize":367},{"label":"builtin","path":"./node_modules/next/dist/client/components/builtin","statSize":3250,"groups":[{"id":7123,"label":"global-error.js","path":"./node_modules/next/dist/client/components/builtin/global-error.js","statSize":3250,"parsedSize":1220,"gzipSize":673}],"parsedSize":1220,"gzipSize":673},{"id":1304,"label":"client-page.js","path":"./node_modules/next/dist/client/components/client-page.js","statSize":3910,"parsedSize":832,"gzipSize":460},{"id":8616,"label":"client-segment.js","path":"./node_modules/next/dist/client/components/client-segment.js","statSize":2762,"parsedSize":666,"gzipSize":394},{"id":7600,"label":"error-boundary.js","path":"./node_modules/next/dist/client/components/error-boundary.js","statSize":5525,"parsedSize":1513,"gzipSize":692},{"label":"errors","path":"./node_modules/next/dist/client/components/errors","statSize":4574,"groups":[{"id":3350,"label":"graceful-degrade-boundary.js","path":"./node_modules/next/dist/client/components/errors/graceful-degrade-boundary.js","statSize":2760,"parsedSize":1219,"gzipSize":633},{"id":1543,"label":"root-error-boundary.js","path":"./node_modules/next/dist/client/components/errors/root-error-boundary.js","statSize":1814,"parsedSize":672,"gzipSize":367}],"parsedSize":1891,"gzipSize":788},{"id":4344,"label":"forbidden.js","path":"./node_modules/next/dist/client/components/forbidden.js","statSize":2042,"parsedSize":628,"gzipSize":353},{"id":8149,"label":"handle-isr-error.js","path":"./node_modules/next/dist/client/components/handle-isr-error.js","statSize":1020,"parsedSize":466,"gzipSize":270},{"label":"http-access-fallback","path":"./node_modules/next/dist/client/components/http-access-fallback","statSize":8539,"groups":[{"id":4777,"label":"error-boundary.js","path":"./node_modules/next/dist/client/components/http-access-fallback/error-boundary.js","statSize":6204,"parsedSize":1732,"gzipSize":775},{"id":7016,"label":"http-access-fallback.js","path":"./node_modules/next/dist/client/components/http-access-fallback/http-access-fallback.js","statSize":2335,"parsedSize":1052,"gzipSize":540}],"parsedSize":2784,"gzipSize":1066},{"id":8904,"label":"is-next-router-error.js","path":"./node_modules/next/dist/client/components/is-next-router-error.js","statSize":901,"parsedSize":478,"gzipSize":280},{"id":7121,"label":"layout-router.js","path":"./node_modules/next/dist/client/components/layout-router.js","statSize":31518,"parsedSize":5684,"gzipSize":2488},{"id":4972,"label":"links.js","path":"./node_modules/next/dist/client/components/links.js","statSize":11744,"parsedSize":2974,"gzipSize":1162},{"id":7653,"label":"match-segments.js","path":"./node_modules/next/dist/client/components/match-segments.js","statSize":1069,"parsedSize":469,"gzipSize":252},{"id":530,"label":"nav-failure-handler.js","path":"./node_modules/next/dist/client/components/nav-failure-handler.js","statSize":2413,"parsedSize":703,"gzipSize":372},{"id":3095,"label":"navigation-untracked.js","path":"./node_modules/next/dist/client/components/navigation-untracked.js","statSize":2664,"parsedSize":455,"gzipSize":259},{"id":4645,"label":"navigation.js","path":"./node_modules/next/dist/client/components/navigation.js","statSize":8496,"parsedSize":2172,"gzipSize":811},{"id":208,"label":"navigation.react-server.js","path":"./node_modules/next/dist/client/components/navigation.react-server.js","statSize":2329,"parsedSize":1071,"gzipSize":499},{"id":6601,"label":"not-found.js","path":"./node_modules/next/dist/client/components/not-found.js","statSize":1849,"parsedSize":557,"gzipSize":321},{"id":9297,"label":"readonly-url-search-params.js","path":"./node_modules/next/dist/client/components/readonly-url-search-params.js","statSize":2119,"parsedSize":687,"gzipSize":366},{"id":4872,"label":"redirect-boundary.js","path":"./node_modules/next/dist/client/components/redirect-boundary.js","statSize":3668,"parsedSize":1322,"gzipSize":637},{"id":7080,"label":"redirect-error.js","path":"./node_modules/next/dist/client/components/redirect-error.js","statSize":1834,"parsedSize":835,"gzipSize":467},{"id":9786,"label":"redirect-status-code.js","path":"./node_modules/next/dist/client/components/redirect-status-code.js","statSize":982,"parsedSize":512,"gzipSize":282},{"id":3159,"label":"redirect.js","path":"./node_modules/next/dist/client/components/redirect.js","statSize":3490,"parsedSize":1607,"gzipSize":597},{"id":4581,"label":"render-from-template-context.js","path":"./node_modules/next/dist/client/components/render-from-template-context.js","statSize":1224,"parsedSize":508,"gzipSize":303},{"label":"router-reducer","path":"./node_modules/next/dist/client/components/router-reducer","statSize":156511,"groups":[{"id":9580,"label":"apply-flight-data.js","path":"./node_modules/next/dist/client/components/router-reducer/apply-flight-data.js","statSize":2480,"parsedSize":749,"gzipSize":425},{"id":2656,"label":"apply-router-state-patch-to-tree.js","path":"./node_modules/next/dist/client/components/router-reducer/apply-router-state-patch-to-tree.js","statSize":4230,"parsedSize":1127,"gzipSize":606},{"id":2496,"label":"compute-changed-path.js","path":"./node_modules/next/dist/client/components/router-reducer/compute-changed-path.js","statSize":5342,"parsedSize":1652,"gzipSize":860},{"id":9453,"label":"create-href-from-url.js","path":"./node_modules/next/dist/client/components/router-reducer/create-href-from-url.js","statSize":737,"parsedSize":431,"gzipSize":247},{"id":2025,"label":"create-initial-router-state.js","path":"./node_modules/next/dist/client/components/router-reducer/create-initial-router-state.js","statSize":3796,"parsedSize":1256,"gzipSize":718},{"id":899,"label":"create-router-cache-key.js","path":"./node_modules/next/dist/client/components/router-reducer/create-router-cache-key.js","statSize":1338,"parsedSize":516,"gzipSize":306},{"id":8796,"label":"fetch-server-response.js","path":"./node_modules/next/dist/client/components/router-reducer/fetch-server-response.js","statSize":18108,"parsedSize":2807,"gzipSize":1442},{"id":12,"label":"fill-cache-with-new-subtree-data.js","path":"./node_modules/next/dist/client/components/router-reducer/fill-cache-with-new-subtree-data.js","statSize":5267,"parsedSize":1457,"gzipSize":756},{"id":1728,"label":"fill-lazy-items-till-leaf-with-head.js","path":"./node_modules/next/dist/client/components/router-reducer/fill-lazy-items-till-leaf-with-head.js","statSize":6141,"parsedSize":1394,"gzipSize":580},{"id":1989,"label":"handle-mutable.js","path":"./node_modules/next/dist/client/components/router-reducer/handle-mutable.js","statSize":3226,"parsedSize":1439,"gzipSize":641},{"id":7941,"label":"handle-segment-mismatch.js","path":"./node_modules/next/dist/client/components/router-reducer/handle-segment-mismatch.js","statSize":895,"parsedSize":463,"gzipSize":269},{"id":3858,"label":"invalidate-cache-by-router-state.js","path":"./node_modules/next/dist/client/components/router-reducer/invalidate-cache-by-router-state.js","statSize":1442,"parsedSize":572,"gzipSize":328},{"id":7880,"label":"is-navigating-to-new-root-layout.js","path":"./node_modules/next/dist/client/components/router-reducer/is-navigating-to-new-root-layout.js","statSize":2488,"parsedSize":625,"gzipSize":341},{"id":2120,"label":"ppr-navigations.js","path":"./node_modules/next/dist/client/components/router-reducer/ppr-navigations.js","statSize":47868,"parsedSize":6167,"gzipSize":2448},{"label":"reducers","path":"./node_modules/next/dist/client/components/router-reducer/reducers","statSize":40864,"groups":[{"id":425,"label":"find-head-in-cache.js","path":"./node_modules/next/dist/client/components/router-reducer/reducers/find-head-in-cache.js","statSize":2612,"parsedSize":843,"gzipSize":461},{"id":398,"label":"has-interception-route-in-current-tree.js","path":"./node_modules/next/dist/client/components/router-reducer/reducers/has-interception-route-in-current-tree.js","statSize":1701,"parsedSize":702,"gzipSize":351},{"id":1498,"label":"hmr-refresh-reducer.js","path":"./node_modules/next/dist/client/components/router-reducer/reducers/hmr-refresh-reducer.js","statSize":4458,"parsedSize":482,"gzipSize":275},{"id":2987,"label":"navigate-reducer.js","path":"./node_modules/next/dist/client/components/router-reducer/reducers/navigate-reducer.js","statSize":6837,"parsedSize":2167,"gzipSize":1014},{"id":2512,"label":"refresh-reducer.js","path":"./node_modules/next/dist/client/components/router-reducer/reducers/refresh-reducer.js","statSize":5070,"parsedSize":1747,"gzipSize":967},{"id":3629,"label":"restore-reducer.js","path":"./node_modules/next/dist/client/components/router-reducer/reducers/restore-reducer.js","statSize":2674,"parsedSize":819,"gzipSize":472},{"id":7491,"label":"server-action-reducer.js","path":"./node_modules/next/dist/client/components/router-reducer/reducers/server-action-reducer.js","statSize":14192,"parsedSize":4151,"gzipSize":2100},{"id":1467,"label":"server-patch-reducer.js","path":"./node_modules/next/dist/client/components/router-reducer/reducers/server-patch-reducer.js","statSize":3320,"parsedSize":1128,"gzipSize":623}],"parsedSize":12039,"gzipSize":3918},{"id":1674,"label":"refetch-inactive-parallel-segments.js","path":"./node_modules/next/dist/client/components/router-reducer/refetch-inactive-parallel-segments.js","statSize":4919,"parsedSize":1344,"gzipSize":700},{"id":4616,"label":"router-reducer-types.js","path":"./node_modules/next/dist/client/components/router-reducer/router-reducer-types.js","statSize":1834,"parsedSize":787,"gzipSize":410},{"id":1280,"label":"router-reducer.js","path":"./node_modules/next/dist/client/components/router-reducer/router-reducer.js","statSize":2577,"parsedSize":949,"gzipSize":472},{"id":2071,"label":"set-cache-busting-search-param.js","path":"./node_modules/next/dist/client/components/router-reducer/set-cache-busting-search-param.js","statSize":2959,"parsedSize":924,"gzipSize":487}],"parsedSize":36698,"gzipSize":9876},{"label":"segment-cache","path":"./node_modules/next/dist/client/components/segment-cache","statSize":181662,"groups":[{"id":6452,"label":"cache-key.js","path":"./node_modules/next/dist/client/components/segment-cache/cache-key.js","statSize":904,"parsedSize":455,"gzipSize":260},{"id":6849,"label":"cache-map.js","path":"./node_modules/next/dist/client/components/segment-cache/cache-map.js","statSize":11803,"parsedSize":2225,"gzipSize":895},{"id":2506,"label":"cache.js","path":"./node_modules/next/dist/client/components/segment-cache/cache.js","statSize":73941,"parsedSize":13088,"gzipSize":4458},{"id":2777,"label":"lru.js","path":"./node_modules/next/dist/client/components/segment-cache/lru.js","statSize":4492,"parsedSize":1128,"gzipSize":560},{"id":354,"label":"navigation.js","path":"./node_modules/next/dist/client/components/segment-cache/navigation.js","statSize":20735,"parsedSize":3812,"gzipSize":1537},{"id":4035,"label":"prefetch.js","path":"./node_modules/next/dist/client/components/segment-cache/prefetch.js","statSize":1207,"parsedSize":582,"gzipSize":338},{"id":7705,"label":"scheduler.js","path":"./node_modules/next/dist/client/components/segment-cache/scheduler.js","statSize":57126,"parsedSize":9761,"gzipSize":3059},{"id":7565,"label":"types.js","path":"./node_modules/next/dist/client/components/segment-cache/types.js","statSize":2747,"parsedSize":786,"gzipSize":427},{"id":9620,"label":"vary-path.js","path":"./node_modules/next/dist/client/components/segment-cache/vary-path.js","statSize":8707,"parsedSize":1437,"gzipSize":558}],"parsedSize":33274,"gzipSize":9298},{"id":3005,"label":"unauthorized.js","path":"./node_modules/next/dist/client/components/unauthorized.js","statSize":2075,"parsedSize":631,"gzipSize":354},{"id":4454,"label":"unrecognized-action-error.js","path":"./node_modules/next/dist/client/components/unrecognized-action-error.js","statSize":1259,"parsedSize":612,"gzipSize":321},{"id":7584,"label":"unresolved-thenable.js","path":"./node_modules/next/dist/client/components/unresolved-thenable.js","statSize":784,"parsedSize":392,"gzipSize":226},{"id":587,"label":"unstable-rethrow.browser.js","path":"./node_modules/next/dist/client/components/unstable-rethrow.browser.js","statSize":1026,"parsedSize":521,"gzipSize":307},{"id":2165,"label":"unstable-rethrow.js","path":"./node_modules/next/dist/client/components/unstable-rethrow.js","statSize":1260,"parsedSize":402,"gzipSize":228},{"id":5437,"label":"use-action-queue.js","path":"./node_modules/next/dist/client/components/use-action-queue.js","statSize":4461,"parsedSize":835,"gzipSize":474}],"parsedSize":117583,"gzipSize":29136},{"id":4103,"label":"flight-data-helpers.js","path":"./node_modules/next/dist/client/flight-data-helpers.js","statSize":10046,"parsedSize":1888,"gzipSize":995},{"id":8512,"label":"has-base-path.js","path":"./node_modules/next/dist/client/has-base-path.js","statSize":822,"parsedSize":427,"gzipSize":249},{"id":20,"label":"normalize-trailing-slash.js","path":"./node_modules/next/dist/client/normalize-trailing-slash.js","statSize":1465,"parsedSize":541,"gzipSize":321},{"label":"react-client-callbacks","path":"./node_modules/next/dist/client/react-client-callbacks","statSize":8135,"groups":[{"id":1309,"label":"error-boundary-callbacks.js","path":"./node_modules/next/dist/client/react-client-callbacks/error-boundary-callbacks.js","statSize":5306,"parsedSize":932,"gzipSize":489},{"id":6672,"label":"on-recoverable-error.js","path":"./node_modules/next/dist/client/react-client-callbacks/on-recoverable-error.js","statSize":2058,"parsedSize":649,"gzipSize":380},{"id":3008,"label":"report-global-error.js","path":"./node_modules/next/dist/client/react-client-callbacks/report-global-error.js","statSize":771,"parsedSize":453,"gzipSize":249}],"parsedSize":2034,"gzipSize":641},{"id":5888,"label":"remove-base-path.js","path":"./node_modules/next/dist/client/remove-base-path.js","statSize":1095,"parsedSize":401,"gzipSize":230},{"label":"request","path":"./node_modules/next/dist/client/request","statSize":3944,"groups":[{"id":7704,"label":"params.browser.js","path":"./node_modules/next/dist/client/request/params.browser.js","statSize":823,"parsedSize":427,"gzipSize":240},{"id":8127,"label":"params.browser.prod.js","path":"./node_modules/next/dist/client/request/params.browser.prod.js","statSize":1065,"parsedSize":488,"gzipSize":279},{"id":8159,"label":"search-params.browser.js","path":"./node_modules/next/dist/client/request/search-params.browser.js","statSize":874,"parsedSize":439,"gzipSize":244},{"id":7446,"label":"search-params.browser.prod.js","path":"./node_modules/next/dist/client/request/search-params.browser.prod.js","statSize":1182,"parsedSize":494,"gzipSize":284}],"parsedSize":1848,"gzipSize":338},{"id":4536,"label":"route-params.js","path":"./node_modules/next/dist/client/route-params.js","statSize":10462,"parsedSize":2241,"gzipSize":996},{"id":3584,"label":"set-attributes-from-props.js","path":"./node_modules/next/dist/client/set-attributes-from-props.js","statSize":2382,"parsedSize":950,"gzipSize":523}],"parsedSize":136432,"gzipSize":32899},{"label":"compiled","path":"./node_modules/next/dist/compiled","statSize":102489,"groups":[{"label":"process","path":"./node_modules/next/dist/compiled/process","statSize":2442,"groups":[{"id":5208,"label":"browser.js","path":"./node_modules/next/dist/compiled/process/browser.js","statSize":2442,"parsedSize":1839,"gzipSize":788}],"parsedSize":1839,"gzipSize":788},{"label":"react-dom","path":"./node_modules/next/dist/compiled/react-dom","statSize":9431,"groups":[{"label":"cjs","path":"./node_modules/next/dist/compiled/react-dom/cjs","statSize":6699,"groups":[{"id":8730,"label":"react-dom.production.js","path":"./node_modules/next/dist/compiled/react-dom/cjs/react-dom.production.js","statSize":6699,"parsedSize":3287,"gzipSize":1210}],"parsedSize":3287,"gzipSize":1210},{"id":2669,"label":"client.js","path":"./node_modules/next/dist/compiled/react-dom/client.js","statSize":1373,"parsedSize":246,"gzipSize":174},{"id":7650,"label":"index.js","path":"./node_modules/next/dist/compiled/react-dom/index.js","statSize":1359,"parsedSize":246,"gzipSize":174}],"parsedSize":3779,"gzipSize":1327},{"label":"react-server-dom-webpack","path":"./node_modules/next/dist/compiled/react-server-dom-webpack","statSize":61103,"groups":[{"label":"cjs","path":"./node_modules/next/dist/compiled/react-server-dom-webpack/cjs","statSize":60849,"groups":[{"id":9062,"label":"react-server-dom-webpack-client.browser.production.js","path":"./node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.production.js","statSize":60849,"parsedSize":23126,"gzipSize":7448}],"parsedSize":23126,"gzipSize":7448},{"id":7197,"label":"client.browser.js","path":"./node_modules/next/dist/compiled/react-server-dom-webpack/client.browser.js","statSize":254,"parsedSize":41,"gzipSize":61}],"parsedSize":23167,"gzipSize":7466},{"label":"react","path":"./node_modules/next/dist/compiled/react","statSize":19138,"groups":[{"label":"cjs","path":"./node_modules/next/dist/compiled/react/cjs","statSize":18742,"groups":[{"id":6897,"label":"react-jsx-runtime.production.js","path":"./node_modules/next/dist/compiled/react/cjs/react-jsx-runtime.production.js","statSize":976,"parsedSize":339,"gzipSize":246},{"id":1426,"label":"react.production.js","path":"./node_modules/next/dist/compiled/react/cjs/react.production.js","statSize":17766,"parsedSize":7655,"gzipSize":2933}],"parsedSize":7994,"gzipSize":3032},{"id":2115,"label":"index.js","path":"./node_modules/next/dist/compiled/react/index.js","statSize":186,"parsedSize":41,"gzipSize":61},{"id":5155,"label":"jsx-runtime.js","path":"./node_modules/next/dist/compiled/react/jsx-runtime.js","statSize":210,"parsedSize":41,"gzipSize":61}],"parsedSize":8076,"gzipSize":3057},{"label":"scheduler","path":"./node_modules/next/dist/compiled/scheduler","statSize":10375,"groups":[{"label":"cjs","path":"./node_modules/next/dist/compiled/scheduler/cjs","statSize":10181,"groups":[{"id":2213,"label":"scheduler.production.js","path":"./node_modules/next/dist/compiled/scheduler/cjs/scheduler.production.js","statSize":10181,"parsedSize":3470,"gzipSize":1481}],"parsedSize":3470,"gzipSize":1481},{"id":2832,"label":"index.js","path":"./node_modules/next/dist/compiled/scheduler/index.js","statSize":194,"parsedSize":41,"gzipSize":61}],"parsedSize":3511,"gzipSize":1500}],"parsedSize":40372,"gzipSize":12940},{"label":"lib","path":"./node_modules/next/dist/lib","statSize":7595,"groups":[{"label":"framework","path":"./node_modules/next/dist/lib/framework","statSize":3108,"groups":[{"id":484,"label":"boundary-components.js","path":"./node_modules/next/dist/lib/framework/boundary-components.js","statSize":2044,"parsedSize":715,"gzipSize":310},{"id":5653,"label":"boundary-constants.js","path":"./node_modules/next/dist/lib/framework/boundary-constants.js","statSize":1064,"parsedSize":451,"gzipSize":258}],"parsedSize":1166,"gzipSize":405},{"id":6981,"label":"is-error.js","path":"./node_modules/next/dist/lib/is-error.js","statSize":2663,"parsedSize":585,"gzipSize":364},{"label":"metadata/generate","path":"./node_modules/next/dist/lib/metadata/generate","statSize":532,"groups":[{"id":6869,"label":"icon-mark.js","path":"./node_modules/next/dist/lib/metadata/generate/icon-mark.js","statSize":532,"parsedSize":172,"gzipSize":152}],"parsedSize":172,"gzipSize":152},{"id":42,"label":"require-instrumentation-client.js","path":"./node_modules/next/dist/lib/require-instrumentation-client.js","statSize":1292,"parsedSize":41,"gzipSize":61}],"parsedSize":1964,"gzipSize":671},{"label":"shared/lib","path":"./node_modules/next/dist/shared/lib","statSize":40035,"groups":[{"id":2909,"label":"app-router-context.shared-runtime.js","path":"./node_modules/next/dist/shared/lib/app-router-context.shared-runtime.js","statSize":1717,"parsedSize":538,"gzipSize":258},{"id":6731,"label":"app-router-types.js","path":"./node_modules/next/dist/shared/lib/app-router-types.js","statSize":1156,"parsedSize":361,"gzipSize":199},{"id":2451,"label":"encode-uri-path.js","path":"./node_modules/next/dist/shared/lib/encode-uri-path.js","statSize":362,"parsedSize":226,"gzipSize":176},{"id":3180,"label":"hash.js","path":"./node_modules/next/dist/shared/lib/hash.js","statSize":1326,"parsedSize":349,"gzipSize":253},{"id":5368,"label":"head-manager-context.shared-runtime.js","path":"./node_modules/next/dist/shared/lib/head-manager-context.shared-runtime.js","statSize":608,"parsedSize":210,"gzipSize":176},{"id":7788,"label":"hooks-client-context.shared-runtime.js","path":"./node_modules/next/dist/shared/lib/hooks-client-context.shared-runtime.js","statSize":1805,"parsedSize":601,"gzipSize":321},{"id":2299,"label":"invariant-error.js","path":"./node_modules/next/dist/shared/lib/invariant-error.js","statSize":494,"parsedSize":296,"gzipSize":226},{"id":3967,"label":"is-plain-object.js","path":"./node_modules/next/dist/shared/lib/is-plain-object.js","statSize":1180,"parsedSize":410,"gzipSize":261},{"id":8108,"label":"is-thenable.js","path":"./node_modules/next/dist/shared/lib/is-thenable.js","statSize":537,"parsedSize":238,"gzipSize":174},{"label":"lazy-dynamic","path":"./node_modules/next/dist/shared/lib/lazy-dynamic","statSize":1085,"groups":[{"id":1980,"label":"bailout-to-csr.js","path":"./node_modules/next/dist/shared/lib/lazy-dynamic/bailout-to-csr.js","statSize":1085,"parsedSize":459,"gzipSize":318}],"parsedSize":459,"gzipSize":318},{"label":"page-path","path":"./node_modules/next/dist/shared/lib/page-path","statSize":524,"groups":[{"id":1315,"label":"ensure-leading-slash.js","path":"./node_modules/next/dist/shared/lib/page-path/ensure-leading-slash.js","statSize":524,"parsedSize":206,"gzipSize":169}],"parsedSize":206,"gzipSize":169},{"id":4542,"label":"promise-with-resolvers.js","path":"./node_modules/next/dist/shared/lib/promise-with-resolvers.js","statSize":606,"parsedSize":255,"gzipSize":191},{"label":"router/utils","path":"./node_modules/next/dist/shared/lib/router/utils","statSize":14234,"groups":[{"id":9940,"label":"add-path-prefix.js","path":"./node_modules/next/dist/shared/lib/router/utils/add-path-prefix.js","statSize":536,"parsedSize":295,"gzipSize":230},{"id":9226,"label":"app-paths.js","path":"./node_modules/next/dist/shared/lib/router/utils/app-paths.js","statSize":1469,"parsedSize":476,"gzipSize":345},{"id":6132,"label":"cache-busting-search-param.js","path":"./node_modules/next/dist/shared/lib/router/utils/cache-busting-search-param.js","statSize":832,"parsedSize":328,"gzipSize":236},{"id":8465,"label":"disable-smooth-scroll.js","path":"./node_modules/next/dist/shared/lib/router/utils/disable-smooth-scroll.js","statSize":2015,"parsedSize":456,"gzipSize":294},{"id":4382,"label":"html-bots.js","path":"./node_modules/next/dist/shared/lib/router/utils/html-bots.js","statSize":1135,"parsedSize":477,"gzipSize":354},{"id":6469,"label":"interception-routes.js","path":"./node_modules/next/dist/shared/lib/router/utils/interception-routes.js","statSize":4355,"parsedSize":1623,"gzipSize":694},{"id":8080,"label":"is-bot.js","path":"./node_modules/next/dist/shared/lib/router/utils/is-bot.js","statSize":1764,"parsedSize":551,"gzipSize":300},{"id":2697,"label":"parse-path.js","path":"./node_modules/next/dist/shared/lib/router/utils/parse-path.js","statSize":1041,"parsedSize":360,"gzipSize":250},{"id":3697,"label":"path-has-prefix.js","path":"./node_modules/next/dist/shared/lib/router/utils/path-has-prefix.js","statSize":535,"parsedSize":285,"gzipSize":222},{"id":603,"label":"remove-trailing-slash.js","path":"./node_modules/next/dist/shared/lib/router/utils/remove-trailing-slash.js","statSize":552,"parsedSize":204,"gzipSize":167}],"parsedSize":5055,"gzipSize":1737},{"label":"segment-cache","path":"./node_modules/next/dist/shared/lib/segment-cache","statSize":7694,"groups":[{"id":4221,"label":"output-export-prefetch-encoding.js","path":"./node_modules/next/dist/shared/lib/segment-cache/output-export-prefetch-encoding.js","statSize":3142,"parsedSize":549,"gzipSize":352},{"id":3534,"label":"segment-value-encoding.js","path":"./node_modules/next/dist/shared/lib/segment-cache/segment-value-encoding.js","statSize":4552,"parsedSize":838,"gzipSize":493}],"parsedSize":1387,"gzipSize":689},{"id":8237,"label":"segment.js","path":"./node_modules/next/dist/shared/lib/segment.js","statSize":3442,"parsedSize":1050,"gzipSize":556},{"id":9862,"label":"server-inserted-html.shared-runtime.js","path":"./node_modules/next/dist/shared/lib/server-inserted-html.shared-runtime.js","statSize":1210,"parsedSize":343,"gzipSize":243},{"id":1262,"label":"server-reference-info.js","path":"./node_modules/next/dist/shared/lib/server-reference-info.js","statSize":1601,"parsedSize":564,"gzipSize":376},{"label":"utils","path":"./node_modules/next/dist/shared/lib/utils","statSize":454,"groups":[{"id":7284,"label":"warn-once.js","path":"./node_modules/next/dist/shared/lib/utils/warn-once.js","statSize":454,"parsedSize":159,"gzipSize":139}],"parsedSize":159,"gzipSize":139}],"parsedSize":12707,"gzipSize":3687}],"parsedSize":193203,"gzipSize":49697}],"parsedSize":193935,"gzipSize":49929}],"isInitialByEntrypoint":{"main-app":true}},{"label":"static/chunks/main-a8af89124692d8e3.js","isAsset":true,"statSize":385242,"parsedSize":132068,"gzipSize":38502,"groups":[{"label":"node_modules","path":"./node_modules","statSize":385242,"groups":[{"label":"@swc/helpers/esm","path":"./node_modules/@swc/helpers/esm","statSize":1431,"groups":[{"id":4252,"label":"_interop_require_default.js","path":"./node_modules/@swc/helpers/esm/_interop_require_default.js","statSize":144,"parsedSize":98,"gzipSize":108},{"id":8365,"label":"_interop_require_wildcard.js","path":"./node_modules/@swc/helpers/esm/_interop_require_wildcard.js","statSize":1287,"parsedSize":634,"gzipSize":355}],"parsedSize":732,"gzipSize":372},{"label":"next/dist","path":"./node_modules/next/dist","statSize":383811,"groups":[{"label":"build","path":"./node_modules/next/dist/build","statSize":2187,"groups":[{"id":8757,"label":"deployment-id.js","path":"./node_modules/next/dist/build/deployment-id.js","statSize":466,"parsedSize":194,"gzipSize":162},{"label":"polyfills","path":"./node_modules/next/dist/build/polyfills","statSize":1721,"groups":[{"id":1291,"label":"polyfill-module.js","path":"./node_modules/next/dist/build/polyfills/polyfill-module.js","statSize":1380,"parsedSize":1382,"gzipSize":594},{"id":5364,"label":"process.js","path":"./node_modules/next/dist/build/polyfills/process.js","statSize":341,"parsedSize":152,"gzipSize":131}],"parsedSize":1534,"gzipSize":664}],"parsedSize":1728,"gzipSize":737},{"label":"client","path":"./node_modules/next/dist/client","statSize":114168,"groups":[{"id":8246,"label":"add-base-path.js","path":"./node_modules/next/dist/client/add-base-path.js","statSize":1025,"parsedSize":473,"gzipSize":279},{"id":8285,"label":"add-locale.js","path":"./node_modules/next/dist/client/add-locale.js","statSize":909,"parsedSize":391,"gzipSize":228},{"label":"components","path":"./node_modules/next/dist/client/components","statSize":6052,"groups":[{"label":"http-access-fallback","path":"./node_modules/next/dist/client/components/http-access-fallback","statSize":2335,"groups":[{"id":6251,"label":"http-access-fallback.js","path":"./node_modules/next/dist/client/components/http-access-fallback/http-access-fallback.js","statSize":2335,"parsedSize":1052,"gzipSize":539}],"parsedSize":1052,"gzipSize":539},{"id":7585,"label":"is-next-router-error.js","path":"./node_modules/next/dist/client/components/is-next-router-error.js","statSize":901,"parsedSize":478,"gzipSize":282},{"id":3417,"label":"redirect-error.js","path":"./node_modules/next/dist/client/components/redirect-error.js","statSize":1834,"parsedSize":835,"gzipSize":466},{"id":5067,"label":"redirect-status-code.js","path":"./node_modules/next/dist/client/components/redirect-status-code.js","statSize":982,"parsedSize":512,"gzipSize":282}],"parsedSize":2877,"gzipSize":884},{"id":5162,"label":"detect-domain-locale.js","path":"./node_modules/next/dist/client/detect-domain-locale.js","statSize":800,"parsedSize":389,"gzipSize":223},{"id":5829,"label":"has-base-path.js","path":"./node_modules/next/dist/client/has-base-path.js","statSize":822,"parsedSize":427,"gzipSize":249},{"id":7933,"label":"head-manager.js","path":"./node_modules/next/dist/client/head-manager.js","statSize":4800,"parsedSize":1998,"gzipSize":962},{"id":363,"label":"index.js","path":"./node_modules/next/dist/client/index.js","statSize":31828,"parsedSize":8293,"gzipSize":3526},{"id":6820,"label":"next.js","path":"./node_modules/next/dist/client/next.js","statSize":802,"parsedSize":464,"gzipSize":288},{"id":1623,"label":"normalize-trailing-slash.js","path":"./node_modules/next/dist/client/normalize-trailing-slash.js","statSize":1465,"parsedSize":542,"gzipSize":323},{"id":550,"label":"page-loader.js","path":"./node_modules/next/dist/client/page-loader.js","statSize":7369,"parsedSize":1746,"gzipSize":931},{"label":"portal","path":"./node_modules/next/dist/client/portal","statSize":1125,"groups":[{"id":6232,"label":"index.js","path":"./node_modules/next/dist/client/portal/index.js","statSize":1125,"parsedSize":615,"gzipSize":345}],"parsedSize":615,"gzipSize":345},{"label":"react-client-callbacks","path":"./node_modules/next/dist/client/react-client-callbacks","statSize":2829,"groups":[{"id":8193,"label":"on-recoverable-error.js","path":"./node_modules/next/dist/client/react-client-callbacks/on-recoverable-error.js","statSize":2058,"parsedSize":649,"gzipSize":380},{"id":4087,"label":"report-global-error.js","path":"./node_modules/next/dist/client/react-client-callbacks/report-global-error.js","statSize":771,"parsedSize":453,"gzipSize":249}],"parsedSize":1102,"gzipSize":434},{"id":2267,"label":"remove-base-path.js","path":"./node_modules/next/dist/client/remove-base-path.js","statSize":1095,"parsedSize":401,"gzipSize":230},{"id":5594,"label":"remove-locale.js","path":"./node_modules/next/dist/client/remove-locale.js","statSize":1131,"parsedSize":401,"gzipSize":225},{"id":1241,"label":"request-idle-callback.js","path":"./node_modules/next/dist/client/request-idle-callback.js","statSize":1464,"parsedSize":815,"gzipSize":378},{"id":7943,"label":"resolve-href.js","path":"./node_modules/next/dist/client/resolve-href.js","statSize":5337,"parsedSize":1479,"gzipSize":784},{"id":5944,"label":"route-announcer.js","path":"./node_modules/next/dist/client/route-announcer.js","statSize":3096,"parsedSize":1020,"gzipSize":599},{"id":566,"label":"route-loader.js","path":"./node_modules/next/dist/client/route-loader.js","statSize":13691,"parsedSize":4339,"gzipSize":1754},{"id":7640,"label":"router.js","path":"./node_modules/next/dist/client/router.js","statSize":5973,"parsedSize":2260,"gzipSize":1042},{"id":2470,"label":"script.js","path":"./node_modules/next/dist/client/script.js","statSize":14086,"parsedSize":3615,"gzipSize":1496},{"id":9341,"label":"set-attributes-from-props.js","path":"./node_modules/next/dist/client/set-attributes-from-props.js","statSize":2382,"parsedSize":950,"gzipSize":523},{"label":"tracing","path":"./node_modules/next/dist/client/tracing","statSize":1945,"groups":[{"id":1383,"label":"tracer.js","path":"./node_modules/next/dist/client/tracing/tracer.js","statSize":1945,"parsedSize":1041,"gzipSize":505}],"parsedSize":1041,"gzipSize":505},{"id":1128,"label":"trusted-types.js","path":"./node_modules/next/dist/client/trusted-types.js","statSize":1372,"parsedSize":560,"gzipSize":302},{"id":5376,"label":"webpack.js","path":"./node_modules/next/dist/client/webpack.js","statSize":1310,"parsedSize":336,"gzipSize":211},{"id":5029,"label":"with-router.js","path":"./node_modules/next/dist/client/with-router.js","statSize":1460,"parsedSize":575,"gzipSize":310}],"parsedSize":37109,"gzipSize":10342},{"label":"compiled","path":"./node_modules/next/dist/compiled","statSize":20127,"groups":[{"label":"path-to-regexp","path":"./node_modules/next/dist/compiled/path-to-regexp","statSize":7310,"groups":[{"id":9509,"label":"index.js","path":"./node_modules/next/dist/compiled/path-to-regexp/index.js","statSize":7310,"parsedSize":6159,"gzipSize":2352}],"parsedSize":6159,"gzipSize":2352},{"label":"process","path":"./node_modules/next/dist/compiled/process","statSize":2442,"groups":[{"id":5861,"label":"browser.js","path":"./node_modules/next/dist/compiled/process/browser.js","statSize":2442,"parsedSize":1839,"gzipSize":786}],"parsedSize":1839,"gzipSize":786},{"label":"scheduler","path":"./node_modules/next/dist/compiled/scheduler","statSize":10375,"groups":[{"label":"cjs","path":"./node_modules/next/dist/compiled/scheduler/cjs","statSize":10181,"groups":[{"id":2762,"label":"scheduler.production.js","path":"./node_modules/next/dist/compiled/scheduler/cjs/scheduler.production.js","statSize":10181,"parsedSize":3470,"gzipSize":1482}],"parsedSize":3470,"gzipSize":1482},{"id":577,"label":"index.js","path":"./node_modules/next/dist/compiled/scheduler/index.js","statSize":194,"parsedSize":41,"gzipSize":61}],"parsedSize":3511,"gzipSize":1503}],"parsedSize":11509,"gzipSize":4335},{"label":"lib","path":"./node_modules/next/dist/lib","statSize":23977,"groups":[{"id":9308,"label":"constants.js","path":"./node_modules/next/dist/lib/constants.js","statSize":15197,"parsedSize":6374,"gzipSize":2278},{"id":2326,"label":"is-api-route.js","path":"./node_modules/next/dist/lib/is-api-route.js","statSize":373,"parsedSize":222,"gzipSize":179},{"id":6240,"label":"is-error.js","path":"./node_modules/next/dist/lib/is-error.js","statSize":2663,"parsedSize":585,"gzipSize":365},{"id":7647,"label":"require-instrumentation-client.js","path":"./node_modules/next/dist/lib/require-instrumentation-client.js","statSize":1292,"parsedSize":41,"gzipSize":61},{"id":2117,"label":"route-pattern-normalizer.js","path":"./node_modules/next/dist/lib/route-pattern-normalizer.js","statSize":4452,"parsedSize":1150,"gzipSize":574}],"parsedSize":8372,"gzipSize":3002},{"label":"pages","path":"./node_modules/next/dist/pages","statSize":7851,"groups":[{"id":1966,"label":"_app.js","path":"./node_modules/next/dist/pages/_app.js","statSize":1600,"parsedSize":681,"gzipSize":374},{"id":3899,"label":"_error.js","path":"./node_modules/next/dist/pages/_error.js","statSize":6251,"parsedSize":2275,"gzipSize":1135}],"parsedSize":2956,"gzipSize":1228},{"label":"shared/lib","path":"./node_modules/next/dist/shared/lib","statSize":215501,"groups":[{"id":8832,"label":"app-router-context.shared-runtime.js","path":"./node_modules/next/dist/shared/lib/app-router-context.shared-runtime.js","statSize":1717,"parsedSize":538,"gzipSize":258},{"id":8055,"label":"bloom-filter.js","path":"./node_modules/next/dist/shared/lib/bloom-filter.js","statSize":2670,"parsedSize":1107,"gzipSize":519},{"id":8932,"label":"constants.js","path":"./node_modules/next/dist/shared/lib/constants.js","statSize":15038,"parsedSize":5863,"gzipSize":2104},{"id":4506,"label":"encode-uri-path.js","path":"./node_modules/next/dist/shared/lib/encode-uri-path.js","statSize":362,"parsedSize":226,"gzipSize":176},{"id":9597,"label":"entry-constants.js","path":"./node_modules/next/dist/shared/lib/entry-constants.js","statSize":1184,"parsedSize":422,"gzipSize":253},{"id":3822,"label":"escape-regexp.js","path":"./node_modules/next/dist/shared/lib/escape-regexp.js","statSize":694,"parsedSize":264,"gzipSize":201},{"id":941,"label":"head-manager-context.shared-runtime.js","path":"./node_modules/next/dist/shared/lib/head-manager-context.shared-runtime.js","statSize":608,"parsedSize":210,"gzipSize":176},{"id":8005,"label":"head.js","path":"./node_modules/next/dist/shared/lib/head.js","statSize":6395,"parsedSize":1727,"gzipSize":875},{"id":3485,"label":"hooks-client-context.shared-runtime.js","path":"./node_modules/next/dist/shared/lib/hooks-client-context.shared-runtime.js","statSize":1805,"parsedSize":601,"gzipSize":321},{"label":"i18n","path":"./node_modules/next/dist/shared/lib/i18n","statSize":1885,"groups":[{"id":3684,"label":"normalize-locale-path.js","path":"./node_modules/next/dist/shared/lib/i18n/normalize-locale-path.js","statSize":1885,"parsedSize":460,"gzipSize":303}],"parsedSize":460,"gzipSize":303},{"id":8543,"label":"image-config-context.shared-runtime.js","path":"./node_modules/next/dist/shared/lib/image-config-context.shared-runtime.js","statSize":685,"parsedSize":242,"gzipSize":196},{"id":8025,"label":"image-config.js","path":"./node_modules/next/dist/shared/lib/image-config.js","statSize":1523,"parsedSize":743,"gzipSize":514},{"id":9642,"label":"invariant-error.js","path":"./node_modules/next/dist/shared/lib/invariant-error.js","statSize":494,"parsedSize":296,"gzipSize":226},{"id":5474,"label":"is-plain-object.js","path":"./node_modules/next/dist/shared/lib/is-plain-object.js","statSize":1180,"parsedSize":410,"gzipSize":261},{"label":"lazy-dynamic","path":"./node_modules/next/dist/shared/lib/lazy-dynamic","statSize":1085,"groups":[{"id":1101,"label":"bailout-to-csr.js","path":"./node_modules/next/dist/shared/lib/lazy-dynamic/bailout-to-csr.js","statSize":1085,"parsedSize":459,"gzipSize":318}],"parsedSize":459,"gzipSize":318},{"id":7069,"label":"mitt.js","path":"./node_modules/next/dist/shared/lib/mitt.js","statSize":2072,"parsedSize":330,"gzipSize":239},{"id":88,"label":"modern-browserslist-target.js","path":"./node_modules/next/dist/shared/lib/modern-browserslist-target.js","statSize":582,"parsedSize":81,"gzipSize":89},{"label":"page-path","path":"./node_modules/next/dist/shared/lib/page-path","statSize":1640,"groups":[{"id":2257,"label":"denormalize-page-path.js","path":"./node_modules/next/dist/shared/lib/page-path/denormalize-page-path.js","statSize":611,"parsedSize":317,"gzipSize":244},{"id":5068,"label":"ensure-leading-slash.js","path":"./node_modules/next/dist/shared/lib/page-path/ensure-leading-slash.js","statSize":524,"parsedSize":206,"gzipSize":169},{"id":6093,"label":"normalize-path-sep.js","path":"./node_modules/next/dist/shared/lib/page-path/normalize-path-sep.js","statSize":505,"parsedSize":197,"gzipSize":162}],"parsedSize":720,"gzipSize":315},{"id":6194,"label":"router-context.shared-runtime.js","path":"./node_modules/next/dist/shared/lib/router-context.shared-runtime.js","statSize":579,"parsedSize":207,"gzipSize":173},{"label":"router","path":"./node_modules/next/dist/shared/lib/router","statSize":161332,"groups":[{"id":435,"label":"adapters.js","path":"./node_modules/next/dist/shared/lib/router/adapters.js","statSize":4857,"parsedSize":1281,"gzipSize":671},{"id":8762,"label":"router.js","path":"./node_modules/next/dist/shared/lib/router/router.js","statSize":82320,"parsedSize":22355,"gzipSize":7277},{"label":"utils","path":"./node_modules/next/dist/shared/lib/router/utils","statSize":74155,"groups":[{"id":8385,"label":"add-locale.js","path":"./node_modules/next/dist/shared/lib/router/utils/add-locale.js","statSize":1049,"parsedSize":360,"gzipSize":253},{"id":5527,"label":"add-path-prefix.js","path":"./node_modules/next/dist/shared/lib/router/utils/add-path-prefix.js","statSize":536,"parsedSize":295,"gzipSize":229},{"id":6786,"label":"add-path-suffix.js","path":"./node_modules/next/dist/shared/lib/router/utils/add-path-suffix.js","statSize":536,"parsedSize":295,"gzipSize":230},{"id":3849,"label":"app-paths.js","path":"./node_modules/next/dist/shared/lib/router/utils/app-paths.js","statSize":1469,"parsedSize":476,"gzipSize":340},{"id":7779,"label":"as-path-to-search-params.js","path":"./node_modules/next/dist/shared/lib/router/utils/as-path-to-search-params.js","statSize":484,"parsedSize":215,"gzipSize":171},{"id":4933,"label":"compare-states.js","path":"./node_modules/next/dist/shared/lib/router/utils/compare-states.js","statSize":1070,"parsedSize":531,"gzipSize":264},{"id":2390,"label":"disable-smooth-scroll.js","path":"./node_modules/next/dist/shared/lib/router/utils/disable-smooth-scroll.js","statSize":2015,"parsedSize":456,"gzipSize":293},{"id":3882,"label":"format-next-pathname-info.js","path":"./node_modules/next/dist/shared/lib/router/utils/format-next-pathname-info.js","statSize":1290,"parsedSize":645,"gzipSize":383},{"id":1226,"label":"format-url.js","path":"./node_modules/next/dist/shared/lib/router/utils/format-url.js","statSize":3870,"parsedSize":1036,"gzipSize":648},{"id":2209,"label":"get-asset-path-from-route.js","path":"./node_modules/next/dist/shared/lib/router/utils/get-asset-path-from-route.js","statSize":610,"parsedSize":232,"gzipSize":182},{"id":3347,"label":"get-dynamic-param.js","path":"./node_modules/next/dist/shared/lib/router/utils/get-dynamic-param.js","statSize":7767,"parsedSize":2165,"gzipSize":1047},{"id":7929,"label":"get-next-pathname-info.js","path":"./node_modules/next/dist/shared/lib/router/utils/get-next-pathname-info.js","statSize":2320,"parsedSize":1026,"gzipSize":528},{"id":2803,"label":"get-segment-param.js","path":"./node_modules/next/dist/shared/lib/router/utils/get-segment-param.js","statSize":2935,"parsedSize":1130,"gzipSize":482},{"id":5977,"label":"html-bots.js","path":"./node_modules/next/dist/shared/lib/router/utils/html-bots.js","statSize":1135,"parsedSize":477,"gzipSize":354},{"id":231,"label":"index.js","path":"./node_modules/next/dist/shared/lib/router/utils/index.js","statSize":766,"parsedSize":339,"gzipSize":207},{"id":834,"label":"interception-routes.js","path":"./node_modules/next/dist/shared/lib/router/utils/interception-routes.js","statSize":4355,"parsedSize":1623,"gzipSize":695},{"id":8935,"label":"interpolate-as.js","path":"./node_modules/next/dist/shared/lib/router/utils/interpolate-as.js","statSize":2107,"parsedSize":592,"gzipSize":410},{"id":3133,"label":"is-bot.js","path":"./node_modules/next/dist/shared/lib/router/utils/is-bot.js","statSize":1764,"parsedSize":551,"gzipSize":299},{"id":393,"label":"is-dynamic.js","path":"./node_modules/next/dist/shared/lib/router/utils/is-dynamic.js","statSize":832,"parsedSize":379,"gzipSize":263},{"id":1175,"label":"is-local-url.js","path":"./node_modules/next/dist/shared/lib/router/utils/is-local-url.js","statSize":854,"parsedSize":347,"gzipSize":260},{"id":532,"label":"omit.js","path":"./node_modules/next/dist/shared/lib/router/utils/omit.js","statSize":440,"parsedSize":233,"gzipSize":182},{"id":7263,"label":"parse-loader-tree.js","path":"./node_modules/next/dist/shared/lib/router/utils/parse-loader-tree.js","statSize":920,"parsedSize":375,"gzipSize":283},{"id":8600,"label":"parse-path.js","path":"./node_modules/next/dist/shared/lib/router/utils/parse-path.js","statSize":1041,"parsedSize":360,"gzipSize":250},{"id":3595,"label":"parse-relative-url.js","path":"./node_modules/next/dist/shared/lib/router/utils/parse-relative-url.js","statSize":1423,"parsedSize":677,"gzipSize":426},{"id":1654,"label":"path-has-prefix.js","path":"./node_modules/next/dist/shared/lib/router/utils/path-has-prefix.js","statSize":535,"parsedSize":285,"gzipSize":221},{"id":4450,"label":"querystring.js","path":"./node_modules/next/dist/shared/lib/router/utils/querystring.js","statSize":2118,"parsedSize":767,"gzipSize":416},{"id":3330,"label":"remove-path-prefix.js","path":"./node_modules/next/dist/shared/lib/router/utils/remove-path-prefix.js","statSize":1261,"parsedSize":285,"gzipSize":218},{"id":7404,"label":"remove-trailing-slash.js","path":"./node_modules/next/dist/shared/lib/router/utils/remove-trailing-slash.js","statSize":552,"parsedSize":204,"gzipSize":167},{"id":54,"label":"route-match-utils.js","path":"./node_modules/next/dist/shared/lib/router/utils/route-match-utils.js","statSize":4398,"parsedSize":1196,"gzipSize":489},{"id":7445,"label":"route-matcher.js","path":"./node_modules/next/dist/shared/lib/router/utils/route-matcher.js","statSize":1483,"parsedSize":589,"gzipSize":391},{"id":7668,"label":"route-regex.js","path":"./node_modules/next/dist/shared/lib/router/utils/route-regex.js","statSize":10695,"parsedSize":3735,"gzipSize":1546},{"id":5845,"label":"sorted-routes.js","path":"./node_modules/next/dist/shared/lib/router/utils/sorted-routes.js","statSize":11525,"parsedSize":4280,"gzipSize":1371}],"parsedSize":26156,"gzipSize":7553}],"parsedSize":49792,"gzipSize":14626},{"id":5712,"label":"segment.js","path":"./node_modules/next/dist/shared/lib/segment.js","statSize":3442,"parsedSize":1050,"gzipSize":556},{"id":9762,"label":"side-effect.js","path":"./node_modules/next/dist/shared/lib/side-effect.js","statSize":2268,"parsedSize":700,"gzipSize":357},{"id":8608,"label":"utils.js","path":"./node_modules/next/dist/shared/lib/utils.js","statSize":5807,"parsedSize":2318,"gzipSize":1098},{"label":"utils","path":"./node_modules/next/dist/shared/lib/utils","statSize":454,"groups":[{"id":7897,"label":"warn-once.js","path":"./node_modules/next/dist/shared/lib/utils/warn-once.js","statSize":454,"parsedSize":159,"gzipSize":139}],"parsedSize":159,"gzipSize":139}],"parsedSize":68925,"gzipSize":20116}],"parsedSize":130599,"gzipSize":37685}],"parsedSize":131331,"gzipSize":37902}],"isInitialByEntrypoint":{"main":true}},{"label":"static/chunks/500-b84d19d842172eba.js","isAsset":true,"statSize":33780,"parsedSize":8719,"gzipSize":3519,"groups":[{"label":"node_modules/next/dist","path":"./node_modules/next/dist","statSize":33780,"groups":[{"label":"client","path":"./node_modules/next/dist/client","statSize":20678,"groups":[{"label":"app-dir","path":"./node_modules/next/dist/client/app-dir","statSize":18255,"groups":[{"id":8500,"label":"link.js","path":"./node_modules/next/dist/client/app-dir/link.js","statSize":18255,"parsedSize":3296,"gzipSize":1630}],"parsedSize":3296,"gzipSize":1630},{"id":1172,"label":"use-merged-ref.js","path":"./node_modules/next/dist/client/use-merged-ref.js","statSize":2423,"parsedSize":743,"gzipSize":359}],"parsedSize":4039,"gzipSize":1784},{"label":"shared/lib","path":"./node_modules/next/dist/shared/lib","statSize":13102,"groups":[{"label":"router/utils","path":"./node_modules/next/dist/shared/lib/router/utils","statSize":6842,"groups":[{"id":91,"label":"format-url.js","path":"./node_modules/next/dist/shared/lib/router/utils/format-url.js","statSize":3870,"parsedSize":1023,"gzipSize":640},{"id":9470,"label":"is-local-url.js","path":"./node_modules/next/dist/shared/lib/router/utils/is-local-url.js","statSize":854,"parsedSize":333,"gzipSize":250},{"id":1393,"label":"querystring.js","path":"./node_modules/next/dist/shared/lib/router/utils/querystring.js","statSize":2118,"parsedSize":754,"gzipSize":407}],"parsedSize":2110,"gzipSize":1043},{"id":857,"label":"utils.js","path":"./node_modules/next/dist/shared/lib/utils.js","statSize":5807,"parsedSize":2305,"gzipSize":1090},{"label":"utils","path":"./node_modules/next/dist/shared/lib/utils","statSize":453,"groups":[{"id":9842,"label":"error-once.js","path":"./node_modules/next/dist/shared/lib/utils/error-once.js","statSize":453,"parsedSize":147,"gzipSize":131}],"parsedSize":147,"gzipSize":131}],"parsedSize":4562,"gzipSize":1961}],"parsedSize":8601,"gzipSize":3458}],"isInitialByEntrypoint":{"app/not-found":true,"app/layout":true,"app/blog/page":true}},{"label":"static/chunks/webpack-6524ff3298c1da7c.js","isAsset":true,"statSize":3271,"parsedSize":3271,"gzipSize":1649,"groups":[],"isInitialByEntrypoint":{"main":true,"main-app":true}},{"label":"static/chunks/app/layout-0c5787b2f26778e0.js","isAsset":true,"statSize":498,"parsedSize":700,"gzipSize":369,"groups":[{"label":"app","path":"./app","statSize":39,"groups":[{"id":2421,"label":"global.css","path":"./app/global.css","statSize":39,"parsedSize":6,"gzipSize":26}],"parsedSize":6,"gzipSize":26},{"label":"node_modules/next/font/local/target.css?{\"path\":\"node_modules/geist/dist","path":"./node_modules/next/font/local/target.css?{\"path\":\"node_modules/geist/dist","statSize":459,"groups":[{"label":"mono.js\",\"import\":\"\",\"arguments\":[{\"src\":\"./fonts/geist-mono","path":"./node_modules/next/font/local/target.css?{\"path\":\"node_modules/geist/dist/mono.js\",\"import\":\"\",\"arguments\":[{\"src\":\"./fonts/geist-mono","statSize":277,"groups":[{"id":7086,"label":"GeistMono-Variable.woff2\",\"variable\":\"--font-geist-mono\",\"adjustFontFallback\":false,\"fallback\":[\"ui-monospace\",\"SFMono-Regular\",\"Roboto Mono\",\"Menlo\",\"Monaco\",\"Liberation Mono\",\"DejaVu Sans Mono\",\"Courier New\",\"monospace\"],\"weight\":\"100 900\"}],\"variableName\":\"GeistMono\"}","path":"./node_modules/next/font/local/target.css?{\"path\":\"node_modules/geist/dist/mono.js\",\"import\":\"\",\"arguments\":[{\"src\":\"./fonts/geist-mono/GeistMono-Variable.woff2\",\"variable\":\"--font-geist-mono\",\"adjustFontFallback\":false,\"fallback\":[\"ui-monospace\",\"SFMono-Regular\",\"Roboto Mono\",\"Menlo\",\"Monaco\",\"Liberation Mono\",\"DejaVu Sans Mono\",\"Courier New\",\"monospace\"],\"weight\":\"100 900\"}],\"variableName\":\"GeistMono\"}","statSize":277,"parsedSize":226,"gzipSize":181}],"parsedSize":226,"gzipSize":181},{"label":"sans.js\",\"import\":\"\",\"arguments\":[{\"src\":\"./fonts/geist-sans","path":"./node_modules/next/font/local/target.css?{\"path\":\"node_modules/geist/dist/sans.js\",\"import\":\"\",\"arguments\":[{\"src\":\"./fonts/geist-sans","statSize":182,"groups":[{"id":4438,"label":"Geist-Variable.woff2\",\"variable\":\"--font-geist-sans\",\"weight\":\"100 900\"}],\"variableName\":\"GeistSans\"}","path":"./node_modules/next/font/local/target.css?{\"path\":\"node_modules/geist/dist/sans.js\",\"import\":\"\",\"arguments\":[{\"src\":\"./fonts/geist-sans/Geist-Variable.woff2\",\"variable\":\"--font-geist-sans\",\"weight\":\"100 900\"}],\"variableName\":\"GeistSans\"}","statSize":182,"parsedSize":131,"gzipSize":120}],"parsedSize":131,"gzipSize":120}],"parsedSize":357,"gzipSize":214}],"isInitialByEntrypoint":{"app/layout":true}},{"label":"static/chunks/main-app-ea3c31e7c9c22861.js","isAsset":true,"statSize":513,"parsedSize":513,"gzipSize":222,"groups":[],"isInitialByEntrypoint":{"main-app":true}},{"label":"static/chunks/app/blog/page-d88d3e2061451e24.js","isAsset":true,"statSize":187,"parsedSize":187,"gzipSize":164,"groups":[],"isInitialByEntrypoint":{"app/blog/page":true}},{"label":"static/chunks/app/not-found-d88d3e2061451e24.js","isAsset":true,"statSize":187,"parsedSize":187,"gzipSize":164,"groups":[],"isInitialByEntrypoint":{"app/not-found":true}},{"label":"static/chunks/next/dist/client/components/builtin/global-error-bdc9ded8f0f7c941.js","isAsset":true,"statSize":179,"parsedSize":179,"gzipSize":160,"groups":[],"isInitialByEntrypoint":{"next/dist/client/components/builtin/global-error":true}},{"label":"static/chunks/app/_global-error/page-df6d66a920073a44.js","isAsset":true,"statSize":171,"parsedSize":171,"gzipSize":150,"groups":[],"isInitialByEntrypoint":{"app/_global-error/page":true}},{"label":"static/chunks/app/_not-found/page-df6d66a920073a44.js","isAsset":true,"statSize":171,"parsedSize":171,"gzipSize":150,"groups":[],"isInitialByEntrypoint":{"app/_not-found/page":true}},{"label":"static/chunks/app/blog/agent-coordination/page-df6d66a920073a44.js","isAsset":true,"statSize":171,"parsedSize":171,"gzipSize":150,"groups":[],"isInitialByEntrypoint":{"app/blog/agent-coordination/page":true}},{"label":"static/chunks/app/manifest.webmanifest/route-df6d66a920073a44.js","isAsset":true,"statSize":171,"parsedSize":171,"gzipSize":150,"groups":[],"isInitialByEntrypoint":{"app/manifest.webmanifest/route":true}},{"label":"static/chunks/app/og/route-df6d66a920073a44.js","isAsset":true,"statSize":171,"parsedSize":171,"gzipSize":150,"groups":[],"isInitialByEntrypoint":{"app/og/route":true}},{"label":"static/chunks/app/page-df6d66a920073a44.js","isAsset":true,"statSize":171,"parsedSize":171,"gzipSize":150,"groups":[],"isInitialByEntrypoint":{"app/page":true}},{"label":"static/chunks/app/robots.txt/route-df6d66a920073a44.js","isAsset":true,"statSize":171,"parsedSize":171,"gzipSize":150,"groups":[],"isInitialByEntrypoint":{"app/robots.txt/route":true}},{"label":"static/chunks/app/sitemap.xml/route-df6d66a920073a44.js","isAsset":true,"statSize":171,"parsedSize":171,"gzipSize":150,"groups":[],"isInitialByEntrypoint":{"app/sitemap.xml/route":true}},{"label":"static/chunks/next/dist/client/components/builtin/app-error-df6d66a920073a44.js","isAsset":true,"statSize":171,"parsedSize":171,"gzipSize":150,"groups":[],"isInitialByEntrypoint":{"next/dist/client/components/builtin/app-error":true}},{"label":"static/chunks/next/dist/client/components/builtin/forbidden-df6d66a920073a44.js","isAsset":true,"statSize":171,"parsedSize":171,"gzipSize":150,"groups":[],"isInitialByEntrypoint":{"next/dist/client/components/builtin/forbidden":true}},{"label":"static/chunks/next/dist/client/components/builtin/unauthorized-df6d66a920073a44.js","isAsset":true,"statSize":171,"parsedSize":171,"gzipSize":150,"groups":[],"isInitialByEntrypoint":{"next/dist/client/components/builtin/unauthorized":true}}]
+[
+  {
+    "label": "static/chunks/framework-2b1645d7bd0a0ec0.js",
+    "isAsset": true,
+    "statSize": 636786,
+    "parsedSize": 210417,
+    "gzipSize": 65866,
+    "groups": [
+      {
+        "label": "node_modules",
+        "path": "./node_modules",
+        "statSize": 636786,
+        "groups": [
+          {
+            "label": "next/dist/compiled",
+            "path": "./node_modules/next/dist/compiled",
+            "statSize": 635600,
+            "groups": [
+              {
+                "label": "react-dom",
+                "path": "./node_modules/next/dist/compiled/react-dom",
+                "statSize": 617648,
+                "groups": [
+                  {
+                    "label": "cjs",
+                    "path": "./node_modules/next/dist/compiled/react-dom/cjs",
+                    "statSize": 614916,
+                    "groups": [
+                      {
+                        "id": 4796,
+                        "label": "react-dom-client.production.js",
+                        "path": "./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.production.js",
+                        "statSize": 608217,
+                        "parsedSize": 198528,
+                        "gzipSize": 62272
+                      },
+                      {
+                        "id": 5922,
+                        "label": "react-dom.production.js",
+                        "path": "./node_modules/next/dist/compiled/react-dom/cjs/react-dom.production.js",
+                        "statSize": 6699,
+                        "parsedSize": 3274,
+                        "gzipSize": 1203
+                      }
+                    ],
+                    "parsedSize": 201802,
+                    "gzipSize": 63190
+                  },
+                  {
+                    "id": 7109,
+                    "label": "client.js",
+                    "path": "./node_modules/next/dist/compiled/react-dom/client.js",
+                    "statSize": 1373,
+                    "parsedSize": 233,
+                    "gzipSize": 165
+                  },
+                  {
+                    "id": 9802,
+                    "label": "index.js",
+                    "path": "./node_modules/next/dist/compiled/react-dom/index.js",
+                    "statSize": 1359,
+                    "parsedSize": 233,
+                    "gzipSize": 165
+                  }
+                ],
+                "parsedSize": 202268,
+                "gzipSize": 63258
+              },
+              {
+                "label": "react",
+                "path": "./node_modules/next/dist/compiled/react",
+                "statSize": 17952,
+                "groups": [
+                  {
+                    "label": "cjs",
+                    "path": "./node_modules/next/dist/compiled/react/cjs",
+                    "statSize": 17766,
+                    "groups": [
+                      {
+                        "id": 250,
+                        "label": "react.production.js",
+                        "path": "./node_modules/next/dist/compiled/react/cjs/react.production.js",
+                        "statSize": 17766,
+                        "parsedSize": 7642,
+                        "gzipSize": 2929
+                      }
+                    ],
+                    "parsedSize": 7642,
+                    "gzipSize": 2929
+                  },
+                  {
+                    "id": 6511,
+                    "label": "index.js",
+                    "path": "./node_modules/next/dist/compiled/react/index.js",
+                    "statSize": 186,
+                    "parsedSize": 27,
+                    "gzipSize": 47
+                  }
+                ],
+                "parsedSize": 7669,
+                "gzipSize": 2943
+              }
+            ],
+            "parsedSize": 209937,
+            "gzipSize": 65741
+          },
+          {
+            "label": "react",
+            "path": "./node_modules/react",
+            "statSize": 1186,
+            "groups": [
+              {
+                "label": "cjs",
+                "path": "./node_modules/react/cjs",
+                "statSize": 976,
+                "groups": [
+                  {
+                    "id": 8228,
+                    "label": "react-jsx-runtime.production.js",
+                    "path": "./node_modules/react/cjs/react-jsx-runtime.production.js",
+                    "statSize": 976,
+                    "parsedSize": 326,
+                    "gzipSize": 237
+                  }
+                ],
+                "parsedSize": 326,
+                "gzipSize": 237
+              },
+              {
+                "id": 7876,
+                "label": "jsx-runtime.js",
+                "path": "./node_modules/react/jsx-runtime.js",
+                "statSize": 210,
+                "parsedSize": 28,
+                "gzipSize": 48
+              }
+            ],
+            "parsedSize": 354,
+            "gzipSize": 255
+          }
+        ],
+        "parsedSize": 210291,
+        "gzipSize": 65839
+      }
+    ],
+    "isInitialByEntrypoint": { "main": true }
+  },
+  {
+    "label": "static/chunks/4bd1b696-deba172d32c79f82.js",
+    "isAsset": true,
+    "statSize": 608217,
+    "parsedSize": 198614,
+    "gzipSize": 62334,
+    "groups": [
+      {
+        "label": "node_modules/next/dist/compiled/react-dom/cjs",
+        "path": "./node_modules/next/dist/compiled/react-dom/cjs",
+        "statSize": 608217,
+        "groups": [
+          {
+            "id": 9248,
+            "label": "react-dom-client.production.js",
+            "path": "./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.production.js",
+            "statSize": 608217,
+            "parsedSize": 198529,
+            "gzipSize": 62281
+          }
+        ],
+        "parsedSize": 198529,
+        "gzipSize": 62281
+      }
+    ],
+    "isInitialByEntrypoint": { "main-app": true }
+  },
+  {
+    "label": "static/chunks/794-e1877ff7d42c5967.js",
+    "isAsset": true,
+    "statSize": 727534,
+    "parsedSize": 194858,
+    "gzipSize": 52291,
+    "groups": [
+      {
+        "label": "node_modules",
+        "path": "./node_modules",
+        "statSize": 727534,
+        "groups": [
+          {
+            "label": "@swc/helpers/esm",
+            "path": "./node_modules/@swc/helpers/esm",
+            "statSize": 1431,
+            "groups": [
+              {
+                "id": 3623,
+                "label": "_interop_require_default.js",
+                "path": "./node_modules/@swc/helpers/esm/_interop_require_default.js",
+                "statSize": 144,
+                "parsedSize": 98,
+                "gzipSize": 108
+              },
+              {
+                "id": 6388,
+                "label": "_interop_require_wildcard.js",
+                "path": "./node_modules/@swc/helpers/esm/_interop_require_wildcard.js",
+                "statSize": 1287,
+                "parsedSize": 634,
+                "gzipSize": 355
+              }
+            ],
+            "parsedSize": 732,
+            "gzipSize": 370
+          },
+          {
+            "label": "next/dist",
+            "path": "./node_modules/next/dist",
+            "statSize": 726103,
+            "groups": [
+              {
+                "label": "build",
+                "path": "./node_modules/next/dist/build",
+                "statSize": 2187,
+                "groups": [
+                  {
+                    "id": 9970,
+                    "label": "deployment-id.js",
+                    "path": "./node_modules/next/dist/build/deployment-id.js",
+                    "statSize": 466,
+                    "parsedSize": 194,
+                    "gzipSize": 162
+                  },
+                  {
+                    "label": "polyfills",
+                    "path": "./node_modules/next/dist/build/polyfills",
+                    "statSize": 1721,
+                    "groups": [
+                      {
+                        "id": 8456,
+                        "label": "polyfill-module.js",
+                        "path": "./node_modules/next/dist/build/polyfills/polyfill-module.js",
+                        "statSize": 1380,
+                        "parsedSize": 1382,
+                        "gzipSize": 594
+                      },
+                      {
+                        "id": 1463,
+                        "label": "process.js",
+                        "path": "./node_modules/next/dist/build/polyfills/process.js",
+                        "statSize": 341,
+                        "parsedSize": 152,
+                        "gzipSize": 131
+                      }
+                    ],
+                    "parsedSize": 1534,
+                    "gzipSize": 665
+                  }
+                ],
+                "parsedSize": 1728,
+                "gzipSize": 738
+              },
+              {
+                "label": "client",
+                "path": "./node_modules/next/dist/client",
+                "statSize": 573797,
+                "groups": [
+                  {
+                    "id": 127,
+                    "label": "add-base-path.js",
+                    "path": "./node_modules/next/dist/client/add-base-path.js",
+                    "statSize": 1025,
+                    "parsedSize": 471,
+                    "gzipSize": 276
+                  },
+                  {
+                    "id": 3294,
+                    "label": "app-bootstrap.js",
+                    "path": "./node_modules/next/dist/client/app-bootstrap.js",
+                    "statSize": 2773,
+                    "parsedSize": 819,
+                    "gzipSize": 494
+                  },
+                  {
+                    "id": 9078,
+                    "label": "app-build-id.js",
+                    "path": "./node_modules/next/dist/client/app-build-id.js",
+                    "statSize": 1782,
+                    "parsedSize": 479,
+                    "gzipSize": 261
+                  },
+                  {
+                    "id": 7304,
+                    "label": "app-call-server.js",
+                    "path": "./node_modules/next/dist/client/app-call-server.js",
+                    "statSize": 1179,
+                    "parsedSize": 584,
+                    "gzipSize": 350
+                  },
+                  {
+                    "id": 4060,
+                    "label": "app-find-source-map-url.js",
+                    "path": "./node_modules/next/dist/client/app-find-source-map-url.js",
+                    "statSize": 1659,
+                    "parsedSize": 376,
+                    "gzipSize": 219
+                  },
+                  {
+                    "id": 980,
+                    "label": "app-globals.js",
+                    "path": "./node_modules/next/dist/client/app-globals.js",
+                    "statSize": 715,
+                    "parsedSize": 295,
+                    "gzipSize": 183
+                  },
+                  {
+                    "id": 5448,
+                    "label": "app-index.js",
+                    "path": "./node_modules/next/dist/client/app-index.js",
+                    "statSize": 12449,
+                    "parsedSize": 3262,
+                    "gzipSize": 1530
+                  },
+                  {
+                    "id": 3861,
+                    "label": "app-next.js",
+                    "path": "./node_modules/next/dist/client/app-next.js",
+                    "statSize": 1244,
+                    "parsedSize": 388,
+                    "gzipSize": 252
+                  },
+                  {
+                    "id": 2431,
+                    "label": "app-webpack.js",
+                    "path": "./node_modules/next/dist/client/app-webpack.js",
+                    "statSize": 1979,
+                    "parsedSize": 361,
+                    "gzipSize": 230
+                  },
+                  {
+                    "id": 4281,
+                    "label": "asset-prefix.js",
+                    "path": "./node_modules/next/dist/client/asset-prefix.js",
+                    "statSize": 1573,
+                    "parsedSize": 949,
+                    "gzipSize": 462
+                  },
+                  {
+                    "id": 7841,
+                    "label": "assign-location.js",
+                    "path": "./node_modules/next/dist/client/assign-location.js",
+                    "statSize": 1154,
+                    "parsedSize": 535,
+                    "gzipSize": 310
+                  },
+                  {
+                    "label": "components",
+                    "path": "./node_modules/next/dist/client/components",
+                    "statSize": 507914,
+                    "groups": [
+                      {
+                        "id": 894,
+                        "label": "app-router-announcer.js",
+                        "path": "./node_modules/next/dist/client/components/app-router-announcer.js",
+                        "statSize": 3159,
+                        "parsedSize": 1422,
+                        "gzipSize": 728
+                      },
+                      {
+                        "id": 5563,
+                        "label": "app-router-headers.js",
+                        "path": "./node_modules/next/dist/client/components/app-router-headers.js",
+                        "statSize": 4187,
+                        "parsedSize": 1646,
+                        "gzipSize": 664
+                      },
+                      {
+                        "id": 156,
+                        "label": "app-router-instance.js",
+                        "path": "./node_modules/next/dist/client/components/app-router-instance.js",
+                        "statSize": 13284,
+                        "parsedSize": 3809,
+                        "gzipSize": 1518
+                      },
+                      {
+                        "id": 8720,
+                        "label": "app-router-utils.js",
+                        "path": "./node_modules/next/dist/client/components/app-router-utils.js",
+                        "statSize": 2029,
+                        "parsedSize": 841,
+                        "gzipSize": 473
+                      },
+                      {
+                        "id": 4036,
+                        "label": "app-router.js",
+                        "path": "./node_modules/next/dist/client/components/app-router.js",
+                        "statSize": 24244,
+                        "parsedSize": 5781,
+                        "gzipSize": 2250
+                      },
+                      {
+                        "id": 2775,
+                        "label": "bfcache.js",
+                        "path": "./node_modules/next/dist/client/components/bfcache.js",
+                        "statSize": 4051,
+                        "parsedSize": 685,
+                        "gzipSize": 367
+                      },
+                      {
+                        "label": "builtin",
+                        "path": "./node_modules/next/dist/client/components/builtin",
+                        "statSize": 3250,
+                        "groups": [
+                          {
+                            "id": 7123,
+                            "label": "global-error.js",
+                            "path": "./node_modules/next/dist/client/components/builtin/global-error.js",
+                            "statSize": 3250,
+                            "parsedSize": 1220,
+                            "gzipSize": 673
+                          }
+                        ],
+                        "parsedSize": 1220,
+                        "gzipSize": 673
+                      },
+                      {
+                        "id": 1304,
+                        "label": "client-page.js",
+                        "path": "./node_modules/next/dist/client/components/client-page.js",
+                        "statSize": 3910,
+                        "parsedSize": 832,
+                        "gzipSize": 460
+                      },
+                      {
+                        "id": 8616,
+                        "label": "client-segment.js",
+                        "path": "./node_modules/next/dist/client/components/client-segment.js",
+                        "statSize": 2762,
+                        "parsedSize": 666,
+                        "gzipSize": 394
+                      },
+                      {
+                        "id": 7600,
+                        "label": "error-boundary.js",
+                        "path": "./node_modules/next/dist/client/components/error-boundary.js",
+                        "statSize": 5525,
+                        "parsedSize": 1513,
+                        "gzipSize": 692
+                      },
+                      {
+                        "label": "errors",
+                        "path": "./node_modules/next/dist/client/components/errors",
+                        "statSize": 4574,
+                        "groups": [
+                          {
+                            "id": 3350,
+                            "label": "graceful-degrade-boundary.js",
+                            "path": "./node_modules/next/dist/client/components/errors/graceful-degrade-boundary.js",
+                            "statSize": 2760,
+                            "parsedSize": 1219,
+                            "gzipSize": 633
+                          },
+                          {
+                            "id": 1543,
+                            "label": "root-error-boundary.js",
+                            "path": "./node_modules/next/dist/client/components/errors/root-error-boundary.js",
+                            "statSize": 1814,
+                            "parsedSize": 672,
+                            "gzipSize": 367
+                          }
+                        ],
+                        "parsedSize": 1891,
+                        "gzipSize": 788
+                      },
+                      {
+                        "id": 4344,
+                        "label": "forbidden.js",
+                        "path": "./node_modules/next/dist/client/components/forbidden.js",
+                        "statSize": 2042,
+                        "parsedSize": 628,
+                        "gzipSize": 353
+                      },
+                      {
+                        "id": 8149,
+                        "label": "handle-isr-error.js",
+                        "path": "./node_modules/next/dist/client/components/handle-isr-error.js",
+                        "statSize": 1020,
+                        "parsedSize": 466,
+                        "gzipSize": 270
+                      },
+                      {
+                        "label": "http-access-fallback",
+                        "path": "./node_modules/next/dist/client/components/http-access-fallback",
+                        "statSize": 8539,
+                        "groups": [
+                          {
+                            "id": 4777,
+                            "label": "error-boundary.js",
+                            "path": "./node_modules/next/dist/client/components/http-access-fallback/error-boundary.js",
+                            "statSize": 6204,
+                            "parsedSize": 1732,
+                            "gzipSize": 775
+                          },
+                          {
+                            "id": 7016,
+                            "label": "http-access-fallback.js",
+                            "path": "./node_modules/next/dist/client/components/http-access-fallback/http-access-fallback.js",
+                            "statSize": 2335,
+                            "parsedSize": 1052,
+                            "gzipSize": 540
+                          }
+                        ],
+                        "parsedSize": 2784,
+                        "gzipSize": 1066
+                      },
+                      {
+                        "id": 8904,
+                        "label": "is-next-router-error.js",
+                        "path": "./node_modules/next/dist/client/components/is-next-router-error.js",
+                        "statSize": 901,
+                        "parsedSize": 478,
+                        "gzipSize": 280
+                      },
+                      {
+                        "id": 7121,
+                        "label": "layout-router.js",
+                        "path": "./node_modules/next/dist/client/components/layout-router.js",
+                        "statSize": 31518,
+                        "parsedSize": 5684,
+                        "gzipSize": 2488
+                      },
+                      {
+                        "id": 4972,
+                        "label": "links.js",
+                        "path": "./node_modules/next/dist/client/components/links.js",
+                        "statSize": 11744,
+                        "parsedSize": 2974,
+                        "gzipSize": 1162
+                      },
+                      {
+                        "id": 7653,
+                        "label": "match-segments.js",
+                        "path": "./node_modules/next/dist/client/components/match-segments.js",
+                        "statSize": 1069,
+                        "parsedSize": 469,
+                        "gzipSize": 252
+                      },
+                      {
+                        "id": 530,
+                        "label": "nav-failure-handler.js",
+                        "path": "./node_modules/next/dist/client/components/nav-failure-handler.js",
+                        "statSize": 2413,
+                        "parsedSize": 703,
+                        "gzipSize": 372
+                      },
+                      {
+                        "id": 3095,
+                        "label": "navigation-untracked.js",
+                        "path": "./node_modules/next/dist/client/components/navigation-untracked.js",
+                        "statSize": 2664,
+                        "parsedSize": 455,
+                        "gzipSize": 259
+                      },
+                      {
+                        "id": 4645,
+                        "label": "navigation.js",
+                        "path": "./node_modules/next/dist/client/components/navigation.js",
+                        "statSize": 8496,
+                        "parsedSize": 2172,
+                        "gzipSize": 811
+                      },
+                      {
+                        "id": 208,
+                        "label": "navigation.react-server.js",
+                        "path": "./node_modules/next/dist/client/components/navigation.react-server.js",
+                        "statSize": 2329,
+                        "parsedSize": 1071,
+                        "gzipSize": 499
+                      },
+                      {
+                        "id": 6601,
+                        "label": "not-found.js",
+                        "path": "./node_modules/next/dist/client/components/not-found.js",
+                        "statSize": 1849,
+                        "parsedSize": 557,
+                        "gzipSize": 321
+                      },
+                      {
+                        "id": 9297,
+                        "label": "readonly-url-search-params.js",
+                        "path": "./node_modules/next/dist/client/components/readonly-url-search-params.js",
+                        "statSize": 2119,
+                        "parsedSize": 687,
+                        "gzipSize": 366
+                      },
+                      {
+                        "id": 4872,
+                        "label": "redirect-boundary.js",
+                        "path": "./node_modules/next/dist/client/components/redirect-boundary.js",
+                        "statSize": 3668,
+                        "parsedSize": 1322,
+                        "gzipSize": 637
+                      },
+                      {
+                        "id": 7080,
+                        "label": "redirect-error.js",
+                        "path": "./node_modules/next/dist/client/components/redirect-error.js",
+                        "statSize": 1834,
+                        "parsedSize": 835,
+                        "gzipSize": 467
+                      },
+                      {
+                        "id": 9786,
+                        "label": "redirect-status-code.js",
+                        "path": "./node_modules/next/dist/client/components/redirect-status-code.js",
+                        "statSize": 982,
+                        "parsedSize": 512,
+                        "gzipSize": 282
+                      },
+                      {
+                        "id": 3159,
+                        "label": "redirect.js",
+                        "path": "./node_modules/next/dist/client/components/redirect.js",
+                        "statSize": 3490,
+                        "parsedSize": 1607,
+                        "gzipSize": 597
+                      },
+                      {
+                        "id": 4581,
+                        "label": "render-from-template-context.js",
+                        "path": "./node_modules/next/dist/client/components/render-from-template-context.js",
+                        "statSize": 1224,
+                        "parsedSize": 508,
+                        "gzipSize": 303
+                      },
+                      {
+                        "label": "router-reducer",
+                        "path": "./node_modules/next/dist/client/components/router-reducer",
+                        "statSize": 156511,
+                        "groups": [
+                          {
+                            "id": 9580,
+                            "label": "apply-flight-data.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/apply-flight-data.js",
+                            "statSize": 2480,
+                            "parsedSize": 749,
+                            "gzipSize": 425
+                          },
+                          {
+                            "id": 2656,
+                            "label": "apply-router-state-patch-to-tree.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/apply-router-state-patch-to-tree.js",
+                            "statSize": 4230,
+                            "parsedSize": 1127,
+                            "gzipSize": 606
+                          },
+                          {
+                            "id": 2496,
+                            "label": "compute-changed-path.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/compute-changed-path.js",
+                            "statSize": 5342,
+                            "parsedSize": 1652,
+                            "gzipSize": 860
+                          },
+                          {
+                            "id": 9453,
+                            "label": "create-href-from-url.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/create-href-from-url.js",
+                            "statSize": 737,
+                            "parsedSize": 431,
+                            "gzipSize": 247
+                          },
+                          {
+                            "id": 2025,
+                            "label": "create-initial-router-state.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/create-initial-router-state.js",
+                            "statSize": 3796,
+                            "parsedSize": 1256,
+                            "gzipSize": 718
+                          },
+                          {
+                            "id": 899,
+                            "label": "create-router-cache-key.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/create-router-cache-key.js",
+                            "statSize": 1338,
+                            "parsedSize": 516,
+                            "gzipSize": 306
+                          },
+                          {
+                            "id": 8796,
+                            "label": "fetch-server-response.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/fetch-server-response.js",
+                            "statSize": 18108,
+                            "parsedSize": 2807,
+                            "gzipSize": 1442
+                          },
+                          {
+                            "id": 12,
+                            "label": "fill-cache-with-new-subtree-data.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/fill-cache-with-new-subtree-data.js",
+                            "statSize": 5267,
+                            "parsedSize": 1457,
+                            "gzipSize": 756
+                          },
+                          {
+                            "id": 1728,
+                            "label": "fill-lazy-items-till-leaf-with-head.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/fill-lazy-items-till-leaf-with-head.js",
+                            "statSize": 6141,
+                            "parsedSize": 1394,
+                            "gzipSize": 580
+                          },
+                          {
+                            "id": 1989,
+                            "label": "handle-mutable.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/handle-mutable.js",
+                            "statSize": 3226,
+                            "parsedSize": 1439,
+                            "gzipSize": 641
+                          },
+                          {
+                            "id": 7941,
+                            "label": "handle-segment-mismatch.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/handle-segment-mismatch.js",
+                            "statSize": 895,
+                            "parsedSize": 463,
+                            "gzipSize": 269
+                          },
+                          {
+                            "id": 3858,
+                            "label": "invalidate-cache-by-router-state.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/invalidate-cache-by-router-state.js",
+                            "statSize": 1442,
+                            "parsedSize": 572,
+                            "gzipSize": 328
+                          },
+                          {
+                            "id": 7880,
+                            "label": "is-navigating-to-new-root-layout.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/is-navigating-to-new-root-layout.js",
+                            "statSize": 2488,
+                            "parsedSize": 625,
+                            "gzipSize": 341
+                          },
+                          {
+                            "id": 2120,
+                            "label": "ppr-navigations.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/ppr-navigations.js",
+                            "statSize": 47868,
+                            "parsedSize": 6167,
+                            "gzipSize": 2448
+                          },
+                          {
+                            "label": "reducers",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/reducers",
+                            "statSize": 40864,
+                            "groups": [
+                              {
+                                "id": 425,
+                                "label": "find-head-in-cache.js",
+                                "path": "./node_modules/next/dist/client/components/router-reducer/reducers/find-head-in-cache.js",
+                                "statSize": 2612,
+                                "parsedSize": 843,
+                                "gzipSize": 461
+                              },
+                              {
+                                "id": 398,
+                                "label": "has-interception-route-in-current-tree.js",
+                                "path": "./node_modules/next/dist/client/components/router-reducer/reducers/has-interception-route-in-current-tree.js",
+                                "statSize": 1701,
+                                "parsedSize": 702,
+                                "gzipSize": 351
+                              },
+                              {
+                                "id": 1498,
+                                "label": "hmr-refresh-reducer.js",
+                                "path": "./node_modules/next/dist/client/components/router-reducer/reducers/hmr-refresh-reducer.js",
+                                "statSize": 4458,
+                                "parsedSize": 482,
+                                "gzipSize": 275
+                              },
+                              {
+                                "id": 2987,
+                                "label": "navigate-reducer.js",
+                                "path": "./node_modules/next/dist/client/components/router-reducer/reducers/navigate-reducer.js",
+                                "statSize": 6837,
+                                "parsedSize": 2167,
+                                "gzipSize": 1014
+                              },
+                              {
+                                "id": 2512,
+                                "label": "refresh-reducer.js",
+                                "path": "./node_modules/next/dist/client/components/router-reducer/reducers/refresh-reducer.js",
+                                "statSize": 5070,
+                                "parsedSize": 1747,
+                                "gzipSize": 967
+                              },
+                              {
+                                "id": 3629,
+                                "label": "restore-reducer.js",
+                                "path": "./node_modules/next/dist/client/components/router-reducer/reducers/restore-reducer.js",
+                                "statSize": 2674,
+                                "parsedSize": 819,
+                                "gzipSize": 472
+                              },
+                              {
+                                "id": 7491,
+                                "label": "server-action-reducer.js",
+                                "path": "./node_modules/next/dist/client/components/router-reducer/reducers/server-action-reducer.js",
+                                "statSize": 14192,
+                                "parsedSize": 4151,
+                                "gzipSize": 2100
+                              },
+                              {
+                                "id": 1467,
+                                "label": "server-patch-reducer.js",
+                                "path": "./node_modules/next/dist/client/components/router-reducer/reducers/server-patch-reducer.js",
+                                "statSize": 3320,
+                                "parsedSize": 1128,
+                                "gzipSize": 623
+                              }
+                            ],
+                            "parsedSize": 12039,
+                            "gzipSize": 3918
+                          },
+                          {
+                            "id": 1674,
+                            "label": "refetch-inactive-parallel-segments.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/refetch-inactive-parallel-segments.js",
+                            "statSize": 4919,
+                            "parsedSize": 1344,
+                            "gzipSize": 700
+                          },
+                          {
+                            "id": 4616,
+                            "label": "router-reducer-types.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/router-reducer-types.js",
+                            "statSize": 1834,
+                            "parsedSize": 787,
+                            "gzipSize": 410
+                          },
+                          {
+                            "id": 1280,
+                            "label": "router-reducer.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/router-reducer.js",
+                            "statSize": 2577,
+                            "parsedSize": 949,
+                            "gzipSize": 472
+                          },
+                          {
+                            "id": 2071,
+                            "label": "set-cache-busting-search-param.js",
+                            "path": "./node_modules/next/dist/client/components/router-reducer/set-cache-busting-search-param.js",
+                            "statSize": 2959,
+                            "parsedSize": 924,
+                            "gzipSize": 487
+                          }
+                        ],
+                        "parsedSize": 36698,
+                        "gzipSize": 9876
+                      },
+                      {
+                        "label": "segment-cache",
+                        "path": "./node_modules/next/dist/client/components/segment-cache",
+                        "statSize": 181662,
+                        "groups": [
+                          {
+                            "id": 6452,
+                            "label": "cache-key.js",
+                            "path": "./node_modules/next/dist/client/components/segment-cache/cache-key.js",
+                            "statSize": 904,
+                            "parsedSize": 455,
+                            "gzipSize": 260
+                          },
+                          {
+                            "id": 6849,
+                            "label": "cache-map.js",
+                            "path": "./node_modules/next/dist/client/components/segment-cache/cache-map.js",
+                            "statSize": 11803,
+                            "parsedSize": 2225,
+                            "gzipSize": 895
+                          },
+                          {
+                            "id": 2506,
+                            "label": "cache.js",
+                            "path": "./node_modules/next/dist/client/components/segment-cache/cache.js",
+                            "statSize": 73941,
+                            "parsedSize": 13088,
+                            "gzipSize": 4458
+                          },
+                          {
+                            "id": 2777,
+                            "label": "lru.js",
+                            "path": "./node_modules/next/dist/client/components/segment-cache/lru.js",
+                            "statSize": 4492,
+                            "parsedSize": 1128,
+                            "gzipSize": 560
+                          },
+                          {
+                            "id": 354,
+                            "label": "navigation.js",
+                            "path": "./node_modules/next/dist/client/components/segment-cache/navigation.js",
+                            "statSize": 20735,
+                            "parsedSize": 3812,
+                            "gzipSize": 1537
+                          },
+                          {
+                            "id": 4035,
+                            "label": "prefetch.js",
+                            "path": "./node_modules/next/dist/client/components/segment-cache/prefetch.js",
+                            "statSize": 1207,
+                            "parsedSize": 582,
+                            "gzipSize": 338
+                          },
+                          {
+                            "id": 7705,
+                            "label": "scheduler.js",
+                            "path": "./node_modules/next/dist/client/components/segment-cache/scheduler.js",
+                            "statSize": 57126,
+                            "parsedSize": 9761,
+                            "gzipSize": 3059
+                          },
+                          {
+                            "id": 7565,
+                            "label": "types.js",
+                            "path": "./node_modules/next/dist/client/components/segment-cache/types.js",
+                            "statSize": 2747,
+                            "parsedSize": 786,
+                            "gzipSize": 427
+                          },
+                          {
+                            "id": 9620,
+                            "label": "vary-path.js",
+                            "path": "./node_modules/next/dist/client/components/segment-cache/vary-path.js",
+                            "statSize": 8707,
+                            "parsedSize": 1437,
+                            "gzipSize": 558
+                          }
+                        ],
+                        "parsedSize": 33274,
+                        "gzipSize": 9298
+                      },
+                      {
+                        "id": 3005,
+                        "label": "unauthorized.js",
+                        "path": "./node_modules/next/dist/client/components/unauthorized.js",
+                        "statSize": 2075,
+                        "parsedSize": 631,
+                        "gzipSize": 354
+                      },
+                      {
+                        "id": 4454,
+                        "label": "unrecognized-action-error.js",
+                        "path": "./node_modules/next/dist/client/components/unrecognized-action-error.js",
+                        "statSize": 1259,
+                        "parsedSize": 612,
+                        "gzipSize": 321
+                      },
+                      {
+                        "id": 7584,
+                        "label": "unresolved-thenable.js",
+                        "path": "./node_modules/next/dist/client/components/unresolved-thenable.js",
+                        "statSize": 784,
+                        "parsedSize": 392,
+                        "gzipSize": 226
+                      },
+                      {
+                        "id": 587,
+                        "label": "unstable-rethrow.browser.js",
+                        "path": "./node_modules/next/dist/client/components/unstable-rethrow.browser.js",
+                        "statSize": 1026,
+                        "parsedSize": 521,
+                        "gzipSize": 307
+                      },
+                      {
+                        "id": 2165,
+                        "label": "unstable-rethrow.js",
+                        "path": "./node_modules/next/dist/client/components/unstable-rethrow.js",
+                        "statSize": 1260,
+                        "parsedSize": 402,
+                        "gzipSize": 228
+                      },
+                      {
+                        "id": 5437,
+                        "label": "use-action-queue.js",
+                        "path": "./node_modules/next/dist/client/components/use-action-queue.js",
+                        "statSize": 4461,
+                        "parsedSize": 835,
+                        "gzipSize": 474
+                      }
+                    ],
+                    "parsedSize": 117583,
+                    "gzipSize": 29136
+                  },
+                  {
+                    "id": 4103,
+                    "label": "flight-data-helpers.js",
+                    "path": "./node_modules/next/dist/client/flight-data-helpers.js",
+                    "statSize": 10046,
+                    "parsedSize": 1888,
+                    "gzipSize": 995
+                  },
+                  {
+                    "id": 8512,
+                    "label": "has-base-path.js",
+                    "path": "./node_modules/next/dist/client/has-base-path.js",
+                    "statSize": 822,
+                    "parsedSize": 427,
+                    "gzipSize": 249
+                  },
+                  {
+                    "id": 20,
+                    "label": "normalize-trailing-slash.js",
+                    "path": "./node_modules/next/dist/client/normalize-trailing-slash.js",
+                    "statSize": 1465,
+                    "parsedSize": 541,
+                    "gzipSize": 321
+                  },
+                  {
+                    "label": "react-client-callbacks",
+                    "path": "./node_modules/next/dist/client/react-client-callbacks",
+                    "statSize": 8135,
+                    "groups": [
+                      {
+                        "id": 1309,
+                        "label": "error-boundary-callbacks.js",
+                        "path": "./node_modules/next/dist/client/react-client-callbacks/error-boundary-callbacks.js",
+                        "statSize": 5306,
+                        "parsedSize": 932,
+                        "gzipSize": 489
+                      },
+                      {
+                        "id": 6672,
+                        "label": "on-recoverable-error.js",
+                        "path": "./node_modules/next/dist/client/react-client-callbacks/on-recoverable-error.js",
+                        "statSize": 2058,
+                        "parsedSize": 649,
+                        "gzipSize": 380
+                      },
+                      {
+                        "id": 3008,
+                        "label": "report-global-error.js",
+                        "path": "./node_modules/next/dist/client/react-client-callbacks/report-global-error.js",
+                        "statSize": 771,
+                        "parsedSize": 453,
+                        "gzipSize": 249
+                      }
+                    ],
+                    "parsedSize": 2034,
+                    "gzipSize": 641
+                  },
+                  {
+                    "id": 5888,
+                    "label": "remove-base-path.js",
+                    "path": "./node_modules/next/dist/client/remove-base-path.js",
+                    "statSize": 1095,
+                    "parsedSize": 401,
+                    "gzipSize": 230
+                  },
+                  {
+                    "label": "request",
+                    "path": "./node_modules/next/dist/client/request",
+                    "statSize": 3944,
+                    "groups": [
+                      {
+                        "id": 7704,
+                        "label": "params.browser.js",
+                        "path": "./node_modules/next/dist/client/request/params.browser.js",
+                        "statSize": 823,
+                        "parsedSize": 427,
+                        "gzipSize": 240
+                      },
+                      {
+                        "id": 8127,
+                        "label": "params.browser.prod.js",
+                        "path": "./node_modules/next/dist/client/request/params.browser.prod.js",
+                        "statSize": 1065,
+                        "parsedSize": 488,
+                        "gzipSize": 279
+                      },
+                      {
+                        "id": 8159,
+                        "label": "search-params.browser.js",
+                        "path": "./node_modules/next/dist/client/request/search-params.browser.js",
+                        "statSize": 874,
+                        "parsedSize": 439,
+                        "gzipSize": 244
+                      },
+                      {
+                        "id": 7446,
+                        "label": "search-params.browser.prod.js",
+                        "path": "./node_modules/next/dist/client/request/search-params.browser.prod.js",
+                        "statSize": 1182,
+                        "parsedSize": 494,
+                        "gzipSize": 284
+                      }
+                    ],
+                    "parsedSize": 1848,
+                    "gzipSize": 338
+                  },
+                  {
+                    "id": 4536,
+                    "label": "route-params.js",
+                    "path": "./node_modules/next/dist/client/route-params.js",
+                    "statSize": 10462,
+                    "parsedSize": 2241,
+                    "gzipSize": 996
+                  },
+                  {
+                    "id": 3584,
+                    "label": "set-attributes-from-props.js",
+                    "path": "./node_modules/next/dist/client/set-attributes-from-props.js",
+                    "statSize": 2382,
+                    "parsedSize": 950,
+                    "gzipSize": 523
+                  }
+                ],
+                "parsedSize": 136432,
+                "gzipSize": 32899
+              },
+              {
+                "label": "compiled",
+                "path": "./node_modules/next/dist/compiled",
+                "statSize": 102489,
+                "groups": [
+                  {
+                    "label": "process",
+                    "path": "./node_modules/next/dist/compiled/process",
+                    "statSize": 2442,
+                    "groups": [
+                      {
+                        "id": 5208,
+                        "label": "browser.js",
+                        "path": "./node_modules/next/dist/compiled/process/browser.js",
+                        "statSize": 2442,
+                        "parsedSize": 1839,
+                        "gzipSize": 788
+                      }
+                    ],
+                    "parsedSize": 1839,
+                    "gzipSize": 788
+                  },
+                  {
+                    "label": "react-dom",
+                    "path": "./node_modules/next/dist/compiled/react-dom",
+                    "statSize": 9431,
+                    "groups": [
+                      {
+                        "label": "cjs",
+                        "path": "./node_modules/next/dist/compiled/react-dom/cjs",
+                        "statSize": 6699,
+                        "groups": [
+                          {
+                            "id": 8730,
+                            "label": "react-dom.production.js",
+                            "path": "./node_modules/next/dist/compiled/react-dom/cjs/react-dom.production.js",
+                            "statSize": 6699,
+                            "parsedSize": 3287,
+                            "gzipSize": 1210
+                          }
+                        ],
+                        "parsedSize": 3287,
+                        "gzipSize": 1210
+                      },
+                      {
+                        "id": 2669,
+                        "label": "client.js",
+                        "path": "./node_modules/next/dist/compiled/react-dom/client.js",
+                        "statSize": 1373,
+                        "parsedSize": 246,
+                        "gzipSize": 174
+                      },
+                      {
+                        "id": 7650,
+                        "label": "index.js",
+                        "path": "./node_modules/next/dist/compiled/react-dom/index.js",
+                        "statSize": 1359,
+                        "parsedSize": 246,
+                        "gzipSize": 174
+                      }
+                    ],
+                    "parsedSize": 3779,
+                    "gzipSize": 1327
+                  },
+                  {
+                    "label": "react-server-dom-webpack",
+                    "path": "./node_modules/next/dist/compiled/react-server-dom-webpack",
+                    "statSize": 61103,
+                    "groups": [
+                      {
+                        "label": "cjs",
+                        "path": "./node_modules/next/dist/compiled/react-server-dom-webpack/cjs",
+                        "statSize": 60849,
+                        "groups": [
+                          {
+                            "id": 9062,
+                            "label": "react-server-dom-webpack-client.browser.production.js",
+                            "path": "./node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.production.js",
+                            "statSize": 60849,
+                            "parsedSize": 23126,
+                            "gzipSize": 7448
+                          }
+                        ],
+                        "parsedSize": 23126,
+                        "gzipSize": 7448
+                      },
+                      {
+                        "id": 7197,
+                        "label": "client.browser.js",
+                        "path": "./node_modules/next/dist/compiled/react-server-dom-webpack/client.browser.js",
+                        "statSize": 254,
+                        "parsedSize": 41,
+                        "gzipSize": 61
+                      }
+                    ],
+                    "parsedSize": 23167,
+                    "gzipSize": 7466
+                  },
+                  {
+                    "label": "react",
+                    "path": "./node_modules/next/dist/compiled/react",
+                    "statSize": 19138,
+                    "groups": [
+                      {
+                        "label": "cjs",
+                        "path": "./node_modules/next/dist/compiled/react/cjs",
+                        "statSize": 18742,
+                        "groups": [
+                          {
+                            "id": 6897,
+                            "label": "react-jsx-runtime.production.js",
+                            "path": "./node_modules/next/dist/compiled/react/cjs/react-jsx-runtime.production.js",
+                            "statSize": 976,
+                            "parsedSize": 339,
+                            "gzipSize": 246
+                          },
+                          {
+                            "id": 1426,
+                            "label": "react.production.js",
+                            "path": "./node_modules/next/dist/compiled/react/cjs/react.production.js",
+                            "statSize": 17766,
+                            "parsedSize": 7655,
+                            "gzipSize": 2933
+                          }
+                        ],
+                        "parsedSize": 7994,
+                        "gzipSize": 3032
+                      },
+                      {
+                        "id": 2115,
+                        "label": "index.js",
+                        "path": "./node_modules/next/dist/compiled/react/index.js",
+                        "statSize": 186,
+                        "parsedSize": 41,
+                        "gzipSize": 61
+                      },
+                      {
+                        "id": 5155,
+                        "label": "jsx-runtime.js",
+                        "path": "./node_modules/next/dist/compiled/react/jsx-runtime.js",
+                        "statSize": 210,
+                        "parsedSize": 41,
+                        "gzipSize": 61
+                      }
+                    ],
+                    "parsedSize": 8076,
+                    "gzipSize": 3057
+                  },
+                  {
+                    "label": "scheduler",
+                    "path": "./node_modules/next/dist/compiled/scheduler",
+                    "statSize": 10375,
+                    "groups": [
+                      {
+                        "label": "cjs",
+                        "path": "./node_modules/next/dist/compiled/scheduler/cjs",
+                        "statSize": 10181,
+                        "groups": [
+                          {
+                            "id": 2213,
+                            "label": "scheduler.production.js",
+                            "path": "./node_modules/next/dist/compiled/scheduler/cjs/scheduler.production.js",
+                            "statSize": 10181,
+                            "parsedSize": 3470,
+                            "gzipSize": 1481
+                          }
+                        ],
+                        "parsedSize": 3470,
+                        "gzipSize": 1481
+                      },
+                      {
+                        "id": 2832,
+                        "label": "index.js",
+                        "path": "./node_modules/next/dist/compiled/scheduler/index.js",
+                        "statSize": 194,
+                        "parsedSize": 41,
+                        "gzipSize": 61
+                      }
+                    ],
+                    "parsedSize": 3511,
+                    "gzipSize": 1500
+                  }
+                ],
+                "parsedSize": 40372,
+                "gzipSize": 12940
+              },
+              {
+                "label": "lib",
+                "path": "./node_modules/next/dist/lib",
+                "statSize": 7595,
+                "groups": [
+                  {
+                    "label": "framework",
+                    "path": "./node_modules/next/dist/lib/framework",
+                    "statSize": 3108,
+                    "groups": [
+                      {
+                        "id": 484,
+                        "label": "boundary-components.js",
+                        "path": "./node_modules/next/dist/lib/framework/boundary-components.js",
+                        "statSize": 2044,
+                        "parsedSize": 715,
+                        "gzipSize": 310
+                      },
+                      {
+                        "id": 5653,
+                        "label": "boundary-constants.js",
+                        "path": "./node_modules/next/dist/lib/framework/boundary-constants.js",
+                        "statSize": 1064,
+                        "parsedSize": 451,
+                        "gzipSize": 258
+                      }
+                    ],
+                    "parsedSize": 1166,
+                    "gzipSize": 405
+                  },
+                  {
+                    "id": 6981,
+                    "label": "is-error.js",
+                    "path": "./node_modules/next/dist/lib/is-error.js",
+                    "statSize": 2663,
+                    "parsedSize": 585,
+                    "gzipSize": 364
+                  },
+                  {
+                    "label": "metadata/generate",
+                    "path": "./node_modules/next/dist/lib/metadata/generate",
+                    "statSize": 532,
+                    "groups": [
+                      {
+                        "id": 6869,
+                        "label": "icon-mark.js",
+                        "path": "./node_modules/next/dist/lib/metadata/generate/icon-mark.js",
+                        "statSize": 532,
+                        "parsedSize": 172,
+                        "gzipSize": 152
+                      }
+                    ],
+                    "parsedSize": 172,
+                    "gzipSize": 152
+                  },
+                  {
+                    "id": 42,
+                    "label": "require-instrumentation-client.js",
+                    "path": "./node_modules/next/dist/lib/require-instrumentation-client.js",
+                    "statSize": 1292,
+                    "parsedSize": 41,
+                    "gzipSize": 61
+                  }
+                ],
+                "parsedSize": 1964,
+                "gzipSize": 671
+              },
+              {
+                "label": "shared/lib",
+                "path": "./node_modules/next/dist/shared/lib",
+                "statSize": 40035,
+                "groups": [
+                  {
+                    "id": 2909,
+                    "label": "app-router-context.shared-runtime.js",
+                    "path": "./node_modules/next/dist/shared/lib/app-router-context.shared-runtime.js",
+                    "statSize": 1717,
+                    "parsedSize": 538,
+                    "gzipSize": 258
+                  },
+                  {
+                    "id": 6731,
+                    "label": "app-router-types.js",
+                    "path": "./node_modules/next/dist/shared/lib/app-router-types.js",
+                    "statSize": 1156,
+                    "parsedSize": 361,
+                    "gzipSize": 199
+                  },
+                  {
+                    "id": 2451,
+                    "label": "encode-uri-path.js",
+                    "path": "./node_modules/next/dist/shared/lib/encode-uri-path.js",
+                    "statSize": 362,
+                    "parsedSize": 226,
+                    "gzipSize": 176
+                  },
+                  {
+                    "id": 3180,
+                    "label": "hash.js",
+                    "path": "./node_modules/next/dist/shared/lib/hash.js",
+                    "statSize": 1326,
+                    "parsedSize": 349,
+                    "gzipSize": 253
+                  },
+                  {
+                    "id": 5368,
+                    "label": "head-manager-context.shared-runtime.js",
+                    "path": "./node_modules/next/dist/shared/lib/head-manager-context.shared-runtime.js",
+                    "statSize": 608,
+                    "parsedSize": 210,
+                    "gzipSize": 176
+                  },
+                  {
+                    "id": 7788,
+                    "label": "hooks-client-context.shared-runtime.js",
+                    "path": "./node_modules/next/dist/shared/lib/hooks-client-context.shared-runtime.js",
+                    "statSize": 1805,
+                    "parsedSize": 601,
+                    "gzipSize": 321
+                  },
+                  {
+                    "id": 2299,
+                    "label": "invariant-error.js",
+                    "path": "./node_modules/next/dist/shared/lib/invariant-error.js",
+                    "statSize": 494,
+                    "parsedSize": 296,
+                    "gzipSize": 226
+                  },
+                  {
+                    "id": 3967,
+                    "label": "is-plain-object.js",
+                    "path": "./node_modules/next/dist/shared/lib/is-plain-object.js",
+                    "statSize": 1180,
+                    "parsedSize": 410,
+                    "gzipSize": 261
+                  },
+                  {
+                    "id": 8108,
+                    "label": "is-thenable.js",
+                    "path": "./node_modules/next/dist/shared/lib/is-thenable.js",
+                    "statSize": 537,
+                    "parsedSize": 238,
+                    "gzipSize": 174
+                  },
+                  {
+                    "label": "lazy-dynamic",
+                    "path": "./node_modules/next/dist/shared/lib/lazy-dynamic",
+                    "statSize": 1085,
+                    "groups": [
+                      {
+                        "id": 1980,
+                        "label": "bailout-to-csr.js",
+                        "path": "./node_modules/next/dist/shared/lib/lazy-dynamic/bailout-to-csr.js",
+                        "statSize": 1085,
+                        "parsedSize": 459,
+                        "gzipSize": 318
+                      }
+                    ],
+                    "parsedSize": 459,
+                    "gzipSize": 318
+                  },
+                  {
+                    "label": "page-path",
+                    "path": "./node_modules/next/dist/shared/lib/page-path",
+                    "statSize": 524,
+                    "groups": [
+                      {
+                        "id": 1315,
+                        "label": "ensure-leading-slash.js",
+                        "path": "./node_modules/next/dist/shared/lib/page-path/ensure-leading-slash.js",
+                        "statSize": 524,
+                        "parsedSize": 206,
+                        "gzipSize": 169
+                      }
+                    ],
+                    "parsedSize": 206,
+                    "gzipSize": 169
+                  },
+                  {
+                    "id": 4542,
+                    "label": "promise-with-resolvers.js",
+                    "path": "./node_modules/next/dist/shared/lib/promise-with-resolvers.js",
+                    "statSize": 606,
+                    "parsedSize": 255,
+                    "gzipSize": 191
+                  },
+                  {
+                    "label": "router/utils",
+                    "path": "./node_modules/next/dist/shared/lib/router/utils",
+                    "statSize": 14234,
+                    "groups": [
+                      {
+                        "id": 9940,
+                        "label": "add-path-prefix.js",
+                        "path": "./node_modules/next/dist/shared/lib/router/utils/add-path-prefix.js",
+                        "statSize": 536,
+                        "parsedSize": 295,
+                        "gzipSize": 230
+                      },
+                      {
+                        "id": 9226,
+                        "label": "app-paths.js",
+                        "path": "./node_modules/next/dist/shared/lib/router/utils/app-paths.js",
+                        "statSize": 1469,
+                        "parsedSize": 476,
+                        "gzipSize": 345
+                      },
+                      {
+                        "id": 6132,
+                        "label": "cache-busting-search-param.js",
+                        "path": "./node_modules/next/dist/shared/lib/router/utils/cache-busting-search-param.js",
+                        "statSize": 832,
+                        "parsedSize": 328,
+                        "gzipSize": 236
+                      },
+                      {
+                        "id": 8465,
+                        "label": "disable-smooth-scroll.js",
+                        "path": "./node_modules/next/dist/shared/lib/router/utils/disable-smooth-scroll.js",
+                        "statSize": 2015,
+                        "parsedSize": 456,
+                        "gzipSize": 294
+                      },
+                      {
+                        "id": 4382,
+                        "label": "html-bots.js",
+                        "path": "./node_modules/next/dist/shared/lib/router/utils/html-bots.js",
+                        "statSize": 1135,
+                        "parsedSize": 477,
+                        "gzipSize": 354
+                      },
+                      {
+                        "id": 6469,
+                        "label": "interception-routes.js",
+                        "path": "./node_modules/next/dist/shared/lib/router/utils/interception-routes.js",
+                        "statSize": 4355,
+                        "parsedSize": 1623,
+                        "gzipSize": 694
+                      },
+                      {
+                        "id": 8080,
+                        "label": "is-bot.js",
+                        "path": "./node_modules/next/dist/shared/lib/router/utils/is-bot.js",
+                        "statSize": 1764,
+                        "parsedSize": 551,
+                        "gzipSize": 300
+                      },
+                      {
+                        "id": 2697,
+                        "label": "parse-path.js",
+                        "path": "./node_modules/next/dist/shared/lib/router/utils/parse-path.js",
+                        "statSize": 1041,
+                        "parsedSize": 360,
+                        "gzipSize": 250
+                      },
+                      {
+                        "id": 3697,
+                        "label": "path-has-prefix.js",
+                        "path": "./node_modules/next/dist/shared/lib/router/utils/path-has-prefix.js",
+                        "statSize": 535,
+                        "parsedSize": 285,
+                        "gzipSize": 222
+                      },
+                      {
+                        "id": 603,
+                        "label": "remove-trailing-slash.js",
+                        "path": "./node_modules/next/dist/shared/lib/router/utils/remove-trailing-slash.js",
+                        "statSize": 552,
+                        "parsedSize": 204,
+                        "gzipSize": 167
+                      }
+                    ],
+                    "parsedSize": 5055,
+                    "gzipSize": 1737
+                  },
+                  {
+                    "label": "segment-cache",
+                    "path": "./node_modules/next/dist/shared/lib/segment-cache",
+                    "statSize": 7694,
+                    "groups": [
+                      {
+                        "id": 4221,
+                        "label": "output-export-prefetch-encoding.js",
+                        "path": "./node_modules/next/dist/shared/lib/segment-cache/output-export-prefetch-encoding.js",
+                        "statSize": 3142,
+                        "parsedSize": 549,
+                        "gzipSize": 352
+                      },
+                      {
+                        "id": 3534,
+                        "label": "segment-value-encoding.js",
+                        "path": "./node_modules/next/dist/shared/lib/segment-cache/segment-value-encoding.js",
+                        "statSize": 4552,
+                        "parsedSize": 838,
+                        "gzipSize": 493
+                      }
+                    ],
+                    "parsedSize": 1387,
+                    "gzipSize": 689
+                  },
+                  {
+                    "id": 8237,
+                    "label": "segment.js",
+                    "path": "./node_modules/next/dist/shared/lib/segment.js",
+                    "statSize": 3442,
+                    "parsedSize": 1050,
+                    "gzipSize": 556
+                  },
+                  {
+                    "id": 9862,
+                    "label": "server-inserted-html.shared-runtime.js",
+                    "path": "./node_modules/next/dist/shared/lib/server-inserted-html.shared-runtime.js",
+                    "statSize": 1210,
+                    "parsedSize": 343,
+                    "gzipSize": 243
+                  },
+                  {
+                    "id": 1262,
+                    "label": "server-reference-info.js",
+                    "path": "./node_modules/next/dist/shared/lib/server-reference-info.js",
+                    "statSize": 1601,
+                    "parsedSize": 564,
+                    "gzipSize": 376
+                  },
+                  {
+                    "label": "utils",
+                    "path": "./node_modules/next/dist/shared/lib/utils",
+                    "statSize": 454,
+                    "groups": [
+                      {
+                        "id": 7284,
+                        "label": "warn-once.js",
+                        "path": "./node_modules/next/dist/shared/lib/utils/warn-once.js",
+                        "statSize": 454,
+                        "parsedSize": 159,
+                        "gzipSize": 139
+                      }
+                    ],
+                    "parsedSize": 159,
+                    "gzipSize": 139
+                  }
+                ],
+                "parsedSize": 12707,
+                "gzipSize": 3687
+              }
+            ],
+            "parsedSize": 193203,
+            "gzipSize": 49697
+          }
+        ],
+        "parsedSize": 193935,
+        "gzipSize": 49929
+      }
+    ],
+    "isInitialByEntrypoint": { "main-app": true }
+  },
+  {
+    "label": "static/chunks/main-a8af89124692d8e3.js",
+    "isAsset": true,
+    "statSize": 385242,
+    "parsedSize": 132068,
+    "gzipSize": 38502,
+    "groups": [
+      {
+        "label": "node_modules",
+        "path": "./node_modules",
+        "statSize": 385242,
+        "groups": [
+          {
+            "label": "@swc/helpers/esm",
+            "path": "./node_modules/@swc/helpers/esm",
+            "statSize": 1431,
+            "groups": [
+              {
+                "id": 4252,
+                "label": "_interop_require_default.js",
+                "path": "./node_modules/@swc/helpers/esm/_interop_require_default.js",
+                "statSize": 144,
+                "parsedSize": 98,
+                "gzipSize": 108
+              },
+              {
+                "id": 8365,
+                "label": "_interop_require_wildcard.js",
+                "path": "./node_modules/@swc/helpers/esm/_interop_require_wildcard.js",
+                "statSize": 1287,
+                "parsedSize": 634,
+                "gzipSize": 355
+              }
+            ],
+            "parsedSize": 732,
+            "gzipSize": 372
+          },
+          {
+            "label": "next/dist",
+            "path": "./node_modules/next/dist",
+            "statSize": 383811,
+            "groups": [
+              {
+                "label": "build",
+                "path": "./node_modules/next/dist/build",
+                "statSize": 2187,
+                "groups": [
+                  {
+                    "id": 8757,
+                    "label": "deployment-id.js",
+                    "path": "./node_modules/next/dist/build/deployment-id.js",
+                    "statSize": 466,
+                    "parsedSize": 194,
+                    "gzipSize": 162
+                  },
+                  {
+                    "label": "polyfills",
+                    "path": "./node_modules/next/dist/build/polyfills",
+                    "statSize": 1721,
+                    "groups": [
+                      {
+                        "id": 1291,
+                        "label": "polyfill-module.js",
+                        "path": "./node_modules/next/dist/build/polyfills/polyfill-module.js",
+                        "statSize": 1380,
+                        "parsedSize": 1382,
+                        "gzipSize": 594
+                      },
+                      {
+                        "id": 5364,
+                        "label": "process.js",
+                        "path": "./node_modules/next/dist/build/polyfills/process.js",
+                        "statSize": 341,
+                        "parsedSize": 152,
+                        "gzipSize": 131
+                      }
+                    ],
+                    "parsedSize": 1534,
+                    "gzipSize": 664
+                  }
+                ],
+                "parsedSize": 1728,
+                "gzipSize": 737
+              },
+              {
+                "label": "client",
+                "path": "./node_modules/next/dist/client",
+                "statSize": 114168,
+                "groups": [
+                  {
+                    "id": 8246,
+                    "label": "add-base-path.js",
+                    "path": "./node_modules/next/dist/client/add-base-path.js",
+                    "statSize": 1025,
+                    "parsedSize": 473,
+                    "gzipSize": 279
+                  },
+                  {
+                    "id": 8285,
+                    "label": "add-locale.js",
+                    "path": "./node_modules/next/dist/client/add-locale.js",
+                    "statSize": 909,
+                    "parsedSize": 391,
+                    "gzipSize": 228
+                  },
+                  {
+                    "label": "components",
+                    "path": "./node_modules/next/dist/client/components",
+                    "statSize": 6052,
+                    "groups": [
+                      {
+                        "label": "http-access-fallback",
+                        "path": "./node_modules/next/dist/client/components/http-access-fallback",
+                        "statSize": 2335,
+                        "groups": [
+                          {
+                            "id": 6251,
+                            "label": "http-access-fallback.js",
+                            "path": "./node_modules/next/dist/client/components/http-access-fallback/http-access-fallback.js",
+                            "statSize": 2335,
+                            "parsedSize": 1052,
+                            "gzipSize": 539
+                          }
+                        ],
+                        "parsedSize": 1052,
+                        "gzipSize": 539
+                      },
+                      {
+                        "id": 7585,
+                        "label": "is-next-router-error.js",
+                        "path": "./node_modules/next/dist/client/components/is-next-router-error.js",
+                        "statSize": 901,
+                        "parsedSize": 478,
+                        "gzipSize": 282
+                      },
+                      {
+                        "id": 3417,
+                        "label": "redirect-error.js",
+                        "path": "./node_modules/next/dist/client/components/redirect-error.js",
+                        "statSize": 1834,
+                        "parsedSize": 835,
+                        "gzipSize": 466
+                      },
+                      {
+                        "id": 5067,
+                        "label": "redirect-status-code.js",
+                        "path": "./node_modules/next/dist/client/components/redirect-status-code.js",
+                        "statSize": 982,
+                        "parsedSize": 512,
+                        "gzipSize": 282
+                      }
+                    ],
+                    "parsedSize": 2877,
+                    "gzipSize": 884
+                  },
+                  {
+                    "id": 5162,
+                    "label": "detect-domain-locale.js",
+                    "path": "./node_modules/next/dist/client/detect-domain-locale.js",
+                    "statSize": 800,
+                    "parsedSize": 389,
+                    "gzipSize": 223
+                  },
+                  {
+                    "id": 5829,
+                    "label": "has-base-path.js",
+                    "path": "./node_modules/next/dist/client/has-base-path.js",
+                    "statSize": 822,
+                    "parsedSize": 427,
+                    "gzipSize": 249
+                  },
+                  {
+                    "id": 7933,
+                    "label": "head-manager.js",
+                    "path": "./node_modules/next/dist/client/head-manager.js",
+                    "statSize": 4800,
+                    "parsedSize": 1998,
+                    "gzipSize": 962
+                  },
+                  {
+                    "id": 363,
+                    "label": "index.js",
+                    "path": "./node_modules/next/dist/client/index.js",
+                    "statSize": 31828,
+                    "parsedSize": 8293,
+                    "gzipSize": 3526
+                  },
+                  {
+                    "id": 6820,
+                    "label": "next.js",
+                    "path": "./node_modules/next/dist/client/next.js",
+                    "statSize": 802,
+                    "parsedSize": 464,
+                    "gzipSize": 288
+                  },
+                  {
+                    "id": 1623,
+                    "label": "normalize-trailing-slash.js",
+                    "path": "./node_modules/next/dist/client/normalize-trailing-slash.js",
+                    "statSize": 1465,
+                    "parsedSize": 542,
+                    "gzipSize": 323
+                  },
+                  {
+                    "id": 550,
+                    "label": "page-loader.js",
+                    "path": "./node_modules/next/dist/client/page-loader.js",
+                    "statSize": 7369,
+                    "parsedSize": 1746,
+                    "gzipSize": 931
+                  },
+                  {
+                    "label": "portal",
+                    "path": "./node_modules/next/dist/client/portal",
+                    "statSize": 1125,
+                    "groups": [
+                      {
+                        "id": 6232,
+                        "label": "index.js",
+                        "path": "./node_modules/next/dist/client/portal/index.js",
+                        "statSize": 1125,
+                        "parsedSize": 615,
+                        "gzipSize": 345
+                      }
+                    ],
+                    "parsedSize": 615,
+                    "gzipSize": 345
+                  },
+                  {
+                    "label": "react-client-callbacks",
+                    "path": "./node_modules/next/dist/client/react-client-callbacks",
+                    "statSize": 2829,
+                    "groups": [
+                      {
+                        "id": 8193,
+                        "label": "on-recoverable-error.js",
+                        "path": "./node_modules/next/dist/client/react-client-callbacks/on-recoverable-error.js",
+                        "statSize": 2058,
+                        "parsedSize": 649,
+                        "gzipSize": 380
+                      },
+                      {
+                        "id": 4087,
+                        "label": "report-global-error.js",
+                        "path": "./node_modules/next/dist/client/react-client-callbacks/report-global-error.js",
+                        "statSize": 771,
+                        "parsedSize": 453,
+                        "gzipSize": 249
+                      }
+                    ],
+                    "parsedSize": 1102,
+                    "gzipSize": 434
+                  },
+                  {
+                    "id": 2267,
+                    "label": "remove-base-path.js",
+                    "path": "./node_modules/next/dist/client/remove-base-path.js",
+                    "statSize": 1095,
+                    "parsedSize": 401,
+                    "gzipSize": 230
+                  },
+                  {
+                    "id": 5594,
+                    "label": "remove-locale.js",
+                    "path": "./node_modules/next/dist/client/remove-locale.js",
+                    "statSize": 1131,
+                    "parsedSize": 401,
+                    "gzipSize": 225
+                  },
+                  {
+                    "id": 1241,
+                    "label": "request-idle-callback.js",
+                    "path": "./node_modules/next/dist/client/request-idle-callback.js",
+                    "statSize": 1464,
+                    "parsedSize": 815,
+                    "gzipSize": 378
+                  },
+                  {
+                    "id": 7943,
+                    "label": "resolve-href.js",
+                    "path": "./node_modules/next/dist/client/resolve-href.js",
+                    "statSize": 5337,
+                    "parsedSize": 1479,
+                    "gzipSize": 784
+                  },
+                  {
+                    "id": 5944,
+                    "label": "route-announcer.js",
+                    "path": "./node_modules/next/dist/client/route-announcer.js",
+                    "statSize": 3096,
+                    "parsedSize": 1020,
+                    "gzipSize": 599
+                  },
+                  {
+                    "id": 566,
+                    "label": "route-loader.js",
+                    "path": "./node_modules/next/dist/client/route-loader.js",
+                    "statSize": 13691,
+                    "parsedSize": 4339,
+                    "gzipSize": 1754
+                  },
+                  {
+                    "id": 7640,
+                    "label": "router.js",
+                    "path": "./node_modules/next/dist/client/router.js",
+                    "statSize": 5973,
+                    "parsedSize": 2260,
+                    "gzipSize": 1042
+                  },
+                  {
+                    "id": 2470,
+                    "label": "script.js",
+                    "path": "./node_modules/next/dist/client/script.js",
+                    "statSize": 14086,
+                    "parsedSize": 3615,
+                    "gzipSize": 1496
+                  },
+                  {
+                    "id": 9341,
+                    "label": "set-attributes-from-props.js",
+                    "path": "./node_modules/next/dist/client/set-attributes-from-props.js",
+                    "statSize": 2382,
+                    "parsedSize": 950,
+                    "gzipSize": 523
+                  },
+                  {
+                    "label": "tracing",
+                    "path": "./node_modules/next/dist/client/tracing",
+                    "statSize": 1945,
+                    "groups": [
+                      {
+                        "id": 1383,
+                        "label": "tracer.js",
+                        "path": "./node_modules/next/dist/client/tracing/tracer.js",
+                        "statSize": 1945,
+                        "parsedSize": 1041,
+                        "gzipSize": 505
+                      }
+                    ],
+                    "parsedSize": 1041,
+                    "gzipSize": 505
+                  },
+                  {
+                    "id": 1128,
+                    "label": "trusted-types.js",
+                    "path": "./node_modules/next/dist/client/trusted-types.js",
+                    "statSize": 1372,
+                    "parsedSize": 560,
+                    "gzipSize": 302
+                  },
+                  {
+                    "id": 5376,
+                    "label": "webpack.js",
+                    "path": "./node_modules/next/dist/client/webpack.js",
+                    "statSize": 1310,
+                    "parsedSize": 336,
+                    "gzipSize": 211
+                  },
+                  {
+                    "id": 5029,
+                    "label": "with-router.js",
+                    "path": "./node_modules/next/dist/client/with-router.js",
+                    "statSize": 1460,
+                    "parsedSize": 575,
+                    "gzipSize": 310
+                  }
+                ],
+                "parsedSize": 37109,
+                "gzipSize": 10342
+              },
+              {
+                "label": "compiled",
+                "path": "./node_modules/next/dist/compiled",
+                "statSize": 20127,
+                "groups": [
+                  {
+                    "label": "path-to-regexp",
+                    "path": "./node_modules/next/dist/compiled/path-to-regexp",
+                    "statSize": 7310,
+                    "groups": [
+                      {
+                        "id": 9509,
+                        "label": "index.js",
+                        "path": "./node_modules/next/dist/compiled/path-to-regexp/index.js",
+                        "statSize": 7310,
+                        "parsedSize": 6159,
+                        "gzipSize": 2352
+                      }
+                    ],
+                    "parsedSize": 6159,
+                    "gzipSize": 2352
+                  },
+                  {
+                    "label": "process",
+                    "path": "./node_modules/next/dist/compiled/process",
+                    "statSize": 2442,
+                    "groups": [
+                      {
+                        "id": 5861,
+                        "label": "browser.js",
+                        "path": "./node_modules/next/dist/compiled/process/browser.js",
+                        "statSize": 2442,
+                        "parsedSize": 1839,
+                        "gzipSize": 786
+                      }
+                    ],
+                    "parsedSize": 1839,
+                    "gzipSize": 786
+                  },
+                  {
+                    "label": "scheduler",
+                    "path": "./node_modules/next/dist/compiled/scheduler",
+                    "statSize": 10375,
+                    "groups": [
+                      {
+                        "label": "cjs",
+                        "path": "./node_modules/next/dist/compiled/scheduler/cjs",
+                        "statSize": 10181,
+                        "groups": [
+                          {
+                            "id": 2762,
+                            "label": "scheduler.production.js",
+                            "path": "./node_modules/next/dist/compiled/scheduler/cjs/scheduler.production.js",
+                            "statSize": 10181,
+                            "parsedSize": 3470,
+                            "gzipSize": 1482
+                          }
+                        ],
+                        "parsedSize": 3470,
+                        "gzipSize": 1482
+                      },
+                      {
+                        "id": 577,
+                        "label": "index.js",
+                        "path": "./node_modules/next/dist/compiled/scheduler/index.js",
+                        "statSize": 194,
+                        "parsedSize": 41,
+                        "gzipSize": 61
+                      }
+                    ],
+                    "parsedSize": 3511,
+                    "gzipSize": 1503
+                  }
+                ],
+                "parsedSize": 11509,
+                "gzipSize": 4335
+              },
+              {
+                "label": "lib",
+                "path": "./node_modules/next/dist/lib",
+                "statSize": 23977,
+                "groups": [
+                  {
+                    "id": 9308,
+                    "label": "constants.js",
+                    "path": "./node_modules/next/dist/lib/constants.js",
+                    "statSize": 15197,
+                    "parsedSize": 6374,
+                    "gzipSize": 2278
+                  },
+                  {
+                    "id": 2326,
+                    "label": "is-api-route.js",
+                    "path": "./node_modules/next/dist/lib/is-api-route.js",
+                    "statSize": 373,
+                    "parsedSize": 222,
+                    "gzipSize": 179
+                  },
+                  {
+                    "id": 6240,
+                    "label": "is-error.js",
+                    "path": "./node_modules/next/dist/lib/is-error.js",
+                    "statSize": 2663,
+                    "parsedSize": 585,
+                    "gzipSize": 365
+                  },
+                  {
+                    "id": 7647,
+                    "label": "require-instrumentation-client.js",
+                    "path": "./node_modules/next/dist/lib/require-instrumentation-client.js",
+                    "statSize": 1292,
+                    "parsedSize": 41,
+                    "gzipSize": 61
+                  },
+                  {
+                    "id": 2117,
+                    "label": "route-pattern-normalizer.js",
+                    "path": "./node_modules/next/dist/lib/route-pattern-normalizer.js",
+                    "statSize": 4452,
+                    "parsedSize": 1150,
+                    "gzipSize": 574
+                  }
+                ],
+                "parsedSize": 8372,
+                "gzipSize": 3002
+              },
+              {
+                "label": "pages",
+                "path": "./node_modules/next/dist/pages",
+                "statSize": 7851,
+                "groups": [
+                  {
+                    "id": 1966,
+                    "label": "_app.js",
+                    "path": "./node_modules/next/dist/pages/_app.js",
+                    "statSize": 1600,
+                    "parsedSize": 681,
+                    "gzipSize": 374
+                  },
+                  {
+                    "id": 3899,
+                    "label": "_error.js",
+                    "path": "./node_modules/next/dist/pages/_error.js",
+                    "statSize": 6251,
+                    "parsedSize": 2275,
+                    "gzipSize": 1135
+                  }
+                ],
+                "parsedSize": 2956,
+                "gzipSize": 1228
+              },
+              {
+                "label": "shared/lib",
+                "path": "./node_modules/next/dist/shared/lib",
+                "statSize": 215501,
+                "groups": [
+                  {
+                    "id": 8832,
+                    "label": "app-router-context.shared-runtime.js",
+                    "path": "./node_modules/next/dist/shared/lib/app-router-context.shared-runtime.js",
+                    "statSize": 1717,
+                    "parsedSize": 538,
+                    "gzipSize": 258
+                  },
+                  {
+                    "id": 8055,
+                    "label": "bloom-filter.js",
+                    "path": "./node_modules/next/dist/shared/lib/bloom-filter.js",
+                    "statSize": 2670,
+                    "parsedSize": 1107,
+                    "gzipSize": 519
+                  },
+                  {
+                    "id": 8932,
+                    "label": "constants.js",
+                    "path": "./node_modules/next/dist/shared/lib/constants.js",
+                    "statSize": 15038,
+                    "parsedSize": 5863,
+                    "gzipSize": 2104
+                  },
+                  {
+                    "id": 4506,
+                    "label": "encode-uri-path.js",
+                    "path": "./node_modules/next/dist/shared/lib/encode-uri-path.js",
+                    "statSize": 362,
+                    "parsedSize": 226,
+                    "gzipSize": 176
+                  },
+                  {
+                    "id": 9597,
+                    "label": "entry-constants.js",
+                    "path": "./node_modules/next/dist/shared/lib/entry-constants.js",
+                    "statSize": 1184,
+                    "parsedSize": 422,
+                    "gzipSize": 253
+                  },
+                  {
+                    "id": 3822,
+                    "label": "escape-regexp.js",
+                    "path": "./node_modules/next/dist/shared/lib/escape-regexp.js",
+                    "statSize": 694,
+                    "parsedSize": 264,
+                    "gzipSize": 201
+                  },
+                  {
+                    "id": 941,
+                    "label": "head-manager-context.shared-runtime.js",
+                    "path": "./node_modules/next/dist/shared/lib/head-manager-context.shared-runtime.js",
+                    "statSize": 608,
+                    "parsedSize": 210,
+                    "gzipSize": 176
+                  },
+                  {
+                    "id": 8005,
+                    "label": "head.js",
+                    "path": "./node_modules/next/dist/shared/lib/head.js",
+                    "statSize": 6395,
+                    "parsedSize": 1727,
+                    "gzipSize": 875
+                  },
+                  {
+                    "id": 3485,
+                    "label": "hooks-client-context.shared-runtime.js",
+                    "path": "./node_modules/next/dist/shared/lib/hooks-client-context.shared-runtime.js",
+                    "statSize": 1805,
+                    "parsedSize": 601,
+                    "gzipSize": 321
+                  },
+                  {
+                    "label": "i18n",
+                    "path": "./node_modules/next/dist/shared/lib/i18n",
+                    "statSize": 1885,
+                    "groups": [
+                      {
+                        "id": 3684,
+                        "label": "normalize-locale-path.js",
+                        "path": "./node_modules/next/dist/shared/lib/i18n/normalize-locale-path.js",
+                        "statSize": 1885,
+                        "parsedSize": 460,
+                        "gzipSize": 303
+                      }
+                    ],
+                    "parsedSize": 460,
+                    "gzipSize": 303
+                  },
+                  {
+                    "id": 8543,
+                    "label": "image-config-context.shared-runtime.js",
+                    "path": "./node_modules/next/dist/shared/lib/image-config-context.shared-runtime.js",
+                    "statSize": 685,
+                    "parsedSize": 242,
+                    "gzipSize": 196
+                  },
+                  {
+                    "id": 8025,
+                    "label": "image-config.js",
+                    "path": "./node_modules/next/dist/shared/lib/image-config.js",
+                    "statSize": 1523,
+                    "parsedSize": 743,
+                    "gzipSize": 514
+                  },
+                  {
+                    "id": 9642,
+                    "label": "invariant-error.js",
+                    "path": "./node_modules/next/dist/shared/lib/invariant-error.js",
+                    "statSize": 494,
+                    "parsedSize": 296,
+                    "gzipSize": 226
+                  },
+                  {
+                    "id": 5474,
+                    "label": "is-plain-object.js",
+                    "path": "./node_modules/next/dist/shared/lib/is-plain-object.js",
+                    "statSize": 1180,
+                    "parsedSize": 410,
+                    "gzipSize": 261
+                  },
+                  {
+                    "label": "lazy-dynamic",
+                    "path": "./node_modules/next/dist/shared/lib/lazy-dynamic",
+                    "statSize": 1085,
+                    "groups": [
+                      {
+                        "id": 1101,
+                        "label": "bailout-to-csr.js",
+                        "path": "./node_modules/next/dist/shared/lib/lazy-dynamic/bailout-to-csr.js",
+                        "statSize": 1085,
+                        "parsedSize": 459,
+                        "gzipSize": 318
+                      }
+                    ],
+                    "parsedSize": 459,
+                    "gzipSize": 318
+                  },
+                  {
+                    "id": 7069,
+                    "label": "mitt.js",
+                    "path": "./node_modules/next/dist/shared/lib/mitt.js",
+                    "statSize": 2072,
+                    "parsedSize": 330,
+                    "gzipSize": 239
+                  },
+                  {
+                    "id": 88,
+                    "label": "modern-browserslist-target.js",
+                    "path": "./node_modules/next/dist/shared/lib/modern-browserslist-target.js",
+                    "statSize": 582,
+                    "parsedSize": 81,
+                    "gzipSize": 89
+                  },
+                  {
+                    "label": "page-path",
+                    "path": "./node_modules/next/dist/shared/lib/page-path",
+                    "statSize": 1640,
+                    "groups": [
+                      {
+                        "id": 2257,
+                        "label": "denormalize-page-path.js",
+                        "path": "./node_modules/next/dist/shared/lib/page-path/denormalize-page-path.js",
+                        "statSize": 611,
+                        "parsedSize": 317,
+                        "gzipSize": 244
+                      },
+                      {
+                        "id": 5068,
+                        "label": "ensure-leading-slash.js",
+                        "path": "./node_modules/next/dist/shared/lib/page-path/ensure-leading-slash.js",
+                        "statSize": 524,
+                        "parsedSize": 206,
+                        "gzipSize": 169
+                      },
+                      {
+                        "id": 6093,
+                        "label": "normalize-path-sep.js",
+                        "path": "./node_modules/next/dist/shared/lib/page-path/normalize-path-sep.js",
+                        "statSize": 505,
+                        "parsedSize": 197,
+                        "gzipSize": 162
+                      }
+                    ],
+                    "parsedSize": 720,
+                    "gzipSize": 315
+                  },
+                  {
+                    "id": 6194,
+                    "label": "router-context.shared-runtime.js",
+                    "path": "./node_modules/next/dist/shared/lib/router-context.shared-runtime.js",
+                    "statSize": 579,
+                    "parsedSize": 207,
+                    "gzipSize": 173
+                  },
+                  {
+                    "label": "router",
+                    "path": "./node_modules/next/dist/shared/lib/router",
+                    "statSize": 161332,
+                    "groups": [
+                      {
+                        "id": 435,
+                        "label": "adapters.js",
+                        "path": "./node_modules/next/dist/shared/lib/router/adapters.js",
+                        "statSize": 4857,
+                        "parsedSize": 1281,
+                        "gzipSize": 671
+                      },
+                      {
+                        "id": 8762,
+                        "label": "router.js",
+                        "path": "./node_modules/next/dist/shared/lib/router/router.js",
+                        "statSize": 82320,
+                        "parsedSize": 22355,
+                        "gzipSize": 7277
+                      },
+                      {
+                        "label": "utils",
+                        "path": "./node_modules/next/dist/shared/lib/router/utils",
+                        "statSize": 74155,
+                        "groups": [
+                          {
+                            "id": 8385,
+                            "label": "add-locale.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/add-locale.js",
+                            "statSize": 1049,
+                            "parsedSize": 360,
+                            "gzipSize": 253
+                          },
+                          {
+                            "id": 5527,
+                            "label": "add-path-prefix.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/add-path-prefix.js",
+                            "statSize": 536,
+                            "parsedSize": 295,
+                            "gzipSize": 229
+                          },
+                          {
+                            "id": 6786,
+                            "label": "add-path-suffix.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/add-path-suffix.js",
+                            "statSize": 536,
+                            "parsedSize": 295,
+                            "gzipSize": 230
+                          },
+                          {
+                            "id": 3849,
+                            "label": "app-paths.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/app-paths.js",
+                            "statSize": 1469,
+                            "parsedSize": 476,
+                            "gzipSize": 340
+                          },
+                          {
+                            "id": 7779,
+                            "label": "as-path-to-search-params.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/as-path-to-search-params.js",
+                            "statSize": 484,
+                            "parsedSize": 215,
+                            "gzipSize": 171
+                          },
+                          {
+                            "id": 4933,
+                            "label": "compare-states.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/compare-states.js",
+                            "statSize": 1070,
+                            "parsedSize": 531,
+                            "gzipSize": 264
+                          },
+                          {
+                            "id": 2390,
+                            "label": "disable-smooth-scroll.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/disable-smooth-scroll.js",
+                            "statSize": 2015,
+                            "parsedSize": 456,
+                            "gzipSize": 293
+                          },
+                          {
+                            "id": 3882,
+                            "label": "format-next-pathname-info.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/format-next-pathname-info.js",
+                            "statSize": 1290,
+                            "parsedSize": 645,
+                            "gzipSize": 383
+                          },
+                          {
+                            "id": 1226,
+                            "label": "format-url.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/format-url.js",
+                            "statSize": 3870,
+                            "parsedSize": 1036,
+                            "gzipSize": 648
+                          },
+                          {
+                            "id": 2209,
+                            "label": "get-asset-path-from-route.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/get-asset-path-from-route.js",
+                            "statSize": 610,
+                            "parsedSize": 232,
+                            "gzipSize": 182
+                          },
+                          {
+                            "id": 3347,
+                            "label": "get-dynamic-param.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/get-dynamic-param.js",
+                            "statSize": 7767,
+                            "parsedSize": 2165,
+                            "gzipSize": 1047
+                          },
+                          {
+                            "id": 7929,
+                            "label": "get-next-pathname-info.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/get-next-pathname-info.js",
+                            "statSize": 2320,
+                            "parsedSize": 1026,
+                            "gzipSize": 528
+                          },
+                          {
+                            "id": 2803,
+                            "label": "get-segment-param.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/get-segment-param.js",
+                            "statSize": 2935,
+                            "parsedSize": 1130,
+                            "gzipSize": 482
+                          },
+                          {
+                            "id": 5977,
+                            "label": "html-bots.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/html-bots.js",
+                            "statSize": 1135,
+                            "parsedSize": 477,
+                            "gzipSize": 354
+                          },
+                          {
+                            "id": 231,
+                            "label": "index.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/index.js",
+                            "statSize": 766,
+                            "parsedSize": 339,
+                            "gzipSize": 207
+                          },
+                          {
+                            "id": 834,
+                            "label": "interception-routes.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/interception-routes.js",
+                            "statSize": 4355,
+                            "parsedSize": 1623,
+                            "gzipSize": 695
+                          },
+                          {
+                            "id": 8935,
+                            "label": "interpolate-as.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/interpolate-as.js",
+                            "statSize": 2107,
+                            "parsedSize": 592,
+                            "gzipSize": 410
+                          },
+                          {
+                            "id": 3133,
+                            "label": "is-bot.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/is-bot.js",
+                            "statSize": 1764,
+                            "parsedSize": 551,
+                            "gzipSize": 299
+                          },
+                          {
+                            "id": 393,
+                            "label": "is-dynamic.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/is-dynamic.js",
+                            "statSize": 832,
+                            "parsedSize": 379,
+                            "gzipSize": 263
+                          },
+                          {
+                            "id": 1175,
+                            "label": "is-local-url.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/is-local-url.js",
+                            "statSize": 854,
+                            "parsedSize": 347,
+                            "gzipSize": 260
+                          },
+                          {
+                            "id": 532,
+                            "label": "omit.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/omit.js",
+                            "statSize": 440,
+                            "parsedSize": 233,
+                            "gzipSize": 182
+                          },
+                          {
+                            "id": 7263,
+                            "label": "parse-loader-tree.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/parse-loader-tree.js",
+                            "statSize": 920,
+                            "parsedSize": 375,
+                            "gzipSize": 283
+                          },
+                          {
+                            "id": 8600,
+                            "label": "parse-path.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/parse-path.js",
+                            "statSize": 1041,
+                            "parsedSize": 360,
+                            "gzipSize": 250
+                          },
+                          {
+                            "id": 3595,
+                            "label": "parse-relative-url.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/parse-relative-url.js",
+                            "statSize": 1423,
+                            "parsedSize": 677,
+                            "gzipSize": 426
+                          },
+                          {
+                            "id": 1654,
+                            "label": "path-has-prefix.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/path-has-prefix.js",
+                            "statSize": 535,
+                            "parsedSize": 285,
+                            "gzipSize": 221
+                          },
+                          {
+                            "id": 4450,
+                            "label": "querystring.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/querystring.js",
+                            "statSize": 2118,
+                            "parsedSize": 767,
+                            "gzipSize": 416
+                          },
+                          {
+                            "id": 3330,
+                            "label": "remove-path-prefix.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/remove-path-prefix.js",
+                            "statSize": 1261,
+                            "parsedSize": 285,
+                            "gzipSize": 218
+                          },
+                          {
+                            "id": 7404,
+                            "label": "remove-trailing-slash.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/remove-trailing-slash.js",
+                            "statSize": 552,
+                            "parsedSize": 204,
+                            "gzipSize": 167
+                          },
+                          {
+                            "id": 54,
+                            "label": "route-match-utils.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/route-match-utils.js",
+                            "statSize": 4398,
+                            "parsedSize": 1196,
+                            "gzipSize": 489
+                          },
+                          {
+                            "id": 7445,
+                            "label": "route-matcher.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/route-matcher.js",
+                            "statSize": 1483,
+                            "parsedSize": 589,
+                            "gzipSize": 391
+                          },
+                          {
+                            "id": 7668,
+                            "label": "route-regex.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/route-regex.js",
+                            "statSize": 10695,
+                            "parsedSize": 3735,
+                            "gzipSize": 1546
+                          },
+                          {
+                            "id": 5845,
+                            "label": "sorted-routes.js",
+                            "path": "./node_modules/next/dist/shared/lib/router/utils/sorted-routes.js",
+                            "statSize": 11525,
+                            "parsedSize": 4280,
+                            "gzipSize": 1371
+                          }
+                        ],
+                        "parsedSize": 26156,
+                        "gzipSize": 7553
+                      }
+                    ],
+                    "parsedSize": 49792,
+                    "gzipSize": 14626
+                  },
+                  {
+                    "id": 5712,
+                    "label": "segment.js",
+                    "path": "./node_modules/next/dist/shared/lib/segment.js",
+                    "statSize": 3442,
+                    "parsedSize": 1050,
+                    "gzipSize": 556
+                  },
+                  {
+                    "id": 9762,
+                    "label": "side-effect.js",
+                    "path": "./node_modules/next/dist/shared/lib/side-effect.js",
+                    "statSize": 2268,
+                    "parsedSize": 700,
+                    "gzipSize": 357
+                  },
+                  {
+                    "id": 8608,
+                    "label": "utils.js",
+                    "path": "./node_modules/next/dist/shared/lib/utils.js",
+                    "statSize": 5807,
+                    "parsedSize": 2318,
+                    "gzipSize": 1098
+                  },
+                  {
+                    "label": "utils",
+                    "path": "./node_modules/next/dist/shared/lib/utils",
+                    "statSize": 454,
+                    "groups": [
+                      {
+                        "id": 7897,
+                        "label": "warn-once.js",
+                        "path": "./node_modules/next/dist/shared/lib/utils/warn-once.js",
+                        "statSize": 454,
+                        "parsedSize": 159,
+                        "gzipSize": 139
+                      }
+                    ],
+                    "parsedSize": 159,
+                    "gzipSize": 139
+                  }
+                ],
+                "parsedSize": 68925,
+                "gzipSize": 20116
+              }
+            ],
+            "parsedSize": 130599,
+            "gzipSize": 37685
+          }
+        ],
+        "parsedSize": 131331,
+        "gzipSize": 37902
+      }
+    ],
+    "isInitialByEntrypoint": { "main": true }
+  },
+  {
+    "label": "static/chunks/500-b84d19d842172eba.js",
+    "isAsset": true,
+    "statSize": 33780,
+    "parsedSize": 8719,
+    "gzipSize": 3519,
+    "groups": [
+      {
+        "label": "node_modules/next/dist",
+        "path": "./node_modules/next/dist",
+        "statSize": 33780,
+        "groups": [
+          {
+            "label": "client",
+            "path": "./node_modules/next/dist/client",
+            "statSize": 20678,
+            "groups": [
+              {
+                "label": "app-dir",
+                "path": "./node_modules/next/dist/client/app-dir",
+                "statSize": 18255,
+                "groups": [
+                  {
+                    "id": 8500,
+                    "label": "link.js",
+                    "path": "./node_modules/next/dist/client/app-dir/link.js",
+                    "statSize": 18255,
+                    "parsedSize": 3296,
+                    "gzipSize": 1630
+                  }
+                ],
+                "parsedSize": 3296,
+                "gzipSize": 1630
+              },
+              {
+                "id": 1172,
+                "label": "use-merged-ref.js",
+                "path": "./node_modules/next/dist/client/use-merged-ref.js",
+                "statSize": 2423,
+                "parsedSize": 743,
+                "gzipSize": 359
+              }
+            ],
+            "parsedSize": 4039,
+            "gzipSize": 1784
+          },
+          {
+            "label": "shared/lib",
+            "path": "./node_modules/next/dist/shared/lib",
+            "statSize": 13102,
+            "groups": [
+              {
+                "label": "router/utils",
+                "path": "./node_modules/next/dist/shared/lib/router/utils",
+                "statSize": 6842,
+                "groups": [
+                  {
+                    "id": 91,
+                    "label": "format-url.js",
+                    "path": "./node_modules/next/dist/shared/lib/router/utils/format-url.js",
+                    "statSize": 3870,
+                    "parsedSize": 1023,
+                    "gzipSize": 640
+                  },
+                  {
+                    "id": 9470,
+                    "label": "is-local-url.js",
+                    "path": "./node_modules/next/dist/shared/lib/router/utils/is-local-url.js",
+                    "statSize": 854,
+                    "parsedSize": 333,
+                    "gzipSize": 250
+                  },
+                  {
+                    "id": 1393,
+                    "label": "querystring.js",
+                    "path": "./node_modules/next/dist/shared/lib/router/utils/querystring.js",
+                    "statSize": 2118,
+                    "parsedSize": 754,
+                    "gzipSize": 407
+                  }
+                ],
+                "parsedSize": 2110,
+                "gzipSize": 1043
+              },
+              {
+                "id": 857,
+                "label": "utils.js",
+                "path": "./node_modules/next/dist/shared/lib/utils.js",
+                "statSize": 5807,
+                "parsedSize": 2305,
+                "gzipSize": 1090
+              },
+              {
+                "label": "utils",
+                "path": "./node_modules/next/dist/shared/lib/utils",
+                "statSize": 453,
+                "groups": [
+                  {
+                    "id": 9842,
+                    "label": "error-once.js",
+                    "path": "./node_modules/next/dist/shared/lib/utils/error-once.js",
+                    "statSize": 453,
+                    "parsedSize": 147,
+                    "gzipSize": 131
+                  }
+                ],
+                "parsedSize": 147,
+                "gzipSize": 131
+              }
+            ],
+            "parsedSize": 4562,
+            "gzipSize": 1961
+          }
+        ],
+        "parsedSize": 8601,
+        "gzipSize": 3458
+      }
+    ],
+    "isInitialByEntrypoint": { "app/not-found": true, "app/layout": true, "app/blog/page": true }
+  },
+  {
+    "label": "static/chunks/webpack-6524ff3298c1da7c.js",
+    "isAsset": true,
+    "statSize": 3271,
+    "parsedSize": 3271,
+    "gzipSize": 1649,
+    "groups": [],
+    "isInitialByEntrypoint": { "main": true, "main-app": true }
+  },
+  {
+    "label": "static/chunks/app/layout-0c5787b2f26778e0.js",
+    "isAsset": true,
+    "statSize": 498,
+    "parsedSize": 700,
+    "gzipSize": 369,
+    "groups": [
+      {
+        "label": "app",
+        "path": "./app",
+        "statSize": 39,
+        "groups": [
+          {
+            "id": 2421,
+            "label": "global.css",
+            "path": "./app/global.css",
+            "statSize": 39,
+            "parsedSize": 6,
+            "gzipSize": 26
+          }
+        ],
+        "parsedSize": 6,
+        "gzipSize": 26
+      },
+      {
+        "label": "node_modules/next/font/local/target.css?{\"path\":\"node_modules/geist/dist",
+        "path": "./node_modules/next/font/local/target.css?{\"path\":\"node_modules/geist/dist",
+        "statSize": 459,
+        "groups": [
+          {
+            "label": "mono.js\",\"import\":\"\",\"arguments\":[{\"src\":\"./fonts/geist-mono",
+            "path": "./node_modules/next/font/local/target.css?{\"path\":\"node_modules/geist/dist/mono.js\",\"import\":\"\",\"arguments\":[{\"src\":\"./fonts/geist-mono",
+            "statSize": 277,
+            "groups": [
+              {
+                "id": 7086,
+                "label": "GeistMono-Variable.woff2\",\"variable\":\"--font-geist-mono\",\"adjustFontFallback\":false,\"fallback\":[\"ui-monospace\",\"SFMono-Regular\",\"Roboto Mono\",\"Menlo\",\"Monaco\",\"Liberation Mono\",\"DejaVu Sans Mono\",\"Courier New\",\"monospace\"],\"weight\":\"100 900\"}],\"variableName\":\"GeistMono\"}",
+                "path": "./node_modules/next/font/local/target.css?{\"path\":\"node_modules/geist/dist/mono.js\",\"import\":\"\",\"arguments\":[{\"src\":\"./fonts/geist-mono/GeistMono-Variable.woff2\",\"variable\":\"--font-geist-mono\",\"adjustFontFallback\":false,\"fallback\":[\"ui-monospace\",\"SFMono-Regular\",\"Roboto Mono\",\"Menlo\",\"Monaco\",\"Liberation Mono\",\"DejaVu Sans Mono\",\"Courier New\",\"monospace\"],\"weight\":\"100 900\"}],\"variableName\":\"GeistMono\"}",
+                "statSize": 277,
+                "parsedSize": 226,
+                "gzipSize": 181
+              }
+            ],
+            "parsedSize": 226,
+            "gzipSize": 181
+          },
+          {
+            "label": "sans.js\",\"import\":\"\",\"arguments\":[{\"src\":\"./fonts/geist-sans",
+            "path": "./node_modules/next/font/local/target.css?{\"path\":\"node_modules/geist/dist/sans.js\",\"import\":\"\",\"arguments\":[{\"src\":\"./fonts/geist-sans",
+            "statSize": 182,
+            "groups": [
+              {
+                "id": 4438,
+                "label": "Geist-Variable.woff2\",\"variable\":\"--font-geist-sans\",\"weight\":\"100 900\"}],\"variableName\":\"GeistSans\"}",
+                "path": "./node_modules/next/font/local/target.css?{\"path\":\"node_modules/geist/dist/sans.js\",\"import\":\"\",\"arguments\":[{\"src\":\"./fonts/geist-sans/Geist-Variable.woff2\",\"variable\":\"--font-geist-sans\",\"weight\":\"100 900\"}],\"variableName\":\"GeistSans\"}",
+                "statSize": 182,
+                "parsedSize": 131,
+                "gzipSize": 120
+              }
+            ],
+            "parsedSize": 131,
+            "gzipSize": 120
+          }
+        ],
+        "parsedSize": 357,
+        "gzipSize": 214
+      }
+    ],
+    "isInitialByEntrypoint": { "app/layout": true }
+  },
+  {
+    "label": "static/chunks/main-app-ea3c31e7c9c22861.js",
+    "isAsset": true,
+    "statSize": 513,
+    "parsedSize": 513,
+    "gzipSize": 222,
+    "groups": [],
+    "isInitialByEntrypoint": { "main-app": true }
+  },
+  {
+    "label": "static/chunks/app/blog/page-d88d3e2061451e24.js",
+    "isAsset": true,
+    "statSize": 187,
+    "parsedSize": 187,
+    "gzipSize": 164,
+    "groups": [],
+    "isInitialByEntrypoint": { "app/blog/page": true }
+  },
+  {
+    "label": "static/chunks/app/not-found-d88d3e2061451e24.js",
+    "isAsset": true,
+    "statSize": 187,
+    "parsedSize": 187,
+    "gzipSize": 164,
+    "groups": [],
+    "isInitialByEntrypoint": { "app/not-found": true }
+  },
+  {
+    "label": "static/chunks/next/dist/client/components/builtin/global-error-bdc9ded8f0f7c941.js",
+    "isAsset": true,
+    "statSize": 179,
+    "parsedSize": 179,
+    "gzipSize": 160,
+    "groups": [],
+    "isInitialByEntrypoint": { "next/dist/client/components/builtin/global-error": true }
+  },
+  {
+    "label": "static/chunks/app/_global-error/page-df6d66a920073a44.js",
+    "isAsset": true,
+    "statSize": 171,
+    "parsedSize": 171,
+    "gzipSize": 150,
+    "groups": [],
+    "isInitialByEntrypoint": { "app/_global-error/page": true }
+  },
+  {
+    "label": "static/chunks/app/_not-found/page-df6d66a920073a44.js",
+    "isAsset": true,
+    "statSize": 171,
+    "parsedSize": 171,
+    "gzipSize": 150,
+    "groups": [],
+    "isInitialByEntrypoint": { "app/_not-found/page": true }
+  },
+  {
+    "label": "static/chunks/app/blog/agent-coordination/page-df6d66a920073a44.js",
+    "isAsset": true,
+    "statSize": 171,
+    "parsedSize": 171,
+    "gzipSize": 150,
+    "groups": [],
+    "isInitialByEntrypoint": { "app/blog/agent-coordination/page": true }
+  },
+  {
+    "label": "static/chunks/app/manifest.webmanifest/route-df6d66a920073a44.js",
+    "isAsset": true,
+    "statSize": 171,
+    "parsedSize": 171,
+    "gzipSize": 150,
+    "groups": [],
+    "isInitialByEntrypoint": { "app/manifest.webmanifest/route": true }
+  },
+  {
+    "label": "static/chunks/app/og/route-df6d66a920073a44.js",
+    "isAsset": true,
+    "statSize": 171,
+    "parsedSize": 171,
+    "gzipSize": 150,
+    "groups": [],
+    "isInitialByEntrypoint": { "app/og/route": true }
+  },
+  {
+    "label": "static/chunks/app/page-df6d66a920073a44.js",
+    "isAsset": true,
+    "statSize": 171,
+    "parsedSize": 171,
+    "gzipSize": 150,
+    "groups": [],
+    "isInitialByEntrypoint": { "app/page": true }
+  },
+  {
+    "label": "static/chunks/app/robots.txt/route-df6d66a920073a44.js",
+    "isAsset": true,
+    "statSize": 171,
+    "parsedSize": 171,
+    "gzipSize": 150,
+    "groups": [],
+    "isInitialByEntrypoint": { "app/robots.txt/route": true }
+  },
+  {
+    "label": "static/chunks/app/sitemap.xml/route-df6d66a920073a44.js",
+    "isAsset": true,
+    "statSize": 171,
+    "parsedSize": 171,
+    "gzipSize": 150,
+    "groups": [],
+    "isInitialByEntrypoint": { "app/sitemap.xml/route": true }
+  },
+  {
+    "label": "static/chunks/next/dist/client/components/builtin/app-error-df6d66a920073a44.js",
+    "isAsset": true,
+    "statSize": 171,
+    "parsedSize": 171,
+    "gzipSize": 150,
+    "groups": [],
+    "isInitialByEntrypoint": { "next/dist/client/components/builtin/app-error": true }
+  },
+  {
+    "label": "static/chunks/next/dist/client/components/builtin/forbidden-df6d66a920073a44.js",
+    "isAsset": true,
+    "statSize": 171,
+    "parsedSize": 171,
+    "gzipSize": 150,
+    "groups": [],
+    "isInitialByEntrypoint": { "next/dist/client/components/builtin/forbidden": true }
+  },
+  {
+    "label": "static/chunks/next/dist/client/components/builtin/unauthorized-df6d66a920073a44.js",
+    "isAsset": true,
+    "statSize": 171,
+    "parsedSize": 171,
+    "gzipSize": 150,
+    "groups": [],
+    "isInitialByEntrypoint": { "next/dist/client/components/builtin/unauthorized": true }
+  }
+]

@@ -22,7 +22,6 @@ export default async function sitemap() {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
-
   ]
 
   return routes

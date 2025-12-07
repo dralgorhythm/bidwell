@@ -1,13 +1,10 @@
 import './global.css'
-import React from 'react'
-
 
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from 'next'
+import type React from 'react'
 
-import Footer from './components/footer'
-import { Navbar } from './components/nav'
 import StructuredData from './components/structured-data'
 import { baseUrl } from './sitemap'
 
@@ -103,13 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
           content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-ancestors 'none';"
         />
       </head>
-      <body className='antialiased max-w-xl mx-4 mt-8 lg:mx-auto'>
-        <main className='flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0'>
-          <Navbar />
-          {children}
-          <Footer />
-        </main>
-      </body>
+      <body className='antialiased'>{children}</body>
     </html>
   )
 }
