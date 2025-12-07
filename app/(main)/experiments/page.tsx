@@ -17,9 +17,10 @@ function ExperimentCard({ experiment }: { experiment: Experiment }): React.JSX.E
       href={href}
       className={`
         group block p-6 rounded-xl border transition-all duration-300
-        ${isActive
-          ? 'border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 hover:shadow-lg cursor-pointer'
-          : 'border-neutral-100 dark:border-neutral-900 opacity-60 cursor-not-allowed'
+        ${
+          isActive
+            ? 'border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 hover:shadow-lg cursor-pointer'
+            : 'border-neutral-100 dark:border-neutral-900 opacity-60 cursor-not-allowed'
         }
         bg-white dark:bg-neutral-950
       `}
@@ -30,12 +31,13 @@ function ExperimentCard({ experiment }: { experiment: Experiment }): React.JSX.E
         <span
           className={`
           inline-block px-2 py-1 text-xs font-medium rounded-full
-          ${experiment.status === 'active'
+          ${
+            experiment.status === 'active'
               ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
               : experiment.status === 'coming-soon'
                 ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400'
                 : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-500'
-            }
+          }
         `}
         >
           {experiment.status === 'active'
@@ -68,7 +70,13 @@ function ExperimentCard({ experiment }: { experiment: Experiment }): React.JSX.E
       {isActive && (
         <div className='mt-4 flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-transform'>
           Explore
-          <svg className='ml-1 w-4 h-4' fill='none' viewBox='0 0 24 24' stroke='currentColor' aria-hidden='true'>
+          <svg
+            className='ml-1 w-4 h-4'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+            aria-hidden='true'
+          >
             <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
           </svg>
         </div>

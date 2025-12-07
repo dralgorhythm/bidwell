@@ -62,4 +62,3 @@ test.describe('Critical User Flows', () => {
     await expect(backLinks).toHaveCount(2)
   })
 })
-
