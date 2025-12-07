@@ -1,4 +1,3 @@
-```
 ---
 name: refactoring-code
 description: Systematically improving code structure without altering external behavior.
@@ -63,4 +62,3 @@ class AgedBrie implements Item {
 
 ## Resources
 - [Refactoring and Clean Code](../../instructions/core-engineering/refactoring-clean-code.md)
-```
