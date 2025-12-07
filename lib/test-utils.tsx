@@ -3,9 +3,16 @@ import type userEvent from '@testing-library/user-event'
 import type { ReactElement } from 'react'
 import { axe } from 'vitest-axe'
 
+interface MockRouter {
+  route: string
+  pathname: string
+  asPath: string
+  [key: string]: unknown
+}
+
 declare global {
   var testUtils: {
-    mockRouter: any
+    mockRouter: MockRouter
   }
 }
 

@@ -33,6 +33,7 @@
     --sh-keyword: #f47067;
     --sh-string: #0fa295;
   }
+
   html {
     color-scheme: dark;
   }
@@ -67,6 +68,18 @@ html {
 
 .prose *:hover > .anchor {
   @apply visible;
+}
+
+/* Pre element scrollbar hiding - must come before .prose pre for specificity */
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+pre {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .prose pre {
@@ -125,18 +138,9 @@ html {
 }
 
 .prose > :first-child {
-  /* Override removing top margin, causing layout shift */
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
-}
-
-pre::-webkit-scrollbar {
-  display: none;
-}
-
-pre {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  /* Use higher specificity instead of !important to override default margins */
+  margin-block-start: 1.25em;
+  margin-block-end: 1.25em;
 }
 
 /* Remove Safari input shadow on mobile */
