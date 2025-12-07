@@ -50,6 +50,16 @@ export default function ContactForm(): React.JSX.Element {
         body: JSON.stringify(validatedData),
       })
 
+      // Handle 404 - API route not available (static export)
+      if (response.status === 404) {
+        setSubmitStatus({
+          type: 'error',
+          message:
+            'Contact form backend is not yet configured. Please email directly at contact@bidwell.consulting or see deployment documentation.',
+        })
+        return
+      }
+
       const result: ContactFormResponse = await response.json()
 
       if (response.ok && result.success) {
