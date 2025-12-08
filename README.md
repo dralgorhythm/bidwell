@@ -4,12 +4,24 @@ A modern, high-performance portfolio website built with Next.js 15, showcasing s
 
 **🌐 Live Site:** [bidwell.info](https://bidwell.info)
 
+## Tech Stack
+
+- **Framework**: Next.js 16, React 19, TypeScript
+- **Styling**: Tailwind CSS v4
+- **Quality**: Biome (lint/format), Vitest (unit), Playwright (E2E)
+
+## Prerequisites
+
+- **Node.js 24** — Use [nvm](https://github.com/nvm-sh/nvm) for version management
+- **npm** — Comes with Node.js
+
 ## Quick Start
 
 ```bash
-# Clone and install
+# Clone and setup
 git clone <repository-url>
 cd bidwell
+nvm use        # Switches to Node 24 via .nvmrc
 npm install
 
 # Start development
@@ -18,13 +30,18 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-## Documentation
+## Available Scripts
 
-- **[Getting Started](docs/getting-started.md)**: Setup, development workflow, and contribution guide.
-- **[Architecture](docs/architecture.md)**: System design, tech stack, and key decisions.
-- **[Reference](docs/reference.md)**: Component library and utility reference.
-- **[Troubleshooting](docs/troubleshooting.md)**: Common issues and solutions.
-- **[UI Design](docs/ui-design.md)**: Design system and guidelines.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Production build |
+| `npm run qa` | Quick quality check (typecheck + lint + test) |
+| `npm run test` | Run unit tests (watch mode) |
+| `npm run test:quick` | Run unit tests once |
+| `npm run test:e2e` | Run Playwright E2E tests |
+| `npm run lint:fix` | Auto-fix linting issues |
+| `npm run format:fix` | Auto-fix formatting issues |
 
 ## Agent Guidance
 

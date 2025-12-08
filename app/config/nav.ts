@@ -14,4 +14,8 @@ export const navItems: Record<string, NavItem> = {
   '/experiments': {
     name: 'experiments',
   },
+
+  '/career-guidance': {
+    name: 'coaching',
+  },
 }
