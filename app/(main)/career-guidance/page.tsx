@@ -104,10 +104,8 @@ export default function CareerGuidancePage(): React.JSX.Element {
       <div className='mb-12'>
         <h1 className='mb-4 text-2xl font-semibold tracking-tighter'>Career Guidance</h1>
         <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
-          With nearly 20 years of experience in professional development, I offer career coaching
-          for people navigating transitions, preparing for interviews, or figuring out their next
-          move. If you're in tech, I can speak to that directly. If not, the fundamentals still
-          apply.
+          With nearly 20 years of experience in professional development, I offer career coaching for
+          those navigating transitions, preparing for interviews, or figuring out their next move.
         </p>
         <div className='mt-6 text-center'>
           <a
