@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import type React from 'react'
 import Breadcrumb from '../../components/breadcrumb'
+import { serviceEntries } from '../../config/services'
 
 export const metadata: Metadata = {
   title: 'Software & AI Consulting Services',
@@ -9,29 +10,6 @@ export const metadata: Metadata = {
     'Software consulting, AI & agent engineering, engineering practice improvement, and tech career coaching from a Minneapolis consultant. Free discovery call.',
   alternates: { canonical: '/services' },
 }
-
-const services = [
-  {
-    title: 'Software Consulting',
-    href: '/services/software-consulting',
-    description: 'Architecture, custom software development, and rescue work — hands-on.',
-  },
-  {
-    title: 'AI & Agent Engineering',
-    href: '/services/ai-consulting',
-    description: 'Pragmatic AI adoption: LLM integration, custom agents, coding-agent workflows.',
-  },
-  {
-    title: 'Engineering Practice Improvement',
-    href: '/services/engineering-practice-improvement',
-    description: 'Ship faster with healthier DevOps, agile delivery, and review culture.',
-  },
-  {
-    title: 'Career Coaching',
-    href: '/services/career-coaching',
-    description: '1-on-1 coaching for engineers and tech leaders — resumes, interviews, moves.',
-  },
-]
 
 export default function ServicesPage(): React.JSX.Element {
   return (
@@ -54,7 +32,7 @@ export default function ServicesPage(): React.JSX.Element {
           Twin Cities metro, and remotely everywhere else.
         </p>
         <div className='grid gap-6 md:grid-cols-2'>
-          {services.map(service => (
+          {serviceEntries.map(service => (
             <Link
               key={service.href}
               href={service.href}

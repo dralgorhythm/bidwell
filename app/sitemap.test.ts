@@ -34,6 +34,13 @@ describe('sitemap', () => {
     expect(urls).not.toContain('https://bidwell.info/career-guidance')
   })
 
+  it('includes the about and contact pages', async () => {
+    const urls = (await entries()).map(route => route.url)
+
+    expect(urls).toContain('https://bidwell.info/about')
+    expect(urls).toContain('https://bidwell.info/contact')
+  })
+
   it('includes active experiments and excludes noindexed coming-soon stubs', async () => {
     const urls = (await entries()).map(route => route.url)
 

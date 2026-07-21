@@ -77,7 +77,7 @@ export function personSchema(): WithContext<Person> {
     '@id': PERSON_ID,
     name: siteConfig.founder.name,
     jobTitle: siteConfig.founder.jobTitle,
-    url: baseUrl,
+    url: absoluteUrl('/about'),
     worksFor: { '@id': ORGANIZATION_ID },
     sameAs: [...siteConfig.founder.sameAs],
     knowsAbout: [

@@ -80,6 +80,7 @@ describe('structured-data builders', () => {
       expect(schema['@type']).toBe('Person')
       expect(schema['@id']).toBe('https://bidwell.info/#person')
       expect(schema.name).toBe('Jordan Winters')
+      expect(schema.url).toBe('https://bidwell.info/about')
       expect(schema.worksFor).toEqual({ '@id': 'https://bidwell.info/#organization' })
       expect(schema.sameAs).toContain('https://www.linkedin.com/in/wintersjordan/')
     })

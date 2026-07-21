@@ -22,6 +22,8 @@ export default async function sitemap() {
     { url: `${baseUrl}/services/ai-consulting`, priority: 0.9 },
     { url: `${baseUrl}/services/engineering-practice-improvement`, priority: 0.9 },
     { url: `${baseUrl}/services/career-coaching`, priority: 0.9 },
+    { url: `${baseUrl}/about`, priority: 0.6 },
+    { url: `${baseUrl}/contact`, priority: 0.7 },
     { url: `${baseUrl}/blog`, priority: 0.7 },
     ...posts.map(post => ({
       url: `${baseUrl}/blog/${post.slug}`,

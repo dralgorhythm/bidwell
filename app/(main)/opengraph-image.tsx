@@ -12,5 +12,5 @@ export const contentType = 'image/png'
  * so the image file must be colocated in this segment.
  */
 export default function OpengraphImage() {
-  return ogCard('Bidwell Consulting', 'Software Engineering & Organizational Consulting')
+  return ogCard('Bidwell Consulting', 'Software Consulting in the Twin Cities')
 }

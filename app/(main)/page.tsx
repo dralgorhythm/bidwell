@@ -1,25 +1,24 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import type React from 'react'
+import { serviceEntries } from '../config/services'
 
 export const metadata: Metadata = {
-  title: 'Bidwell Consulting',
+  title: 'Twin Cities Software Consulting',
   description:
-    'Expert software engineering and organizational consulting firm - solving problems, designing systems, and optimizing processes.',
+    'Independent software consultant in Minneapolis — architecture, AI engineering, and practice improvement for Twin Cities teams. Book a free discovery call.',
   keywords: [
+    'software consulting twin cities',
+    'software consultant minneapolis',
+    'technology consulting minneapolis',
+    'independent software consultant',
     'bidwell consulting',
-    'software engineering services',
-    'organizational consulting',
-    'portfolio',
-    'technical consulting',
-    'system architecture',
-    'business optimization',
-    'full-stack development',
   ],
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Bidwell Consulting',
+    title: 'Bidwell Consulting — Software Consulting in the Twin Cities',
     description:
-      'Expert software engineer and organizational consultant, specializing in problem solving, system design, and process optimization. This portfolio site showcases innovative technical solutions and demonstrates our approach to complex problem solving.',
+      'Independent software consultant in Minneapolis — architecture, AI engineering, and practice improvement for Twin Cities teams.',
     type: 'website',
   },
 }
@@ -27,28 +26,89 @@ export const metadata: Metadata = {
 export default function Page(): React.JSX.Element {
   return (
     <section>
-      <h1 className='mb-8 text-2xl font-semibold tracking-tighter'>Bidwell Consulting</h1>
+      <h1 className='mb-4 text-2xl font-semibold tracking-tighter'>
+        Software Consulting in the Twin Cities
+      </h1>
 
-      <div className='mb-6'>
-        <p className='mb-4'>
-          Welcome to Bidwell Consulting, I look forward to working with you! Here, you can find my
-          thoughts on problem solving.
-        </p>
+      <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
+        I&apos;m{' '}
+        <Link href='/about' className='underline'>
+          Jordan Winters
+        </Link>
+        , an independent software consultant in Minneapolis. I help companies design systems, ship
+        software, and build engineering practices that hold up — drawing on nearly 20 years of
+        building and leading.
+      </p>
 
-        <h2 className='mb-3 text-xl font-medium tracking-tight'>Expertise & Services</h2>
-        <ul className='mb-4 ml-6 list-disc space-y-2'>
-          <li>Software engineering and system architecture</li>
-          <li>Organizational consulting and process optimization</li>
-          <li>Full-stack problem solving and solution design</li>
-          <li>
-            <a
-              href='/services/career-coaching'
-              className='underline hover:text-neutral-600 dark:hover:text-neutral-300'
+      <div className='mb-12'>
+        <Link
+          href='/contact'
+          className='inline-block px-6 py-3 bg-black dark:bg-white text-white dark:text-black font-semibold rounded-lg hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors'
+        >
+          Book a free discovery call
+        </Link>
+      </div>
+
+      <div className='mb-12'>
+        <h2 className='mb-3 text-xl font-medium tracking-tight'>What I Do</h2>
+        <div className='grid gap-6 md:grid-cols-2 mb-4'>
+          {serviceEntries.map(service => (
+            <Link
+              key={service.href}
+              href={service.href}
+              className='group block p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 hover:shadow-lg transition-all duration-300 bg-white dark:bg-neutral-950'
             >
-              Career coaching and development
-            </a>
-          </li>
-        </ul>
+              <h3 className='mb-2 text-lg font-semibold'>{service.title}</h3>
+              <p className='text-sm text-neutral-600 dark:text-neutral-400'>
+                {service.description}
+              </p>
+            </Link>
+          ))}
+        </div>
+        <p className='text-sm text-neutral-600 dark:text-neutral-400'>
+          Or browse{' '}
+          <Link href='/services' className='underline'>
+            all services
+          </Link>
+          .
+        </p>
+      </div>
+
+      <div className='mb-12'>
+        <h2 className='mb-3 text-xl font-medium tracking-tight'>AI-Native Consulting</h2>
+        <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
+          I don&apos;t just advise on AI — I work this way every day, coordinating coding agents to
+          deliver real software, and I publish{' '}
+          <Link href='/blog/agent-coordination' className='underline'>
+            how I coordinate AI coding agents
+          </Link>
+          . If you want AI in your engineering practice, you want someone who has already made it
+          work in their own.
+        </p>
+        <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
+          Based in Minneapolis and serving the Twin Cities metro — in person when it helps, remote
+          when it doesn&apos;t.
+        </p>
+      </div>
+
+      <div>
+        <h2 className='mb-3 text-xl font-medium tracking-tight'>Start a Conversation</h2>
+        <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
+          Tell me what you&apos;re building, what&apos;s stuck, or where you want to be.{' '}
+          <Link href='/contact' className='underline'>
+            Book a free discovery call
+          </Link>{' '}
+          or reach out on{' '}
+          <a
+            href='https://www.linkedin.com/in/wintersjordan/'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='underline'
+          >
+            LinkedIn
+          </a>
+          .
+        </p>
       </div>
     </section>
   )
