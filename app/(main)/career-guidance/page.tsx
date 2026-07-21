@@ -1,5 +1,7 @@
+import { faqSchema } from 'lib/structured-data'
 import type { Metadata } from 'next'
 import type React from 'react'
+import JsonLd from '../../components/structured-data'
 
 export const metadata: Metadata = {
   title: 'Career Guidance',
@@ -15,18 +17,11 @@ export const metadata: Metadata = {
     'interview preparation',
     'leadership development',
   ],
+  alternates: { canonical: '/career-guidance' },
   openGraph: {
     title: 'Career Guidance | Bidwell Consulting',
     description: 'We provide career coaching and guidance for tech professionals.',
     type: 'website',
-    images: [
-      {
-        url: '/og?title=Career%20Guidance',
-        width: 1200,
-        height: 630,
-        alt: 'Career Guidance',
-      },
-    ],
   },
 }
 
@@ -100,6 +95,7 @@ const engagementOptions = [
 export default function CareerGuidancePage(): React.JSX.Element {
   return (
     <section>
+      <JsonLd data={faqSchema(faqs)} />
       {/* Hero Section */}
       <div className='mb-12'>
         <h1 className='mb-4 text-2xl font-semibold tracking-tighter'>Career Guidance</h1>

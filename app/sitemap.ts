@@ -1,44 +1,38 @@
+import { baseUrl } from '../lib/site-config'
+import { posts } from './(main)/blog/posts'
 import { experiments } from './(main)/experiments/config'
-
-export const baseUrl = 'https://bidwell.info'
 
 export const dynamic = 'force-static'
 
+/**
+ * Only indexable pages belong here: coming-soon experiment stubs are
+ * noindexed and excluded, and new routes are added in the same PR that
+ * ships the page — the post-deploy health check curls every listed URL.
+ *
+ * Contract: scripts/generate-health-checks.ts consumes this default export
+ * and requires an absolute `url` and numeric `priority` on every entry.
+ * `lastModified` appears only where a real date exists (blog posts); it is
+ * never fabricated from build time.
+ */
 export default async function sitemap() {
   const routes = [
-    {
-      url: baseUrl,
-      lastModified: new Date().toISOString().split('T')[0],
-      changeFrequency: 'weekly' as const,
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date().toISOString().split('T')[0],
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog/agent-coordination`,
-      lastModified: new Date().toISOString().split('T')[0],
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/experiments`,
-      lastModified: new Date().toISOString().split('T')[0],
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
+    { url: baseUrl, priority: 1.0 },
+    { url: `${baseUrl}/career-guidance`, priority: 0.8 },
+    { url: `${baseUrl}/blog`, priority: 0.7 },
+    ...posts.map(post => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post.publishedAt,
+      priority: 0.7,
+    })),
+    { url: `${baseUrl}/experiments`, priority: 0.6 },
   ]
 
-  // Add individual experiment pages
-  const experimentRoutes = experiments.map(experiment => ({
-    url: `${baseUrl}/experiments/${experiment.slug}`,
-    lastModified: new Date().toISOString().split('T')[0],
-    changeFrequency: 'monthly' as const,
-    priority: experiment.status === 'active' ? 0.8 : 0.5,
-  }))
+  const experimentRoutes = experiments
+    .filter(experiment => experiment.status === 'active')
+    .map(experiment => ({
+      url: `${baseUrl}/experiments/${experiment.slug}`,
+      priority: 0.6,
+    }))
 
   return [...routes, ...experimentRoutes]
 }

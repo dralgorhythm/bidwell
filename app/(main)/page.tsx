@@ -15,19 +15,12 @@ export const metadata: Metadata = {
     'business optimization',
     'full-stack development',
   ],
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'Bidwell Consulting',
     description:
       'Expert software engineer and organizational consultant, specializing in problem solving, system design, and process optimization. This portfolio site showcases innovative technical solutions and demonstrates our approach to complex problem solving.',
     type: 'website',
-    images: [
-      {
-        url: '/og?title=Bidwell%20Consulting',
-        width: 1200,
-        height: 630,
-        alt: 'Bidwell Consulting',
-      },
-    ],
   },
 }
 

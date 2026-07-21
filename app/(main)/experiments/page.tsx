@@ -6,6 +6,7 @@ import { type Experiment, experiments } from './config'
 export const metadata: Metadata = {
   title: 'Experiments',
   description: 'Explore interactive experiments and prototypes built by Bidwell Consulting.',
+  alternates: { canonical: '/experiments' },
 }
 
 function ExperimentCard({ experiment }: { experiment: Experiment }): React.JSX.Element {

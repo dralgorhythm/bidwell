@@ -1,3 +1,7 @@
+import { experimentMetadata } from '../../../(main)/experiments/config'
+
+export const metadata = experimentMetadata('infrastructure-weather-topology')
+
 export default function InfrastructureWeatherTopologyPage() {
   return (
     <div className='container mx-auto px-4 py-8'>

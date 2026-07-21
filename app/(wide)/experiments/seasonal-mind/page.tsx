@@ -1,3 +1,7 @@
+import { experimentMetadata } from '../../../(main)/experiments/config'
+
+export const metadata = experimentMetadata('seasonal-mind')
+
 export default function SeasonalMindPage() {
   return (
     <div className='container mx-auto px-4 py-8'>

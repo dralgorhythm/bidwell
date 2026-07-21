@@ -16,19 +16,12 @@ export const metadata: Metadata = {
     'ai coding agents',
     'quality gates',
   ],
+  alternates: { canonical: '/experiments/claude-agentic-framework' },
   openGraph: {
     title: 'Claude Agentic Framework',
     description:
       'A drop-in template for Claude Code: coordinated multi-agent swarms, workflow skills, layered rules, and safety hooks.',
     type: 'website',
-    images: [
-      {
-        url: '/og?title=Claude%20Agentic%20Framework',
-        width: 1200,
-        height: 630,
-        alt: 'Claude Agentic Framework',
-      },
-    ],
   },
 }
 

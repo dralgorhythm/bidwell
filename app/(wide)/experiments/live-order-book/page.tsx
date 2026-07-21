@@ -1,3 +1,7 @@
+import { experimentMetadata } from '../../../(main)/experiments/config'
+
+export const metadata = experimentMetadata('live-order-book')
+
 export default function LiveOrderBookPage() {
   return (
     <div className='container mx-auto px-4 py-8'>

@@ -1,3 +1,7 @@
+import { experimentMetadata } from '../../../(main)/experiments/config'
+
+export const metadata = experimentMetadata('physics-of-traffic')
+
 export default function PhysicsOfTrafficPage() {
   return (
     <div className='container mx-auto px-4 py-8'>

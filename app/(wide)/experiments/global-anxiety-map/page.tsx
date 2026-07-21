@@ -1,3 +1,7 @@
+import { experimentMetadata } from '../../../(main)/experiments/config'
+
+export const metadata = experimentMetadata('global-anxiety-map')
+
 export default function GlobalAnxietyMapPage() {
   return (
     <div className='container mx-auto px-4 py-8'>
