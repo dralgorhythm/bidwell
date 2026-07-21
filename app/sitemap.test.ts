@@ -23,9 +23,13 @@ describe('sitemap', () => {
     }
   })
 
-  it('includes the career-coaching sales page but never its redirect stub', async () => {
+  it('includes the services hub and all four service pages, never the redirect stub', async () => {
     const urls = (await entries()).map(route => route.url)
 
+    expect(urls).toContain('https://bidwell.info/services')
+    expect(urls).toContain('https://bidwell.info/services/software-consulting')
+    expect(urls).toContain('https://bidwell.info/services/ai-consulting')
+    expect(urls).toContain('https://bidwell.info/services/engineering-practice-improvement')
     expect(urls).toContain('https://bidwell.info/services/career-coaching')
     expect(urls).not.toContain('https://bidwell.info/career-guidance')
   })

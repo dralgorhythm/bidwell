@@ -17,6 +17,10 @@ export const dynamic = 'force-static'
 export default async function sitemap() {
   const routes = [
     { url: baseUrl, priority: 1.0 },
+    { url: `${baseUrl}/services`, priority: 0.8 },
+    { url: `${baseUrl}/services/software-consulting`, priority: 0.9 },
+    { url: `${baseUrl}/services/ai-consulting`, priority: 0.9 },
+    { url: `${baseUrl}/services/engineering-practice-improvement`, priority: 0.9 },
     { url: `${baseUrl}/services/career-coaching`, priority: 0.9 },
     { url: `${baseUrl}/blog`, priority: 0.7 },
     ...posts.map(post => ({
