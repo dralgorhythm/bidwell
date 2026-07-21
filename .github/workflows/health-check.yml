@@ -54,7 +54,7 @@ jobs:
           FAILED=0
           
           # Check all routes from sitemap
-          echo "$CHECKS" | jq -c '.[]' | while read -r check; do
+          while read -r check; do
             URL=$(echo "$check" | jq -r '.url')
             NAME=$(echo "$check" | jq -r '.name')
             
@@ -64,7 +64,7 @@ jobs:
               echo "❌ $NAME: FAILED"
               FAILED=1
             fi
-          done
+          done < <(echo "$CHECKS" | jq -c '.[]')
           
           # Check essential meta files
           if curl -f -s --max-time 10 "$SITE_URL/robots.txt" > /dev/null; then
