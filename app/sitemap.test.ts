@@ -23,10 +23,11 @@ describe('sitemap', () => {
     }
   })
 
-  it('includes the career-guidance sales page', async () => {
+  it('includes the career-coaching sales page but never its redirect stub', async () => {
     const urls = (await entries()).map(route => route.url)
 
-    expect(urls).toContain('https://bidwell.info/career-guidance')
+    expect(urls).toContain('https://bidwell.info/services/career-coaching')
+    expect(urls).not.toContain('https://bidwell.info/career-guidance')
   })
 
   it('includes active experiments and excludes noindexed coming-soon stubs', async () => {

@@ -60,9 +60,20 @@ test.describe('SEO invariants', () => {
   test('sitemap lists indexable pages only', async ({ request }) => {
     const xml = await (await request.get('/sitemap.xml')).text()
 
-    expect(xml).toContain('https://bidwell.info/career-guidance')
+    expect(xml).toContain('https://bidwell.info/services/career-coaching')
+    expect(xml).not.toContain('https://bidwell.info/career-guidance')
     expect(xml).toContain('https://bidwell.info/experiments/claude-agentic-framework')
     expect(xml).not.toContain('sonic-weather')
+  })
+
+  test('the moved career-guidance URL serves a redirect stub', async ({ page }) => {
+    await page.goto('/career-guidance', { waitUntil: 'commit' })
+
+    // The 0s meta refresh fires immediately; landing on the destination IS the pass.
+    await page.waitForURL('**/services/career-coaching')
+    await expect(
+      page.getByRole('heading', { level: 1, name: /tech career coaching/i })
+    ).toBeVisible()
   })
 
   test('entity graph renders ProfessionalService, Person, and WebSite JSON-LD', async ({

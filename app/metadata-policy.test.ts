@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+import { redirects } from 'lib/redirects'
 import type { Metadata } from 'next'
 
 /**
@@ -9,6 +10,9 @@ import type { Metadata } from 'next'
  *    which suppressed indexing of all sub-pages.
  * 2. Titles, descriptions, and canonicals are unique — 12 experiment stubs
  *    once shared one inherited title/description.
+ *
+ * Redirect stubs (lib/redirects.ts) are the one sanctioned exception: their
+ * canonical deliberately points at the destination page.
  */
 const pageModules = import.meta.glob('./**/page.tsx', { eager: true }) as Record<
   string,
@@ -18,10 +22,23 @@ const pageModules = import.meta.glob('./**/page.tsx', { eager: true }) as Record
 // Modules only — importing them would execute ImageResponse; paths suffice.
 const ogImageFiles = Object.keys(import.meta.glob('./**/opengraph-image.tsx'))
 
-const pages = Object.entries(pageModules).map(([path, module]) => ({
+// './(main)/services/career-coaching/page.tsx' -> '/services/career-coaching'
+function routeOf(path: string): string {
+  const route = path
+    .replace(/\([^)]+\)\//g, '')
+    .replace(/^\.\//, '/')
+    .replace(/\/page\.tsx$/, '')
+  return route === '' ? '/' : route
+}
+
+const allPages = Object.entries(pageModules).map(([path, module]) => ({
   path,
+  route: routeOf(path),
   metadata: module.metadata,
 }))
+
+const redirectStubs = allPages.filter(page => page.route in redirects)
+const pages = allPages.filter(page => !(page.route in redirects))
 
 describe('metadata policy', () => {
   it('discovers the full page inventory (route groups included)', () => {
@@ -31,18 +48,22 @@ describe('metadata policy', () => {
   })
 
   it.each(
-    pages.map(page => [page.path, page.metadata] as const)
-  )('%s exports complete metadata', (_path, metadata) => {
+    pages.map(page => [page.path, page.route, page.metadata] as const)
+  )('%s exports complete metadata', (_path, route, metadata) => {
     expect(metadata).toBeDefined()
     expect(typeof metadata?.title).toBe('string')
     expect((metadata?.title as string).length).toBeGreaterThan(0)
     expect(typeof metadata?.description).toBe('string')
     expect((metadata?.description as string).length).toBeGreaterThan(0)
 
-    const canonical = metadata?.alternates?.canonical
-    expect(typeof canonical).toBe('string')
-    expect(canonical as string).toMatch(/^\//)
-    expect(canonical as string).not.toMatch(/.\/$/)
+    expect(metadata?.alternates?.canonical).toBe(route)
+  })
+
+  it('canonicalizes every redirect stub to its registered destination', () => {
+    expect(redirectStubs.length).toBe(Object.keys(redirects).length)
+    for (const stub of redirectStubs) {
+      expect(stub.metadata?.alternates?.canonical).toBe(redirects[stub.route])
+    }
   })
 
   it('has a unique canonical per page', () => {

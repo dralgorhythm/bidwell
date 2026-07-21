@@ -42,7 +42,7 @@ export default function Page(): React.JSX.Element {
           <li>Full-stack problem solving and solution design</li>
           <li>
             <a
-              href='/career-guidance'
+              href='/services/career-coaching'
               className='underline hover:text-neutral-600 dark:hover:text-neutral-300'
             >
               Career coaching and development
