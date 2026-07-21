@@ -46,13 +46,13 @@
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.1",
-    "@vitest/coverage-v8": "^4.0.14",
-    "@vitest/ui": "^4.0.15",
+    "@vitest/coverage-v8": "^4.1.10",
+    "@vitest/ui": "^4.1.10",
     "audit-ci": "^7.1.0",
     "baseline-browser-mapping": "^2.9.4",
     "jsdom": "27.2.0",
     "next-image-export-optimizer": "^1.19.0",
-    "vitest": "4.0.14",
+    "vitest": "4.1.10",
     "vitest-axe": "^0.1.0",
     "webpack-bundle-analyzer": "^5.0.1"
   }
