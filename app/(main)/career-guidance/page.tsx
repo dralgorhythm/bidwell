@@ -22,14 +22,6 @@ export const metadata: Metadata = {
     title: 'Career Guidance | Bidwell Consulting',
     description: 'We provide career coaching and guidance for tech professionals.',
     type: 'website',
-    images: [
-      {
-        url: '/og?title=Career%20Guidance',
-        width: 1200,
-        height: 630,
-        alt: 'Career Guidance',
-      },
-    ],
   },
 }
 

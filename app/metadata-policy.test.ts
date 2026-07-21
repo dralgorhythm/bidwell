@@ -15,6 +15,9 @@ const pageModules = import.meta.glob('./**/page.tsx', { eager: true }) as Record
   { metadata?: Metadata }
 >
 
+// Modules only — importing them would execute ImageResponse; paths suffice.
+const ogImageFiles = Object.keys(import.meta.glob('./**/opengraph-image.tsx'))
+
 const pages = Object.entries(pageModules).map(([path, module]) => ({
   path,
   metadata: module.metadata,
@@ -55,6 +58,19 @@ describe('metadata policy', () => {
   it('has a unique description per page', () => {
     const descriptions = pages.map(page => page.metadata?.description)
     expect(new Set(descriptions).size).toBe(descriptions.length)
+  })
+
+  it('gives every openGraph-configured page a colocated opengraph-image', () => {
+    // A page-level openGraph config replaces the inherited parent openGraph
+    // object ENTIRELY — including any ancestor segment's file-convention
+    // image — so such pages ship no og:image unless the image file sits in
+    // their own segment. This is exactly how the home page lost its card.
+    const ogImageDirs = new Set(ogImageFiles.map(path => path.replace('/opengraph-image.tsx', '')))
+
+    for (const page of pages.filter(entry => entry.metadata?.openGraph)) {
+      const pageDir = page.path.replace('/page.tsx', '')
+      expect(ogImageDirs, `${page.path} defines openGraph`).toContain(pageDir)
+    }
   })
 
   it('noindexes coming-soon experiment stubs', () => {
