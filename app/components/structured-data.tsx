@@ -1,5 +1,5 @@
 import type React from 'react'
-import { baseUrl } from '../sitemap'
+import { baseUrl } from '../../lib/site-config'
 
 interface StructuredDataProps {
   type: 'website' | 'person' | 'organization' | 'article' | 'breadcrumb'

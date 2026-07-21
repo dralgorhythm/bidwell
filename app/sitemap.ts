@@ -1,6 +1,5 @@
+import { baseUrl } from '../lib/site-config'
 import { experiments } from './(main)/experiments/config'
-
-export const baseUrl = 'https://bidwell.info'
 
 export const dynamic = 'force-static'
 

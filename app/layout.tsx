@@ -5,8 +5,8 @@ import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from 'next'
 import type React from 'react'
 
+import { baseUrl } from '../lib/site-config'
 import StructuredData from './components/structured-data'
-import { baseUrl } from './sitemap'
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),

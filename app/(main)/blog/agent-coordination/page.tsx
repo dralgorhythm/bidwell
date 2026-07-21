@@ -1,4 +1,4 @@
-import { baseUrl } from 'app/sitemap'
+import { baseUrl } from 'lib/site-config'
 
 export const metadata = {
   title: 'Agent Coordination Structure',
