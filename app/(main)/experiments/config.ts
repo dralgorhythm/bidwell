@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+
 export interface Experiment {
   slug: string
   title: string
@@ -119,4 +121,26 @@ export function getActiveExperiments(): Experiment[] {
 
 export function getExperimentBySlug(slug: string): Experiment | undefined {
   return experiments.find(exp => exp.slug === slug)
+}
+
+/**
+ * Metadata for experiment pages driven by the registry: unique title and
+ * description per page, self-canonical, and noindex until an experiment
+ * ships (`status: 'active'`). Active experiments with bespoke pages may
+ * export richer metadata of their own instead.
+ */
+export function experimentMetadata(slug: string): Metadata {
+  const experiment = getExperimentBySlug(slug)
+  if (!experiment) {
+    throw new Error(`Unknown experiment slug: ${slug}`)
+  }
+  const metadata: Metadata = {
+    title: experiment.title,
+    description: experiment.description,
+    alternates: { canonical: `/experiments/${experiment.slug}` },
+  }
+  if (experiment.status !== 'active') {
+    metadata.robots = { index: false, follow: false }
+  }
+  return metadata
 }

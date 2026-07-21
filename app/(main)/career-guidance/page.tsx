@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     'interview preparation',
     'leadership development',
   ],
+  alternates: { canonical: '/career-guidance' },
   openGraph: {
     title: 'Career Guidance | Bidwell Consulting',
     description: 'We provide career coaching and guidance for tech professionals.',

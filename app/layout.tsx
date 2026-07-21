@@ -85,8 +85,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
         <JsonLd data={websiteSchema()} />
         <JsonLd data={organizationSchema()} />
         <JsonLd data={personSchema()} />
-        {/* Canonical URL */}
-        <link rel='canonical' href={baseUrl} />
         {/* Resource hints for better performance */}
         <meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />

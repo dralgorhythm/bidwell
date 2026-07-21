@@ -1,3 +1,7 @@
+import { experimentMetadata } from '../../../(main)/experiments/config'
+
+export const metadata = experimentMetadata('data-music-generator')
+
 export default function DataMusicGeneratorPage() {
   return (
     <div className='container mx-auto px-4 py-8'>

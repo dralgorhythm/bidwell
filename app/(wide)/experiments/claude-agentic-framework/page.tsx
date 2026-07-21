@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     'ai coding agents',
     'quality gates',
   ],
+  alternates: { canonical: '/experiments/claude-agentic-framework' },
   openGraph: {
     title: 'Claude Agentic Framework',
     description:

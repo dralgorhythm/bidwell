@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     'business optimization',
     'full-stack development',
   ],
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'Bidwell Consulting',
     description:
