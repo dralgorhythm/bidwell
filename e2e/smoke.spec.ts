@@ -31,28 +31,35 @@ test.describe('Critical User Flows', () => {
     await expect(page.getByRole('heading', { level: 1, name: /experiments/i })).toBeVisible()
 
     // 4. Verify experiment cards are displayed
-    await expect(page.getByText('Sample Experiment')).toBeVisible()
+    await expect(page.getByText('Claude Agentic Framework')).toBeVisible()
   })
 
-  test('experiment navigation flow', async ({ page }) => {
+  test('agentic framework experiment flow', async ({ page }) => {
     // 1. Navigate to Experiments Hub
     await page.goto('/experiments')
 
-    // 2. Click on Sample Experiment
-    await page.getByRole('link', { name: /sample experiment/i }).click()
-    await expect(page).toHaveURL(/experiments\/sample/)
+    // 2. Click on the Claude Agentic Framework experiment
+    await page.getByRole('link', { name: /claude agentic framework/i }).click()
+    await expect(page).toHaveURL(/experiments\/claude-agentic-framework/)
 
-    // 3. Verify Sample Experiment page loads with full-width layout
-    await expect(page.getByRole('heading', { level: 1, name: /full-width layouts/i })).toBeVisible()
+    // 3. Verify the page loads with its hero and GitHub link
+    await expect(
+      page.getByRole('heading', { level: 1, name: /claude agentic framework/i })
+    ).toBeVisible()
+    await expect(page.getByRole('link', { name: 'View on GitHub' })).toBeVisible()
 
-    // 4. Verify the back link works
-    await page.getByRole('link', { name: /back to experiments hub/i }).click()
-    await expect(page).toHaveURL(/experiments/)
+    // 4. Verify back links to the hub are present (header and footer)
+    const backLinks = page.getByRole('link', { name: /back to experiments/i })
+    await expect(backLinks).toHaveCount(2)
+
+    // 5. Verify the back link works
+    await backLinks.first().click()
+    await expect(page).toHaveURL(/\/experiments$/)
   })
 
   test('experiments have independent layout', async ({ page }) => {
-    // 1. Navigate to Sample Experiment
-    await page.goto('/experiments/sample')
+    // 1. Navigate to the Claude Agentic Framework experiment
+    await page.goto('/experiments/claude-agentic-framework')
 
     // 2. Verify the experiment page has the wide layout header
     await expect(page.getByRole('link', { name: 'Bidwell Consulting' })).toBeVisible()

@@ -22,11 +22,16 @@ describe('Experiments Index Page', () => {
   })
 
   describe('experiment cards', () => {
-    it('displays the sample experiment as active', () => {
+    it('displays the claude agentic framework experiment as active', () => {
       render(<ExperimentsPage />)
-      expect(screen.getByText(/sample experiment/i)).toBeInTheDocument()
-      // Active experiments show "Active" badge
-      expect(screen.getByText('Active')).toBeInTheDocument()
+      // The framework is the only active experiment, so exactly one "Active" badge
+      expect(screen.getAllByText('Active')).toHaveLength(1)
+      const frameworkHeading = screen.getByRole('heading', {
+        name: /claude agentic framework/i,
+      })
+      const frameworkLink = frameworkHeading.closest('a')
+      expect(frameworkLink).toHaveAttribute('href', '/experiments/claude-agentic-framework')
+      expect(frameworkLink).not.toHaveAttribute('aria-disabled', 'true')
     })
 
     it('displays coming-soon experiments with correct badge', () => {
@@ -62,16 +67,6 @@ describe('Experiments Index Page', () => {
       // Check for some category labels
       expect(screen.getAllByText('Auditory Interface').length).toBeGreaterThan(0)
       expect(screen.getAllByText('Living Systems').length).toBeGreaterThan(0)
-    })
-
-    it('active experiment links point to correct path', () => {
-      render(<ExperimentsPage />)
-      // Find the Sample Experiment card by its heading, then traverse to the link
-      const sampleHeading = screen.getByRole('heading', {
-        name: /sample experiment/i,
-      })
-      const sampleLink = sampleHeading.closest('a')
-      expect(sampleLink).toHaveAttribute('href', '/experiments/sample')
     })
 
     it('coming-soon experiments have disabled links', () => {
@@ -126,8 +121,8 @@ describe('Experiments Index Page', () => {
 
     it('experiment descriptions are present', () => {
       render(<ExperimentsPage />)
-      // Check for sample experiment description
-      expect(screen.getByText(/demonstration of the experiments framework/i)).toBeInTheDocument()
+      // Check for the claude-agentic-framework experiment description
+      expect(screen.getByText(/the governed swarm/i)).toBeInTheDocument()
     })
   })
 })

@@ -1,5 +1,4 @@
-import { axeTest, render, screen } from 'lib/test-utils'
-import { type Experiment, experiments, getActiveExperiments, getExperimentBySlug } from './config'
+import { experiments, getActiveExperiments, getExperimentBySlug } from './config'
 
 describe('Experiments Config', () => {
   describe('experiments array', () => {
@@ -28,6 +27,7 @@ describe('Experiments Config', () => {
 
     it('contains all expected experiment slugs', () => {
       const expectedSlugs = [
+        'claude-agentic-framework',
         'sonic-weather',
         'geological-rhythms',
         'data-music-generator',
@@ -40,7 +40,6 @@ describe('Experiments Config', () => {
         'global-anxiety-map',
         'devops-roi-monitor',
         'seasonal-mind',
-        'sample',
       ]
       const actualSlugs = experiments.map(exp => exp.slug)
       for (const slug of expectedSlugs) {
@@ -50,12 +49,12 @@ describe('Experiments Config', () => {
 
     it('has valid categories for categorized experiments', () => {
       const validCategories = [
+        'Agentic Engineering',
         'Auditory Interface',
         'Living Systems',
         'Economic & Social Pulse',
         'Quantified Organization',
         'Quantified Self',
-        'Demo',
       ]
       for (const experiment of experiments) {
         if (experiment.category) {
@@ -73,18 +72,20 @@ describe('Experiments Config', () => {
       }
     })
 
-    it('includes the sample experiment as active', () => {
+    it('includes the claude-agentic-framework experiment as active', () => {
       const activeExperiments = getActiveExperiments()
-      const sampleExperiment = activeExperiments.find(exp => exp.slug === 'sample')
-      expect(sampleExperiment).toBeDefined()
+      const frameworkExperiment = activeExperiments.find(
+        exp => exp.slug === 'claude-agentic-framework'
+      )
+      expect(frameworkExperiment).toBeDefined()
     })
   })
 
   describe('getExperimentBySlug', () => {
     it('returns experiment when slug exists', () => {
-      const experiment = getExperimentBySlug('sample')
+      const experiment = getExperimentBySlug('claude-agentic-framework')
       expect(experiment).toBeDefined()
-      expect(experiment?.slug).toBe('sample')
+      expect(experiment?.slug).toBe('claude-agentic-framework')
     })
 
     it('returns undefined for non-existent slug', () => {
