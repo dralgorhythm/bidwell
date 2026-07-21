@@ -8,6 +8,14 @@ export interface Experiment {
 
 export const experiments: Experiment[] = [
   {
+    slug: 'claude-agentic-framework',
+    title: 'Claude Agentic Framework',
+    description:
+      'The Governed Swarm - A drop-in operating system for Claude Code that turns one AI assistant into a coordinated, quality-gated engineering team.',
+    status: 'active',
+    category: 'Agentic Engineering',
+  },
+  {
     slug: 'sonic-weather',
     title: 'Sonic Weather',
     description:

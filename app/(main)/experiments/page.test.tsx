@@ -25,8 +25,18 @@ describe('Experiments Index Page', () => {
     it('displays the sample experiment as active', () => {
       render(<ExperimentsPage />)
       expect(screen.getByText(/sample experiment/i)).toBeInTheDocument()
-      // Active experiments show "Active" badge
-      expect(screen.getByText('Active')).toBeInTheDocument()
+      // Active experiments (claude-agentic-framework, sample) show "Active" badges
+      expect(screen.getAllByText('Active')).toHaveLength(2)
+    })
+
+    it('displays the claude agentic framework experiment as active', () => {
+      render(<ExperimentsPage />)
+      const frameworkHeading = screen.getByRole('heading', {
+        name: /claude agentic framework/i,
+      })
+      const frameworkLink = frameworkHeading.closest('a')
+      expect(frameworkLink).toHaveAttribute('href', '/experiments/claude-agentic-framework')
+      expect(frameworkLink).not.toHaveAttribute('aria-disabled', 'true')
     })
 
     it('displays coming-soon experiments with correct badge', () => {
@@ -102,8 +112,8 @@ describe('Experiments Index Page', () => {
       render(<ExperimentsPage />)
       // Each experiment card should have an h2 heading
       const h2Elements = screen.getAllByRole('heading', { level: 2 })
-      // Should have at least 13 h2s (one for each experiment card)
-      expect(h2Elements.length).toBeGreaterThanOrEqual(13)
+      // Should have at least 14 h2s (one for each experiment card)
+      expect(h2Elements.length).toBeGreaterThanOrEqual(14)
     })
 
     it('coming-soon links are properly marked as disabled', () => {

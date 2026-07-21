@@ -50,6 +50,25 @@ test.describe('Critical User Flows', () => {
     await expect(page).toHaveURL(/experiments/)
   })
 
+  test('agentic framework experiment flow', async ({ page }) => {
+    // 1. Navigate to Experiments Hub
+    await page.goto('/experiments')
+
+    // 2. Click on the Claude Agentic Framework experiment
+    await page.getByRole('link', { name: /claude agentic framework/i }).click()
+    await expect(page).toHaveURL(/experiments\/claude-agentic-framework/)
+
+    // 3. Verify the page loads with its hero and GitHub link
+    await expect(
+      page.getByRole('heading', { level: 1, name: /claude agentic framework/i })
+    ).toBeVisible()
+    await expect(page.getByRole('link', { name: 'View on GitHub' })).toBeVisible()
+
+    // 4. Verify back links to the hub are present (header and footer)
+    const backLinks = page.getByRole('link', { name: /back to experiments/i })
+    await expect(backLinks).toHaveCount(2)
+  })
+
   test('experiments have independent layout', async ({ page }) => {
     // 1. Navigate to Sample Experiment
     await page.goto('/experiments/sample')

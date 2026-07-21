@@ -1,10 +1,9 @@
-import { axeTest, render, screen } from 'lib/test-utils'
-import { type Experiment, experiments, getActiveExperiments, getExperimentBySlug } from './config'
+import { experiments, getActiveExperiments, getExperimentBySlug } from './config'
 
 describe('Experiments Config', () => {
   describe('experiments array', () => {
-    it('contains 13 experiments', () => {
-      expect(experiments).toHaveLength(13)
+    it('contains 14 experiments', () => {
+      expect(experiments).toHaveLength(14)
     })
 
     it('has required fields for each experiment', () => {
@@ -28,6 +27,7 @@ describe('Experiments Config', () => {
 
     it('contains all expected experiment slugs', () => {
       const expectedSlugs = [
+        'claude-agentic-framework',
         'sonic-weather',
         'geological-rhythms',
         'data-music-generator',
@@ -50,6 +50,7 @@ describe('Experiments Config', () => {
 
     it('has valid categories for categorized experiments', () => {
       const validCategories = [
+        'Agentic Engineering',
         'Auditory Interface',
         'Living Systems',
         'Economic & Social Pulse',
@@ -77,6 +78,14 @@ describe('Experiments Config', () => {
       const activeExperiments = getActiveExperiments()
       const sampleExperiment = activeExperiments.find(exp => exp.slug === 'sample')
       expect(sampleExperiment).toBeDefined()
+    })
+
+    it('includes the claude-agentic-framework experiment as active', () => {
+      const activeExperiments = getActiveExperiments()
+      const frameworkExperiment = activeExperiments.find(
+        exp => exp.slug === 'claude-agentic-framework'
+      )
+      expect(frameworkExperiment).toBeDefined()
     })
   })
 
