@@ -47,8 +47,10 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 If you are an AI agent or looking for reusable skills and instructions:
 
-- **[.github/skills](.github/skills)**: Reusable capabilities.
-- **[.github/instructions](.github/instructions)**: Detailed procedural guides.
-- **[.github/agents](.github/agents)**: Agent definitions and personas.
+- **[CLAUDE.md](CLAUDE.md)**: Project context, commands, and core principles.
+- **[AGENTS.md](AGENTS.md)**: Instructions for any coding agent (task tracking, session completion).
+- **[.claude/skills](.claude/skills)**: Reusable workflow and knowledge skills.
+- **[.claude/rules](.claude/rules)**: Always-loaded standards (quality, security, debugging).
 
-Please refer to **[.github/instructions/tech-strategy.instructions.md](.github/instructions/tech-strategy.instructions.md)** for the single source of truth regarding technology choices.
+This repo follows the [claude-agentic-framework](https://github.com/dralgorhythm/claude-agentic-framework) (v3.1.0).
+Please refer to **[.claude/rules/tech-strategy.md](.claude/rules/tech-strategy.md)** for the single source of truth regarding technology choices.

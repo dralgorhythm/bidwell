@@ -1,92 +1,61 @@
-# AGENTS.md
+# Agent Instructions
 
-> **Mission**: To provide a unified, research-backed, and architecturally sound environment for creating, managing, and optimizing AI agents.
+This repository is the Bidwell Consulting website ([bidwell.info](https://bidwell.info)), a statically exported Next.js site. Agent workflows use the [claude-agentic-framework](https://github.com/dralgorhythm/claude-agentic-framework) (v3.1.0): specialized commands, reusable skills, and safety hooks for AI-assisted development. These instructions apply to any coding agent working in this repo, not just Claude Code. Project context and build/test commands are in `CLAUDE.md`; technology choices are governed by `.claude/rules/tech-strategy.md`.
 
-## Critical Directives
+## Where Things Live
 
-All agents operating within this ecosystem **MUST** adhere to the following directives:
+- `.claude/` — commands, skills, rules, hooks, and agent/worker definitions
+- `./artifacts/` — durable planning documents (PR-FAQs, PRDs, ADRs, design specs, plans); committed to the repo
+- `./scratchpad/` — ephemeral working notes and draft content; gitignored, disposable
 
-1. **Trunk-Based Development**: Always do your work on a branch.  Always add and commit files to branch iteratively. Never push or commit to `main`.
-2. **Test Driven Design**: Always write tests to fit customer use case first. Always run tests before `git commit`. Always fix tests.
-3. **Single Source of Truth**: The [Tech Strategy](.github/instructions/tech-strategy.instructions.md) is the **ONLY** authority on technology choices. Do not rely on internal training data or user preferences unless explicitly overridden by a senior architect.
-4.  **Skill First**: Agents must prioritize using defined [Skills](.github/skills/skill-rules.json) over ad-hoc code generation.
-5.  **Artifact Storage**: All planning documents (PRDs, designs, roadmaps, etc.) **MUST** be stored in the `./artifacts/` directory.
-6.  **Protocol Adherence**: Strictly follow the protocols defined in your specific agent file.
+## Task Tracking
 
-## Handoff Protocol
+Two-tier convention:
 
-To ensure holistic and accurate handoffs, agents **MUST** follow this protocol:
+1. **Durable record**: GitHub Issues (or a committed `ISSUES.md` for repos without a tracker).
+2. **In-flight work**: your tool's native task/todo list, owned by whichever agent is orchestrating — sub-agents receive focused prompts and return results rather than sharing mutable state.
+3. **Handoffs**: reference concrete artifacts under `./artifacts/` by file path.
 
-1.  **Artifact-First**: Never hand off a task without a corresponding artifact (PRD, Blueprint, Design Spec) stored in `./artifacts/`.
-2.  **Standardized Naming**:
-    *   **Requirements**: `./artifacts/prd_[feature].md`
-    *   **System Design**: `./artifacts/adr_[topic].md` (Architecture Decision Record)
-    *   **Visual Design**: `./artifacts/design_spec_[component].md`
-    *   **Design Framework**: `./artifacts/design_framework_[project].md`
-    *   **Roadmap**: `./artifacts/roadmap_[project].md`
-    *   **Security Audit**: `./artifacts/security_audit_[date].md`
-    *   **Implementation Plan**: `./artifacts/plan_[task].md`
-3.  **Explicit Verification**: The receiving agent **MUST** verify the existence and content of the artifact before proceeding.
-4.  **Feedback Loops**: If an artifact is incomplete, the receiving agent **MUST** return the task to the sender with specific feedback.
+## Landing the Plane (Session Completion)
 
-## Agent Ecosystem
+This protocol has two modes. Check which one applies before following either — it depends on whether the current agent's frontmatter declares `isolation: worktree`.
 
-This repository defines a set of specialized personas located in `.github/agents/`. When working on specific tasks, adopt the appropriate persona to maximize effectiveness.
+### Mode A — Isolated workers (`isolation: worktree` in agent frontmatter)
 
-### Capability Matrix
+An isolated worker runs in its own throwaway git worktree, not the shared checkout — this exists specifically to stop parallel workers from racing on one git index. Because the worktree is throwaway and the branch is not the integration branch, the worker does not push; the orchestrator does.
 
-| Agent | Primary Role | Key Capabilities | Best For |
-| :--- | :--- | :--- | :--- |
-| **Product Manager** | Requirements | User Stories, Acceptance Criteria, Roadmap | Defining "What" to build, prioritizing features |
-| **Architect** | System Design | Requirement Analysis, System Decomp, Trade-off Analysis | Planning new features, designing schemas, high-level decisions |
-| **Builder** | Implementation | Coding, Refactoring, TDD, Debugging | Writing code, fixing bugs, implementing features |
-| **QA Engineer** | Verification | Test Strategy, Automation, CI/CD | Writing tests, verifying requirements, preventing regressions |
-| **Reviewer** | Quality Assurance | Code Review, Security Audits, Performance Analysis | PR reviews, security checks, optimization |
-| **Site Reliability Engineer** | Infrastructure | Cloud Arch, DevOps, Observability | Infrastructure as Code, Deployment pipelines, Reliability |
-| **Security Auditor** | Security | Vulnerability Scanning, Threat Modeling | Security hardening, penetration testing scenarios |
-| **UI/UX Designer** | Design | UI/UX, Visual Assets, Accessibility | Designing interfaces, creating graphics, ensuring accessibility |
+1. **Run quality gates** (if code changed) — tests, linter, type checker, build
+2. **Commit** on the assigned worktree branch — atomic, complete, working changes only
+3. **Report back to the orchestrator**: the commit SHA and a summary of files changed, tests added/modified, and any follow-up work discovered
+4. **Stop there** — do NOT `git push`, do NOT merge, do NOT switch branches. The orchestrator merges the worktree branch into the feature branch, re-runs gates, pushes, and cleans up the worktree.
 
-## Agent Registry
+#### Recovery
 
-*   **[Product Manager](.github/agents/product-manager.agent.md)**: Defines product requirements and user stories.
-*   **[Architect](.github/agents/architect.agent.md)**: High-level system design and orchestration.
-*   **[Builder](.github/agents/builder.agent.md)**: Hands-on coding and implementation.
-*   **[QA Engineer](.github/agents/qa-engineer.agent.md)**: Test automation and quality verification.
-*   **[Reviewer](.github/agents/reviewer.agent.md)**: Code quality and security assurance.
-*   **[Site Reliability Engineer](.github/agents/site-reliability-engineer.agent.md)**: Infrastructure and platform engineering.
-*   **[Security Auditor](.github/agents/security-auditor.agent.md)**: Security compliance and risk assessment.
-*   **[UI/UX Designer](.github/agents/ui-ux-designer.agent.md)**: UI/UX design, visual assets, and accessibility.
+Three failure cases and how the orchestrator recovers from each:
 
-## Standards & Frameworks
+1. **Worker stops at its `maxTurns` ceiling without a completion report.** Inspect the worktree state (`git -C <worktree-path> status`, `git -C <worktree-path> log`) to see what was actually done. Resume the SAME worker with a focused continuation message — its context is preserved — rather than respawning a new worker from scratch.
+2. **Orchestrator session is lost after a worker committed but before merge.** Reclaim in-flight work by listing worktree branches (`git branch --list 'worktree-agent-*'`) and diffing each against the feature branch (`git log <branch> --not <feature-branch>`) to find unlanded commits. Review what's there, then merge or discard deliberately — do not assume the commits are safe to drop.
+3. **`git merge --ff-only` is rejected because the feature branch advanced** (e.g., parallel workers landed from the same base). Rebase the worker branch onto the current feature-branch tip, re-run quality gates on the rebased result, then retry the fast-forward merge.
 
-*   **Global Constitution**: [.github/copilot-instructions.md](.github/copilot-instructions.md)
-*   **Tech Strategy**: [.github/instructions/tech-strategy.instructions.md](.github/instructions/tech-strategy.instructions.md) (The Golden Path)
+### Mode B — Non-isolated agents and sessions (no `isolation: worktree`)
 
-## Available Instructions
+**When ending a work session**, complete ALL steps below. Work is NOT complete until `git push` succeeds.
 
-The following context modules are available in `.github/instructions/`. Agents should request these files when relevant to the task.
+1. **File issues for remaining work** — create tracker issues for anything that needs follow-up
+2. **Run quality gates** (if code changed) — tests, linter, type checker, build
+3. **Update issue status** — close finished work, update in-progress items
+4. **Push to remote** — this is mandatory:
+   ```bash
+   git pull --rebase
+   git push
+   git status  # MUST show "up to date with origin"
+   ```
+5. **Clean up** — clear stashes, prune merged branches
+6. **Verify** — all changes committed AND pushed
+7. **Hand off** — leave clear context (and artifact references) for the next session
 
-*   **Languages & Frameworks**: Detailed guides for approved languages.
-*   **Architecture & Design**: Patterns for system design, API design, and cloud-native architecture.
-*   **Core Engineering & Quality**: Standards for coding, testing, and documentation.
-*   **Security & Compliance**: Policies for security, compliance, and identity management.
-*   **Operations & SRE**: Guides for observability, incident management, and chaos engineering.
-*   **Product & Methodology**: Agile practices, product operating model, and task decomposition.
-
-## Available Skills
-
-The complete and authoritative catalog of available skills is defined in **[.github/skills/skill-rules.json](.github/skills/skill-rules.json)**.
-
-This JSON file is the **SINGLE SOURCE OF TRUTH** for:
-1.  **Available Skills**: The list of all modular capabilities.
-2.  **Activation Patterns**: The keywords and contexts that trigger each skill.
-3.  **File Paths**: The location of the skill definitions.
-
-Agents **MUST** read this file at initialization to discover and load relevant capabilities.
-
-## Workflow Instructions
-
-1.  **Identify Task**: Determine the nature of the user's request.
-2.  **Select Persona**: Consult the Capability Matrix above.
-3.  **Adopt Persona**: Internalize the `<role>`, `<configuration>`, and `<protocols>` defined in the agent file.
-4.  **Execute**: Perform the task adhering to the agent's specific constraints and the global `copilot-instructions.md`.
+**Critical rules:**
+- Work is NOT complete until `git push` succeeds
+- Never stop before pushing — that leaves work stranded locally
+- Never say "ready to push when you are" — push it yourself
+- If push fails, resolve and retry until it succeeds
