@@ -1,3 +1,5 @@
+import { baseUrl } from 'app/sitemap'
+
 export const metadata = {
   title: 'Agent Coordination Structure',
   description: 'A framework for managing AI agents within the Bidwell ecosystem.',
@@ -20,8 +22,8 @@ export default function AgentCoordinationPost() {
             datePublished: metadata.publishedAt,
             dateModified: metadata.publishedAt,
             description: metadata.description,
-            image: `https://bidwell.consulting${metadata.image}`,
-            url: `https://bidwell.consulting/blog/agent-coordination`,
+            image: `${baseUrl}${metadata.image}`,
+            url: `${baseUrl}/blog/agent-coordination`,
             author: {
               '@type': 'Person',
               name: 'Bidwell Consulting',
