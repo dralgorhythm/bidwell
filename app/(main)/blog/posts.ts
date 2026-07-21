@@ -1,11 +1,13 @@
 /**
- * Blog post registry — the single source of truth for post metadata.
+ * Blog post registry - the single source of truth for post metadata.
  * Pure data with no imports: app/sitemap.ts consumes this and must stay
  * executable by tsx (health-check generation) outside the Next bundler.
  */
 export interface Post {
   slug: string
   title: string
+  /** Search-targeted <title> when it should differ from the on-page h1. */
+  seoTitle: string
   description: string
   /** ISO date (YYYY-MM-DD) the post was first published. Never derived from build time. */
   publishedAt: string
@@ -14,7 +16,9 @@ export interface Post {
 export const agentCoordinationPost: Post = {
   slug: 'agent-coordination',
   title: 'Agent Coordination Structure',
-  description: 'A framework for managing AI agents within the Bidwell ecosystem.',
+  seoTitle: 'Coordinating AI Coding Agents',
+  description:
+    'A practical structure for coordinating AI coding agents - critical directives, artifact handoffs, and personas.',
   publishedAt: '2025-11-27',
 }
 

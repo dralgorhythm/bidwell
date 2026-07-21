@@ -7,7 +7,7 @@ export const dynamic = 'force-static'
 /**
  * Only indexable pages belong here: coming-soon experiment stubs are
  * noindexed and excluded, and new routes are added in the same PR that
- * ships the page — the post-deploy health check curls every listed URL.
+ * ships the page - the post-deploy health check curls every listed URL.
  *
  * Contract: scripts/generate-health-checks.ts consumes this default export
  * and requires an absolute `url` and numeric `priority` on every entry.
@@ -17,7 +17,13 @@ export const dynamic = 'force-static'
 export default async function sitemap() {
   const routes = [
     { url: baseUrl, priority: 1.0 },
-    { url: `${baseUrl}/career-guidance`, priority: 0.8 },
+    { url: `${baseUrl}/services`, priority: 0.8 },
+    { url: `${baseUrl}/services/software-consulting`, priority: 0.9 },
+    { url: `${baseUrl}/services/ai-consulting`, priority: 0.9 },
+    { url: `${baseUrl}/services/engineering-practice-improvement`, priority: 0.9 },
+    { url: `${baseUrl}/services/career-coaching`, priority: 0.9 },
+    { url: `${baseUrl}/about`, priority: 0.6 },
+    { url: `${baseUrl}/contact`, priority: 0.7 },
     { url: `${baseUrl}/blog`, priority: 0.7 },
     ...posts.map(post => ({
       url: `${baseUrl}/blog/${post.slug}`,

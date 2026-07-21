@@ -5,7 +5,8 @@ import { formatPostDate, posts } from './posts'
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Updates and insights from the Bidwell Consulting team.',
+  description:
+    'Notes on software engineering, AI coding agents, and engineering practice from Jordan Winters, a software consultant in Minneapolis.',
   alternates: { canonical: '/blog' },
 }
 
@@ -29,6 +30,13 @@ export default function BlogPage() {
           </Link>
         ))}
       </div>
+      <p className='mt-8 text-sm text-neutral-600 dark:text-neutral-400'>
+        Subscribe via{' '}
+        <a href='/rss.xml' className='underline'>
+          RSS
+        </a>
+        .
+      </p>
     </section>
   )
 }

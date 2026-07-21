@@ -5,28 +5,26 @@ import { GeistSans } from 'geist/font/sans'
 import type { Metadata, Viewport } from 'next'
 import type React from 'react'
 
-import { baseUrl } from '../lib/site-config'
+import { baseUrl, siteConfig } from '../lib/site-config'
 import { organizationSchema, personSchema, websiteSchema } from '../lib/structured-data'
 import JsonLd from './components/structured-data'
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Bidwell Consulting - Software Engineering & Organizational Consulting',
+    default: 'Bidwell Consulting | Twin Cities Software Consulting',
     template: '%s | Bidwell Consulting',
   },
-  description:
-    'Expert software engineering and organizational consulting services. Specialized in technical problem solving, system architecture, and business optimization. Portfolio showcasing innovative solutions and development expertise.',
+  description: siteConfig.description,
   keywords: [
-    'software engineering',
-    'organizational consulting',
-    'technical consulting',
-    'system architecture',
-    'software development',
-    'business optimization',
-    'portfolio',
+    'software consulting',
+    'twin cities',
+    'minneapolis',
+    'ai consulting',
+    'engineering practice improvement',
+    'career coaching',
   ],
-  authors: [{ name: 'Bidwell Consulting' }],
+  authors: [{ name: 'Jordan Winters' }],
   creator: 'Bidwell Consulting',
   publisher: 'Bidwell Consulting',
   formatDetection: {
@@ -35,9 +33,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: 'Bidwell Consulting - Software Engineering & Organizational Consulting',
-    description:
-      'Expert software engineering and organizational consulting services. Specialized in technical problem solving, system architecture, and business optimization.',
+    title: 'Bidwell Consulting | Twin Cities Software Consulting',
+    description: siteConfig.description,
     url: baseUrl,
     siteName: 'Bidwell Consulting',
     locale: 'en_US',
@@ -57,7 +54,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  // Search Console verification intentionally absent — verify via DNS when set up.
+  // Search Console verification intentionally absent - verify via DNS when set up.
 }
 
 export const viewport: Viewport = {
@@ -86,6 +83,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
         <JsonLd data={websiteSchema()} />
         <JsonLd data={organizationSchema()} />
         <JsonLd data={personSchema()} />
+        <link
+          rel='alternate'
+          type='application/rss+xml'
+          title='Bidwell Consulting Blog'
+          href='/rss.xml'
+        />
         {/* Security headers */}
         <meta httpEquiv='X-Content-Type-Options' content='nosniff' />
         <meta httpEquiv='X-Frame-Options' content='DENY' />

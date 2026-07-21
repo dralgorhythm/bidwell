@@ -14,7 +14,7 @@ import { absoluteUrl, baseUrl, siteConfig } from './site-config'
 
 /**
  * JSON-LD builders for every schema the site emits, linked into one entity
- * graph via stable `@id`s. All facts come from `siteConfig` — never inline
+ * graph via stable `@id`s. All facts come from `siteConfig` - never inline
  * name/location/contact literals in a schema.
  */
 const ORGANIZATION_ID = `${baseUrl}/#organization`
@@ -49,7 +49,8 @@ export function organizationSchema(): WithContext<ProfessionalService> {
     name: siteConfig.name,
     description: siteConfig.description,
     url: baseUrl,
-    foundingDate: '2024',
+    email: siteConfig.email,
+    foundingDate: '2025-03-01',
     address: {
       '@type': 'PostalAddress',
       addressLocality: siteConfig.location.locality,
@@ -60,7 +61,7 @@ export function organizationSchema(): WithContext<ProfessionalService> {
     founder: { '@id': PERSON_ID },
     sameAs: [...siteConfig.sameAs],
     // Organization types have no serviceType property (that lives on Service,
-    // emitted per service page) — knowsAbout is the entity-level equivalent.
+    // emitted per service page) - knowsAbout is the entity-level equivalent.
     knowsAbout: [
       'Software Consulting',
       'AI Consulting',
@@ -77,12 +78,17 @@ export function personSchema(): WithContext<Person> {
     '@id': PERSON_ID,
     name: siteConfig.founder.name,
     jobTitle: siteConfig.founder.jobTitle,
-    url: baseUrl,
+    url: absoluteUrl('/about'),
     worksFor: { '@id': ORGANIZATION_ID },
     sameAs: [...siteConfig.founder.sameAs],
     knowsAbout: [
       'Software Engineering',
       'System Architecture',
+      'Cloud Infrastructure (AWS, GCP)',
+      'Infrastructure as Code (Terraform)',
+      'Container Platforms (ECS, Kubernetes)',
+      'Observability (Datadog, ELK)',
+      'FinOps & Cloud Cost Optimization',
       'AI & Agent Engineering',
       'Engineering Practice Improvement',
       'Organizational Consulting',

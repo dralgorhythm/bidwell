@@ -23,10 +23,22 @@ describe('sitemap', () => {
     }
   })
 
-  it('includes the career-guidance sales page', async () => {
+  it('includes the services hub and all four service pages, never the redirect stub', async () => {
     const urls = (await entries()).map(route => route.url)
 
-    expect(urls).toContain('https://bidwell.info/career-guidance')
+    expect(urls).toContain('https://bidwell.info/services')
+    expect(urls).toContain('https://bidwell.info/services/software-consulting')
+    expect(urls).toContain('https://bidwell.info/services/ai-consulting')
+    expect(urls).toContain('https://bidwell.info/services/engineering-practice-improvement')
+    expect(urls).toContain('https://bidwell.info/services/career-coaching')
+    expect(urls).not.toContain('https://bidwell.info/career-guidance')
+  })
+
+  it('includes the about and contact pages', async () => {
+    const urls = (await entries()).map(route => route.url)
+
+    expect(urls).toContain('https://bidwell.info/about')
+    expect(urls).toContain('https://bidwell.info/contact')
   })
 
   it('includes active experiments and excludes noindexed coming-soon stubs', async () => {

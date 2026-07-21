@@ -7,7 +7,7 @@ const githubUrl = 'https://github.com/dralgorhythm/claude-agentic-framework'
 export const metadata: Metadata = {
   title: 'Claude Agentic Framework',
   description:
-    'The Governed Swarm — a drop-in operating system for Claude Code that turns one AI assistant into a coordinated, quality-gated engineering team.',
+    'The Governed Swarm - a drop-in operating system for Claude Code that turns one AI assistant into a coordinated, quality-gated engineering team.',
   keywords: [
     'claude agentic framework',
     'claude code',
@@ -32,13 +32,13 @@ const terminalLines = [
   },
   { prompt: '/swarm-execute', result: '5 workers finished · quality gates green' },
   { prompt: '/swarm-review', result: 'security · architecture · tests · approved' },
-  { prompt: 'git push', result: "shipped — work isn't done until it's pushed" },
+  { prompt: 'git push', result: "shipped - work isn't done until it's pushed" },
 ]
 
 const principles = [
   {
     title: 'Speed and stability reinforce each other',
-    body: "Quality gates aren't a tax on velocity — they're what makes sustained velocity possible. Every change passes tests, lint, types, and build before it lands, so the next change starts on solid ground.",
+    body: "Quality gates aren't a tax on velocity - they're what makes sustained velocity possible. Every change passes tests, lint, types, and build before it lands, so the next change starts on solid ground.",
   },
   {
     title: 'AI amplifies existing discipline',
@@ -55,36 +55,36 @@ const cycle = [
     step: '01',
     name: 'Think',
     commands: ['/architect', '/swarm-plan'],
-    body: 'One planning agent studies the goal, records decisions as durable artifacts — PRDs, ADRs, plans — and decomposes the work into small, parallelizable tasks.',
+    body: 'One planning agent studies the goal, records decisions as durable artifacts - PRDs, ADRs, plans - and decomposes the work into small, parallelizable tasks.',
   },
   {
     step: '02',
     name: 'Build',
     commands: ['/swarm-execute'],
-    body: 'Focused workers implement in parallel. Each gets a self-contained prompt, a bounded turn budget, and a model tier matched to its job — and no worker can spawn workers of its own.',
+    body: 'Focused workers implement in parallel. Each gets a self-contained prompt, a bounded turn budget, and a model tier matched to its job - and no worker can spawn workers of its own.',
   },
   {
     step: '03',
     name: 'Review',
     commands: ['/swarm-review'],
-    body: "Adversarial reviewers attack the diff from independent angles — correctness, security, architecture, tests. Run it more than once; it's cheaper than an incident.",
+    body: "Adversarial reviewers attack the diff from independent angles - correctness, security, architecture, tests. Run it more than once; it's cheaper than an incident.",
   },
   {
     step: '04',
     name: 'Ship',
     commands: ['git push'],
-    body: 'Tests, linter, type checker, and build must pass before every commit — and the work is not done until the push succeeds.',
+    body: 'Tests, linter, type checker, and build must pass before every commit - and the work is not done until the push succeeds.',
   },
 ]
 
 const inTheBox = [
   {
     title: '10 commands',
-    body: 'Six single-agent expert modes — architect, builder, QA engineer, security auditor, UI/UX designer, code auditor — plus four swarm orchestrators for planning, execution, review, and research.',
+    body: 'Six single-agent expert modes - architect, builder, QA engineer, security auditor, UI/UX designer, code auditor - plus four swarm orchestrators for planning, execution, review, and research.',
   },
   {
     title: '5 worker types',
-    body: 'Explorer, builder, reviewer, researcher, and architect workers. Model tiers are pinned in each agent’s frontmatter — premium reasoning where judgment matters, cheaper models for mechanical work.',
+    body: 'Explorer, builder, reviewer, researcher, and architect workers. Model tiers are pinned in each agent’s frontmatter - premium reasoning where judgment matters, cheaper models for mechanical work.',
   },
   {
     title: '24 skills',
@@ -92,7 +92,7 @@ const inTheBox = [
   },
   {
     title: 'Layered rules',
-    body: 'Golden-path tech strategy, code-quality standards, a debugging protocol, and security requirements — roughly 5k tokens, loaded into every session automatically.',
+    body: 'Golden-path tech strategy, code-quality standards, a debugging protocol, and security requirements - roughly 5k tokens, loaded into every session automatically.',
   },
   {
     title: 'Fail-soft safety hooks',
@@ -110,7 +110,7 @@ const ladder = [
     level: 'Prose rules',
     strength: 'Advisory',
     accent: 'border-neutral-300 dark:border-neutral-700',
-    body: 'CLAUDE.md and the rules directory are read at the start of every session. They set direction — but nothing mechanically checks compliance.',
+    body: 'CLAUDE.md and the rules directory are read at the start of every session. They set direction - but nothing mechanically checks compliance.',
   },
   {
     rung: '2',
@@ -143,10 +143,10 @@ const stats = [
 ]
 
 const qualityGates = [
-  'tsc --noEmit — strict type-check',
-  'biome check — lint and format',
-  'vitest run — unit tests with axe accessibility assertions',
-  'next build — full static export',
+  'tsc --noEmit - strict type-check',
+  'biome check - lint and format',
+  'vitest run - unit tests with axe accessibility assertions',
+  'next build - full static export',
 ]
 
 function CommandChip({ children }: { children: string }): React.JSX.Element {
@@ -172,7 +172,7 @@ export default function ClaudeAgenticFrameworkPage(): React.JSX.Element {
           <p className='text-xl md:text-2xl text-blue-200/90 mb-6'>The Governed Swarm</p>
           <p className='text-lg text-neutral-300 max-w-2xl mx-auto mb-10'>
             A drop-in template for Claude Code that turns a single AI assistant into a coordinated
-            engineering team — with the guardrails to trust what it ships.
+            engineering team - with the guardrails to trust what it ships.
           </p>
 
           <div className='max-w-2xl mx-auto mb-10 rounded-xl bg-black/60 border border-white/10 p-5 text-left font-mono text-sm leading-relaxed overflow-x-auto'>
@@ -220,7 +220,7 @@ export default function ClaudeAgenticFrameworkPage(): React.JSX.Element {
           </h2>
           <p className='text-center text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mb-12'>
             An unsupervised coding agent is a firehose: fast, confident, and indifferent to your
-            standards. The interesting problem isn't getting AI to write code — it's making the
+            standards. The interesting problem isn't getting AI to write code - it's making the
             output trustworthy. The framework's bet: treat the agent like an engineering
             organization, not an autocomplete.
           </p>
@@ -308,7 +308,7 @@ export default function ClaudeAgenticFrameworkPage(): React.JSX.Element {
           </h2>
           <p className='text-center text-neutral-600 dark:text-neutral-400 mb-12'>
             Prose instructions are suggestions to a language model. The framework's sharpest idea is
-            admitting that — and pushing anything that must be true down the ladder until a machine
+            admitting that - and pushing anything that must be true down the ladder until a machine
             checks it.
           </p>
 
@@ -360,7 +360,7 @@ export default function ClaudeAgenticFrameworkPage(): React.JSX.Element {
               This site is the lab
             </h2>
             <p className='text-neutral-600 dark:text-neutral-400 mb-4'>
-              bidwell.info runs on the framework it's describing — v3.1.0, checked into this
+              bidwell.info runs on the framework it's describing - v3.1.0, checked into this
               repository's <code className='font-mono text-sm'>.claude</code> directory. The
               experiments hub you arrived from was specified in a PRD, architected in an ADR, and
               built and reviewed by the swarm.
@@ -404,7 +404,7 @@ export default function ClaudeAgenticFrameworkPage(): React.JSX.Element {
           <p className='text-neutral-600 dark:text-neutral-400 mb-8'>
             The recommended install is a raw drop-in: clone the framework and run its init script
             against your project. It sets up the <code className='font-mono text-sm'>.claude</code>{' '}
-            directory — commands, skills, agents, rules, hooks — and leaves the rest of your repo
+            directory - commands, skills, agents, rules, hooks - and leaves the rest of your repo
             alone.
           </p>
 
@@ -417,7 +417,7 @@ cd your-project
           </pre>
 
           <p className='text-sm text-neutral-500 dark:text-neutral-400 mb-8'>
-            Read the init script before you run it — the framework would tell you to do the same.
+            Read the init script before you run it - the framework would tell you to do the same.
             Prefer a lighter footprint? Install it as a Claude Code plugin instead:{' '}
             <code className='font-mono'>/plugin install agentic-framework@agentic-framework</code>
           </p>

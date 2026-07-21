@@ -6,5 +6,5 @@ export const size = OG_SIZE
 export const contentType = 'image/png'
 
 export default function OpengraphImage() {
-  return ogCard('Claude Agentic Framework', 'The Governed Swarm — Bidwell Consulting')
+  return ogCard('Claude Agentic Framework', 'The Governed Swarm - Bidwell Consulting')
 }

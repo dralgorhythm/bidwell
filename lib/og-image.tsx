@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og'
 /**
  * Shared factory for the per-route opengraph-image.tsx files. Rendered at
  * build time (static export), so every card is a plain function of its
- * title/subtitle — no query params.
+ * title/subtitle - no query params.
  */
 export const OG_SIZE = { width: 1200, height: 630 }
 

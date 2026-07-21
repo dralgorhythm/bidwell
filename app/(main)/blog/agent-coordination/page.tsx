@@ -1,12 +1,13 @@
 import { siteConfig } from 'lib/site-config'
 import { blogPostingSchema } from 'lib/structured-data'
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Breadcrumb from '../../../components/breadcrumb'
 import JsonLd from '../../../components/structured-data'
 import { formatPostDate, agentCoordinationPost as post } from '../posts'
 
 export const metadata: Metadata = {
-  title: post.title,
+  title: post.seoTitle,
   description: post.description,
   alternates: { canonical: `/blog/${post.slug}` },
   openGraph: {
@@ -33,19 +34,18 @@ export default function AgentCoordinationPost() {
       <h1 className='title font-semibold text-2xl tracking-tighter'>{post.title}</h1>
       <div className='flex justify-between items-center mt-2 mb-8 text-sm'>
         <p className='text-sm text-neutral-600 dark:text-neutral-400'>
-          {formatPostDate(post.publishedAt)}
+          <Link href='/about' className='underline'>
+            Jordan Winters
+          </Link>{' '}
+          · {formatPostDate(post.publishedAt)}
         </p>
       </div>
       <article className='prose'>
         <p>
           In my day-job, I'm a leader of{' '}
-          <a
-            href='https://www.linkedin.com/in/wintersjordan/'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
+          <Link href='/services/engineering-practice-improvement'>
             Engineering Practice Improvement
-          </a>
+          </Link>
           . I help teams build better software - faster. We can talk more about my feelings on all
           of that soon
           <a href='#fn1' id='ref1'>
@@ -408,6 +408,13 @@ export default function AgentCoordinationPost() {
           </ol>
         </div>
       </article>
+      <p className='mt-12 pt-6 border-t border-neutral-200 dark:border-neutral-800 text-sm text-neutral-600 dark:text-neutral-400'>
+        I help teams put this into practice - see{' '}
+        <Link href='/services/ai-consulting' className='underline'>
+          AI &amp; agent engineering consulting
+        </Link>
+        .
+      </p>
     </section>
   )
 }

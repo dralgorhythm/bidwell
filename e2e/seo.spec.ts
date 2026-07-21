@@ -60,9 +60,32 @@ test.describe('SEO invariants', () => {
   test('sitemap lists indexable pages only', async ({ request }) => {
     const xml = await (await request.get('/sitemap.xml')).text()
 
-    expect(xml).toContain('https://bidwell.info/career-guidance')
+    expect(xml).toContain('https://bidwell.info/services/career-coaching')
+    expect(xml).not.toContain('https://bidwell.info/career-guidance')
     expect(xml).toContain('https://bidwell.info/experiments/claude-agentic-framework')
     expect(xml).not.toContain('sonic-weather')
+  })
+
+  test('rss and llms.txt discovery surfaces resolve', async ({ request }) => {
+    const rss = await request.get('/rss.xml')
+    expect(rss.status()).toBe(200)
+    const xml = await rss.text()
+    expect(xml).toContain('<rss version="2.0">')
+    expect(xml).toContain('https://bidwell.info/blog/agent-coordination')
+
+    const llms = await request.get('/llms.txt')
+    expect(llms.status()).toBe(200)
+    expect(await llms.text()).toContain('# Bidwell Consulting')
+  })
+
+  test('the moved career-guidance URL serves a redirect stub', async ({ page }) => {
+    await page.goto('/career-guidance', { waitUntil: 'commit' })
+
+    // The 0s meta refresh fires immediately; landing on the destination IS the pass.
+    await page.waitForURL('**/services/career-coaching')
+    await expect(
+      page.getByRole('heading', { level: 1, name: /tech career coaching/i })
+    ).toBeVisible()
   })
 
   test('entity graph renders ProfessionalService, Person, and WebSite JSON-LD', async ({

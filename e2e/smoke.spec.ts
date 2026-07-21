@@ -11,8 +11,8 @@ test.describe('Critical User Flows', () => {
     // 1. Visit Home Page
     await page.goto('/')
 
-    // 2. Navigation to Blog
-    await page.getByRole('link', { name: 'blog' }).click()
+    // 2. Navigation to Blog (scoped to the main nav — the footer also links Blog)
+    await page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'blog' }).click()
     await expect(page).toHaveURL(/blog/)
 
     // 3. Verify Blog page loads

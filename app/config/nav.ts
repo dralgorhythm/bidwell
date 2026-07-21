@@ -7,15 +7,23 @@ export const navItems: Record<string, NavItem> = {
     name: 'home',
   },
 
+  '/services': {
+    name: 'services',
+  },
+
+  '/services/career-coaching': {
+    name: 'coaching',
+  },
+
   '/blog': {
     name: 'blog',
   },
 
-  '/experiments': {
-    name: 'experiments',
+  '/about': {
+    name: 'about',
   },
 
-  '/career-guidance': {
-    name: 'coaching',
+  '/contact': {
+    name: 'contact',
   },
 }
