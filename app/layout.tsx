@@ -2,7 +2,7 @@ import './global.css'
 
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import type React from 'react'
 
 import { baseUrl } from '../lib/site-config'
@@ -57,11 +57,17 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'google-site-verification',
-    yandex: 'yandex-verification',
-    yahoo: 'yahoo-site-verification',
-  },
+  // Search Console verification intentionally absent — verify via DNS when set up.
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+  ],
 }
 
 import { cx } from '../lib/utils'
@@ -80,11 +86,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
         <JsonLd data={websiteSchema()} />
         <JsonLd data={organizationSchema()} />
         <JsonLd data={personSchema()} />
-        {/* Resource hints for better performance */}
-        <meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
-        <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
-        <meta name='theme-color' content='#ffffff' media='(prefers-color-scheme: light)' />
-        <meta name='theme-color' content='#000000' media='(prefers-color-scheme: dark)' />
         {/* Security headers */}
         <meta httpEquiv='X-Content-Type-Options' content='nosniff' />
         <meta httpEquiv='X-Frame-Options' content='DENY' />
