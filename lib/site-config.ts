@@ -28,7 +28,8 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   name: 'Bidwell Consulting',
   baseUrl: 'https://bidwell.info',
-  description: 'Expert software engineering and organizational consulting services',
+  description:
+    'Independent software consulting from Minneapolis — architecture, AI engineering, and practice improvement for the Twin Cities and beyond.',
   email: 'jordan@bidwell.info',
   founder: {
     name: 'Jordan Winters',

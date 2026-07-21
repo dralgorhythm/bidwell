@@ -28,7 +28,20 @@ describe('Navbar', () => {
     render(<Navbar />)
 
     expect(screen.getByRole('link', { name: /home/i })).toHaveAttribute('href', '/')
+    expect(screen.getByRole('link', { name: /^services$/i })).toHaveAttribute('href', '/services')
+    expect(screen.getByRole('link', { name: /coaching/i })).toHaveAttribute(
+      'href',
+      '/services/career-coaching'
+    )
     expect(screen.getByRole('link', { name: /blog/i })).toHaveAttribute('href', '/blog')
+    expect(screen.getByRole('link', { name: /about/i })).toHaveAttribute('href', '/about')
+    expect(screen.getByRole('link', { name: /contact/i })).toHaveAttribute('href', '/contact')
+  })
+
+  it('does not link experiments from the primary nav (footer only)', () => {
+    render(<Navbar />)
+
+    expect(screen.queryByRole('link', { name: /experiments/i })).not.toBeInTheDocument()
   })
 
   it('has proper navigation structure', () => {

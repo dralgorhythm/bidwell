@@ -12,21 +12,20 @@ import JsonLd from './components/structured-data'
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Bidwell Consulting - Software Engineering & Organizational Consulting',
+    default: 'Bidwell Consulting | Twin Cities Software Consulting',
     template: '%s | Bidwell Consulting',
   },
   description:
-    'Expert software engineering and organizational consulting services. Specialized in technical problem solving, system architecture, and business optimization. Portfolio showcasing innovative solutions and development expertise.',
+    'Independent software consulting from Minneapolis — architecture, AI & agent engineering, engineering practice improvement, and tech career coaching for the Twin Cities and beyond.',
   keywords: [
-    'software engineering',
-    'organizational consulting',
-    'technical consulting',
-    'system architecture',
-    'software development',
-    'business optimization',
-    'portfolio',
+    'software consulting',
+    'twin cities',
+    'minneapolis',
+    'ai consulting',
+    'engineering practice improvement',
+    'career coaching',
   ],
-  authors: [{ name: 'Bidwell Consulting' }],
+  authors: [{ name: 'Jordan Winters' }],
   creator: 'Bidwell Consulting',
   publisher: 'Bidwell Consulting',
   formatDetection: {
@@ -35,9 +34,9 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: 'Bidwell Consulting - Software Engineering & Organizational Consulting',
+    title: 'Bidwell Consulting | Twin Cities Software Consulting',
     description:
-      'Expert software engineering and organizational consulting services. Specialized in technical problem solving, system architecture, and business optimization.',
+      'Independent software consulting from Minneapolis — architecture, AI & agent engineering, and practice improvement for the Twin Cities and beyond.',
     url: baseUrl,
     siteName: 'Bidwell Consulting',
     locale: 'en_US',
@@ -86,6 +85,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
         <JsonLd data={websiteSchema()} />
         <JsonLd data={organizationSchema()} />
         <JsonLd data={personSchema()} />
+        <link
+          rel='alternate'
+          type='application/rss+xml'
+          title='Bidwell Consulting Blog'
+          href='/rss.xml'
+        />
         {/* Security headers */}
         <meta httpEquiv='X-Content-Type-Options' content='nosniff' />
         <meta httpEquiv='X-Frame-Options' content='DENY' />

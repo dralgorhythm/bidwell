@@ -1,4 +1,20 @@
+import Link from 'next/link'
 import type React from 'react'
+
+import { serviceEntries } from '../config/services'
+
+const siteLinks = [
+  { name: 'About', href: '/about' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Experiments', href: '/experiments' },
+  { name: 'Contact', href: '/contact' },
+]
+
+const socialLinks = [
+  { name: 'linkedin', href: 'https://www.linkedin.com/in/wintersjordan/' },
+  { name: 'github', href: 'https://github.com/dralgorhythm' },
+  { name: 'soundcloud', href: 'https://soundcloud.com/dralgorhythm' },
+]
 
 function ArrowIcon(): React.JSX.Element {
   return (
@@ -14,42 +30,63 @@ function ArrowIcon(): React.JSX.Element {
 
 export default function Footer(): React.JSX.Element {
   return (
-    <footer className='mb-16'>
-      <ul className='font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300'>
-        <li>
-          <a
-            className='flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100'
-            rel='noopener noreferrer'
-            target='_blank'
-            href='https://www.linkedin.com/in/wintersjordan/'
-          >
-            <ArrowIcon />
-            <p className='ml-2 h-7'>linkedin</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className='flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100'
-            rel='noopener noreferrer'
-            target='_blank'
-            href='https://github.com/dralgorhythm'
-          >
-            <ArrowIcon />
-            <p className='ml-2 h-7'>github</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className='flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100'
-            rel='noopener noreferrer'
-            target='_blank'
-            href='https://soundcloud.com/dralgorhythm'
-          >
-            <ArrowIcon />
-            <p className='ml-2 h-7'>soundcloud</p>
-          </a>
-        </li>
-      </ul>
+    <footer className='mb-16 mt-8'>
+      <nav
+        aria-label='Footer'
+        className='grid gap-8 sm:grid-cols-3 border-t border-neutral-200 dark:border-neutral-800 pt-8 text-sm'
+      >
+        <div>
+          <p className='mb-3 font-medium text-neutral-900 dark:text-neutral-100'>Services</p>
+          <ul className='space-y-2 text-neutral-600 dark:text-neutral-300'>
+            {serviceEntries.map(service => (
+              <li key={service.href}>
+                <Link
+                  href={service.href}
+                  className='transition-all hover:text-neutral-800 dark:hover:text-neutral-100'
+                >
+                  {service.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className='mb-3 font-medium text-neutral-900 dark:text-neutral-100'>Site</p>
+          <ul className='space-y-2 text-neutral-600 dark:text-neutral-300'>
+            {siteLinks.map(link => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className='transition-all hover:text-neutral-800 dark:hover:text-neutral-100'
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className='mb-3 font-medium text-neutral-900 dark:text-neutral-100'>Connect</p>
+          <ul className='space-y-2 text-neutral-600 dark:text-neutral-300'>
+            {socialLinks.map(link => (
+              <li key={link.href}>
+                <a
+                  className='flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100'
+                  rel='noopener noreferrer'
+                  target='_blank'
+                  href={link.href}
+                >
+                  <ArrowIcon />
+                  <p className='ml-2 h-7'>{link.name}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+      <p className='mt-8 text-sm text-neutral-600 dark:text-neutral-400'>
+        Bidwell Consulting · Minneapolis, MN · Serving the Twin Cities metro
+      </p>
     </footer>
   )
 }
