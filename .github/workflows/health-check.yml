@@ -9,6 +9,11 @@ on:
     workflows: ["Deploy to Production"]
     types: [completed]
 
+  # Scheduled uptime monitoring — catches outages that happen between
+  # deploys (e.g. Pages being disabled), not just broken deploys
+  schedule:
+    - cron: '0 8 * * 1' # Mondays 08:00 UTC
+
   # Manual health checks
   workflow_dispatch:
 
@@ -16,7 +21,7 @@ jobs:
   health-check:
     name: Verify Site Health
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
