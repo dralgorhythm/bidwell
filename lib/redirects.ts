@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 
 /**
- * Client-side redirects for moved URLs — GitHub Pages cannot serve 301s.
+ * Client-side redirects for moved URLs - GitHub Pages cannot serve 301s.
  * Each entry keeps a stub page at the old path emitting an instant meta
  * refresh plus a canonical pointing at the destination, which search
  * engines treat as a redirect signal. Stubs are never sitemapped or
- * internally linked, and entries are permanent — never delete one or
+ * internally linked, and entries are permanent - never delete one or
  * reuse an old path.
  */
 export const redirects: Record<string, string> = {

@@ -12,9 +12,7 @@ describe('Engineering Practice Improvement Page', () => {
         name: /engineering practice improvement consulting/i,
       })
     ).toBeInTheDocument()
-    expect(
-      screen.getByText(/lead engineering practice\s+improvement for a living/i)
-    ).toBeInTheDocument()
+    expect(screen.getByText(/founded\s+an enterprise observability practice/i)).toBeInTheDocument()
   })
 
   it('covers scope, engagement shape, and measurement', () => {

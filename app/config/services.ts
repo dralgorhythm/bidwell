@@ -1,4 +1,4 @@
-/** The four consulting offerings — single source for home cards, the services hub, and the footer. */
+/** The four consulting offerings - single source for home cards, the services hub, and the footer. */
 export interface ServiceEntry {
   title: string
   href: string
@@ -9,7 +9,7 @@ export const serviceEntries: ServiceEntry[] = [
   {
     title: 'Software Consulting',
     href: '/services/software-consulting',
-    description: 'Architecture, custom software development, and rescue work — hands-on.',
+    description: 'Architecture, cloud infrastructure, and 0-to-1 platform builds - hands-on.',
   },
   {
     title: 'AI & Agent Engineering',
@@ -24,6 +24,6 @@ export const serviceEntries: ServiceEntry[] = [
   {
     title: 'Career Coaching',
     href: '/services/career-coaching',
-    description: '1-on-1 coaching for engineers and tech leaders — resumes, interviews, moves.',
+    description: '1-on-1 coaching for engineers and tech leaders: resumes, interviews, moves.',
   },
 ]

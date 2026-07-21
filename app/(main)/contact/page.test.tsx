@@ -21,7 +21,7 @@ describe('Contact Page', () => {
     render(<ContactPage />)
 
     expect(screen.getByRole('heading', { name: /free discovery call/i })).toBeInTheDocument()
-    expect(screen.getByText(/no commitment, no pitch/i)).toBeInTheDocument()
+    expect(screen.getByText(/no pitch/i)).toBeInTheDocument()
   })
 
   it('tells prospects what to include', () => {

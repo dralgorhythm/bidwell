@@ -1,20 +1,20 @@
 # Bidwell Consulting
 
-> Independent software consulting practice of Jordan Winters, based in Minneapolis, MN, serving the Minneapolis–St. Paul (Twin Cities) metro in person and clients everywhere remotely. Nearly 20 years of engineering, architecture, and engineering-practice leadership. Solo by design: the person on the discovery call is the person who does the work.
+> Independent software consulting practice of Jordan Winters, based in Minneapolis, MN, serving the Minneapolis-St. Paul (Twin Cities) metro in person and clients everywhere remotely. Over a decade of engineering, infrastructure, and engineering-practice leadership. You work directly with Jordan - no account managers, no handoffs.
 
 ## Services
 
-- [Software Consulting](https://bidwell.info/services/software-consulting): Architecture, custom software development, and legacy rescue — hands-on, code included.
+- [Software Consulting](https://bidwell.info/services/software-consulting): Architecture, cloud infrastructure (AWS/GCP, Terraform, containers), and 0-to-1 platform builds - hands-on, code included.
 - [AI Consulting & Agent Engineering](https://bidwell.info/services/ai-consulting): LLM integration, custom AI agents, and coding-agent workflows, from a consultant who works this way daily.
-- [Engineering Practice Improvement](https://bidwell.info/services/engineering-practice-improvement): DevOps, agile delivery, and developer productivity — measured by lead time and change-failure rate, not ceremony.
-- [Tech Career Coaching](https://bidwell.info/services/career-coaching): 1-on-1 coaching for software engineers and tech professionals — resumes, interviews, transitions.
+- [Engineering Practice Improvement](https://bidwell.info/services/engineering-practice-improvement): DevOps, agile delivery, and developer productivity - measured by lead time and change-failure rate, not ceremony.
+- [Tech Career Coaching](https://bidwell.info/services/career-coaching): 1-on-1 coaching for software engineers and tech professionals - resumes, interviews, transitions.
 
 ## About
 
 - [About Jordan Winters](https://bidwell.info/about): Background, beliefs, and how the practice works.
-- [Contact](https://bidwell.info/contact): Free 30-minute discovery call; LinkedIn is the fastest channel.
+- [Contact](https://bidwell.info/contact): Free 30-minute discovery call; email jordan@bidwell.info or LinkedIn.
 
 ## Writing
 
-- [Agent Coordination Structure](https://bidwell.info/blog/agent-coordination): A practical structure for coordinating AI coding agents — critical directives, artifact handoffs, and personas.
+- [Agent Coordination Structure](https://bidwell.info/blog/agent-coordination): A practical structure for coordinating AI coding agents - critical directives, artifact handoffs, and personas.
 - [Blog](https://bidwell.info/blog) · [RSS](https://bidwell.info/rss.xml)

@@ -7,7 +7,7 @@ export const dynamic = 'force-static'
 /**
  * Only indexable pages belong here: coming-soon experiment stubs are
  * noindexed and excluded, and new routes are added in the same PR that
- * ships the page — the post-deploy health check curls every listed URL.
+ * ships the page - the post-deploy health check curls every listed URL.
  *
  * Contract: scripts/generate-health-checks.ts consumes this default export
  * and requires an absolute `url` and numeric `priority` on every entry.

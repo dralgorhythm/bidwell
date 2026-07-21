@@ -5,10 +5,10 @@ import type React from 'react'
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Reach Bidwell Consulting — email jordan@bidwell.info or message me on LinkedIn. Based in Minneapolis, serving the Twin Cities metro and remote clients.',
+    'Reach Bidwell Consulting - email jordan@bidwell.info or message me on LinkedIn. Based in Minneapolis, serving the Twin Cities metro and remote clients.',
   alternates: { canonical: '/contact' },
   openGraph: {
-    title: 'Contact Bidwell Consulting — Minneapolis, MN',
+    title: 'Contact Bidwell Consulting - Minneapolis, MN',
     description:
       'Email jordan@bidwell.info, message me on LinkedIn, or book a free 30-minute discovery call. Minneapolis-based, remote-friendly.',
     type: 'website',
@@ -27,7 +27,7 @@ export default function ContactPage(): React.JSX.Element {
           <a href={`mailto:${siteConfig.email}`} className='underline'>
             {siteConfig.email}
           </a>
-          . LinkedIn works too — I read everything.
+          . LinkedIn works too - I read everything.
         </p>
         <div className='flex flex-col sm:flex-row gap-3'>
           <a
@@ -50,16 +50,16 @@ export default function ContactPage(): React.JSX.Element {
       <div className='mb-12'>
         <h2 className='mb-3 text-xl font-medium tracking-tight'>Free Discovery Call</h2>
         <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
-          Every engagement starts with a free 30-minute conversation — no commitment, no pitch.
-          We&apos;ll talk through what you&apos;re working on and whether I&apos;m the right person
-          to help. If I&apos;m not, I&apos;ll say so and point you somewhere better.
+          Every engagement starts with a free 30-minute conversation - no pitch. We&apos;ll talk
+          through what you&apos;re working on and whether I&apos;m the right person to help. If
+          I&apos;m not, I&apos;ll say so and point you somewhere better.
         </p>
       </div>
 
       <div className='mb-12'>
         <h2 className='mb-3 text-xl font-medium tracking-tight'>What to Include</h2>
         <ul className='mb-4 ml-6 list-disc space-y-2 text-neutral-700 dark:text-neutral-300'>
-          <li>What you&apos;re building or what&apos;s stuck — a few sentences is plenty</li>
+          <li>What you&apos;re building or what&apos;s stuck - a few sentences is plenty</li>
           <li>Rough timeline: exploring, this quarter, or on fire</li>
           <li>How you&apos;d like to work: project, assessment, or ongoing advice</li>
         </ul>

@@ -5,7 +5,7 @@ import { GeistSans } from 'geist/font/sans'
 import type { Metadata, Viewport } from 'next'
 import type React from 'react'
 
-import { baseUrl } from '../lib/site-config'
+import { baseUrl, siteConfig } from '../lib/site-config'
 import { organizationSchema, personSchema, websiteSchema } from '../lib/structured-data'
 import JsonLd from './components/structured-data'
 
@@ -15,8 +15,7 @@ export const metadata: Metadata = {
     default: 'Bidwell Consulting | Twin Cities Software Consulting',
     template: '%s | Bidwell Consulting',
   },
-  description:
-    'Independent software consulting from Minneapolis — architecture, AI & agent engineering, engineering practice improvement, and tech career coaching for the Twin Cities and beyond.',
+  description: siteConfig.description,
   keywords: [
     'software consulting',
     'twin cities',
@@ -35,8 +34,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Bidwell Consulting | Twin Cities Software Consulting',
-    description:
-      'Independent software consulting from Minneapolis — architecture, AI & agent engineering, and practice improvement for the Twin Cities and beyond.',
+    description: siteConfig.description,
     url: baseUrl,
     siteName: 'Bidwell Consulting',
     locale: 'en_US',
@@ -56,7 +54,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  // Search Console verification intentionally absent — verify via DNS when set up.
+  // Search Console verification intentionally absent - verify via DNS when set up.
 }
 
 export const viewport: Viewport = {

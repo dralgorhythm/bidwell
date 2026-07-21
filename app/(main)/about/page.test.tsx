@@ -10,7 +10,7 @@ describe('About Page', () => {
       screen.getByRole('heading', { level: 1, name: /about jordan winters/i })
     ).toBeInTheDocument()
     expect(screen.getByText(/live and work in minneapolis/i)).toBeInTheDocument()
-    expect(screen.getByText(/nearly 20 years/i)).toBeInTheDocument()
+    expect(screen.getByText(/over a decade/i)).toBeInTheDocument()
   })
 
   it('links the public proof surfaces safely', () => {
@@ -35,7 +35,7 @@ describe('About Page', () => {
 
     expect(screen.getByRole('heading', { name: /what i believe/i })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /how i work/i })).toBeInTheDocument()
-    expect(screen.getByText(/solo, by design/i)).toBeInTheDocument()
+    expect(screen.getByText(/solo by design/i)).toBeInTheDocument()
   })
 
   it('links all four services and the contact page from Work With Me', () => {

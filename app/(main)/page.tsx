@@ -7,7 +7,7 @@ import { serviceEntries } from '../config/services'
 export const metadata: Metadata = {
   title: 'Twin Cities Software Consulting',
   description:
-    'Independent software consultant in Minneapolis — architecture, AI engineering, and practice improvement for Twin Cities teams. Book a free discovery call.',
+    'Independent software consultant in Minneapolis - infrastructure, AI engineering, and practice improvement for Twin Cities teams. Book a free discovery call.',
   keywords: [
     'software consulting twin cities',
     'software consultant minneapolis',
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Bidwell Consulting — Software Consulting in the Twin Cities',
+    title: 'Bidwell Consulting - Software Consulting in the Twin Cities',
     description:
-      'Independent software consultant in Minneapolis — architecture, AI engineering, and practice improvement for Twin Cities teams.',
+      'Independent software consultant in Minneapolis - infrastructure, AI engineering, and practice improvement for Twin Cities teams.',
     type: 'website',
   },
 }
@@ -37,8 +37,8 @@ export default function Page(): React.JSX.Element {
           Jordan Winters
         </Link>
         , an independent software consultant in Minneapolis. I help companies design systems, ship
-        software, and build engineering practices that hold up — drawing on nearly 20 years of
-        building and leading.
+        software, and build engineering practices that hold up - over a decade of building and
+        leading behind it.
       </p>
 
       <div className='mb-12'>
@@ -78,16 +78,16 @@ export default function Page(): React.JSX.Element {
       <div className='mb-12'>
         <h2 className='mb-3 text-xl font-medium tracking-tight'>AI-Native Consulting</h2>
         <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
-          I don&apos;t just advise on AI — I work this way every day, coordinating coding agents to
-          deliver real software, and I publish{' '}
+          I coordinate coding agents to ship real software every day, not just advise on it, and I
+          publish{' '}
           <Link href='/blog/agent-coordination' className='underline'>
             how I coordinate AI coding agents
           </Link>
-          . If you want AI in your engineering practice, you want someone who has already made it
-          work in their own.
+          . Bring AI into your engineering practice with someone who has already made it work in his
+          own.
         </p>
         <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
-          Based in Minneapolis and serving the Twin Cities metro — in person when it helps, remote
+          Based in Minneapolis and serving the Twin Cities metro - in person when it helps, remote
           when it doesn&apos;t.
         </p>
       </div>

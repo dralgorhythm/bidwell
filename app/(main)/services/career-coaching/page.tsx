@@ -9,7 +9,7 @@ import JsonLd from '../../../components/structured-data'
 export const metadata: Metadata = {
   title: 'Tech Career Coaching in Minneapolis',
   description:
-    'Career coaching for software engineers and tech professionals — resumes, interviews, transitions. Minneapolis-based, remote-friendly. Free 30-minute call.',
+    'Career coaching for software engineers and tech professionals: resumes, interviews, transitions. Minneapolis-based, remote-friendly. Free 30-minute call.',
   keywords: [
     'tech career coach',
     'career coaching for software engineers',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/services/career-coaching' },
   openGraph: {
-    title: 'Tech Career Coaching — Minneapolis',
+    title: 'Tech Career Coaching - Minneapolis',
     description:
       'Career coaching for software engineers and tech professionals, from a Minneapolis-based consultant.',
     type: 'website',
@@ -74,7 +74,7 @@ const faqs = [
   {
     question: 'Do you offer career coaching in the Twin Cities?',
     answer:
-      "Yes — I'm based in Minneapolis. Clients in the metro can meet in person when it helps; for everyone else, video works great.",
+      "Yes - I'm based in Minneapolis. Clients in the metro can meet in person when it helps; for everyone else, video works great.",
   },
 ]
 
@@ -107,7 +107,7 @@ export default function CareerCoachingPage(): React.JSX.Element {
         data={serviceSchema({
           name: 'Career Coaching',
           description:
-            'Career coaching for software engineers and tech professionals — resumes, interviews, transitions.',
+            'Career coaching for software engineers and tech professionals: resumes, interviews, transitions.',
           path: '/services/career-coaching',
         })}
       />
@@ -122,12 +122,12 @@ export default function CareerCoachingPage(): React.JSX.Element {
       <div className='mb-12'>
         <h1 className='mb-4 text-2xl font-semibold tracking-tighter'>Tech Career Coaching</h1>
         <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
-          With nearly 20 years in software and professional development, I coach engineers and tech
+          With over a decade in software and professional development, I coach engineers and tech
           professionals navigating transitions, preparing for interviews, or figuring out their next
           move.
         </p>
         <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
-          Based in Minneapolis — most coaching happens over video, so location never gets in the
+          Based in Minneapolis - most coaching happens over video, so location never gets in the
           way.
         </p>
         <div className='mt-6 text-center'>
@@ -281,9 +281,9 @@ export default function CareerCoachingPage(): React.JSX.Element {
           Connect on LinkedIn
         </a>
         <p className='mt-6 text-sm text-neutral-600 dark:text-neutral-400'>
-          Curious who you'd be working with?{' '}
+          If you want the context first:{' '}
           <Link href='/about' className='underline'>
-            More about my background
+            more about my background
           </Link>
           .
         </p>

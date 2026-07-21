@@ -37,7 +37,7 @@ export default function AgentCoordinationPost() {
           <Link href='/about' className='underline'>
             Jordan Winters
           </Link>{' '}
-          · Engineering Practice Improvement · {formatPostDate(post.publishedAt)}
+          · {formatPostDate(post.publishedAt)}
         </p>
       </div>
       <article className='prose'>
@@ -409,7 +409,7 @@ export default function AgentCoordinationPost() {
         </div>
       </article>
       <p className='mt-12 pt-6 border-t border-neutral-200 dark:border-neutral-800 text-sm text-neutral-600 dark:text-neutral-400'>
-        I help teams put this into practice — see{' '}
+        I help teams put this into practice - see{' '}
         <Link href='/services/ai-consulting' className='underline'>
           AI &amp; agent engineering consulting
         </Link>

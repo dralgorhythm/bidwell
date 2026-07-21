@@ -1,5 +1,5 @@
 /**
- * Blog post registry — the single source of truth for post metadata.
+ * Blog post registry - the single source of truth for post metadata.
  * Pure data with no imports: app/sitemap.ts consumes this and must stay
  * executable by tsx (health-check generation) outside the Next bundler.
  */
@@ -18,7 +18,7 @@ export const agentCoordinationPost: Post = {
   title: 'Agent Coordination Structure',
   seoTitle: 'Coordinating AI Coding Agents',
   description:
-    'A practical structure for coordinating AI coding agents — critical directives, artifact handoffs, and personas.',
+    'A practical structure for coordinating AI coding agents - critical directives, artifact handoffs, and personas.',
   publishedAt: '2025-11-27',
 }
 

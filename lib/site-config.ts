@@ -29,11 +29,11 @@ export const siteConfig: SiteConfig = {
   name: 'Bidwell Consulting',
   baseUrl: 'https://bidwell.info',
   description:
-    'Independent software consulting from Minneapolis — architecture, AI engineering, and practice improvement for the Twin Cities and beyond.',
+    'Independent software consulting from Minneapolis: infrastructure, AI engineering, and engineering practice improvement for the Twin Cities and beyond.',
   email: 'jordan@bidwell.info',
   founder: {
     name: 'Jordan Winters',
-    jobTitle: 'Software Engineer & Organizational Consultant',
+    jobTitle: 'Software & Infrastructure Consultant',
     sameAs: ['https://www.linkedin.com/in/wintersjordan/', 'https://github.com/dralgorhythm'],
   },
   location: {

@@ -9,7 +9,7 @@ export default function LiveOrderBookPage() {
       <p className='text-lg text-gray-600 mb-6'>The Market Depth Crumble</p>
       <div className='prose max-w-none'>
         <p>
-          This concept renders the limit order book as a physical structure—two opposing walls of
+          This concept renders the limit order book as a physical structure - two opposing walls of
           "Buy" and "Sell" volume. As trades occur, they are visualized as projectiles smashing into
           these walls, physically destroying the blocks, helping traders intuitively feel the "sell
           pressure" or "support."

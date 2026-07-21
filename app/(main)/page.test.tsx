@@ -10,7 +10,7 @@ describe('Home Page', () => {
       screen.getByRole('heading', { level: 1, name: /software consulting in the twin cities/i })
     ).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /jordan winters/i })).toHaveAttribute('href', '/about')
-    expect(screen.getByText(/nearly 20 years/i)).toBeInTheDocument()
+    expect(screen.getByText(/over a decade/i)).toBeInTheDocument()
   })
 
   it('shows the primary discovery-call CTA', () => {

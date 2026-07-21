@@ -94,6 +94,18 @@ describe('metadata policy', () => {
     }
   })
 
+  it('contains no em dashes in page sources (voice rule: spaced hyphens only)', () => {
+    const sources = import.meta.glob('./**/page.tsx', {
+      query: '?raw',
+      import: 'default',
+      eager: true,
+    }) as Record<string, string>
+
+    for (const [path, source] of Object.entries(sources)) {
+      expect(source.includes('—'), `${path} contains an em dash`).toBe(false)
+    }
+  })
+
   it('noindexes coming-soon experiment stubs', () => {
     const stub = pageModules['./(wide)/experiments/sonic-weather/page.tsx']
     expect(stub?.metadata?.robots).toEqual({ index: false, follow: false })

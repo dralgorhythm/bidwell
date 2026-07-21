@@ -9,19 +9,19 @@ describe('Software Consulting Page', () => {
     expect(
       screen.getByRole('heading', { level: 1, name: /software consulting in minneapolis/i })
     ).toBeInTheDocument()
-    expect(screen.getByText(/nearly 20 years/i)).toBeInTheDocument()
+    expect(screen.getByText(/over a decade/i)).toBeInTheDocument()
   })
 
   it('covers development, architecture, and rescue offerings', () => {
     render(<SoftwareConsultingPage />)
 
-    expect(
-      screen.getByRole('heading', { name: /custom software development/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /zero-to-one foundations/i })).toBeInTheDocument()
     expect(
       screen.getByRole('heading', { name: /architecture & technical strategy/i })
     ).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /rescue & modernization/i })).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: /infrastructure modernization & cost/i })
+    ).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /how engagements work/i })).toBeInTheDocument()
   })
 
@@ -31,7 +31,7 @@ describe('Software Consulting Page', () => {
     expect(
       screen.getByRole('heading', { name: /working together in the twin cities/i })
     ).toBeInTheDocument()
-    expect(screen.getByText(/anywhere in the minneapolis–st\. paul metro/i)).toBeInTheDocument()
+    expect(screen.getByText(/anywhere in the minneapolis-st\. paul metro/i)).toBeInTheDocument()
   })
 
   it('answers the cost question honestly in the FAQ', () => {
