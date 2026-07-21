@@ -22,15 +22,10 @@ describe('Experiments Index Page', () => {
   })
 
   describe('experiment cards', () => {
-    it('displays the sample experiment as active', () => {
-      render(<ExperimentsPage />)
-      expect(screen.getByText(/sample experiment/i)).toBeInTheDocument()
-      // Active experiments (claude-agentic-framework, sample) show "Active" badges
-      expect(screen.getAllByText('Active')).toHaveLength(2)
-    })
-
     it('displays the claude agentic framework experiment as active', () => {
       render(<ExperimentsPage />)
+      // The framework is the only active experiment, so exactly one "Active" badge
+      expect(screen.getAllByText('Active')).toHaveLength(1)
       const frameworkHeading = screen.getByRole('heading', {
         name: /claude agentic framework/i,
       })
@@ -74,16 +69,6 @@ describe('Experiments Index Page', () => {
       expect(screen.getAllByText('Living Systems').length).toBeGreaterThan(0)
     })
 
-    it('active experiment links point to correct path', () => {
-      render(<ExperimentsPage />)
-      // Find the Sample Experiment card by its heading, then traverse to the link
-      const sampleHeading = screen.getByRole('heading', {
-        name: /sample experiment/i,
-      })
-      const sampleLink = sampleHeading.closest('a')
-      expect(sampleLink).toHaveAttribute('href', '/experiments/sample')
-    })
-
     it('coming-soon experiments have disabled links', () => {
       render(<ExperimentsPage />)
       // Find a coming-soon experiment's link
@@ -112,8 +97,8 @@ describe('Experiments Index Page', () => {
       render(<ExperimentsPage />)
       // Each experiment card should have an h2 heading
       const h2Elements = screen.getAllByRole('heading', { level: 2 })
-      // Should have at least 14 h2s (one for each experiment card)
-      expect(h2Elements.length).toBeGreaterThanOrEqual(14)
+      // Should have at least 13 h2s (one for each experiment card)
+      expect(h2Elements.length).toBeGreaterThanOrEqual(13)
     })
 
     it('coming-soon links are properly marked as disabled', () => {
@@ -136,8 +121,8 @@ describe('Experiments Index Page', () => {
 
     it('experiment descriptions are present', () => {
       render(<ExperimentsPage />)
-      // Check for sample experiment description
-      expect(screen.getByText(/demonstration of the experiments framework/i)).toBeInTheDocument()
+      // Check for the claude-agentic-framework experiment description
+      expect(screen.getByText(/the governed swarm/i)).toBeInTheDocument()
     })
   })
 })

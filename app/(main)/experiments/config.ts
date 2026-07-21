@@ -111,14 +111,6 @@ export const experiments: Experiment[] = [
     status: 'coming-soon',
     category: 'Quantified Self',
   },
-  {
-    slug: 'sample',
-    title: 'Sample Experiment',
-    description:
-      'A demonstration of the experiments framework showcasing full-width layouts and interactive elements.',
-    status: 'active',
-    category: 'Demo',
-  },
 ]
 
 export function getActiveExperiments(): Experiment[] {

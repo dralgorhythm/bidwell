@@ -2,8 +2,8 @@ import { experiments, getActiveExperiments, getExperimentBySlug } from './config
 
 describe('Experiments Config', () => {
   describe('experiments array', () => {
-    it('contains 14 experiments', () => {
-      expect(experiments).toHaveLength(14)
+    it('contains 13 experiments', () => {
+      expect(experiments).toHaveLength(13)
     })
 
     it('has required fields for each experiment', () => {
@@ -40,7 +40,6 @@ describe('Experiments Config', () => {
         'global-anxiety-map',
         'devops-roi-monitor',
         'seasonal-mind',
-        'sample',
       ]
       const actualSlugs = experiments.map(exp => exp.slug)
       for (const slug of expectedSlugs) {
@@ -56,7 +55,6 @@ describe('Experiments Config', () => {
         'Economic & Social Pulse',
         'Quantified Organization',
         'Quantified Self',
-        'Demo',
       ]
       for (const experiment of experiments) {
         if (experiment.category) {
@@ -74,12 +72,6 @@ describe('Experiments Config', () => {
       }
     })
 
-    it('includes the sample experiment as active', () => {
-      const activeExperiments = getActiveExperiments()
-      const sampleExperiment = activeExperiments.find(exp => exp.slug === 'sample')
-      expect(sampleExperiment).toBeDefined()
-    })
-
     it('includes the claude-agentic-framework experiment as active', () => {
       const activeExperiments = getActiveExperiments()
       const frameworkExperiment = activeExperiments.find(
@@ -91,9 +83,9 @@ describe('Experiments Config', () => {
 
   describe('getExperimentBySlug', () => {
     it('returns experiment when slug exists', () => {
-      const experiment = getExperimentBySlug('sample')
+      const experiment = getExperimentBySlug('claude-agentic-framework')
       expect(experiment).toBeDefined()
-      expect(experiment?.slug).toBe('sample')
+      expect(experiment?.slug).toBe('claude-agentic-framework')
     })
 
     it('returns undefined for non-existent slug', () => {

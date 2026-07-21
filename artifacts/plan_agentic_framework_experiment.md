@@ -51,3 +51,11 @@ No nav changes — the hub already lives in the main navigation.
 
 `npm run qa:full` (type-check, Biome, Vitest + vitest-axe, static build) plus
 `npm run test:e2e` for the new flow.
+
+## Follow-up (same branch)
+
+With a real active experiment live, the `sample` demo experiment was retired:
+config entry, `app/(wide)/experiments/sample/`, and its `Demo` category removed;
+hub/config tests and the e2e suite repointed at `claude-agentic-framework`, which
+is now the hub's only active experiment. The sample remains referenced in the
+historical roadmap/ADR artifacts, which are records, not living docs.
