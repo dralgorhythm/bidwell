@@ -6,7 +6,8 @@ import type { Metadata } from 'next'
 import type React from 'react'
 
 import { baseUrl } from '../lib/site-config'
-import StructuredData from './components/structured-data'
+import { organizationSchema, personSchema, websiteSchema } from '../lib/structured-data'
+import JsonLd from './components/structured-data'
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -81,9 +82,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
       )}
     >
       <head>
-        <StructuredData type='website' />
-        <StructuredData type='organization' />
-        <StructuredData type='person' />
+        <JsonLd data={websiteSchema()} />
+        <JsonLd data={organizationSchema()} />
+        <JsonLd data={personSchema()} />
         {/* Canonical URL */}
         <link rel='canonical' href={baseUrl} />
         {/* Resource hints for better performance */}

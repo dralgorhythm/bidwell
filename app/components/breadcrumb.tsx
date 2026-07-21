@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import type React from 'react'
 
-import StructuredData from './structured-data'
+import { breadcrumbSchema } from '../../lib/structured-data'
+import JsonLd from './structured-data'
 
 interface BreadcrumbItem {
   name: string
@@ -13,16 +14,9 @@ interface BreadcrumbProps {
 }
 
 export default function Breadcrumb({ items }: BreadcrumbProps): React.JSX.Element {
-  const breadcrumbData = items.map((item, index) => ({
-    '@type': 'ListItem',
-    position: index + 1,
-    name: item.name,
-    item: item.href,
-  }))
-
   return (
     <>
-      <StructuredData type='breadcrumb' data={breadcrumbData} />
+      <JsonLd data={breadcrumbSchema(items.map(item => ({ name: item.name, path: item.href })))} />
       <nav aria-label='Breadcrumb' className='mb-4'>
         <ol className='flex items-center space-x-2 text-sm text-neutral-600 dark:text-neutral-400'>
           {items.map((item, index) => (
