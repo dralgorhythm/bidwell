@@ -62,28 +62,35 @@ the repository visibility (or the account plan) changed sometime afterward.
 - **Dependabot PRs unblocked**: verified locally against the fixed test suite
   (including a full typecheck/test/build pass on the `next` 16.1.5 bump).
 
-## Remaining Action (account-level decision required)
+## Remaining Action: reclaim the custom domain
 
-Restoring the site requires one of:
+Resolved 2026-07-21: the repository was made public (option 1) after a clean
+gitleaks history scan, and deployment succeeded — the site serves at
+https://dralgorhythm.github.io/bidwell/ (asset paths assume the root domain,
+so pages render unstyled there; this resolves once the domain is attached).
 
-1. **Make the repository public** — free; Pages works immediately. Full git
-   history was scanned with gitleaks (166 commits): no secrets found. Content
-   is a portfolio site plus site-planning docs.
-2. **Upgrade the GitHub plan** (Pro) — keeps the repo private with Pages.
-3. **Move hosting** (e.g. Cloudflare Pages) — supports private repos on free
-   tier, but deviates from the tech-strategy golden path (GitHub Pages for
-   static frontend).
+**Remaining blocker:** re-attaching bidwell.info fails with "The custom
+domain `bidwell.info` is already taken" — while the domain binding was
+dropped, the claim was picked up by a different GitHub account (none of
+dralgorhythm's repos holds it). GitHub's domain verification releases it:
 
-After option 1 or 2, recovery is:
+1. Open https://github.com/settings/pages → "Add a verified domain" →
+   enter `bidwell.info`. GitHub shows a TXT record
+   (`_github-pages-challenge-dralgorhythm.bidwell.info` = token).
+2. Add that TXT record in Namecheap DNS (the domain's nameservers are
+   registrar-servers.com).
+3. Back on the GitHub page, click Verify (DNS may take ~15 minutes).
+4. Attach the domain and confirm:
 
 ```bash
-# Re-attach the custom domain (may require re-enabling Pages in Settings → Pages first)
 gh api -X PUT repos/dralgorhythm/bidwell/pages -f build_type=workflow -f cname=bidwell.info
-# Redeploy
-gh workflow run deploy.yml --ref main
-# Verify
+gh api repos/dralgorhythm/bidwell/pages --jq '{status, cname, https_enforced}'
+curl -sI https://bidwell.info | head -3   # expect HTTP 200
 gh workflow run health-check.yml
 ```
+
+Keep the verified domain in place afterward — it permanently prevents this
+class of takeover.
 
 HTTPS for the custom domain may take a few minutes while GitHub re-provisions
 the certificate.
