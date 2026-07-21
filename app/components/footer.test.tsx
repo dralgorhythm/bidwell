@@ -36,6 +36,15 @@ describe('Footer Component', () => {
     expect(screen.getByRole('link', { name: /contact/i })).toHaveAttribute('href', '/contact')
   })
 
+  it('links the contact email as mailto', () => {
+    render(<Footer />)
+
+    expect(screen.getByRole('link', { name: /jordan@bidwell\.info/i })).toHaveAttribute(
+      'href',
+      'mailto:jordan@bidwell.info'
+    )
+  })
+
   it('opens social links safely in a new tab', () => {
     render(<Footer />)
 

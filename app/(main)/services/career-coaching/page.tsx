@@ -1,3 +1,4 @@
+import { siteConfig } from 'lib/site-config'
 import { faqSchema, serviceSchema } from 'lib/structured-data'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -261,7 +262,11 @@ export default function CareerCoachingPage(): React.JSX.Element {
       <div id='contact'>
         <h2 className='mb-4 text-xl font-semibold tracking-tight'>Get in Touch</h2>
         <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
-          The best way to reach me is through LinkedIn — or{' '}
+          Email{' '}
+          <a href={`mailto:${siteConfig.email}`} className='underline'>
+            {siteConfig.email}
+          </a>
+          , reach me through LinkedIn, or{' '}
           <Link href='/contact' className='underline'>
             book a free discovery call
           </Link>{' '}

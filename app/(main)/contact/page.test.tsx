@@ -3,10 +3,14 @@ import { describe, expect, it } from 'vitest'
 import ContactPage from './page'
 
 describe('Contact Page', () => {
-  it('renders the heading with the LinkedIn CTA', () => {
+  it('renders the heading with email-primary and LinkedIn CTAs', () => {
     render(<ContactPage />)
 
     expect(screen.getByRole('heading', { level: 1, name: /contact/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /^email me$/i })).toHaveAttribute(
+      'href',
+      'mailto:jordan@bidwell.info'
+    )
     const cta = screen.getByRole('link', { name: /message me on linkedin/i })
     expect(cta).toHaveAttribute('href', 'https://www.linkedin.com/in/wintersjordan/')
     expect(cta).toHaveAttribute('target', '_blank')

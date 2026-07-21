@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type React from 'react'
 
+import { siteConfig } from '../../lib/site-config'
 import { serviceEntries } from '../config/services'
 
 const siteLinks = [
@@ -68,6 +69,14 @@ export default function Footer(): React.JSX.Element {
         <div>
           <p className='mb-3 font-medium text-neutral-900 dark:text-neutral-100'>Connect</p>
           <ul className='space-y-2 text-neutral-600 dark:text-neutral-300'>
+            <li>
+              <a
+                className='transition-all hover:text-neutral-800 dark:hover:text-neutral-100'
+                href={`mailto:${siteConfig.email}`}
+              >
+                {siteConfig.email}
+              </a>
+            </li>
             {socialLinks.map(link => (
               <li key={link.href}>
                 <a

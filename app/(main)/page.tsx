@@ -1,3 +1,4 @@
+import { siteConfig } from 'lib/site-config'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import type React from 'react'
@@ -97,8 +98,12 @@ export default function Page(): React.JSX.Element {
           Tell me what you&apos;re building, what&apos;s stuck, or where you want to be.{' '}
           <Link href='/contact' className='underline'>
             Book a free discovery call
-          </Link>{' '}
-          or reach out on{' '}
+          </Link>
+          , email{' '}
+          <a href={`mailto:${siteConfig.email}`} className='underline'>
+            {siteConfig.email}
+          </a>
+          , or reach out on{' '}
           <a
             href='https://www.linkedin.com/in/wintersjordan/'
             target='_blank'

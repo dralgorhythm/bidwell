@@ -49,6 +49,7 @@ export function organizationSchema(): WithContext<ProfessionalService> {
     name: siteConfig.name,
     description: siteConfig.description,
     url: baseUrl,
+    email: siteConfig.email,
     foundingDate: '2024',
     address: {
       '@type': 'PostalAddress',

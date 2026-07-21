@@ -1,15 +1,16 @@
+import { siteConfig } from 'lib/site-config'
 import type { Metadata } from 'next'
 import type React from 'react'
 
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Reach Bidwell Consulting — message me on LinkedIn or book a free 30-minute discovery call. Based in Minneapolis, serving the Twin Cities metro and remote clients.',
+    'Reach Bidwell Consulting — email jordan@bidwell.info or message me on LinkedIn. Based in Minneapolis, serving the Twin Cities metro and remote clients.',
   alternates: { canonical: '/contact' },
   openGraph: {
     title: 'Contact Bidwell Consulting — Minneapolis, MN',
     description:
-      'Message me on LinkedIn or book a free 30-minute discovery call. Minneapolis-based, remote-friendly.',
+      'Email jordan@bidwell.info, message me on LinkedIn, or book a free 30-minute discovery call. Minneapolis-based, remote-friendly.',
     type: 'website',
   },
 }
@@ -22,16 +23,28 @@ export default function ContactPage(): React.JSX.Element {
       <div className='mb-12'>
         <h2 className='mb-3 text-xl font-medium tracking-tight'>Get in Touch</h2>
         <p className='mb-4 text-neutral-700 dark:text-neutral-300'>
-          The fastest way to reach me is a message on LinkedIn — I read everything.
+          Email is best:{' '}
+          <a href={`mailto:${siteConfig.email}`} className='underline'>
+            {siteConfig.email}
+          </a>
+          . LinkedIn works too — I read everything.
         </p>
-        <a
-          href='https://www.linkedin.com/in/wintersjordan/'
-          target='_blank'
-          rel='noopener noreferrer'
-          className='inline-block px-6 py-3 bg-black dark:bg-white text-white dark:text-black font-semibold rounded-lg hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors'
-        >
-          Message me on LinkedIn
-        </a>
+        <div className='flex flex-col sm:flex-row gap-3'>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className='inline-block text-center px-6 py-3 bg-black dark:bg-white text-white dark:text-black font-semibold rounded-lg hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors'
+          >
+            Email me
+          </a>
+          <a
+            href='https://www.linkedin.com/in/wintersjordan/'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='inline-block text-center px-6 py-3 border border-black dark:border-white font-semibold rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors'
+          >
+            Message me on LinkedIn
+          </a>
+        </div>
       </div>
 
       <div className='mb-12'>

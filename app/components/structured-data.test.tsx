@@ -68,8 +68,8 @@ describe('structured-data builders', () => {
       expect(schema.sameAs).toContain('https://github.com/dralgorhythm')
     })
 
-    it('does not publish an email until the forwarding alias exists', () => {
-      expect(json(organizationSchema())).not.toHaveProperty('email')
+    it('publishes the contact email from siteConfig', () => {
+      expect(json(organizationSchema()).email).toBe(siteConfig.email)
     })
   })
 
