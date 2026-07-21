@@ -1,44 +1,39 @@
-import { baseUrl } from 'lib/site-config'
+import { siteConfig } from 'lib/site-config'
+import { blogPostingSchema } from 'lib/structured-data'
+import type { Metadata } from 'next'
+import Breadcrumb from '../../../components/breadcrumb'
+import JsonLd from '../../../components/structured-data'
+import { formatPostDate, agentCoordinationPost as post } from '../posts'
 
-export const metadata = {
-  title: 'Agent Coordination Structure',
-  description: 'A framework for managing AI agents within the Bidwell ecosystem.',
-  publishedAt: new Date().toISOString(),
-  image: '/og?title=Agent%20Coordination%20Structure',
+export const metadata: Metadata = {
+  title: post.title,
+  description: post.description,
+  alternates: { canonical: `/blog/${post.slug}` },
+  openGraph: {
+    title: post.title,
+    description: post.description,
+    type: 'article',
+    publishedTime: post.publishedAt,
+    authors: [siteConfig.founder.name],
+    url: `/blog/${post.slug}`,
+  },
 }
 
 export default function AgentCoordinationPost() {
   return (
     <section>
-      <script
-        type='application/ld+json'
-        suppressHydrationWarning
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD requires this
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            headline: metadata.title,
-            datePublished: metadata.publishedAt,
-            dateModified: metadata.publishedAt,
-            description: metadata.description,
-            image: `${baseUrl}${metadata.image}`,
-            url: `${baseUrl}/blog/agent-coordination`,
-            author: {
-              '@type': 'Person',
-              name: 'Bidwell Consulting',
-            },
-          }),
-        }}
+      <JsonLd data={blogPostingSchema(post)} />
+      <Breadcrumb
+        items={[
+          { name: 'Home', href: '/' },
+          { name: 'Blog', href: '/blog' },
+          { name: post.title, href: `/blog/${post.slug}` },
+        ]}
       />
-      <h1 className='title font-semibold text-2xl tracking-tighter'>{metadata.title}</h1>
+      <h1 className='title font-semibold text-2xl tracking-tighter'>{post.title}</h1>
       <div className='flex justify-between items-center mt-2 mb-8 text-sm'>
         <p className='text-sm text-neutral-600 dark:text-neutral-400'>
-          {new Date(metadata.publishedAt).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
+          {formatPostDate(post.publishedAt)}
         </p>
       </div>
       <article className='prose'>
