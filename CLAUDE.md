@@ -2,7 +2,7 @@
 
 The Bidwell Consulting portfolio site ([bidwell.info](https://bidwell.info)) — a statically
 exported Next.js 16 site deployed to GitHub Pages. Agent workflows follow the
-[claude-agentic-framework](https://github.com/dralgorhythm/claude-agentic-framework) (v3.1.0).
+[claude-agentic-framework](https://github.com/dralgorhythm/claude-agentic-framework) (v5.0.0).
 
 ## Quick Reference
 
@@ -99,6 +99,8 @@ Two-tier convention:
 | `/swarm-execute` | Execution Orchestrator | Parallel workers, quality gates |
 | `/swarm-review` | Adversarial Reviewer | Multi-perspective code review |
 | `/swarm-research` | Research Orchestrator | Deep investigation, technology evaluation |
+| `/tailor` | Customization Engine | Detect the stack, propose repo-fitted config |
+| `/land-the-plane` | Finish-Line Workflow | Verify, commit, push — session completion |
 
 ## MCP Tools
 

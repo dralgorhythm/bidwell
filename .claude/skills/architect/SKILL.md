@@ -1,7 +1,7 @@
 ---
 name: architect
 description: Design systems and record architecture decisions as ADRs — a user-invoked Principal Architect workflow.
-argument-hint: [design-topic]
+argument-hint: "[design-topic]"
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ Role entry point for system design and architecture decisions. Architect designs
 
 ## Method
 
-Follow the `designing-systems`, `writing-adrs`, and `designing-apis` skills for methodology (C4 diagrams, trade-off analysis, ADR format, API contract design). This entry point adds the architect-role workflow and standards-definition mandate below.
+Follow the `designing-systems` and `writing-adrs` skills for methodology (system diagrams, trade-off analysis, ADR format). This entry point adds the architect-role workflow and standards-definition mandate below.
 
 ## MCP Tools
 

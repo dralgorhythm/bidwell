@@ -1,10 +1,10 @@
 # Agent Instructions
 
-This repository is the Bidwell Consulting website ([bidwell.info](https://bidwell.info)), a statically exported Next.js site. Agent workflows use the [claude-agentic-framework](https://github.com/dralgorhythm/claude-agentic-framework) (v3.1.0): specialized commands, reusable skills, and safety hooks for AI-assisted development. These instructions apply to any coding agent working in this repo, not just Claude Code. Project context and build/test commands are in `CLAUDE.md`; technology choices are governed by `.claude/rules/tech-strategy.md`.
+This repository is the Bidwell Consulting website ([bidwell.info](https://bidwell.info)), a statically exported Next.js site. Agent workflows use the [claude-agentic-framework](https://github.com/dralgorhythm/claude-agentic-framework) (v5.0.0): specialized commands, reusable skills, and safety hooks for AI-assisted development. These instructions apply to any coding agent working in this repo, not just Claude Code. Project context and build/test commands are in `CLAUDE.md`; technology choices are governed by `.claude/rules/tech-strategy.md`.
 
 ## Where Things Live
 
-- `.claude/` — commands, skills, rules, hooks, and agent/worker definitions
+- `.claude/` — skills (command-style workflows + knowledge library), rules, hooks, and agent/worker definitions
 - `./artifacts/` — durable planning documents (PR-FAQs, PRDs, ADRs, design specs, plans); committed to the repo
 - `./scratchpad/` — ephemeral working notes and draft content; gitignored, disposable
 
@@ -59,3 +59,4 @@ Three failure cases and how the orchestrator recovers from each:
 - Never stop before pushing — that leaves work stranded locally
 - Never say "ready to push when you are" — push it yourself
 - If push fails, resolve and retry until it succeeds
+- PRs target `main` — trunk-based: a dependent unit waits for its prerequisite to merge to `main` and branches from there, rather than stacking on the prerequisite's branch
