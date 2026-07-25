@@ -52,5 +52,5 @@ If you are an AI agent or looking for reusable skills and instructions:
 - **[.claude/skills](.claude/skills)**: Reusable workflow and knowledge skills.
 - **[.claude/rules](.claude/rules)**: Always-loaded standards (quality, security, debugging).
 
-This repo follows the [claude-agentic-framework](https://github.com/dralgorhythm/claude-agentic-framework) (v3.1.0).
+This repo follows the [claude-agentic-framework](https://github.com/dralgorhythm/claude-agentic-framework) (v5.0.0).
 Please refer to **[.claude/rules/tech-strategy.md](.claude/rules/tech-strategy.md)** for the single source of truth regarding technology choices.

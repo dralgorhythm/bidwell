@@ -96,11 +96,11 @@ describe('Claude Agentic Framework Experiment Page', () => {
     it('renders the six component cards', () => {
       render(<ClaudeAgenticFrameworkPage />)
       const cardTitles = [
-        '10 commands',
+        '12 commands',
         '5 worker types',
-        '24 skills',
+        '21 skills',
         'Layered rules',
-        'Fail-soft safety hooks',
+        'Enforcing safety hooks',
         '4 MCP servers',
       ]
       for (const title of cardTitles) {
@@ -120,6 +120,21 @@ describe('Claude Agentic Framework Experiment Page', () => {
       }
     })
 
+    it('renders the new-in-v5 section with its three cards', () => {
+      render(<ClaudeAgenticFrameworkPage />)
+      expect(
+        screen.getByRole('heading', { level: 2, name: /new in v5: the gates grew teeth/i })
+      ).toBeInTheDocument()
+      const cardTitles = [
+        'Commits verify themselves',
+        'Task completions are gated',
+        'Stack packs + /tailor',
+      ]
+      for (const title of cardTitles) {
+        expect(screen.getByRole('heading', { level: 3, name: title })).toBeInTheDocument()
+      }
+    })
+
     it('renders the stats strip labels', () => {
       render(<ClaudeAgenticFrameworkPage />)
       expect(screen.getByText('Commands')).toBeInTheDocument()
@@ -136,7 +151,7 @@ describe('Claude Agentic Framework Experiment Page', () => {
       expect(
         screen.getByRole('heading', { level: 2, name: /this site is the lab/i })
       ).toBeInTheDocument()
-      expect(screen.getByText(/v3\.1\.0/)).toBeInTheDocument()
+      expect(screen.getAllByText(/v5\.0\.0/).length).toBeGreaterThan(0)
     })
 
     it('lists the quality gates', () => {
@@ -161,6 +176,11 @@ describe('Claude Agentic Framework Experiment Page', () => {
     it('mentions the plugin install alternative', () => {
       render(<ClaudeAgenticFrameworkPage />)
       expect(screen.getAllByText(/plugin install agentic-framework/i).length).toBeGreaterThan(0)
+    })
+
+    it('points at /tailor as the first move after install', () => {
+      render(<ClaudeAgenticFrameworkPage />)
+      expect(screen.getAllByText(/\/tailor/).length).toBeGreaterThan(0)
     })
 
     it('renders a second safe external link to the repository', () => {

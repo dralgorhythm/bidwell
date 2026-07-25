@@ -1,7 +1,7 @@
 ---
 name: swarm-execute
 description: Execute an implementation plan with parallel worker swarms, quality gates, and native task tracking — a user-invoked Execution Orchestrator workflow.
-argument-hint: [plan-artifact-or-task-id]
+argument-hint: "[plan-artifact-or-task-id]"
 disable-model-invocation: true
 ---
 
@@ -71,7 +71,7 @@ Run quality gates per `code-quality.md` — all must pass. No exceptions.
 
 ## Coordination Protocol
 
-1. **Orchestrator** decomposes work into tasks via `TaskCreate`, with acceptance criteria and `blockedBy` dependencies
+1. **Orchestrator** decomposes work into tasks via `TaskCreate`, with acceptance criteria and `blockedBy` dependencies — each unit shaped to merge to `main` independently (trunk-based, per core-directives)
 2. **Orchestrator** claims a task on behalf of a worker: `TaskUpdate` (status: in_progress)
 3. **Workers** execute their assigned task following AGENTS.md "Landing the Plane" workflow — workers do NOT touch the task list themselves
 4. **Workers** report completion (and any follow-up work discovered) back to the orchestrator
@@ -88,6 +88,8 @@ Workers do not have direct access to the native task list — the orchestrator o
 3. **Pushes** the feature branch to remote (mandatory — see Core Directives "Constraints" for the Ship It rule)
 4. **Cleans up** the worker's worktree
 5. **Marks the task completed** via `TaskUpdate`, and files any follow-up work the worker reported via `TaskCreate`
+
+The feature branch itself PRs to `main` directly when its unit is complete — trunk-based. A unit that depends on unmerged work waits for that work to land on `main` and then branches from `main`; never open a PR whose base is another unit's branch.
 
 ## Checkpointing
 
@@ -118,6 +120,7 @@ If quality gates fail: stash changes, mark the task as blocked via `TaskUpdate`,
 - Launch multiple explorers for broad searches
 - Use worker-architect for decisions, worker-builder for execution
 - Parallelize independent tasks (max 8 concurrent workers)
+- For large dispatch batches, declare a token/wave ceiling up front — see `swarm-coordination`'s Budget & Waves section
 - Keep worker prompts under 500 tokens for fast startup
 
 ## Constraints

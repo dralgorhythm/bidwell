@@ -1,7 +1,7 @@
 ---
 name: swarm-plan
 description: Decompose a feature into an actionable implementation plan using parallel worker-explorer swarms — a user-invoked Planning Orchestrator workflow.
-argument-hint: [feature-or-task-description]
+argument-hint: "[feature-or-task-description]"
 disable-model-invocation: true
 ---
 
@@ -25,7 +25,7 @@ Decompose features into actionable plans using parallel exploration swarms.
 1. **Explore** — Launch 3-6 worker-explorer agents to research existing patterns, dependencies, constraints, and prior art
 2. **Classify** — Determine decision reversibility (Two-Way Door vs One-Way Door)
 3. **Document** — Create appropriate artifacts based on scope
-4. **Decompose** — Break into right-sized tasks: roughly 200-400 changed LOC or 15-45 minutes of focused work each — review effectiveness collapses beyond ~400 LOC (SmartBear/Cisco)
+4. **Decompose** — Break into right-sized tasks: roughly 200-400 changed LOC or 15-45 minutes of focused work each — review effectiveness collapses beyond ~400 LOC (SmartBear/Cisco). Shape every unit to be independently mergeable to `main` (trunk-based, per core-directives): dependencies resolve by merge order, not by stacking branches
 5. **Track** — Record tasks in the native task list for implementation tracking
 
 ## Decision Framework
@@ -48,7 +48,7 @@ Decompose features into actionable plans using parallel exploration swarms.
 **Large Feature (2+ weeks)**
 - `pr_faq_[feature].md` — Vision and customer value
 - `prd_[feature].md` — Detailed requirements
-- `adr_[key-decision].md` — Architectural decisions (use ADR template from `skills/architecture/writing-adrs`)
+- `adr_[key-decision].md` — Architectural decisions (format: `writing-adrs` skill; template bundled with `designing-systems` at `resources/adr.template.md`)
 - `plan_[feature].md` — Implementation steps
 
 ## Worker Types
@@ -114,6 +114,7 @@ Link dependencies with `TaskUpdate` (addBlockedBy): Task 2 gets Task 1 added to 
 - Launch multiple explorers for broad searches
 - Use worker-architect for decisions, worker-builder for execution
 - Parallelize independent tasks (max 8 concurrent workers)
+- For large dispatch batches, declare a token/wave ceiling up front — see `swarm-coordination`'s Budget & Waves section
 - Keep worker prompts under 500 tokens for fast startup
 
 ## Constraints
@@ -125,6 +126,7 @@ Link dependencies with `TaskUpdate` (addBlockedBy): Task 2 gets Task 1 added to 
 - ALWAYS store artifacts in `./artifacts/`
 - ALWAYS record implementation tasks with acceptance criteria before declaring planning complete
 - ALWAYS validate arguments before using in commands
+- NO plans that require stacked PR chains or integration branches — every planned unit merges to `main` on its own; a dependent unit branches from `main` after its prerequisite lands
 
 ## Output
 
@@ -137,10 +139,10 @@ Every planning session MUST produce:
 ## Product Planning
 
 ### PR-FAQ
-Use `writing-pr-faqs` skill for structure and template.
+Use `planning-artifacts` skill for structure and template.
 
 ### PRD
-Use `writing-prds` skill for structure and template.
+Use `planning-artifacts` skill for structure and template.
 
 ### Architecture Design Process
 1. **Understand** — Map existing system with Grep and Glob
@@ -150,7 +152,7 @@ Use `writing-prds` skill for structure and template.
 
 ## Related Skills
 
-`swarm-coordination`, `writing-adrs`, `designing-systems`, `designing-apis`, `writing-pr-faqs`, `writing-prds`
+`swarm-coordination`, `writing-adrs`, `designing-systems`, `planning-artifacts`
 
 ## Handoff
 
