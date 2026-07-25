@@ -79,24 +79,24 @@ const cycle = [
 
 const inTheBox = [
   {
-    title: '10 commands',
-    body: 'Six single-agent expert modes — architect, builder, QA engineer, security auditor, UI/UX designer, code auditor — plus four swarm orchestrators for planning, execution, review, and research.',
+    title: '12 commands',
+    body: "Six single-agent expert modes — architect, builder, QA engineer, security auditor, UI/UX designer, code auditor — four swarm orchestrators, plus v5's /tailor customization engine and /land-the-plane finish-line workflow.",
   },
   {
     title: '5 worker types',
     body: 'Explorer, builder, reviewer, researcher, and architect workers. Model tiers are pinned in each agent’s frontmatter — premium reasoning where judgment matters, cheaper models for mechanical work.',
   },
   {
-    title: '24 skills',
-    body: '14 knowledge skills spanning architecture, engineering, design, operations, product, and security, plus 10 gated workflow skills. The full listing costs about 1.4k tokens of context.',
+    title: '21 skills',
+    body: 'Nine library skills spanning architecture, engineering, operations, product, and security, plus 12 gated workflow skills. Every skill is eval-tested against the base model — anything the model already knows gets retired.',
   },
   {
     title: 'Layered rules',
     body: 'Golden-path tech strategy, code-quality standards, a debugging protocol, and security requirements — roughly 5k tokens, loaded into every session automatically.',
   },
   {
-    title: 'Fail-soft safety hooks',
-    body: 'Secret detection, protected-file guards, push blocking on main, dangerous-command warnings, and file locking so concurrent workers never trample each other.',
+    title: 'Enforcing safety hooks',
+    body: "Secret detection, protected-file guards, push blocking on main, file locking for concurrent workers — and as of v5, hooks that detect your stack's quality gates and block any commit or task completion that fails them.",
   },
   {
     title: '4 MCP servers',
@@ -124,7 +124,7 @@ const ladder = [
     level: 'Hooks',
     strength: 'Deterministic',
     accent: 'border-blue-500 dark:border-blue-600',
-    body: 'Pre-tool-use scripts catch secrets, protected files, and dangerous commands before they execute. Fail-soft by design: a broken hook never blocks legitimate work.',
+    body: 'Pre-tool-use scripts catch secrets, protected files, and dangerous commands before they execute — and as of v5 they run your detected quality gates, blocking a commit that fails one. Still fail-open: a broken hook never blocks legitimate work.',
   },
   {
     rung: '4',
@@ -135,10 +135,25 @@ const ladder = [
   },
 ]
 
+const newInV5 = [
+  {
+    title: 'Commits verify themselves',
+    body: "The pre-commit hook detects your stack's gates — lint, tests, types — runs them, and blocks the commit if one fails. A passing run writes an evidence stamp bound to the exact tree hash, so stale proof never carries over.",
+  },
+  {
+    title: 'Task completions are gated',
+    body: 'Marking work done triggers the same detected gates. A failure blocks completion; a slow gate times out honestly, reporting that nothing was verified rather than pretending it passed.',
+  },
+  {
+    title: 'Stack packs + /tailor',
+    body: 'Working exemplar files for TypeScript, Python, Go, and Rust — a golden-path skill and CI gates with real dependency audits — and a /tailor command that fingerprints your repo from its lockfiles and instantiates only what it actually found.',
+  },
+]
+
 const stats = [
-  { value: '10', label: 'Commands' },
+  { value: '12', label: 'Commands' },
   { value: '5', label: 'Worker types' },
-  { value: '24', label: 'Skills' },
+  { value: '21', label: 'Skills' },
   { value: '4', label: 'MCP servers' },
 ]
 
@@ -336,6 +351,33 @@ export default function ClaudeAgenticFrameworkPage(): React.JSX.Element {
         </div>
       </section>
 
+      {/* New in v5 */}
+      <section className='py-16 px-4 bg-white dark:bg-black'>
+        <div className='max-w-6xl mx-auto'>
+          <h2 className='text-3xl font-bold text-center mb-6 text-neutral-900 dark:text-neutral-100'>
+            New in v5: the gates grew teeth
+          </h2>
+          <p className='text-center text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mb-12'>
+            v5.0.0 moves the framework's biggest promise down the ladder. Quality gates stopped
+            being advice the agent reads and became enforcement the agent cannot skip silently.
+          </p>
+
+          <div className='grid md:grid-cols-3 gap-8'>
+            {newInV5.map(item => (
+              <div
+                key={item.title}
+                className='p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-shadow'
+              >
+                <h3 className='text-xl font-semibold mb-2 text-neutral-900 dark:text-neutral-100'>
+                  {item.title}
+                </h3>
+                <p className='text-neutral-600 dark:text-neutral-400'>{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Stats - Full Width */}
       <section className='py-16 px-4 bg-gradient-to-r from-neutral-900 to-neutral-800 text-white'>
         <div className='max-w-6xl mx-auto'>
@@ -360,7 +402,7 @@ export default function ClaudeAgenticFrameworkPage(): React.JSX.Element {
               This site is the lab
             </h2>
             <p className='text-neutral-600 dark:text-neutral-400 mb-4'>
-              bidwell.info runs on the framework it's describing — v3.1.0, checked into this
+              bidwell.info runs on the framework it's describing — v5.0.0, checked into this
               repository's <code className='font-mono text-sm'>.claude</code> directory. The
               experiments hub you arrived from was specified in a PRD, architected in an ADR, and
               built and reviewed by the swarm.
@@ -419,7 +461,10 @@ cd your-project
           <p className='text-sm text-neutral-500 dark:text-neutral-400 mb-8'>
             Read the init script before you run it — the framework would tell you to do the same.
             Prefer a lighter footprint? Install it as a Claude Code plugin instead:{' '}
-            <code className='font-mono'>/plugin install agentic-framework@agentic-framework</code>
+            <code className='font-mono'>/plugin install agentic-framework@agentic-framework</code>{' '}
+            Either way, <code className='font-mono'>/tailor</code> is the first move after install:
+            it fingerprints your stack and proposes the pieces that fit — you review, nothing writes
+            silently.
           </p>
 
           <a
